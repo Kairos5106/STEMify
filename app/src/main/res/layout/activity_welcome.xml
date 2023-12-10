@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background2"
+    tools:context=".Welcome">
+
+    <TextView
+        android:id="@+id/TVWelcome"
+        android:layout_width="296dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="57dp"
+        android:layout_marginTop="244dp"
+        android:layout_marginEnd="58dp"
+        android:fontFamily="@font/inter_bold"
+        android:lineSpacingExtra="8sp"
+        android:text="Welcome Back!"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/TVWelcomeText"
+        android:layout_width="314dp"
+        android:layout_height="103dp"
+        android:layout_marginStart="49dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="50dp"
+        android:fontFamily="@font/inter_light"
+        android:lineSpacingExtra="8sp"
+        android:text="Pick up right where you left off and continue your learning journey with us."
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVWelcome" />
+
+    <Button
+        android:id="@+id/BtnContinueToHome"
+        android:layout_width="230dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="41dp"
+        android:layout_marginEnd="91dp"
+        android:backgroundTint="#770D46"
+        android:fontFamily="sans-serif"
+        android:text="CONTINUE"
+        android:textColor="#FAF8F8"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVWelcomeText"
+        app:strokeColor="#000000"
+        app:strokeWidth="1dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

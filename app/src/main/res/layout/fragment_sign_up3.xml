@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".SignUp3">
+
+
+    <TextView
+        android:id="@+id/TVCompleting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="104dp"
+        android:layout_marginEnd="252dp"
+        android:fontFamily="@font/inter_light"
+        android:text="You are almost done!"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/ETRegUsername"
+        android:layout_width="290dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginTop="46dp"
+        android:layout_marginEnd="65dp"
+        android:background="#FFF1F1"
+        android:ems="10"
+        android:fontFamily="@font/inter_bold"
+        android:hint="  Username"
+        android:inputType="text"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pp" />
+
+    <Button
+        android:id="@+id/BtnCreateAcc"
+        android:layout_width="230dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="49dp"
+        android:layout_marginEnd="90dp"
+        android:backgroundTint="#770D46"
+        android:fontFamily="sans-serif"
+        android:text="CREATE AN ACCOUNT"
+        android:textColor="#F8F5F5"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ETRegUsername"
+        app:strokeColor="#000000"
+        app:strokeWidth="1dp" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/pp"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="121dp"
+        android:elevation="12dp"
+        android:innerRadius="0dp"
+        android:shape="ring"
+        android:thicknessRatio="1.9"
+        app:cardCornerRadius="90dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVCompleting">
+
+        <ImageView
+            android:id="@+id/ProfilePic"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/insert_image">
+        </ImageView>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
