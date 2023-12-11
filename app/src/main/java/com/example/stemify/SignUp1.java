@@ -83,7 +83,7 @@ public class SignUp1 extends Fragment {
 
         //dropdown for identity
         String[] IDENTITY = new String[]{
-                "Identity", "Student", "Tutor", "Company", "Community", "Psychiatrist"
+                "Identity", "Student", "Tutor", "Parent", "Company", "Community", "Psychiatrist"
         };
 
         Spinner SPIdentity = (Spinner) view.findViewById(R.id.SPIdentity);
@@ -132,8 +132,10 @@ public class SignUp1 extends Fragment {
                     hasInput = false;
                 }
                 if(isEmpty(ETOrganization)){
-                    ETOrganization.setError("Enter your organization");
-                    hasInput = false;
+                    if(!chosenIdentity.equals("Parent") || !chosenIdentity.equals("Community")) {
+                        ETOrganization.setError("Enter your school/organization");
+                        hasInput = false;
+                    }
                 }
 
                 if(hasInput && selectionChecker){
