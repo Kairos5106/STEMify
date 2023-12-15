@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
 
 import android.text.TextUtils;
@@ -76,7 +77,7 @@ public class SignUp1 extends Fragment {
 
     //checker for identity selection
     boolean selectionChecker = false;
-    public String chosenIdentity = "";
+    String chosenIdentity = "";
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
@@ -139,6 +140,21 @@ public class SignUp1 extends Fragment {
                 }
 
                 if(hasInput && selectionChecker){
+
+                    String fullname = ETFullname.getText().toString();
+                    String email = ETRegisterEmail.getText().toString();
+                    String organization = ETOrganization.getText().toString();
+
+                    //using Bundle to send data to SignUp3
+                    SignUp3 SU3 = new SignUp3();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("fullname", fullname);
+                    bundle.putString("email", email);
+                    bundle.putString("identity", chosenIdentity);
+                    bundle.putString("organization",organization);
+                    SU3.setArguments(bundle);
+
+                    //transit to SignUp2
                     Navigation.findNavController(view).navigate(R.id.first_to_second);
                 }
             }

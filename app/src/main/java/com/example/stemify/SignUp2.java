@@ -134,7 +134,28 @@ public class SignUp2 extends Fragment {
                 }
 
                 if(hasInput && selectionChecker){
-                    Navigation.findNavController(view).navigate(R.id.second_to_third);
+
+                    //check if password == confirm password
+                    if(ETRegPassword.getText().toString().equals(ETConfirmRegPassword.getText().toString())) {
+                        String answer = ETRegAns.getText().toString();
+                        String password = ETRegPassword.getText().toString();
+
+                        //using Bundle to send data to SignUp3
+                        SignUp3 SU3 = new SignUp3();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("securityques", chosenSecQ);
+                        bundle.putString("answer", answer);
+                        bundle.putString("password", password);
+                        SU3.setArguments(bundle);
+
+                        //transit to SignUp3
+                        Navigation.findNavController(view).navigate(R.id.second_to_third);
+
+                    }else{
+                        TextView TVWrongPass = view.findViewById(R.id.TVWrongPass);
+                        TVWrongPass.setText("Password Mismatch");
+                        TVWrongPass.setTextColor(Color.RED);
+                    }
                 }
             }
         });

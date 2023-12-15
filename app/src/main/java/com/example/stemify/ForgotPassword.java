@@ -1,5 +1,6 @@
 package com.example.stemify;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -14,8 +15,25 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class ForgotPassword extends AppCompatActivity {
+
+    public int counter = 0;
+    FirebaseAuth mAuth;
+    boolean selectionChecker = false;
+    String chosenSecurityQuestion = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +57,9 @@ public class ForgotPassword extends AppCompatActivity {
                     TextView TVSelectSQ = findViewById(R.id.TVSelectSQ);
                     TVSelectSQ.setText("Please Select A Question");
                     TVSelectSQ.setTextColor(Color.RED);
+                }else{
+                    chosenSecurityQuestion = (String) parent.getItemAtPosition(position);
+                    selectionChecker = true;
                 }
             }
 
@@ -70,21 +91,49 @@ public class ForgotPassword extends AppCompatActivity {
                     hasInput = false;
                 }
                 //check if the inputs are valid (match data)
-                if(hasInput){
-                    boolean isValid = true;
-                    int counter = 0;
+                if(hasInput && selectionChecker){
+                    String enteredEmail = ETEmailAdd.getText().toString();
+                    String answer = ETAnswer.getText().toString();
 
-                    //check email
-                    //true if match, false if unmatch
-                    //check answer
-                    //true if match, false if unmatch
-                    //if isValid = false, increase counter by 1
-                    //Toast.makeText(this, "Wrong Email or Answer!", Toast.LENGTH_SHORT).show();
-                    //if counter == 3 , go to lock account page
-                    //if correct, go to Change Password page
-                    Intent nextScreen = new Intent(getApplicationContext(), ChangePassword.class);
-                    startActivity(nextScreen);
-                    finish();
+                    mAuth = FirebaseAuth.getInstance();
+                    FirebaseUser currentUser = mAuth.getCurrentUser();
+
+                    if(currentUser != null){
+                        String uid = currentUser.getUid();
+
+                        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(uid);
+                        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                if (dataSnapshot.exists()) {
+                                    String email = currentUser.getEmail();
+                                    String securityQuestion = dataSnapshot.child("securityques").getValue(String.class);
+                                    String securityAnswer = dataSnapshot.child("answer").getValue(String.class);
+
+                                    if(enteredEmail.equals(email) && chosenSecurityQuestion.equals(securityQuestion) && answer.equals(securityAnswer)){
+                                        Intent nextScreen = new Intent(getApplicationContext(), ChangePassword.class);
+                                        nextScreen.putExtra("fullname", dataSnapshot.child("fullname").getValue(String.class));
+                                        startActivity(nextScreen);
+                                        finish();
+                                    }else{
+                                        counter++;
+                                        Toast.makeText(ForgotPassword.this, "Wrong inputs", Toast.LENGTH_SHORT).show();
+                                        //unsuccessful attempts for three times, go to Login Fail page
+                                        if (counter == 3) {
+                                            Intent nextScreen = new Intent(getApplicationContext(), LoginFailed.class);
+                                            startActivity(nextScreen);
+                                            finish();
+                                        }
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                Toast.makeText(getApplicationContext(), "Error encountered during data retrieval", Toast.LENGTH_SHORT).show();                            }
+                        });
+
+                    }
                 }
             }
         });
