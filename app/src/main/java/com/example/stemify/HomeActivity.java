@@ -12,6 +12,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -53,23 +54,7 @@ public class HomeActivity extends AppCompatActivity {
 
         // Set up bottom navigation bar
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                CharSequence itemTitle = item.getTitle();
-
-                if(itemTitle.equals("ModA")){
-                    loadFragment(homePageA);
-                    return true;
-                }
-                else if(itemTitle.equals("ModB")){
-                    loadFragment(homePageB);
-                    return true;
-                }
-
-                return false;
-            }
-        });
+        NavigationUI.setupWithNavController(bottomNavigationView, navController);
     }
 
     @Override
@@ -77,11 +62,5 @@ public class HomeActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_home);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
-    }
-
-    private void loadFragment(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.nav_host_fragment_content_home, fragment)
-                .commit();
     }
 }

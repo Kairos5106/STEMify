@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/nav_modA"
+        android:id="@+id/homePageA"
         android:icon="@drawable/ic_mod_a"
         android:title="ModA"/>
     <item
-        android:id="@+id/nav_modB"
+        android:id="@+id/homePageB"
         android:icon="@drawable/ic_mod_b"
         android:title="ModB"/>
-
+    <item
+        android:id="@+id/homePageC"
+        android:icon="@drawable/ic_mod_c"
+        android:title="ModC"/>
+    <item
+        android:id="@+id/homePageD"
+        android:icon="@drawable/ic_mod_d"
+        android:title="ModD"/>
+    <item
+        android:id="@+id/homePageE"
+        android:icon="@drawable/ic_mod_e"
+        android:title="ModE"/>
 </menu>
