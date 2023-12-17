@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_modA"
+        android:icon="@drawable/ic_mod_a"
+        android:title="ModA"/>
+    <item
+        android:id="@+id/nav_modB"
+        android:icon="@drawable/ic_mod_b"
+        android:title="ModB"/>
+
+</menu>
