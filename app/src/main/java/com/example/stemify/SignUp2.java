@@ -77,8 +77,13 @@ public class SignUp2 extends Fragment {
 
     public String chosenSecQ = "";
 
+    SignUp3 SU3 = new SignUp3();
+    Bundle bundle = new Bundle();
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
+
+        TextView TVSelectQ = view.findViewById(R.id.TVSelectQ);
 
         //dropdown for security questions
         String[] SecurityQ = new String[]{
@@ -93,20 +98,18 @@ public class SignUp2 extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (parent.getItemAtPosition(position).equals("Security Question")){
-                    TextView TVSelectQ = view.findViewById(R.id.TVSelectQ);
                     TVSelectQ.setText("Please Select A Security Question");
                     TVSelectQ.setTextColor(Color.RED);
                 }else{
                     chosenSecQ = (String) parent.getItemAtPosition(position);
                     selectionChecker = true;
+                    TVSelectQ.setText("");
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                TextView TVSelectQ = view.findViewById(R.id.TVSelectQ);
-                TVSelectQ.setText("Please Select A Security Question");
-                TVSelectQ.setTextColor(Color.RED);
+                //nothing to display
             }
         });
 
@@ -141,15 +144,12 @@ public class SignUp2 extends Fragment {
                         String password = ETRegPassword.getText().toString();
 
                         //using Bundle to send data to SignUp3
-                        SignUp3 SU3 = new SignUp3();
-                        Bundle bundle = new Bundle();
-                        bundle.putString("securityques", chosenSecQ);
-                        bundle.putString("answer", answer);
-                        bundle.putString("password", password);
-                        SU3.setArguments(bundle);
+                        DataManager.getInstance().putData("answer", answer);
+                        DataManager.getInstance().putData("securityques", chosenSecQ);
+                        DataManager.getInstance().putData("password", password);
 
                         //transit to SignUp3
-                        Navigation.findNavController(view).navigate(R.id.second_to_third);
+                        Navigation.findNavController(view).navigate(R.id.NavSignUp3);
 
                     }else{
                         TextView TVWrongPass = view.findViewById(R.id.TVWrongPass);
@@ -164,7 +164,7 @@ public class SignUp2 extends Fragment {
         BtnBackToSU1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.second_to_first);
+                Navigation.findNavController(view).navigate(R.id.NavSignUp1);
             }
         });
     }

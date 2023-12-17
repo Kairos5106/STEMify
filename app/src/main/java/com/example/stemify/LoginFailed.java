@@ -28,7 +28,7 @@ public class LoginFailed extends AppCompatActivity {
             public void onClick(View v) {
                 Intent returnBack = new Intent(getApplicationContext(), Splash2.class);
                 startActivity(returnBack);
-                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_in_right);
+                //overridePendingTransition(R.anim.slide_in_left, R.anim.slide_in_right);
                 finish();
             }
         });

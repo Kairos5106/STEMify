@@ -7,7 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends AppCompatActivity {
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,9 +23,19 @@ public class MainActivity extends AppCompatActivity {
         StartJourney.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent nextScreen = new Intent(getApplicationContext(), Splash2.class);
-                startActivity(nextScreen);
-                finish();
+
+                //check if the user has logged in recently (didn't log out)
+                //if yes, direct to home page
+                FirebaseUser currentUser = mAuth.getCurrentUser();
+                if(currentUser != null){
+                    Intent nextScreen = new Intent(getApplicationContext(), Welcome.class);
+                    startActivity(nextScreen);
+                    finish();
+                }else {
+                    Intent nextScreen = new Intent(getApplicationContext(), Splash2.class);
+                    startActivity(nextScreen);
+                    finish();
+                }
             }
         });
     }

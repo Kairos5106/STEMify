@@ -26,20 +26,8 @@ import java.util.regex.Pattern;
 public class Login extends AppCompatActivity {
 
     public int counter = 0;
-    FirebaseAuth mAuth;
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
-    @Override
-    public void onStart() {
-        //to check if the user login successfully
-        super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            Intent nextScreen = new Intent(getApplicationContext(), Welcome.class);
-            nextScreen.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(nextScreen);
-            finish();
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,11 +1,22 @@
 package com.example.stemify;
 
+import static androidx.browser.customtabs.CustomTabsClient.getPackageName;
+
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import android.provider.MediaStore;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -13,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,6 +34,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.IgnoreExtraProperties;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -75,24 +88,33 @@ public class SignUp3 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_sign_up3, container, false);
+
+
     }
 
     FirebaseAuth mAuth;
+    private DatabaseReference userRef = FirebaseDatabase.getInstance().getReference();
+
+    ImageView ProfilePic;
+    Uri imageUri;
+    boolean imageChecker = false;
+
 
     @Override
-    public void onStart() {
-        //to check if the user sign in successfully
-        super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            Intent nextScreen = new Intent(getActivity(), Congrats.class);
-            startActivity(nextScreen);
-            nextScreen.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-            getActivity().finish();
-        }
-    }
-    @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
+
+        //get profile picture
+        ProfilePic = view.findViewById(R.id.ProfilePic);
+        ProfilePic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //check permission
+                //if granted, pick a photo and save the url to imageUri
+                //ProfilePic.setImageUrl(imageUrl) to set image on the Image View
+                //change imageChecker = true;
+            }
+        });
+
         mAuth = FirebaseAuth.getInstance();
         Button BtnCreateAcc = view.findViewById(R.id.BtnCreateAcc);
         BtnCreateAcc.setOnClickListener(new View.OnClickListener() {
@@ -112,31 +134,39 @@ public class SignUp3 extends Fragment {
                     //save all data from SignUp1 till SignUp3
                     //from Sign Up 1:
                     //ETFullname, ETRegisterEmail, chosenIdentity, ETOrganization
-                    //retrieving data using bundle
-                    Bundle bundle = getArguments();
-                    String fullname = String.valueOf(bundle.getString("fullname"));
-                    String email = String.valueOf(bundle.getString("email"));
-                    String identity = String.valueOf(bundle.getString("identity"));
-                    String organization = String.valueOf(bundle.getString("organization"));
+                    //retrieving data
+                    String fullname = (String) DataManager.getInstance().getData("fullname");
+                    String email = (String) DataManager.getInstance().getData("email");
+                    String identity = (String) DataManager.getInstance().getData("identity");
+                    String organization = (String) DataManager.getInstance().getData("organization");
 
                     //from Sign Up 2:
-                    //chosenSecQ, ETRegAns, ETRegPassword, ETConfirmRegPassword
-                    String securityques = String.valueOf(bundle.getString("securityques"));
-                    String answer = String.valueOf(bundle.getString("answer"));
-                    String password = String.valueOf(bundle.getString("password"));
+                    //chosenSecQ, ETRegAns, ETRegPassword
+                    String securityques = (String) DataManager.getInstance().getData("securityques");
+                    String answer = (String) DataManager.getInstance().getData("answer");
+                    String password = (String) DataManager.getInstance().getData("password");
 
                     //from Sign Up 3:
-                    //ETRegUsername, ProfilPic
+                    //ETRegUsername
                     String username = ETRegUsername.getText().toString();
-                    //***profile picture to be completed
 
                     User user = new User();
                     user.setFullname(fullname);
                     user.setIdentity(identity);
-                    user.setOrgaization(organization);
+                    user.setOrganization(organization);
                     user.setSecurityques(securityques);
                     user.setAnswer(answer);
                     user.setUsername(username);
+                    user.setEmail(email);
+                    user.setPassword(password);
+
+                    //save profile picture url
+                    if(imageChecker){
+                        user.setPhotoUrl(imageUri.toString());
+                    }else{
+                        String defaultImageUrl = "android.resource://com.example.stemify/drawable/defaultprofilepicture";
+                        user.setPhotoUrl(defaultImageUrl);
+                    }
 
                     //saving data in firebase
                     mAuth.createUserWithEmailAndPassword(email, password)
@@ -147,13 +177,7 @@ public class SignUp3 extends Fragment {
                                         String userId = mAuth.getUid();
 
                                         // Save additional details to the database
-                                        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(userId);
-                                        userRef.child("fullname").setValue(fullname);
-                                        userRef.child("identity").setValue(identity);
-                                        userRef.child("organization").setValue(organization);
-                                        userRef.child("securityques").setValue(securityques);
-                                        userRef.child("answer").setValue(answer);
-                                        userRef.child("username").setValue(username);
+                                        userRef.child("users").child(userId).setValue(user);
 
                                         //sign in successfully
                                         Intent nextScreen = new Intent(getActivity(), Congrats.class);
@@ -179,23 +203,41 @@ public class SignUp3 extends Fragment {
 
 }
 
+@IgnoreExtraProperties
 class User {
+
     private String fullname;
     private String identity;
-    private String orgaization;
+    private String organization;
     private String securityques;
     private String answer;
-    private String password;
     private String username;
+    private String email;
+    private String photoUrl;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    private String password;
 
     // Add getters and setters
-
-    public String getFullname() {
-        return fullname;
-    }
+    public String getFullname() { return fullname; }
 
     public void setFullname(String fullname) {
         this.fullname = fullname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getIdentity() {
@@ -206,12 +248,12 @@ class User {
         this.identity = identity;
     }
 
-    public String getOrgaization() {
-        return orgaization;
+    public String getOrganization() {
+        return organization;
     }
 
-    public void setOrgaization(String orgaization) {
-        this.orgaization = orgaization;
+    public void setOrganization(String organization) {
+        this.organization = organization;
     }
 
     public String getSecurityques() {
@@ -230,14 +272,6 @@ class User {
         this.answer = answer;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getUsername() {
         return username;
     }
@@ -245,4 +279,13 @@ class User {
     public void setUsername(String username) {
         this.username = username;
     }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
+
 }

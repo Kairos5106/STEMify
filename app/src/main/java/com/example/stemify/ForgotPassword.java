@@ -45,6 +45,8 @@ public class ForgotPassword extends AppCompatActivity {
                 "Security Question", "What is the name of your favourite teacher?", "What is your favourite food?", "What is your favourite colour?", "What is your favourite city?"
         };
 
+        TextView TVSelectSQ = findViewById(R.id.TVSelectSQ);
+
         Spinner SPSecurityQ = (Spinner) findViewById(R.id.SPSecurityQ);
         ArrayAdapter<String> arrAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, SECURITYQ);
         arrAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -54,20 +56,18 @@ public class ForgotPassword extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //check if the selection is "Security Question"
                 if (parent.getItemAtPosition(position).equals("Security Question")){
-                    TextView TVSelectSQ = findViewById(R.id.TVSelectSQ);
                     TVSelectSQ.setText("Please Select A Question");
                     TVSelectSQ.setTextColor(Color.RED);
                 }else{
                     chosenSecurityQuestion = (String) parent.getItemAtPosition(position);
                     selectionChecker = true;
+                    TVSelectSQ.setText("");
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                TextView TVSelectSQ = findViewById(R.id.TVSelectSQ);
-                TVSelectSQ.setText("Please Select A Question");
-                TVSelectSQ.setTextColor(Color.RED);
+                //nothing to display
             }
         });
 
@@ -95,45 +95,55 @@ public class ForgotPassword extends AppCompatActivity {
                     String enteredEmail = ETEmailAdd.getText().toString();
                     String answer = ETAnswer.getText().toString();
 
-                    mAuth = FirebaseAuth.getInstance();
-                    FirebaseUser currentUser = mAuth.getCurrentUser();
+                    DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
 
-                    if(currentUser != null){
-                        String uid = currentUser.getUid();
+                    usersRef.orderByChild("email").equalTo(enteredEmail).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.exists()) {
+                                // User with the provided email exists
+                                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                                    String userId = userSnapshot.getKey();
+                                    String email = userSnapshot.child("email").getValue(String.class);
+                                    String securityQuestion = userSnapshot.child("securityques").getValue(String.class);
+                                    String securityAnswer = userSnapshot.child("answer").getValue(String.class);
+                                    String password = userSnapshot.child("password").getValue(String.class);
 
-                        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(uid);
-                        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                if (dataSnapshot.exists()) {
-                                    String email = currentUser.getEmail();
-                                    String securityQuestion = dataSnapshot.child("securityques").getValue(String.class);
-                                    String securityAnswer = dataSnapshot.child("answer").getValue(String.class);
-
-                                    if(enteredEmail.equals(email) && chosenSecurityQuestion.equals(securityQuestion) && answer.equals(securityAnswer)){
+                                    if(chosenSecurityQuestion.equals(securityQuestion) && answer.equals(securityAnswer)){
                                         Intent nextScreen = new Intent(getApplicationContext(), ChangePassword.class);
-                                        nextScreen.putExtra("fullname", dataSnapshot.child("fullname").getValue(String.class));
+                                        nextScreen.putExtra("email", email);
+                                        nextScreen.putExtra("password", password);
                                         startActivity(nextScreen);
                                         finish();
                                     }else{
                                         counter++;
                                         Toast.makeText(ForgotPassword.this, "Wrong inputs", Toast.LENGTH_SHORT).show();
-                                        //unsuccessful attempts for three times, go to Login Fail page
                                         if (counter == 3) {
+                                            counter = 0;
                                             Intent nextScreen = new Intent(getApplicationContext(), LoginFailed.class);
                                             startActivity(nextScreen);
                                             finish();
                                         }
                                     }
                                 }
+                            } else {
+                                counter++;
+                                Toast.makeText(ForgotPassword.this, "Wrong inputs", Toast.LENGTH_SHORT).show();
+                                //unsuccessful attempts for three times, go to Login Fail page
+                                if (counter == 3) {
+                                    counter = 0;
+                                    Intent nextScreen = new Intent(getApplicationContext(), LoginFailed.class);
+                                    startActivity(nextScreen);
+                                    finish();
+                                }
                             }
+                        }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-                                Toast.makeText(getApplicationContext(), "Error encountered during data retrieval", Toast.LENGTH_SHORT).show();                            }
-                        });
-
-                    }
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            System.err.println("Error searching for user by email: " + databaseError.getMessage());
+                        }
+                    });
                 }
             }
         });

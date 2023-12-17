@@ -79,8 +79,13 @@ public class SignUp1 extends Fragment {
     boolean selectionChecker = false;
     String chosenIdentity = "";
 
+    SignUp3 SU3 = new SignUp3();
+    Bundle bundleOne = new Bundle();
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
+
+        TextView TVSelectIdentity = view.findViewById(R.id.TVSelectIdentity);
 
         //dropdown for identity
         String[] IDENTITY = new String[]{
@@ -96,20 +101,18 @@ public class SignUp1 extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //check if the selection is "Identity"
                 if (parent.getItemAtPosition(position).equals("Identity")){
-                    TextView TVSelectIdentity = view.findViewById(R.id.TVSelectIdentity);
                     TVSelectIdentity.setText("Please Select An Identity");
                     TVSelectIdentity.setTextColor(Color.RED);
                 }else{
                     chosenIdentity = (String) parent.getItemAtPosition(position);
                     selectionChecker = true;
+                    TVSelectIdentity.setText("");
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                TextView TVSelectIdentity = view.findViewById(R.id.TVSelectIdentity);
-                TVSelectIdentity.setText("Please Select An Identity");
-                TVSelectIdentity.setTextColor(Color.RED);
+                //nothing to display
             }
         });
 
@@ -145,17 +148,14 @@ public class SignUp1 extends Fragment {
                     String email = ETRegisterEmail.getText().toString();
                     String organization = ETOrganization.getText().toString();
 
-                    //using Bundle to send data to SignUp3
-                    SignUp3 SU3 = new SignUp3();
-                    Bundle bundle = new Bundle();
-                    bundle.putString("fullname", fullname);
-                    bundle.putString("email", email);
-                    bundle.putString("identity", chosenIdentity);
-                    bundle.putString("organization",organization);
-                    SU3.setArguments(bundle);
+                    //send data to SignUp3
+                    DataManager.getInstance().putData("fullname", fullname);
+                    DataManager.getInstance().putData("email", email);
+                    DataManager.getInstance().putData("identity", chosenIdentity);
+                    DataManager.getInstance().putData("organization", organization);
 
                     //transit to SignUp2
-                    Navigation.findNavController(view).navigate(R.id.first_to_second);
+                    Navigation.findNavController(view).navigate(R.id.NavSignUp2);
                 }
             }
         });
