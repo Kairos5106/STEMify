@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 //temporary My Profile activity for testing purposes
 //to retrieve current user's email, password and profile picture, use FireBaseUser
@@ -35,7 +36,7 @@ public class MyProfile extends AppCompatActivity {
     String securityQ;
     String answer;
 
-    Uri profilePic;
+    String profilePic;
 
 
 
@@ -51,6 +52,7 @@ public class MyProfile extends AppCompatActivity {
 
             // Read from the database
             DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users").child(currentUser.getUid());
+
             userRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -64,9 +66,9 @@ public class MyProfile extends AppCompatActivity {
                         securityQ = user.getSecurityques();
                         answer = user.getAnswer();
                         email = currentUser.getEmail();
-                        profilePic = Uri.parse(user.getPhotoUrl());
+                        profilePic = user.getPhotoUrl();
                         TVUSER.setText(email);
-                        ProfileP.setImageURI(profilePic);
+                        Picasso.get().load(profilePic).into(ProfileP);
                     }
                 }
 

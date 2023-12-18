@@ -1,22 +1,13 @@
 package com.example.stemify;
 
-import static androidx.browser.customtabs.CustomTabsClient.getPackageName;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
-import android.provider.MediaStore;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -31,10 +22,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.IgnoreExtraProperties;
+import com.squareup.picasso.Picasso;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -89,31 +80,58 @@ public class SignUp3 extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_sign_up3, container, false);
 
-
     }
 
     FirebaseAuth mAuth;
-    private DatabaseReference userRef = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference userRef = FirebaseDatabase.getInstance().getReference();
 
     ImageView ProfilePic;
-    Uri imageUri;
-    boolean imageChecker = false;
+    String userIcon;
+
+    String studentIcon = "https://firebasestorage.googleapis.com/v0/b/stemify-708cf.appspot.com/o/profile_icons%2Fstudent.jpg?alt=media&token=2e43d78e-f53d-41d0-8074-9c027435d037";
+    String tutorIcon = "https://firebasestorage.googleapis.com/v0/b/stemify-708cf.appspot.com/o/profile_icons%2Ftutor.jpg?alt=media&token=47359f41-fac1-458d-a531-d3bb545e271b";
+    String parentIcon = "https://firebasestorage.googleapis.com/v0/b/stemify-708cf.appspot.com/o/profile_icons%2Fparent.jpg?alt=media&token=e717737a-4a92-4abd-b2e7-1a95800b4b1c";
+    String companyIcon = "https://firebasestorage.googleapis.com/v0/b/stemify-708cf.appspot.com/o/profile_icons%2Fcompany.jpg?alt=media&token=89054483-42e2-4c2d-9174-1f08dbaecf39";
+    String communityIcon = "https://firebasestorage.googleapis.com/v0/b/stemify-708cf.appspot.com/o/profile_icons%2Fcommunity.jpg?alt=media&token=f3473fbb-0b7f-499c-934d-4ccdc2e9c851";
+    String psychiatristIcon = "https://firebasestorage.googleapis.com/v0/b/stemify-708cf.appspot.com/o/profile_icons%2Fpsychiatrist.jpg?alt=media&token=e1843871-58bf-4b94-9f61-ca4cdc8ad855";
 
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
-
-        //get profile picture
         ProfilePic = view.findViewById(R.id.ProfilePic);
-        ProfilePic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //check permission
-                //if granted, pick a photo and save the url to imageUri
-                //ProfilePic.setImageUrl(imageUrl) to set image on the Image View
-                //change imageChecker = true;
-            }
-        });
+        String identity = (String) DataManager.getInstance().getData("identity");
+        switch(identity){
+            case "Student":
+                userIcon = studentIcon;
+                Picasso.get().load(userIcon).into(ProfilePic);
+                break;
+
+            case "Tutor":
+                userIcon = tutorIcon;
+                Picasso.get().load(userIcon).into(ProfilePic);
+                break;
+
+            case "Parent":
+                userIcon = parentIcon;
+                Picasso.get().load(userIcon).into(ProfilePic);
+                break;
+
+            case "Company":
+                userIcon = companyIcon;
+                Picasso.get().load(userIcon).into(ProfilePic);
+                break;
+
+            case "Community":
+                userIcon = communityIcon;
+                Picasso.get().load(userIcon).into(ProfilePic);
+                break;
+
+            case "Psychiatrist":
+                userIcon = psychiatristIcon;
+                Picasso.get().load(userIcon).into(ProfilePic);
+                break;
+
+        }
 
         mAuth = FirebaseAuth.getInstance();
         Button BtnCreateAcc = view.findViewById(R.id.BtnCreateAcc);
@@ -137,7 +155,6 @@ public class SignUp3 extends Fragment {
                     //retrieving data
                     String fullname = (String) DataManager.getInstance().getData("fullname");
                     String email = (String) DataManager.getInstance().getData("email");
-                    String identity = (String) DataManager.getInstance().getData("identity");
                     String organization = (String) DataManager.getInstance().getData("organization");
 
                     //from Sign Up 2:
@@ -159,14 +176,7 @@ public class SignUp3 extends Fragment {
                     user.setUsername(username);
                     user.setEmail(email);
                     user.setPassword(password);
-
-                    //save profile picture url
-                    if(imageChecker){
-                        user.setPhotoUrl(imageUri.toString());
-                    }else{
-                        String defaultImageUrl = "android.resource://com.example.stemify/drawable/defaultprofilepicture";
-                        user.setPhotoUrl(defaultImageUrl);
-                    }
+                    user.setPhotoUrl(userIcon);
 
                     //saving data in firebase
                     mAuth.createUserWithEmailAndPassword(email, password)
@@ -187,7 +197,7 @@ public class SignUp3 extends Fragment {
 
                                     } else {
                                         // If sign in fails, display a message to the user.
-                                        Toast.makeText(getContext(), "Sign in failed.", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getActivity(), "Sign in failed.", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
