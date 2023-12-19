@@ -17,11 +17,7 @@ import com.example.stemify.ui.moduleA.ResourceCommunity;
 import com.example.stemify.ui.moduleA.ResourceLibrary;
 import com.google.android.material.tabs.TabLayout;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link HomePageC#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class HomePageC extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,7 +36,7 @@ public class HomePageC extends Fragment {
 
         tabLayout.setupWithViewPager(viewPager);
 
-        VPAdapter vpAdapter = new VPAdapter(getParentFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        VPAdapter vpAdapter = new VPAdapter(getChildFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         vpAdapter.addFragment(new Career(), "CAREER");
         vpAdapter.addFragment(new Scholarship(),  "SCHOLARSHIP");
         vpAdapter.addFragment(new Challenges(), "CHALLENGES");
