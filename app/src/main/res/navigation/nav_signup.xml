@@ -10,10 +10,6 @@
         android:name="com.example.stemify.SignUp1"
         android:label="fragment_sign_up1"
         tools:layout="@layout/fragment_sign_up1">
-        <action
-            android:id="@+id/first_to_second"
-            app:destination="@id/NavSignUp2"
-            app:enterAnim="@anim/slide_in_right" />
     </fragment>
 
     <fragment
@@ -21,14 +17,6 @@
         android:name="com.example.stemify.SignUp2"
         android:label="fragment_sign_up2"
         tools:layout="@layout/fragment_sign_up2" >
-        <action
-            android:id="@+id/second_to_third"
-            app:destination="@id/NavSignUp3"
-            app:enterAnim="@anim/slide_in_right"/>
-        <action
-            android:id="@+id/second_to_first"
-            app:destination="@id/NavSignUp1"
-            app:enterAnim="@anim/slide_in_left"/>
     </fragment>
 
     <fragment

@@ -1,8 +1,13 @@
 package com.example.stemify;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 public class Welcome extends AppCompatActivity {
 
@@ -12,5 +17,14 @@ public class Welcome extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
 
         //go to home page screen
+        Button BtnContinueToHome = findViewById(R.id.BtnContinueToHome);
+        BtnContinueToHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent nextScreen = new Intent(getApplicationContext(), MyProfile.class);
+                startActivity(nextScreen);
+                finish();
+            }
+        });
     }
 }

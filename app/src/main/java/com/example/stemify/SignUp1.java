@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
 
 import android.text.TextUtils;
@@ -76,10 +77,15 @@ public class SignUp1 extends Fragment {
 
     //checker for identity selection
     boolean selectionChecker = false;
-    public String chosenIdentity = "";
+    String chosenIdentity = "";
+
+    SignUp3 SU3 = new SignUp3();
+    Bundle bundleOne = new Bundle();
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
+
+        TextView TVSelectIdentity = view.findViewById(R.id.TVSelectIdentity);
 
         //dropdown for identity
         String[] IDENTITY = new String[]{
@@ -95,20 +101,18 @@ public class SignUp1 extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //check if the selection is "Identity"
                 if (parent.getItemAtPosition(position).equals("Identity")){
-                    TextView TVSelectIdentity = view.findViewById(R.id.TVSelectIdentity);
                     TVSelectIdentity.setText("Please Select An Identity");
                     TVSelectIdentity.setTextColor(Color.RED);
                 }else{
                     chosenIdentity = (String) parent.getItemAtPosition(position);
                     selectionChecker = true;
+                    TVSelectIdentity.setText("");
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                TextView TVSelectIdentity = view.findViewById(R.id.TVSelectIdentity);
-                TVSelectIdentity.setText("Please Select An Identity");
-                TVSelectIdentity.setTextColor(Color.RED);
+                //nothing to display
             }
         });
 
@@ -139,7 +143,19 @@ public class SignUp1 extends Fragment {
                 }
 
                 if(hasInput && selectionChecker){
-                    Navigation.findNavController(view).navigate(R.id.first_to_second);
+
+                    String fullname = ETFullname.getText().toString();
+                    String email = ETRegisterEmail.getText().toString();
+                    String organization = ETOrganization.getText().toString();
+
+                    //send data to SignUp3
+                    DataManager.getInstance().putData("fullname", fullname);
+                    DataManager.getInstance().putData("email", email);
+                    DataManager.getInstance().putData("identity", chosenIdentity);
+                    DataManager.getInstance().putData("organization", organization);
+
+                    //transit to SignUp2
+                    Navigation.findNavController(view).navigate(R.id.NavSignUp2);
                 }
             }
         });

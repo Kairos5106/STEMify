@@ -85,7 +85,10 @@
             android:layout_height="180dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/insert_image">
+            android:clickable="true"
+            android:contentDescription="@android:string/untitled"
+            android:scaleType="fitXY">
+
         </ImageView>
 
     </androidx.cardview.widget.CardView>
