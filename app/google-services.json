@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "459305698980",
+    "project_id": "stemify-708cf",
+    "storage_bucket": "stemify-708cf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:459305698980:android:7e99ce1c5fbf47f2fd4831",
+        "android_client_info": {
+          "package_name": "com.example.stemify"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbRJ78QFMktelM1cfhpEQOH-rKV7mu8C0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

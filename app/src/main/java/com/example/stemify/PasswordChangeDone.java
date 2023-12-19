@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class PasswordChangeDone extends AppCompatActivity {
 
     @Override
@@ -19,9 +21,9 @@ public class PasswordChangeDone extends AppCompatActivity {
         BtnBackToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
                 Intent returnBack = new Intent(getApplicationContext(), Login.class);
                 startActivity(returnBack);
-                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_in_right);
                 finish();
             }
         });
