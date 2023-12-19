@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.stemify.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.example.stemify.ui.settings.SettingsFragment"
+        android:label="Settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/homePageA"
+        android:name="com.example.stemify.ui.moduleA.HomePageA"
+        android:label="fragment_home_page_a"
+        tools:layout="@layout/fragment_home_page_a" />
+    <fragment
+        android:id="@+id/homePageB"
+        android:name="com.example.stemify.ui.moduleB.HomePageB"
+        android:label="fragment_home_page_b"
+        tools:layout="@layout/fragment_home_page_b" />
+    <fragment
+        android:id="@+id/homePageC"
+        android:name="com.example.stemify.ui.moduleC.HomePageC"
+        android:label="fragment_home_page_c"
+        tools:layout="@layout/fragment_home_page_c" />
+    <fragment
+        android:id="@+id/homePageD"
+        android:name="com.example.stemify.ui.moduleD.HomePageD"
+        android:label="fragment_home_page_d"
+        tools:layout="@layout/fragment_home_page_d" />
+    <fragment
+        android:id="@+id/homePageE"
+        android:name="com.example.stemify.ui.moduleE.HomePageE"
+        android:label="fragment_home_page_e"
+        tools:layout="@layout/fragment_home_page_e" />
+
+</navigation>
