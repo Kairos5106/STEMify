@@ -1,14 +1,18 @@
 package com.example.stemify.ui.moduleB;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.stemify.R;
+import com.example.stemify.HomeworkHelp_NewQuestion;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -61,6 +65,25 @@ public class Forum extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_forum, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_forum, container, false);
+
+        // Binding - BtnAskAQuestion: for student to post a new question in the homework forum
+        Button BtnAskAQuestion = rootView.findViewById(R.id.BtnAskAQuestion);
+
+        // Set OnClickListener for the button
+        BtnAskAQuestion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Debug
+                Log.d("ForumFragment", "Button clicked. Starting PostANewQuestion activity.");
+
+                // Create an Intent to start HomeworkHelp_NewQuestion activity
+                Intent intent = new Intent(getActivity(), HomeworkHelp_NewQuestion.class);
+                startActivity(intent);
+            }
+        });
+
+        return rootView;
     }
+
 }

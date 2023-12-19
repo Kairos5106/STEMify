@@ -11,7 +11,7 @@
     <androidx.core.widget.NestedScrollView
         android:id="@+id/modB_NSVForum"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/BtnAskAQuestion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,9 +28,9 @@
                 android:layout_height="0dp"
                 android:scrollbars="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_default="wrap"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintHeight_default="wrap" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <!-- Button: click to show more posts -->
             <Button
@@ -52,10 +52,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="221dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="128dp"
         android:text="+ Ask A Question"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
