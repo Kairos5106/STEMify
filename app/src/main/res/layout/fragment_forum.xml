@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/modB_CLForum"
@@ -7,16 +8,54 @@
     android:layout_height="match_parent"
     tools:context=".ui.moduleB.Forum">
 
-    <TextView
-        android:id="@+id/TVP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Forum"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/modB_NSVForum"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/BtnAskAQuestion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="InvalidId" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- Recyclerview show posts -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/modB_RVPostsList"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scrollbars="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintHeight_default="wrap" />
+
+            <!-- Button: click to show more posts -->
+            <Button
+                android:id="@+id/BtnLoadMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Load More"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/modB_RVPostsList" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Button: Ask A Question -->
+    <Button
+        android:id="@+id/BtnAskAQuestion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="221dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="36dp"
+        android:text="+ Ask A Question"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
