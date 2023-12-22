@@ -57,6 +57,9 @@
         <activity
             android:name=".HomeActivity"
             android:exported="false"/>
+        <activity
+            android:name=".HomeworkHelp_NewQuestion"
+            android:exported="false" />
 
         <meta-data
             android:name="preloaded_fonts"
