@@ -1,6 +1,8 @@
 package com.example.stemify;
 
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.GenericLifecycleObserver;
@@ -17,18 +19,29 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 public class HomeworkHelp_NewQuestion extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     FirebaseUser currentUser;
+    DatabaseReference userRef;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homework_help_new_question);
+
+        // Initiate Firebase components
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+        userRef = FirebaseDatabase.getInstance().getReference().child("users");
 
         // Enable back button in the action bar
         Toolbar toolbar = findViewById(R.id.TBNewQuestion);
@@ -39,9 +52,7 @@ public class HomeworkHelp_NewQuestion extends AppCompatActivity {
         // Set the title for the app bar for this particular page
         setTitle("New Question");
 
-        mAuth = FirebaseAuth.getInstance();
-        currentUser = mAuth.getCurrentUser();
-
+        // Binding
         ImageView IVProfilePic = findViewById(R.id.IVProfilePic);
         TextView TVUsername = findViewById(R.id.TVUsername);
         EditText ETQuestion = findViewById(R.id.ETQuestion);
@@ -50,17 +61,37 @@ public class HomeworkHelp_NewQuestion extends AppCompatActivity {
         TextInputEditText ETTags = findViewById(R.id.ETTags);
         Button BtnPost = findViewById(R.id.BtnPost);
 
-        // Load current user profile pic
+        // Load current user profile pic from Realtime Database
         if (currentUser != null) {
-            String photoUrl = String.valueOf(currentUser.getPhotoUrl());
-            String username = currentUser.getDisplayName();
+            String userId = currentUser.getUid();
 
-            // Load profile picture using Picasso
-            Picasso.get().load(photoUrl).placeholder(R.drawable.pfp).into(IVProfilePic);
+            userRef.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists()) {
+                        User user = snapshot.getValue(User.class);
 
-            // Set the username
-            TVUsername.setText(username);
+                        if (user != null) {
+                            String photoUrl = user.getPhotoUrl();
+                            String username = user.getUsername();
+
+                            // Load profile pic using Picasso
+                            Picasso.get().load(photoUrl).into(IVProfilePic);
+
+                            // Set username
+                            TVUsername.setText(username);
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    // Error handling
+                    Toast.makeText(getApplicationContext(), "Error: " + error.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            });
         }
+
 
         // BtnPost onClickListener
         BtnPost.setOnClickListener(new View.OnClickListener() {
