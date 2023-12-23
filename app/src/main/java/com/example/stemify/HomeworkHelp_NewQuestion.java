@@ -4,8 +4,23 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class HomeworkHelp_NewQuestion extends AppCompatActivity {
+
+    FirebaseAuth mAuth;
+    FirebaseUser currentUser;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +35,27 @@ public class HomeworkHelp_NewQuestion extends AppCompatActivity {
 
         // Set the title for the app bar for this particular page
         setTitle("New Question");
+
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+
+        ImageView IVProfilePic = findViewById(R.id.IVProfilePic);
+        TextView TVUsername = findViewById(R.id.TVUsername);
+        EditText ETQuestion = findViewById(R.id.ETQuestion);
+        EditText ETDescription = findViewById(R.id.ETDescription);
+        TextInputLayout TagsLayout = findViewById(R.id.TagsLayout);
+        TextInputEditText ETTags = findViewById(R.id.ETTags);
+        Button BtnPost = findViewById(R.id.BtnPost);
+
+        // BtnPost onClickListener
+        BtnPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String message = "Thank you for your post";
+                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+            }
+        });
+
     }
     
     @Override

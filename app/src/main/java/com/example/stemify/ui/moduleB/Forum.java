@@ -13,6 +13,8 @@ import android.widget.Button;
 
 import com.example.stemify.R;
 import com.example.stemify.HomeworkHelp_NewQuestion;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +31,9 @@ public class Forum extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    FirebaseAuth mAuth;
+    FirebaseUser currentUser;
 
     public Forum() {
         // Required empty public constructor
@@ -59,6 +64,9 @@ public class Forum extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
     }
 
     @Override
