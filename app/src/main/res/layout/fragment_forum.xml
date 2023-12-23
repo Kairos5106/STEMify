@@ -8,18 +8,20 @@
     android:layout_height="match_parent"
     tools:context=".ui.moduleB.Forum">
 
+    <!-- Button: Ask A Question -->
     <androidx.core.widget.NestedScrollView
         android:id="@+id/modB_NSVForum"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="558dp"
         app:layout_constraintBottom_toTopOf="@+id/BtnAskAQuestion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.866">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <!-- Recyclerview show posts -->
             <androidx.recyclerview.widget.RecyclerView
@@ -45,7 +47,6 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <!-- Button: Ask A Question -->
     <Button
         android:id="@+id/BtnAskAQuestion"
         android:layout_width="0dp"
