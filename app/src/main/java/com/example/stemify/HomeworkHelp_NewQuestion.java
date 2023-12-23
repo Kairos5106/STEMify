@@ -3,6 +3,8 @@ package com.example.stemify;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.GenericLifecycleObserver;
+
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +17,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
 
 public class HomeworkHelp_NewQuestion extends AppCompatActivity {
 
@@ -46,6 +49,18 @@ public class HomeworkHelp_NewQuestion extends AppCompatActivity {
         TextInputLayout TagsLayout = findViewById(R.id.TagsLayout);
         TextInputEditText ETTags = findViewById(R.id.ETTags);
         Button BtnPost = findViewById(R.id.BtnPost);
+
+        // Load current user profile pic
+        if (currentUser != null) {
+            String photoUrl = String.valueOf(currentUser.getPhotoUrl());
+            String username = currentUser.getDisplayName();
+
+            // Load profile picture using Picasso
+            Picasso.get().load(photoUrl).placeholder(R.drawable.pfp).into(IVProfilePic);
+
+            // Set the username
+            TVUsername.setText(username);
+        }
 
         // BtnPost onClickListener
         BtnPost.setOnClickListener(new View.OnClickListener() {

@@ -34,6 +34,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="120dp"
         android:text="Username"
+        android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/IVProfilePic"
         app:layout_constraintTop_toTopOf="parent" />
@@ -47,7 +48,7 @@
         android:layout_marginEnd="52dp"
         android:ems="10"
         android:inputType="text"
-        android:text="Question"
+        android:hint="Question"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -64,7 +65,7 @@
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
-        android:text="Description"
+        android:hint="Description"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -91,7 +92,7 @@
             android:layout_marginStart="48dp"
             android:layout_marginEnd="52dp"
             android:inputType="text"
-            android:text="Relevant tags (3)"
+            android:hint="Relevant tags (3)"
             android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
