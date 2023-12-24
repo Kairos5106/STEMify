@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -167,8 +168,7 @@ public class setting_privacy extends Fragment {
         ClickableEditPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent nextScreen = new Intent(getActivity(), setting_editpassword.class);
-                startActivity(nextScreen);
+                Navigation.findNavController(view).navigate(R.id.setting_editpassword);
             }
         });
 
@@ -176,8 +176,7 @@ public class setting_privacy extends Fragment {
         ClickableEditSecurityQ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent nextScreen = new Intent(getActivity(), setting_editsecurityq.class);
-                startActivity(nextScreen);
+                Navigation.findNavController(view).navigate(R.id.setting_editsecurityq);
             }
         });
     }

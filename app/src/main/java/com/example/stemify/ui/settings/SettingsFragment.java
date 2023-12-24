@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -140,8 +141,7 @@ public class SettingsFragment extends Fragment {
         ClickableEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent nextScreen = new Intent(getActivity(), setting_editprofile.class);
-                startActivity(nextScreen);
+                Navigation.findNavController(view).navigate(R.id.setting_editprofile);
             }
         });
 
@@ -149,8 +149,7 @@ public class SettingsFragment extends Fragment {
         ClickablePrivacy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent nextScreen = new Intent(getActivity(), setting_privacy.class);
-                startActivity(nextScreen);
+                Navigation.findNavController(view).navigate(R.id.setting_privacy);
             }
         });
 
@@ -158,8 +157,7 @@ public class SettingsFragment extends Fragment {
         ClickableLinkedDevices.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent nextScreen = new Intent(getActivity(), setting_otherdevices.class);
-                startActivity(nextScreen);
+                Navigation.findNavController(view).navigate(R.id.setting_otherdevices);
             }
         });
 
