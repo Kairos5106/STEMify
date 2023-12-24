@@ -4,6 +4,8 @@
         <item>@font/inter_bold</item>
         <item>@font/inter_light</item>
         <item>@font/inter_thin</item>
+        <item>@font/poppins_medium</item>
+        <item>@font/poppins_thin</item>
         <item>@font/ultra</item>
     </array>
 </resources>
