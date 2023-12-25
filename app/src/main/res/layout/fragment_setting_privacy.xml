@@ -49,9 +49,10 @@
 
                 <CheckBox
                     android:id="@+id/CBAnonymous"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"/>
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentRight="true"
+                    tools:ignore="UseSwitchCompatOrMaterialXml" />
 
             </RelativeLayout>
 

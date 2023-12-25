@@ -12,7 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -93,11 +95,13 @@ public class setting_privacy extends Fragment {
     RelativeLayout ClickableEditSecurityQ;
 
     String name = "";
+    User user;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         TVUsernameChange = view.findViewById(R.id.TVUsernameChange);
+        CBAnonymous = view.findViewById(R.id.CBAnonymous);
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         // Read from the database
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users").child(currentUser.getUid());
@@ -108,9 +112,26 @@ public class setting_privacy extends Fragment {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
-                        User user = dataSnapshot.getValue(User.class);
+                        user = dataSnapshot.getValue(User.class);
                         name = user.getUsername();
                         anonymousStatus = user.isCheckAnonymous();
+                        CBAnonymous.setChecked(anonymousStatus);
+                        int length = name.length();
+
+                        if (length >= 3) {
+                            String replacement = "";
+                            for (int i = 1; i < name.length()-1; i++) {
+                                replacement+="x";
+                            }
+                            name = name.substring(0, 1) + replacement + name.substring(name.length()-1);
+                        }else{
+                            String replacement = "";
+                            for (int i = 0; i < name.length(); i++) {
+                                replacement+="x";
+                            }
+                            name = replacement;
+                        }
+                        TVUsernameChange.setText(new StringBuilder().append("Your username will appear as ").append(name).toString());
                     }
                 }
                 @Override
@@ -122,46 +143,39 @@ public class setting_privacy extends Fragment {
 
         }
 
-        int length = name.length();
+        CBAnonymous.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //change displayed username if checked
+                if(CBAnonymous.isChecked()){
+                    //change displayName data
+                    Map<String, Object> updates = new HashMap<>();
+                    updates.put("displayName", name);
+                    updates.put("checkAnonymous", true);
 
-        if (length >= 3) {
-            String replacement = "";
-            for (int i = 1; i < name.length()-1; i++) {
-                replacement+="x";
+                    // Perform the update
+                    userRef.updateChildren(updates)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(getActivity(), "Display Name Updated to Anonymous State", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(getActivity(), "Error in Updating Display Name", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                }else{
+                    Map<String, Object> updates = new HashMap<>();
+                    updates.put("checkAnonymous", false);
+                    updates.put("displayName", user.getUsername());
+                    userRef.updateChildren(updates);
+                    Toast.makeText(getActivity(), "Display Name Updated", Toast.LENGTH_SHORT).show();
+                }
             }
-            name = name.substring(0, 1) + replacement + name.substring(name.length()-1);
-        }else{
-            String replacement = "";
-            for (int i = 0; i < name.length(); i++) {
-                replacement+="x";
-            }
-            name = replacement;
-        }
-        TVUsernameChange.setText(new StringBuilder().append("Your username will appear as ").append(name).toString());
-
-        //change displayed username if checked
-        CBAnonymous = view.findViewById(R.id.CBAnonymous);
-        CBAnonymous.setChecked(anonymousStatus);
-        if(CBAnonymous.isChecked()){
-            //change displayName data
-            Map<String, Object> updates = new HashMap<>();
-            updates.put("displayName", name);
-
-            // Perform the update
-            userRef.updateChildren(updates)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Toast.makeText(getActivity(), "Display Name Updated", Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(getActivity(), "Error in Updating Display Name", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-        }
+        });
 
         //navigate to other fragments
         ClickableEditPassword = view.findViewById(R.id.ClickableEditPassword);

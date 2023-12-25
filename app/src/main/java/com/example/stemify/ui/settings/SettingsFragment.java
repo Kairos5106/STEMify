@@ -29,6 +29,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link SettingsFragment#newInstance} factory method to
@@ -80,6 +83,7 @@ public class SettingsFragment extends Fragment {
     TextView TVDisplayName;
     TextView TVDisplayIdentity;
     RelativeLayout ClickableEditProfile;
+    RelativeLayout ClickableEditEmail;
     RelativeLayout ClickablePrivacy;
     RelativeLayout ClickableLinkedDevices;
     Button BtnLogout;
@@ -109,6 +113,13 @@ public class SettingsFragment extends Fragment {
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
                         User user = dataSnapshot.getValue(User.class);
+
+                        //check if email has changed recently
+                        if(!user.getEmail().equals(currentUser.getEmail())){
+                            Map<String, Object> updates = new HashMap<>();
+                            updates.put("email", currentUser.getEmail());
+                            userRef.updateChildren(updates);
+                        }
 
                         //set Profile Icon
                         Picasso.get().load(user.getPhotoUrl()).into(MainProfilePic);
@@ -142,6 +153,14 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(view).navigate(R.id.setting_editprofile);
+            }
+        });
+
+        ClickableEditEmail = view.findViewById(R.id.ClickableEditEmail);
+        ClickableEditEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.setting_editemail);
             }
         });
 

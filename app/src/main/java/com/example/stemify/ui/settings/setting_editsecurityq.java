@@ -127,8 +127,10 @@ public class setting_editsecurityq extends Fragment {
         });
 
         TVForNew = view.findViewById(R.id.TVForNew);
-        Spinner NewSecurityQues = (Spinner) view.findViewById(R.id.CurrentSecurityQues);
-        NewSecurityQues.setAdapter(arrAdapter);
+        Spinner NewSecurityQues = (Spinner) view.findViewById(R.id.NewSecurityQues);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, SecurityQ);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        NewSecurityQues.setAdapter(arrayAdapter);
         NewSecurityQues.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -158,44 +160,31 @@ public class setting_editsecurityq extends Fragment {
                 String newAns = ETNewAns.getText().toString();
 
                 FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-                // Read from the database
                 DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users").child(currentUser.getUid());
 
-                if(currentUser != null){
-                    userRef.addValueEventListener(new ValueEventListener() {
+                if (currentUser != null) {
+                    userRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             if (dataSnapshot.exists()) {
                                 User user = dataSnapshot.getValue(User.class);
                                 String DataSecQ = user.getSecurityques();
                                 String DataAns = user.getAnswer();
-                                if(DataSecQ.equals(chosenSecQ)){
-                                    if(DataAns.equals(currentAns)){
+                                if (DataSecQ.equals(chosenSecQ)) {
+                                    if (DataAns.equals(currentAns)) {
                                         Map<String, Object> updates = new HashMap<>();
                                         updates.put("securityques", chosenNewSecQ);
                                         updates.put("answer", newAns);
 
                                         // Perform the update
-                                        userRef.updateChildren(updates)
-                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                    @Override
-                                                    public void onSuccess(Void aVoid) {
-                                                        Toast.makeText(getActivity(), "User Profile Updated", Toast.LENGTH_SHORT).show();
-                                                    }
-                                                })
-                                                .addOnFailureListener(new OnFailureListener() {
-                                                    @Override
-                                                    public void onFailure(@NonNull Exception e) {
-                                                        Toast.makeText(getActivity(), "Error in Updating User Profile", Toast.LENGTH_SHORT).show();
-                                                    }
-                                                });
-                                    }else{
+                                        userRef.updateChildren(updates);
+                                        Toast.makeText(getActivity(), "User Profile Updated", Toast.LENGTH_SHORT).show();
+                                    } else {
                                         Toast.makeText(getActivity(), "Current Answer Mismatch", Toast.LENGTH_SHORT).show();
                                     }
-                                }else{
+                                } else {
                                     Toast.makeText(getActivity(), "Wrong Security Question", Toast.LENGTH_SHORT).show();
                                 }
-
                             }
                         }
 
@@ -205,9 +194,9 @@ public class setting_editsecurityq extends Fragment {
                             Toast.makeText(getActivity(), "Error in Retrieving Account Data", Toast.LENGTH_SHORT).show();
                         }
                     });
-
                 }
             }
         });
+
     }
 }

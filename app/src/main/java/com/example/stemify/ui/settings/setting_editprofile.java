@@ -87,9 +87,9 @@ public class setting_editprofile extends Fragment {
     ImageView DisplayProfilePic;
     EditText ETEditFullname;
     EditText ETEditUsername;
-    EditText ETEditEmail;
     EditText ETEditOrganization;
     Button BtnSaveProfile;
+    User user;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -97,7 +97,6 @@ public class setting_editprofile extends Fragment {
         DisplayProfilePic = view.findViewById(R.id.DisplayProfilePic);
         ETEditFullname = view.findViewById(R.id.ETEditFullname);
         ETEditUsername = view.findViewById(R.id.ETEditUsername);
-        ETEditEmail = view.findViewById(R.id.ETEditEmail);
         ETEditOrganization = view.findViewById(R.id.ETEditOrganization);
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -109,11 +108,10 @@ public class setting_editprofile extends Fragment {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
-                        User user = dataSnapshot.getValue(User.class);
+                        user = dataSnapshot.getValue(User.class);
                         Picasso.get().load(user.getPhotoUrl()).into(DisplayProfilePic);
                         ETEditFullname.setText(user.getFullname());
                         ETEditUsername.setText(user.getUsername());
-                        ETEditEmail.setText(user.getEmail());
                         ETEditOrganization.setText(user.getOrganization());
                     }
                 }
@@ -134,18 +132,35 @@ public class setting_editprofile extends Fragment {
             public void onClick(View v) {
                 String newFullname = ETEditFullname.getText().toString();
                 String newUsername = ETEditUsername.getText().toString();
-                String newEmail = ETEditEmail.getText().toString();
                 String newOrganization = ETEditOrganization.getText().toString();
-
-                //update email in User Authentication Database
-                currentUser.updateEmail(newEmail);
 
                 //update user profile in Firebase Realtime Database
                 Map<String, Object> updates = new HashMap<>();
                 updates.put("fullname", newFullname);
                 updates.put("username", newUsername);
-                updates.put("email", newEmail);
                 updates.put("organization", newOrganization);
+
+                if(user.isCheckAnonymous()){
+                    int length = newUsername.length();
+                    String name = "";
+
+                    if (length >= 3) {
+                        String replacement = "";
+                        for (int i = 1; i < newUsername.length()-1; i++) {
+                            replacement+="x";
+                        }
+                        name = newUsername.substring(0, 1) + replacement + newUsername.substring(newUsername.length()-1);
+                    }else{
+                        String replacement = "";
+                        for (int i = 0; i < name.length(); i++) {
+                            replacement+="x";
+                        }
+                        name = replacement;
+                    }
+                    updates.put("display", name);
+                }else{
+                    updates.put("displayName", newUsername);
+                }
 
                 // Perform the update
                 userRef.updateChildren(updates)
