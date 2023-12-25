@@ -16,8 +16,12 @@ import android.widget.Toast;
 
 import com.example.stemify.R;
 import com.example.stemify.User;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -25,6 +29,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
@@ -103,20 +108,42 @@ public class setting_editemail extends Fragment {
                 String currentEmail = ETCurrentEmail.getText().toString();
                 String newEmail = ETNewEmail.getText().toString();
                 FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users").child(currentUser.getUid());
 
                 if(currentUser != null) {
                     String registeredEmail = currentUser.getEmail();
                     if (currentEmail.equals(registeredEmail)) {
-                        currentUser.verifyBeforeUpdateEmail(newEmail).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        userRef.addValueEventListener(new ValueEventListener() {
                             @Override
-                            public void onSuccess(Void unused) {
-                                TVVerifyEmail.setText("Please Check Your Email For Verification Before Updating Your Email");
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                if (dataSnapshot.exists()) {
+                                    User user = dataSnapshot.getValue(User.class);
+                                    AuthCredential credential = EmailAuthProvider.getCredential(currentEmail, user.getPassword());
+                                    currentUser.reauthenticate(credential)
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    currentUser.verifyBeforeUpdateEmail(newEmail).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        @Override
+                                                        public void onSuccess(Void unused) {
+                                                            TVVerifyEmail.setText("Please Check Your Email For Verification Before Updating Your Email");
 
+                                                        }
+                                                    }).addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception e) {
+                                                            Toast.makeText(getActivity(), "Error in Sending Verification", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    });
+                                                }
+                                            });
+                                }
                             }
-                        }).addOnFailureListener(new OnFailureListener() {
+
                             @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(getActivity(), "Error in Sending Verification", Toast.LENGTH_SHORT).show();
+                            public void onCancelled(DatabaseError error) {
+                                // Handle errors
+                                Toast.makeText(getActivity(), "Error in Retrieving Account Data", Toast.LENGTH_SHORT).show();
                             }
                         });
                     }else{
