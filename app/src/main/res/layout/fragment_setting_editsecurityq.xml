@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.settings.setting_editsecurityq">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/TVTitleSecurityQ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="45dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Change Security Question"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:background="@drawable/ic_setting_editbox">
+
+                <Spinner
+                    android:id="@+id/CurrentSecurityQues"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/TVForCurrent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ic_setting_editbox">
+
+                <EditText
+                    android:id="@+id/ETCurrentAns"
+                    android:layout_width="226dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:hint="Answer"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/ic_setting_edit_24" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/ic_setting_editbox">
+
+                <Spinner
+                    android:id="@+id/NewSecurityQues"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/TVForNew"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ic_setting_editbox">
+
+                <EditText
+                    android:id="@+id/ETNewAns"
+                    android:layout_width="226dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:hint="New Answer"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/ic_setting_edit_24" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/BtnSaveSecQ"
+            android:layout_width="230dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:backgroundTint="#770D46"
+            android:fontFamily="sans-serif"
+            android:text="SAVE"
+            android:textColor="#F8F5F5"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:strokeColor="#000000"
+            app:strokeWidth="1dp" />
+    </LinearLayout>
+
+</LinearLayout>

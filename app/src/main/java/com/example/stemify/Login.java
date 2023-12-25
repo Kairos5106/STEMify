@@ -76,9 +76,9 @@ public class Login extends AppCompatActivity {
         long time = pref.getLong("ATTEMPT_Time", 0);
         if(time>(System.currentTimeMillis()-3600000)) {
             //disable login button
-            BtnLogin.setClickable(false);
+            BtnLogin.setEnabled(false);
         }else {
-            BtnLogin.setClickable(true);
+            BtnLogin.setEnabled(true);
             BtnLogin.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
