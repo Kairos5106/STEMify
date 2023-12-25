@@ -19,7 +19,7 @@ public class Congrats extends AppCompatActivity {
         BtnContinueToHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent nextScreen = new Intent(getApplicationContext(), MyProfile.class);
+                Intent nextScreen = new Intent(getApplicationContext(), HomeActivity.class);
                 startActivity(nextScreen);
                 finish();
             }
