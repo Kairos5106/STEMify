@@ -22,12 +22,15 @@ import com.google.android.material.chip.Chip;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class HomeworkHelp_TagsInputEditText extends TextInputEditText {
-    TextWatcher textWatcher;
-    String lastString;
-    String separator = " ";
+    private TextWatcher textWatcher;
+    private String lastString;
+    private String separator = " ";
+    private List<String> tags = new ArrayList<>(); // List to store entered tags
 
     // Constructor method
     public HomeworkHelp_TagsInputEditText(Context context, AttributeSet attributeSet) {
@@ -117,6 +120,9 @@ public class HomeworkHelp_TagsInputEditText extends TextInputEditText {
 
         layout.addView(chip);
 
+        // Add the entered tag to the list
+        tags.add(text);
+
         return layout;
     }
 
@@ -136,6 +142,10 @@ public class HomeworkHelp_TagsInputEditText extends TextInputEditText {
         view.destroyDrawingCache();
 
         return new BitmapDrawable(getContext().getResources(), viewBitmap);
+    }
+
+    public List<String> getTags() {
+        return tags;
     }
 
     public  class ClickableSpan extends android.text.style.ClickableSpan {

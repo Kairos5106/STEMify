@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.example.stemify.HomeworkHelp_TagsInputEditText;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,6 +29,10 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class HomeworkHelp_NewQuestion extends AppCompatActivity {
 
@@ -101,16 +106,54 @@ public class HomeworkHelp_NewQuestion extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                // Test all input fields (Title, description, tags)
+                // Test all input fields (Title, description, tags), if all fields are filled:
 
+                List<String> tags = ETTags.getTags();
 
-                String message = "Thank you for your post";
-                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                if (!ETQuestion.getText().toString().isEmpty() &&
+                        !ETDescription.getText().toString().isEmpty() /*&&
+                        ETTags != null &&
+                        tags.size() >= 1*/) {
+
+                    // Create post object
+                    HomeworkHelp_Post post = new HomeworkHelp_Post(ETQuestion.getText().toString(),
+                            ETDescription.getText().toString(),
+                            currentUser.getUid(),
+                            currentUser.getPhotoUrl().toString());
+
+                    // Add post object to Firebase database
+                    addPost(post);
+
+                } else {
+                    String messageN = "Please fill in all fields before posting.";
+                    Toast.makeText(HomeworkHelp_NewQuestion.this, messageN, Toast.LENGTH_LONG).show();
+                }
+
             }
         });
 
     }
-    
+
+    private void addPost(HomeworkHelp_Post post) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference postsRef = database.getReference("Posts").push();
+
+        String postKey = postsRef.getKey();
+
+        // Set post key
+        post.setPostKey(postKey);
+
+        // Add post data to firebase database
+        postsRef.setValue(post).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                String messageOnSuccess = "Post added successfully.";
+                Toast.makeText(HomeworkHelp_NewQuestion.this, messageOnSuccess, Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle the back button click
