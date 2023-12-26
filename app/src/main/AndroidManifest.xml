@@ -45,6 +45,15 @@
         <activity
             android:name=".Splash2"
             android:exported="false" />
+
+        <activity android:name=".ModuleHealthMain"/>
+        <activity android:name=".HealthGuide"/>
+        <activity android:name=".Lifestyle"/>
+        <activity android:name=".MentalHealth"/>
+        <activity android:name=".HealthFitness"/>
+        <activity android:name=".Cleanliness"/>
+
+        <activity android:name=".Counselor"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">
