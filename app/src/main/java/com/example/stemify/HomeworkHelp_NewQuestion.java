@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.example.stemify.HomeworkHelp_TagsInputEditText;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -25,6 +26,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Text;
 
 public class HomeworkHelp_NewQuestion extends AppCompatActivity {
 
@@ -58,7 +61,7 @@ public class HomeworkHelp_NewQuestion extends AppCompatActivity {
         EditText ETQuestion = findViewById(R.id.ETQuestion);
         EditText ETDescription = findViewById(R.id.ETDescription);
         TextInputLayout TagsLayout = findViewById(R.id.TagsLayout);
-        TextInputEditText ETTags = findViewById(R.id.ETTags);
+        HomeworkHelp_TagsInputEditText ETTags = findViewById(R.id.ETTags);
         Button BtnPost = findViewById(R.id.BtnPost);
 
         // Load current user profile pic from Realtime Database
@@ -73,7 +76,7 @@ public class HomeworkHelp_NewQuestion extends AppCompatActivity {
 
                         if (user != null) {
                             String photoUrl = user.getPhotoUrl();
-                            String username = user.getUsername();
+                            String username = user.getDisplayName();
 
                             // Load profile pic using Picasso
                             Picasso.get().load(photoUrl).into(IVProfilePic);
@@ -97,6 +100,10 @@ public class HomeworkHelp_NewQuestion extends AppCompatActivity {
         BtnPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                // Test all input fields (Title, description, tags)
+
+
                 String message = "Thank you for your post";
                 Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
             }
