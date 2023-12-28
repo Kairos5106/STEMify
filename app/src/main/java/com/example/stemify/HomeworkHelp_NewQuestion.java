@@ -42,6 +42,7 @@ public class HomeworkHelp_NewQuestion extends AppCompatActivity {
     FirebaseUser currentUser = mAuth.getCurrentUser();
     DatabaseReference userRef;
     DataManager postDataManager;
+    private String userPhotoUrl;
 
 
     @Override
@@ -84,11 +85,11 @@ public class HomeworkHelp_NewQuestion extends AppCompatActivity {
                         User user = snapshot.getValue(User.class);
 
                         if (user != null) {
-                            String photoUrl = user.getPhotoUrl();
+                            userPhotoUrl = user.getPhotoUrl();
                             String username = user.getDisplayName();
 
                             // Load profile pic using Picasso
-                            Picasso.get().load(photoUrl).into(IVProfilePic);
+                            Picasso.get().load(userPhotoUrl).into(IVProfilePic);
 
                             // Set username
                             TVUsername.setText(username);
@@ -128,7 +129,7 @@ public class HomeworkHelp_NewQuestion extends AppCompatActivity {
                     HomeworkHelp_Post post = new HomeworkHelp_Post(ETQuestion.getText().toString(),
                             ETDescription.getText().toString(),
                             currentUser.getUid(),
-                            currentUser.getPhotoUrl());
+                            userPhotoUrl);
 
                     // Add post object to Firebase database
                     addPost(post);

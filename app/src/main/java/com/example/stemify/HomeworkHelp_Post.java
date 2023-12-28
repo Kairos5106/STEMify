@@ -12,11 +12,11 @@ public class HomeworkHelp_Post {
     private String title;
     private String description;
     private String userID;
-    private Uri userPfp;
+    private String userPfp;
     private List<String> tags;
     private Object timeStamp;
 
-    public HomeworkHelp_Post(String title, String description, String userID, Uri userPfp) {
+    public HomeworkHelp_Post(String title, String description, String userID, String userPfp) {
         this.title = title;
         this.description = description;
         this.userID = userID;
@@ -60,11 +60,11 @@ public class HomeworkHelp_Post {
         this.userID = userID;
     }
 
-    public Uri getUserPfp() {
+    public String getUserPfp() {
         return userPfp;
     }
 
-    public void setUserPfp(Uri userPfp) {
+    public void setUserPfp(String userPfp) {
         this.userPfp = userPfp;
     }
 
