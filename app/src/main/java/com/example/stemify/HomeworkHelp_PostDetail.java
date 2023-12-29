@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,6 +22,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.Calendar;
+import java.util.Locale;
+
 public class HomeworkHelp_PostDetail extends AppCompatActivity {
     TextView TVQuestionPostDetail;
     TextView TVTag1PostDetail;
@@ -33,6 +37,7 @@ public class HomeworkHelp_PostDetail extends AppCompatActivity {
     ImageView IVPfpYouPostDetail;
     EditText ETAddCommentPostDetail;
     Button BtnSendComment;
+    String PostKey;
 
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
@@ -112,8 +117,18 @@ public class HomeworkHelp_PostDetail extends AppCompatActivity {
         String username = getIntent().getExtras().getString("username");
         TVUsernamePosterPostDetail.setText(username);
 
+        PostKey = getIntent().getExtras().getString("postKey");
 
+        String date = timestampToString(getIntent().getExtras().getLong("postDate"));
+        TVTimePosterPostDetail.setText("Posted on " + date);
 
+    }
+
+    private String timestampToString(long time) {
+        Calendar calendar = Calendar.getInstance(Locale.ENGLISH );
+        calendar.setTimeInMillis(time);
+        String date = DateFormat.format("dd-MM-yyyy", calendar).toString();
+        return date;
     }
 
     @Override
