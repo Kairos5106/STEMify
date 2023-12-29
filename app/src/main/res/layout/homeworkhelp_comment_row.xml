@@ -31,7 +31,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/IVCommenter"
+                android:id="@+id/IVCommenterPfp"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="326dp"
@@ -53,7 +53,7 @@
                 android:layout_marginEnd="16dp"
                 android:text="Time"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toStartOf="@+id/IVCommenter"
+                app:layout_constraintEnd_toStartOf="@+id/IVCommenterPfp"
                 app:layout_constraintTop_toBottomOf="@+id/TVUsernameCommenter" />
 
             <TextView
@@ -64,7 +64,7 @@
                 android:layout_marginEnd="16dp"
                 android:text="Username"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toStartOf="@+id/IVCommenter"
+                app:layout_constraintEnd_toStartOf="@+id/IVCommenterPfp"
                 app:layout_constraintTop_toBottomOf="@+id/TVComment" />
 
             <ImageView

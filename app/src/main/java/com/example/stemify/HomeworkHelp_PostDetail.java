@@ -3,6 +3,8 @@ package com.example.stemify;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.text.format.DateFormat;
@@ -26,7 +28,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 
 public class HomeworkHelp_PostDetail extends AppCompatActivity {
@@ -49,6 +54,9 @@ public class HomeworkHelp_PostDetail extends AppCompatActivity {
     private String userPhotoUrl;
 
     FirebaseDatabase firebaseDatabase;
+    RecyclerView RVComment;
+    HomeworkHelp_Comment_Adapter commentAdapter;
+    List<HomeworkHelp_Comment> listComment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +85,8 @@ public class HomeworkHelp_PostDetail extends AppCompatActivity {
         IVPfpYouPostDetail = findViewById(R.id.IVPfpYouPostDetail);
         ETAddCommentPostDetail = findViewById(R.id.ETAddCommentPostDetail);
         BtnSendComment = findViewById(R.id.BtnSendComment);
+
+        RVComment = findViewById(R.id.RVComments);
 
         // Load current user pfp
         firebaseAuth = FirebaseAuth.getInstance();
@@ -171,6 +181,9 @@ public class HomeworkHelp_PostDetail extends AppCompatActivity {
             }
         });
 
+        // Initialise RecyclerView for comments
+        initRVComment();
+
     }
 
     private String timestampToString(long time) {
@@ -178,6 +191,35 @@ public class HomeworkHelp_PostDetail extends AppCompatActivity {
         calendar.setTimeInMillis(time);
         String date = DateFormat.format("dd-MM-yyyy", calendar).toString();
         return date;
+    }
+
+    private void initRVComment() {
+
+        RVComment.setLayoutManager(new LinearLayoutManager(this));
+
+        DatabaseReference commentRef = firebaseDatabase.getReference("Comments").child(PostKey);
+        commentRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                listComment = new ArrayList<>();
+
+                for (DataSnapshot snap : dataSnapshot.getChildren()) {
+                    HomeworkHelp_Comment comment = snap.getValue(HomeworkHelp_Comment.class);
+                    listComment.add(comment);
+                }
+
+                Collections.reverse(listComment); // to make the most recent comment appear at top, just add this one line of code
+
+                commentAdapter = new HomeworkHelp_Comment_Adapter(getApplicationContext(), listComment);
+                RVComment.setAdapter(commentAdapter);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     @Override
