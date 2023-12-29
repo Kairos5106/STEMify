@@ -27,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -126,7 +127,8 @@ public class Forum extends Fragment {
         super.onStart();
 
         // Load list of posts from Firebase Realtime Database [based on: databaseReference = firebaseDatabase.getReference("Posts");]
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        // orderByChild("timeStamp) to order the posts by timestamp in descending order (most recent post will have highest timestamp)
+        databaseReference.orderByChild("timeStamp").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 postList = new ArrayList<>();
@@ -136,6 +138,11 @@ public class Forum extends Fragment {
                     postList.add(post);
                 }
 
+                // Reverse the order of the postList so that the most recent post appear at top
+                Collections.reverse(postList);
+
+                // Set up and attach the adapter to RecyclerView
+                // i.e. these lines of code establish the connection between the custom adapter (HomeworkHelp_Post_Adapter) and the RecyclerView (postRecyclerView)
                 homeworkhelpPostAdapter = new HomeworkHelp_Post_Adapter(getActivity(), postList);
                 postRecyclerView.setAdapter(homeworkhelpPostAdapter);
             }
