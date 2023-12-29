@@ -23,7 +23,7 @@
     <fragment
         android:id="@+id/homePageB"
         android:name="com.example.stemify.ui.moduleB.HomePageB"
-        android:label="fragment_home_page_b"
+        android:label="Tutoring and Support"
         tools:layout="@layout/fragment_home_page_b" />
     <fragment
         android:id="@+id/homePageC"

@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
 
     <application
@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.STEMify"
         tools:targetApi="31">
+        <activity
+            android:name=".HomeworkHelp_PostDetail"
+            android:exported="false" />
         <activity
             android:name=".MyProfile"
             android:exported="false" />
@@ -56,7 +59,10 @@
         </activity>
         <activity
             android:name=".HomeActivity"
-            android:exported="false"/>
+            android:exported="false" />
+        <activity
+            android:name=".HomeworkHelp_NewQuestion"
+            android:exported="false" />
 
         <meta-data
             android:name="preloaded_fonts"
