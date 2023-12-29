@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeworkHelp_PostDetail">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/TVQuestionPostDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="38dp"
+                android:layout_marginTop="44dp"
+                android:layout_marginEnd="38dp"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus a nisi faucibus, luctus purus non, condimentum tortor. Proin in interdum libero, vitae elementum odio. Duis sodales porttitor blandit."
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/TVTag1PostDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="38dp"
+                android:layout_marginTop="18dp"
+                android:background="#28CC9E"
+                android:text="Tag1"
+                android:textColor="#000000"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TVQuestionPostDetail" />
+
+            <TextView
+                android:id="@+id/TVTag2PostDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="18dp"
+                android:background="#28CC9E"
+                android:text="Tag2"
+                android:textColor="#000000"
+                app:layout_constraintStart_toEndOf="@+id/TVTag1PostDetail"
+                app:layout_constraintTop_toBottomOf="@+id/TVQuestionPostDetail" />
+
+            <TextView
+                android:id="@+id/TVTag3PostDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="18dp"
+                android:background="#28CC9E"
+                android:text="Tag3"
+                android:textColor="#000000"
+                app:layout_constraintStart_toEndOf="@+id/TVTag2PostDetail"
+                app:layout_constraintTop_toBottomOf="@+id/TVQuestionPostDetail" />
+
+            <TextView
+                android:id="@+id/TVDescriptionPostDetail"
+                android:layout_width="327dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="38dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="37dp"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus a nisi faucibus, luctus purus non, condimentum tortor. Proin in interdum libero, vitae elementum odio. Duis sodales porttitor blandit. Mauris quis ullamcorper tortor, id tincidunt nibh. Sed sed massa quis est gravida vehicula vitae ut dui. Aenean venenatis sed quam eget accumsan. Pellentesque commodo elementum lacus at consectetur. Morbi eget mollis urna. Quisque quis commodo magna, non sodales dolor."
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TVTag1PostDetail" />
+
+            <ImageView
+                android:id="@+id/IVPfpPosterPostDetail"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="294dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="37dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.7"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TVDescriptionPostDetail"
+                app:srcCompat="@drawable/ic_setting_person_24" />
+
+            <ImageView
+                android:id="@+id/dividerPostDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="31dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/IVPfpPosterPostDetail"
+                app:srcCompat="@drawable/divider" />
+
+            <TextView
+                android:id="@+id/TVUsernamePosterPostDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="43dp"
+                android:layout_marginEnd="19dp"
+                android:text="Username"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toStartOf="@+id/IVPfpPosterPostDetail"
+                app:layout_constraintTop_toBottomOf="@+id/TVDescriptionPostDetail" />
+
+            <TextView
+                android:id="@+id/TVTimePosterPostDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="19dp"
+                android:text="Time"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toStartOf="@+id/IVPfpPosterPostDetail"
+                app:layout_constraintTop_toBottomOf="@+id/TVUsernamePosterPostDetail" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RVComments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dividerPostDetail" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <ImageView
+        android:id="@+id/IVPfpYouPostDetail"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginEnd="319dp"
+        android:layout_marginBottom="43dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_setting_person_24" />
+
+    <EditText
+        android:id="@+id/ETAddCommentPostDetail"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginEnd="138dp"
+        android:layout_marginBottom="43dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        android:text="Add a comment"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/IVPfpYouPostDetail" />
+
+    <Button
+        android:id="@+id/BtnSendComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginBottom="43dp"
+        android:text="Send"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/ETAddCommentPostDetail" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
