@@ -1,7 +1,9 @@
 package com.example.stemify;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -97,8 +99,28 @@ public class HomeworkHelp_Post_Adapter extends RecyclerView.Adapter<HomeworkHelp
             TVUsernamePosterPostListRow = itemView.findViewById(R.id.TVUsernamePosterPostListRow);
             IVPfpPosterPostListRow = itemView.findViewById(R.id.IVPfpPosterPostListRow);
 
+            // When user click on one of the post, will show up new activity (post detail)
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Create an Intent to start HomeworkHelp_PostDetail activity
+                    Intent postDetailActivity = new Intent(mContext, HomeworkHelp_PostDetail.class);
+                    int position = getAdapterPosition();
+
+                    postDetailActivity.putExtra("title", mData.get(position).getTitle());
+                    postDetailActivity.putExtra("description", mData.get(position).getDescription());
+                    postDetailActivity.putExtra("postKey", mData.get(position).getPostKey());
+                    postDetailActivity.putExtra("userPfp", mData.get(position).getUserPfp());
+                    postDetailActivity.putExtra("username", mData.get(position).getUsername());
+                    long timestamp = (long) mData.get(position).getTimeStamp();
+                    postDetailActivity.putExtra("postDate", timestamp);
+                    mContext.startActivity(postDetailActivity);
+
+                }
+            });
         }
 
     }
+
 
 }
