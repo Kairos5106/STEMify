@@ -3,7 +3,10 @@ package com.example.stemify.ui.moduleB;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,10 +14,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.stemify.HomeworkHelp_Post;
+import com.example.stemify.HomeworkHelp_Post_Adapter;
 import com.example.stemify.R;
 import com.example.stemify.HomeworkHelp_NewQuestion;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,8 +45,14 @@ public class Forum extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    RecyclerView postRecyclerView;
+    HomeworkHelp_Post_Adapter homeworkhelpPostAdapter;
+
     FirebaseAuth mAuth;
     FirebaseUser currentUser;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+    List<HomeworkHelp_Post> postList;
 
     public Forum() {
         // Required empty public constructor
@@ -75,6 +94,14 @@ public class Forum extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_forum, container, false);
 
+        // RecyclerView for posts list
+        postRecyclerView = rootView.findViewById(R.id.modB_RVPostsList);
+        postRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        firebaseDatabase = FirebaseDatabase.getInstance(); // get instance of the realtime database in firebase
+        databaseReference = firebaseDatabase.getReference("Posts"); // go into Posts node
+
+
         // Binding - BtnAskAQuestion: for student to post a new question in the homework forum
         Button BtnAskAQuestion = rootView.findViewById(R.id.BtnAskAQuestion);
 
@@ -94,4 +121,29 @@ public class Forum extends Fragment {
         return rootView;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // Load list of posts from Firebase Realtime Database [based on: databaseReference = firebaseDatabase.getReference("Posts");]
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                postList = new ArrayList<>();
+
+                for (DataSnapshot postsnap: dataSnapshot.getChildren()) {
+                    HomeworkHelp_Post post = postsnap.getValue(HomeworkHelp_Post.class);
+                    postList.add(post);
+                }
+
+                homeworkhelpPostAdapter = new HomeworkHelp_Post_Adapter(getActivity(), postList);
+                postRecyclerView.setAdapter(homeworkhelpPostAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
 }

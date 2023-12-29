@@ -18,7 +18,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/TVQuestionRow"
+                android:id="@+id/TVQuestionPostList"
                 android:layout_width="376dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -39,7 +39,7 @@
                 android:text="Tag1"
                 android:textColor="#000000"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TVQuestionRow" />
+                app:layout_constraintTop_toBottomOf="@+id/TVQuestionPostList" />
 
             <TextView
                 android:id="@+id/TVTag2PostListRow"
@@ -51,7 +51,7 @@
                 android:text="Tag2"
                 android:textColor="#000000"
                 app:layout_constraintStart_toEndOf="@+id/TVTag1PostListRow"
-                app:layout_constraintTop_toBottomOf="@+id/TVQuestionRow" />
+                app:layout_constraintTop_toBottomOf="@+id/TVQuestionPostList" />
 
             <TextView
                 android:id="@+id/TVTag3PostListRow"
@@ -63,20 +63,20 @@
                 android:text="Tag3"
                 android:textColor="#000000"
                 app:layout_constraintStart_toEndOf="@+id/TVTag2PostListRow"
-                app:layout_constraintTop_toBottomOf="@+id/TVQuestionRow" />
+                app:layout_constraintTop_toBottomOf="@+id/TVQuestionPostList" />
 
             <TextView
-                android:id="@+id/TVPostTime"
+                android:id="@+id/TVPostTimePostListRow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="17dp"
                 android:layout_marginTop="13dp"
-                android:text="Time"
+                android:text="TimeStamp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/TVTag1PostListRow" />
 
             <ImageView
-                android:id="@+id/IVPfpPoster"
+                android:id="@+id/IVPfpPosterPostListRow"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="343dp"
@@ -87,18 +87,29 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TVPostTime"
-                app:srcCompat="@drawable/pfp" />
+                app:layout_constraintTop_toBottomOf="@+id/TVPostTimePostListRow"
+                app:srcCompat="@drawable/ic_setting_person_24" />
 
             <TextView
                 android:id="@+id/TVUsernamePosterPostListRow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="37dp"
                 android:text="Username"
-                app:layout_constraintEnd_toStartOf="@+id/IVPfpPoster"
-                app:layout_constraintTop_toBottomOf="@+id/TVPostTime" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/IVPfpPosterPostListRow"
+                app:layout_constraintTop_toBottomOf="@+id/TVPostTimePostListRow" />
+
+            <ImageView
+                android:id="@+id/IVDivider"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/divider" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

@@ -15,12 +15,24 @@ public class HomeworkHelp_Post {
     private String userPfp;
     private List<String> tags;
     private Object timeStamp;
+    private String username;
 
-    public HomeworkHelp_Post(String title, String description, String userID, String userPfp) {
+    public HomeworkHelp_Post(String title, String description, String userID, String userPfp, String username) {
         this.title = title;
         this.description = description;
         this.userID = userID;
         this.userPfp = userPfp;
+        this.username = username;
+        this.timeStamp = ServerValue.TIMESTAMP;
+    }
+
+    // If got tags
+    public HomeworkHelp_Post(String title, String description, String userID, String userPfp, List<String> tags) {
+        this.title = title;
+        this.description = description;
+        this.userID = userID;
+        this.userPfp = userPfp;
+        this.tags = tags;
         this.timeStamp = ServerValue.TIMESTAMP;
     }
 
@@ -74,6 +86,14 @@ public class HomeworkHelp_Post {
 
     public void setTags(List<String> tags) {
         this.tags = tags;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Object getTimeStamp() {
