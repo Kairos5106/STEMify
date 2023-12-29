@@ -6,13 +6,17 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -43,6 +47,8 @@ public class HomeworkHelp_PostDetail extends AppCompatActivity {
     FirebaseUser firebaseUser;
     DatabaseReference databaseReference;
     private String userPhotoUrl;
+
+    FirebaseDatabase firebaseDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,6 +127,49 @@ public class HomeworkHelp_PostDetail extends AppCompatActivity {
 
         String date = timestampToString(getIntent().getExtras().getLong("postDate"));
         TVTimePosterPostDetail.setText("Posted on " + date);
+
+        // Comment section
+        firebaseDatabase = FirebaseDatabase.getInstance();
+
+        // BtnSendComment click listener
+        BtnSendComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                BtnSendComment.setVisibility(View.INVISIBLE);
+
+                // Add the 1 particular comment to the "Comment" node in firebase
+                // Also add a child node "PostKey" referring to the specific postkey in which the comment was posted
+                // Note: 1 post (1 postkey) can have many comments while one particular comment can be under 1 post only
+                DatabaseReference commentReference = firebaseDatabase.getReference("Comments").child(PostKey).push();
+                String commentContent = ETAddCommentPostDetail.getText().toString();
+                String commenterID = firebaseUser.getUid();
+                String commenterUsername = firebaseUser.getDisplayName();
+                String commenterPfp = userPhotoUrl;
+                HomeworkHelp_Comment comment = new HomeworkHelp_Comment(commentContent, commenterID, commenterUsername, commenterPfp);
+
+                commentReference.setValue(comment)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                String messageOnSuccess = "Comment added.";
+                                Toast.makeText(HomeworkHelp_PostDetail.this, messageOnSuccess, Toast.LENGTH_LONG).show();
+                                ETAddCommentPostDetail.setText("");
+                                BtnSendComment.setVisibility(View.VISIBLE);
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.e("Error", "Error adding comment: " + e.getMessage());
+                                // Handle the failure case, e.g., log the error or show an error message
+                                String errorMessage = "Fail to add comment: " + e.getMessage();
+                                Toast.makeText(HomeworkHelp_PostDetail.this, errorMessage, Toast.LENGTH_LONG).show();
+                            }
+                        });
+
+            }
+        });
 
     }
 
