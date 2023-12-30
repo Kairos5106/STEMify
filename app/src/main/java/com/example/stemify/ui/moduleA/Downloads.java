@@ -16,6 +16,7 @@ import com.example.stemify.DownloadAdapter;
 import com.example.stemify.DownloadItem;
 import com.example.stemify.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Downloads extends Fragment {
@@ -30,7 +31,7 @@ public class Downloads extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        initalizeData();
     }
 
     @Override
@@ -47,10 +48,13 @@ public class Downloads extends Fragment {
         // Setup RecyclerView
         recyclerView = view.findViewById(R.id.RVDownloads);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-//        recyclerView.setAdapter(new DownloadAdapter(getContext(), listOfItems));
+        recyclerView.setAdapter(new DownloadAdapter(getContext(), listOfItems));
     }
 
     public void initalizeData(){
+        // Initializing list of download items
+        listOfItems = new ArrayList<DownloadItem>();
+
         // Populate list with download items
         listOfItems.add(new DownloadItem("Test1"));
     }
