@@ -58,6 +58,15 @@ public class Downloads extends Fragment {
         listOfItems = new ArrayList<DownloadItem>();
 
         // Populate list with download items
-        listOfItems.add(new DownloadItem("Test1", R.drawable.pfp));
+        listOfItems.add(new DownloadItem("Test1", R.drawable.sampleimage));
+        listOfItems.add(new DownloadItem("Test2", R.drawable.sampleimage));
+        listOfItems.add(new DownloadItem("Test3", R.drawable.sampleimage));
+        listOfItems.add(new DownloadItem("Test4", R.drawable.sampleimage));
+        listOfItems.add(new DownloadItem("Test5", R.drawable.sampleimage));
+        listOfItems.add(new DownloadItem("Test6", R.drawable.sampleimage));
+        listOfItems.add(new DownloadItem("Test7", R.drawable.sampleimage));
+        listOfItems.add(new DownloadItem("Test8", R.drawable.sampleimage));
+        listOfItems.add(new DownloadItem("Test9", R.drawable.sampleimage));
+        listOfItems.add(new DownloadItem("Test10", R.drawable.sampleimage)); // not showing 10th
     }
 }

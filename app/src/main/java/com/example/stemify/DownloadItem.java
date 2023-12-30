@@ -1,11 +1,11 @@
 package com.example.stemify;
 
 public class DownloadItem {
-    String text;
+    String title;
     int imageId;
 
-    public DownloadItem(String text, int imageId) {
-        this.text = text;
+    public DownloadItem(String title, int imageId) {
+        this.title = title;
         this.imageId = imageId;
     }
 }
