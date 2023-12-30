@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,6 +31,7 @@ public class DownloadAdapter extends RecyclerView.Adapter<DownloadAdapter.Downlo
     public void onBindViewHolder(@NonNull DownloadAdapter.DownloadViewHolder holder, int position) {
         DownloadItem downloadItem = list.get(position);
         holder.text.setText(downloadItem.text);
+        holder.image.setImageResource(downloadItem.imageId);
     }
 
     @Override
@@ -39,10 +41,12 @@ public class DownloadAdapter extends RecyclerView.Adapter<DownloadAdapter.Downlo
 
     public class DownloadViewHolder extends RecyclerView.ViewHolder {
         TextView text;
+        ImageView image;
 
         public DownloadViewHolder(@NonNull View itemView) {
             super(itemView);
             this.text = itemView.findViewById(R.id.TVTest);
+            this.image = itemView.findViewById(R.id.IVTest);
         }
     }
 }

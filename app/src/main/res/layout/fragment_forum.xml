@@ -13,7 +13,6 @@
         android:id="@+id/modB_NSVForum"
         android:layout_width="match_parent"
         android:layout_height="558dp"
-        android:layout_marginTop="45dp"
         app:layout_constraintBottom_toTopOf="@+id/BtnAskAQuestion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

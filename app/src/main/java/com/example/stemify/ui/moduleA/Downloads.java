@@ -48,7 +48,9 @@ public class Downloads extends Fragment {
         // Setup RecyclerView
         recyclerView = view.findViewById(R.id.RVDownloads);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new DownloadAdapter(getContext(), listOfItems));
+        downloadAdapter = new DownloadAdapter(getContext(), listOfItems);
+        recyclerView.setAdapter(downloadAdapter);
+        downloadAdapter.notifyDataSetChanged();
     }
 
     public void initalizeData(){
@@ -56,6 +58,6 @@ public class Downloads extends Fragment {
         listOfItems = new ArrayList<DownloadItem>();
 
         // Populate list with download items
-        listOfItems.add(new DownloadItem("Test1"));
+        listOfItems.add(new DownloadItem("Test1", R.drawable.pfp));
     }
 }
