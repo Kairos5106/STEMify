@@ -8,6 +8,7 @@
     tools:context=".ui.moduleA.Downloads">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RVDownloads"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/row_list_item"/>
