@@ -7,11 +7,21 @@
     android:layout_height="match_parent"
     tools:context=".ui.moduleD.HomePageD">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/TBMainGuidance"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#FB6B92"
+        android:elevation="4dp"
+        android:title="Health Guidance"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/modD_TLHomePageD"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/TBMainGuidance"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -43,16 +53,16 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <GridLayout
-        android:layout_width="349dp"
-        android:layout_height="531dp"
-        android:layout_below="@+id/modD_TLHomePageD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:columnCount="2"
         android:rowCount="3"
+        android:background="#FB6B92"
+        app:layout_constraintTop_toBottomOf="@+id/modD_TLHomePageD"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_health1"
@@ -73,10 +83,10 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="98dp"
-                    android:layout_height="97dp"
+                    android:layout_width="60dp"
+                    android:layout_height="66dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/food" />
+                    android:src="@drawable/food1" />
 
                 <TextView
                     android:layout_width="wrap_content"

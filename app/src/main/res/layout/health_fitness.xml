@@ -7,6 +7,14 @@
     android:background="#FFE5EC"
     tools:context=".HealthFitness">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/TBFitness"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#FB6B92"
+        android:elevation="4dp"
+        android:title="Fitness" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -9,11 +9,13 @@ import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 public class Lifestyle extends AppCompatActivity {
 
@@ -21,7 +23,15 @@ public class Lifestyle extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_healthy_lifestyle);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        //toolbar
+        Toolbar toolbar = findViewById(R.id.TBHealthLifestyle);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        setTitle("Health Guidance");
 
         TextView textView = findViewById(R.id.textView4);
 
@@ -51,5 +61,18 @@ public class Lifestyle extends AppCompatActivity {
 
         textView.setText(ss);
         textView.setMovementMethod(LinkMovementMethod.getInstance());
+    }
+
+    // click back at the toolbar and navigate to health guidance
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle the back button click
+        if (item.getItemId() == android.R.id.home) {
+            // Navigate back to the previous fragment or activity
+            onBackPressed();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

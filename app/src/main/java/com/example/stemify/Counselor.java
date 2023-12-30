@@ -27,8 +27,8 @@ public class Counselor extends AppCompatActivity{
 
         };
 
-        CounselorAdapter counselorAdapter = new CounselorAdapter(counselorData, Counselor.this);
-        recyclerView.setAdapter(counselorAdapter);
+        //CounselorAdapter counselorAdapter = new CounselorAdapter(counselorData, Counseling.class);
+        //recyclerView.setAdapter(counselorAdapter);
 
     }
 

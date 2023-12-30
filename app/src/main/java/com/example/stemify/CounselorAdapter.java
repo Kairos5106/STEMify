@@ -13,14 +13,16 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.stemify.ui.moduleD.Counseling;
+
 public class CounselorAdapter extends RecyclerView.Adapter<CounselorAdapter.ViewHolder> {
 
     CounselorData[] counselorData;
     Context context;
 
-    public CounselorAdapter(CounselorData[] counselorData, Counselor counselor){
+    public CounselorAdapter(CounselorData[] counselorData, Counseling counseling){
         this.counselorData = counselorData;
-        this.context = counselor;
+        this.context = counseling.requireContext();
     }
 
     @NonNull

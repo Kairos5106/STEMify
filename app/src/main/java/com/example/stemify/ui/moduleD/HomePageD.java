@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.stemify.Counselor;
 import com.example.stemify.R;
 import com.example.stemify.VPAdapter;
 import com.example.stemify.ui.moduleA.Downloads;
@@ -30,15 +31,15 @@ public class HomePageD extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home_page_d, container, false);
 
-        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.modD_TLHomePageD);
-        ViewPager viewPager = (ViewPager) view.findViewById(R.id.modD_VPHomePageD);
+        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.modD_TLHomePageD); //tab
+        ViewPager viewPager = (ViewPager) view.findViewById(R.id.modD_VPHomePageD); // page
 
         tabLayout.setupWithViewPager(viewPager);
 
         VPAdapter vpAdapter = new VPAdapter(getChildFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         vpAdapter.addFragment(new HealthGuidance(), "HEALTH");
-        vpAdapter.addFragment(new Community(),  "COMMUNITY");
-        vpAdapter.addFragment(new Counseling(), "COUNSELING");
+        vpAdapter.addFragment(new Counseling(),  "COUNSELING");
+        vpAdapter.addFragment(new Community(), "COMMUNITY");
         viewPager.setAdapter(vpAdapter);
 
         return view;
