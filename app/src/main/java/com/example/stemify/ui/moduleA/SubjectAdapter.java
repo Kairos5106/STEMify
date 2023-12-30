@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,6 +44,13 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectV
         public SubjectViewHolder(@NonNull View itemView) {
             super(itemView);
             this.title = itemView.findViewById(R.id.TVSubjectTitle);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(context, "Subject clicked!", Toast.LENGTH_LONG).show();
+                }
+            });
         }
     }
 }
