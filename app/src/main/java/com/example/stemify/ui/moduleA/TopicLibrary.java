@@ -1,5 +1,6 @@
 package com.example.stemify.ui.moduleA;
 
+import android.adservices.topics.Topic;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,17 +13,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.stemify.DownloadAdapter;
-import com.example.stemify.DownloadItem;
 import com.example.stemify.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResourceLibrary extends Fragment {
-    SubjectAdapter subjectAdapter;
+public class TopicLibrary extends Fragment {
+    TopicAdapter topicAdapter;
     RecyclerView recyclerView;
-    List<Subject> listOfItems;
+    List<ResourceTopic> listOfItems;
+    public TopicLibrary() {
+        // Required empty public constructor
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +36,7 @@ public class ResourceLibrary extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_resource_library, container, false);
+        return inflater.inflate(R.layout.fragment_topic_library, container, false);
     }
 
     @Override
@@ -41,27 +44,27 @@ public class ResourceLibrary extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // Setup RecyclerView
-        recyclerView = view.findViewById(R.id.RVLibrary);
+        recyclerView = view.findViewById(R.id.RVTopicLibrary);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        subjectAdapter = new SubjectAdapter(getContext(), listOfItems);
-        recyclerView.setAdapter(subjectAdapter);
-        subjectAdapter.notifyDataSetChanged();
+        topicAdapter = new TopicAdapter(getContext(), listOfItems);
+        recyclerView.setAdapter(topicAdapter);
+        topicAdapter.notifyDataSetChanged();
     }
 
     public void initalizeData(){
-        // Initializing list of subject items
-        listOfItems = new ArrayList<Subject>();
+        // Initializing list of topic items
+        listOfItems = new ArrayList<ResourceTopic>();
 
         // Populate list with download items
-        listOfItems.add(new Subject("Test1"));
-        listOfItems.add(new Subject("Test2"));
-        listOfItems.add(new Subject("Test3"));
-        listOfItems.add(new Subject("Test4"));
-        listOfItems.add(new Subject("Test5"));
-        listOfItems.add(new Subject("Test6"));
-        listOfItems.add(new Subject("Test7"));
-        listOfItems.add(new Subject("Test8"));
-        listOfItems.add(new Subject("Test9"));
-        listOfItems.add(new Subject("Test10"));
+        listOfItems.add(new ResourceTopic("Test1"));
+        listOfItems.add(new ResourceTopic("Test2"));
+        listOfItems.add(new ResourceTopic("Test3"));
+        listOfItems.add(new ResourceTopic("Test4"));
+        listOfItems.add(new ResourceTopic("Test5"));
+        listOfItems.add(new ResourceTopic("Test6"));
+        listOfItems.add(new ResourceTopic("Test7"));
+        listOfItems.add(new ResourceTopic("Test8"));
+        listOfItems.add(new ResourceTopic("Test9"));
+        listOfItems.add(new ResourceTopic("Test10"));
     }
 }
