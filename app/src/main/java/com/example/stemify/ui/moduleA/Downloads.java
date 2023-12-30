@@ -67,6 +67,6 @@ public class Downloads extends Fragment {
         listOfItems.add(new DownloadItem("Test7", R.drawable.sampleimage));
         listOfItems.add(new DownloadItem("Test8", R.drawable.sampleimage));
         listOfItems.add(new DownloadItem("Test9", R.drawable.sampleimage));
-        listOfItems.add(new DownloadItem("Test10", R.drawable.sampleimage)); // not showing 10th
+        listOfItems.add(new DownloadItem("Test10", R.drawable.sampleimage));
     }
 }
