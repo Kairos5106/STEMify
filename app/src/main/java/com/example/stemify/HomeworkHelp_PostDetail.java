@@ -52,6 +52,7 @@ public class HomeworkHelp_PostDetail extends AppCompatActivity {
     FirebaseUser firebaseUser;
     DatabaseReference databaseReference;
     private String userPhotoUrl;
+    private String usernameCommenter;
 
     FirebaseDatabase firebaseDatabase;
     RecyclerView RVComment;
@@ -103,6 +104,7 @@ public class HomeworkHelp_PostDetail extends AppCompatActivity {
 
                         if (user != null) {
                             userPhotoUrl = user.getPhotoUrl();
+                            usernameCommenter = user.getDisplayName();
 
                             // Load profile pic using Picasso
                             Picasso.get().load(userPhotoUrl).into(IVPfpYouPostDetail);
@@ -154,7 +156,7 @@ public class HomeworkHelp_PostDetail extends AppCompatActivity {
                 DatabaseReference commentReference = firebaseDatabase.getReference("Comments").child(PostKey).push();
                 String commentContent = ETAddCommentPostDetail.getText().toString();
                 String commenterID = firebaseUser.getUid();
-                String commenterUsername = firebaseUser.getDisplayName();
+                String commenterUsername = usernameCommenter;
                 String commenterPfp = userPhotoUrl;
                 HomeworkHelp_Comment comment = new HomeworkHelp_Comment(commentContent, commenterID, commenterUsername, commenterPfp);
 
