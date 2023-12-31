@@ -16,6 +16,9 @@
         android:theme="@style/Theme.STEMify"
         tools:targetApi="31">
         <activity
+            android:name=".ui.moduleA.GradeLibrary"
+            android:exported="false" />
+        <activity
             android:name=".ui.moduleA.TopicLibrary"
             android:exported="false" />
         <activity

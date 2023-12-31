@@ -17,11 +17,11 @@ import com.example.stemify.R;
 import java.util.List;
 public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectViewHolder> {
     Context context;
-    List<Subject> list;
+    List<Subject> listOfSubjects;
 
-    public SubjectAdapter(Context context, List<Subject> list) {
+    public SubjectAdapter(Context context, List<Subject> listOfSubjects) {
         this.context = context;
-        this.list = list;
+        this.listOfSubjects = listOfSubjects;
     }
 
     @NonNull
@@ -32,13 +32,13 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectV
 
     @Override
     public void onBindViewHolder(@NonNull SubjectAdapter.SubjectViewHolder holder, int position) {
-        Subject subject = list.get(position);
+        Subject subject = listOfSubjects.get(position);
         holder.title.setText(subject.subjectTitle);
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return listOfSubjects.size();
     }
 
     public class SubjectViewHolder extends RecyclerView.ViewHolder{
@@ -51,18 +51,11 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectV
                 @Override
                 public void onClick(View v) {
                     // Upon clicking a subject, user will be redirected to a page listing the topics of the subject
-                    Intent goToTopicLibrary = new Intent(context, TopicLibrary.class);
+                    Intent goToGradeLibrary = new Intent(context, GradeLibrary.class);
                     int position = getAdapterPosition();
 
-                    goToTopicLibrary.putExtra("title", list.get(position).getTitle());
-                    goToTopicLibrary.putExtra("description", list.get(position).getDescription());
-                    goToTopicLibrary.putExtra("postKey", list.get(position).getPostKey());
-                    goToTopicLibrary.putExtra("userPfp", list.get(position).getUserPfp());
-                    goToTopicLibrary.putExtra("username", list.get(position).getUsername());
-                    long timestamp = (long) list.get(position).getTimeStamp();
-                    goToTopicLibrary.putExtra("postDate", timestamp);
-                    context.startActivity(goToTopicLibrary);
-
+                    goToGradeLibrary.putExtra("selectedSubject", listOfSubjects.get(position).getSubjectTitle());
+                    context.startActivity(goToGradeLibrary);
                 }
             });
         }

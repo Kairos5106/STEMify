@@ -5,16 +5,11 @@ import java.util.List;
 
 public class Subject {
     String subjectTitle;
-    List<ResourceTopic> resourceTopics;
+    List<Grade> listOfGrades;
 
     public Subject(String subjectTitle) {
         this.subjectTitle = subjectTitle;
-        this.resourceTopics = new ArrayList<>();
-    }
-
-    public Subject(String subjectTitle, List<ResourceTopic> resourceTopics) {
-        this.subjectTitle = subjectTitle;
-        this.resourceTopics = resourceTopics;
+        this.listOfGrades = new ArrayList<>();
     }
 
     public String getSubjectTitle() {
@@ -25,11 +20,15 @@ public class Subject {
         this.subjectTitle = subjectTitle;
     }
 
-    public List<ResourceTopic> getTopics() {
-        return resourceTopics;
+    public List<Grade> getListOfGrades() {
+        return listOfGrades;
     }
 
-    public void setTopics(List<ResourceTopic> resourceTopics) {
-        this.resourceTopics = resourceTopics;
+    public void setListOfGrades(List<Grade> listOfGrades) {
+        this.listOfGrades = listOfGrades;
+    }
+
+    public void addGrade(Grade grade){
+        listOfGrades.add(grade);
     }
 }

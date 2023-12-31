@@ -3,6 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+<!--    This resource file is not only being used for subjects, but also for grades
+        and topics -->
     <TextView
         android:id="@+id/TVSubjectTitle"
         android:layout_width="wrap_content"

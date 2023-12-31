@@ -1,8 +1,5 @@
 package com.example.stemify.ui.moduleA;
 
-import static java.security.AccessController.getContext;
-
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
@@ -20,18 +17,19 @@ import com.example.stemify.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TopicLibrary extends AppCompatActivity {
-    TopicAdapter topicAdapter;
+public class GradeLibrary extends AppCompatActivity {
+    GradeAdapter gradeAdapter;
     RecyclerView recyclerView;
-    List<ResourceTopic> listOfItems;
+    List<Grade> listOfItems;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_topic_library);
+        setContentView(R.layout.activity_grade_library);
+
         initalizeData();
 
         // Enable back button in the action bar
-        Toolbar toolbar = findViewById(R.id.TBTopicLibrary);
+        Toolbar toolbar = findViewById(R.id.TBGradeLibrary);
         toolbar.bringToFront(); // brings toolbar to the top-most layer
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -51,11 +49,11 @@ public class TopicLibrary extends AppCompatActivity {
         super.onStart();
 
         // Setup RecyclerView
-        recyclerView = findViewById(R.id.RVTopicLibrary);
+        recyclerView = findViewById(R.id.RVGradeLibrary);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        topicAdapter = new TopicAdapter(getApplicationContext(), listOfItems);
-        recyclerView.setAdapter(topicAdapter);
-        topicAdapter.notifyDataSetChanged();
+        gradeAdapter = new GradeAdapter(getApplicationContext(), listOfItems);
+        recyclerView.setAdapter(gradeAdapter);
+        gradeAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -71,20 +69,13 @@ public class TopicLibrary extends AppCompatActivity {
 
     public void initalizeData(){
         // Initializing list of topic items
-        listOfItems = new ArrayList<ResourceTopic>();
+        listOfItems = new ArrayList<Grade>();
 
-        // Populate list with download items
-        listOfItems.add(new ResourceTopic("Test1"));
-        listOfItems.add(new ResourceTopic("Test2"));
-        listOfItems.add(new ResourceTopic("Test3"));
-        listOfItems.add(new ResourceTopic("Test4"));
-        listOfItems.add(new ResourceTopic("Test5"));
-        listOfItems.add(new ResourceTopic("Test6"));
-        listOfItems.add(new ResourceTopic("Test7"));
-        listOfItems.add(new ResourceTopic("Test8"));
-        listOfItems.add(new ResourceTopic("Test9"));
-        listOfItems.add(new ResourceTopic("Test10"));
-        listOfItems.add(new ResourceTopic("Test11"));
-        listOfItems.add(new ResourceTopic("Test12"));
+        // Populate list with grade items
+        listOfItems.add(new Grade("Grade1"));
+        listOfItems.add(new Grade("Grade2"));
+        listOfItems.add(new Grade("Grade3"));
+        listOfItems.add(new Grade("Grade4"));
+        listOfItems.add(new Grade("Grade5"));
     }
 }
