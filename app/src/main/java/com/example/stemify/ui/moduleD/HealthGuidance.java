@@ -28,7 +28,7 @@ public class HealthGuidance extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_home_page_d, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_health_guidance, container, false);
 
         //first cardview to new page
         health = rootView.findViewById(R.id.card_health1);

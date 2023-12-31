@@ -33,7 +33,7 @@
     <fragment
         android:id="@+id/homePageD"
         android:name="com.example.stemify.ui.moduleD.HomePageD"
-        android:label="fragment_home_page_d"
+        android:label="Health"
         tools:layout="@layout/fragment_home_page_d" />
     <fragment
         android:id="@+id/homePageE"

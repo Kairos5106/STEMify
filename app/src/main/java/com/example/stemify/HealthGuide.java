@@ -14,7 +14,7 @@ public class HealthGuide extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_home_page_d);
+        setContentView(R.layout.fragment_health_guidance);
 
         //first cardview to new page
         health = findViewById(R.id.card_health1);

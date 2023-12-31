@@ -47,11 +47,9 @@
             android:name=".Splash2"
             android:exported="false" />
 
-
-        <activity android:name=".ModuleHealthMain"
-            android:exported="false"/>
         <activity android:name=".HealthGuide"
             android:exported="false"/>
+
         <activity android:name=".Lifestyle"
             android:exported="false" />
         <activity android:name=".MentalHealth"

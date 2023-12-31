@@ -31,6 +31,9 @@ public class HomePageD extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home_page_d, container, false);
 
+        //change fragment name
+        getActivity().setTitle("Health");
+
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.modD_TLHomePageD); //tab
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.modD_VPHomePageD); // page
 
