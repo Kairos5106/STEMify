@@ -28,9 +28,6 @@ public class Leaderboard_Ranking_Adapter extends RecyclerView.Adapter<Leaderboar
 
     private Context mContext;
     private List<User> mData;
-    FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    FirebaseUser currentUser = mAuth.getCurrentUser();
-    DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users");;
 
     public Leaderboard_Ranking_Adapter(Context mContext, List<User> mData) {
         this.mContext = mContext;
@@ -47,35 +44,16 @@ public class Leaderboard_Ranking_Adapter extends RecyclerView.Adapter<Leaderboar
     @Override
     public void onBindViewHolder(@NonNull Leaderboard_Ranking_Adapter.RankingViewHolder holder, int position) {
 
-        holder.TVRankNumber.setText(String.valueOf(position));
+        holder.TVRankNumber.setText(String.valueOf(position + 1));
         holder.TVUsernameRankRow.setText(mData.get(position).getDisplayName());
         Picasso.get().load(mData.get(position).getPhotoUrl()).into(holder.IVUserPfpRankRow);
-        //holder.TVDigitXPRankRow.setText(mData.get(position).getCommentCount());
 
-        /*if (currentUser != null) {
-            String userId = currentUser.getUid();
+        int firstPlaceValue = 1000;
+        int decreaseFactor = 100;
+        // Calculate the TVDigitXPRankRow value based on the position
+        int digitXPValue = firstPlaceValue - position * decreaseFactor;
 
-            userRef.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if (snapshot.exists()) {
-                        User user = snapshot.getValue(User.class);
-
-                        if (user != null) {
-                            String userPhotoUrl = user.getPhotoUrl();
-
-                            // Load profile pic using Picasso
-                            Picasso.get().load(userPhotoUrl).into(holder.IVUserPfpRankRow);
-                        }
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    // Error handling
-                }
-            });
-        }*/
+        holder.TVDigitXPRankRow.setText(String.valueOf(digitXPValue));
 
     }
 
