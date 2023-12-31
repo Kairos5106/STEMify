@@ -164,6 +164,8 @@ public class HomeworkHelp_PostDetail extends AppCompatActivity {
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
+
+                                // Toast message
                                 String messageOnSuccess = "Comment added.";
                                 Toast.makeText(HomeworkHelp_PostDetail.this, messageOnSuccess, Toast.LENGTH_LONG).show();
                                 ETAddCommentPostDetail.setText("");
