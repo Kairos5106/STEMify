@@ -68,47 +68,53 @@ public class ChangePassword extends AppCompatActivity {
                 if(hasInput){
                     //override the old password with the new password in the database
                     String newPassword = ETNewPassword.getText().toString();
-                    if(newPassword.equals(ETConfirmNewPassword.getText().toString())){
-                        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-                        mAuth.signInWithEmailAndPassword(email, password)
-                                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<AuthResult> task) {
-                                        if (task.isSuccessful()) {
-                                            FirebaseUser user = mAuth.getCurrentUser();
-                                            user.updatePassword(newPassword)
-                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                        @Override
-                                                        public void onComplete(@NonNull Task<Void> task) {
-                                                            if (task.isSuccessful()) {
-                                                                //password updated successfully (at Firebase User Authentication)
-                                                                //update at Firebase Realtime Database too
-                                                                Map<String, Object> updates = new HashMap<>();
-                                                                updates.put("password", newPassword);
-                                                                DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users").child(user.getUid());
-                                                                userRef.updateChildren(updates);
 
-                                                                //move to password change done page to inform the user that their password has changed
-                                                                Intent nextScreen = new Intent(getApplicationContext(), PasswordChangeDone.class);
-                                                                startActivity(nextScreen);
-                                                                finish();
-                                                            } else {
-                                                                // If updating the password fails, display a message to the user
-                                                                Toast.makeText(getApplicationContext(), "Failed to update password", Toast.LENGTH_SHORT).show();
+                    if(newPassword.length()>6){
+                        if(newPassword.equals(ETConfirmNewPassword.getText().toString())){
+                            FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                            mAuth.signInWithEmailAndPassword(email, password)
+                                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<AuthResult> task) {
+                                            if (task.isSuccessful()) {
+                                                FirebaseUser user = mAuth.getCurrentUser();
+                                                user.updatePassword(newPassword)
+                                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                            @Override
+                                                            public void onComplete(@NonNull Task<Void> task) {
+                                                                if (task.isSuccessful()) {
+                                                                    //password updated successfully (at Firebase User Authentication)
+                                                                    //update at Firebase Realtime Database too
+                                                                    Map<String, Object> updates = new HashMap<>();
+                                                                    updates.put("password", newPassword);
+                                                                    DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users").child(user.getUid());
+                                                                    userRef.updateChildren(updates);
+
+                                                                    //move to password change done page to inform the user that their password has changed
+                                                                    Intent nextScreen = new Intent(getApplicationContext(), PasswordChangeDone.class);
+                                                                    startActivity(nextScreen);
+                                                                    finish();
+                                                                } else {
+                                                                    // If updating the password fails, display a message to the user
+                                                                    Toast.makeText(getApplicationContext(), "Failed to update password", Toast.LENGTH_SHORT).show();
+                                                                }
                                                             }
-                                                        }
-                                                    });
-                                        } else {
-                                            Toast.makeText(getApplicationContext(), "Failed to retrieve account", Toast.LENGTH_SHORT).show();
+                                                        });
+                                            } else {
+                                                Toast.makeText(getApplicationContext(), "Failed to retrieve account", Toast.LENGTH_SHORT).show();
 
+                                            }
                                         }
-                                    }
-                                });
-                        FirebaseAuth.getInstance().signOut();
+                                    });
+                            FirebaseAuth.getInstance().signOut();
+                        }else{
+                            TextView TVIncorrectPass = findViewById(R.id.TVIncorrectPass);
+                            TVIncorrectPass.setText("Password Mismatch");
+                            TVIncorrectPass.setTextColor(Color.RED);
+                        }
                     }else{
-                        TextView TVIncorrectPass = findViewById(R.id.TVIncorrectPass);
-                        TVIncorrectPass.setText("Password Mismatch");
-                        TVIncorrectPass.setTextColor(Color.RED);
+                        TextView TVWeakNewPass = findViewById(R.id.TVWeakNewPass);
+                        TVWeakNewPass.setTextColor(Color.RED);
                     }
                 }
             }

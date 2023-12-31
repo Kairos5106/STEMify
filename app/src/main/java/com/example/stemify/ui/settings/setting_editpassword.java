@@ -1,5 +1,6 @@
 package com.example.stemify.ui.settings;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.stemify.R;
@@ -109,47 +111,52 @@ public class setting_editpassword extends Fragment {
                 if(hasInput){
                     //override the old password with the new password in the database
                     String newPassword = ETNewPassword.getText().toString();
-                    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-                    if (currentUser != null) {
+                    if(newPassword.length()>6){
+                        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                        if (currentUser != null) {
 
-                        // Read from the database
-                        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users").child(currentUser.getUid());
-                        userRef.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                if (dataSnapshot.exists()) {
-                                    User user = dataSnapshot.getValue(User.class);
-                                    String currentPass = user.getPassword();
-                                    if(currentPass.equals(ETCurrentPassword.getText().toString())){
-                                        currentUser.updatePassword(newPassword)
-                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                    @Override
-                                                    public void onComplete(@NonNull Task<Void> task) {
-                                                        if (task.isSuccessful()) {
-                                                            // Password updated successfully
-                                                            Map<String, Object> updates = new HashMap<>();
-                                                            updates.put("password", newPassword);
-                                                            userRef.updateChildren(updates);
-                                                            Toast.makeText(getActivity(), "Password Updated", Toast.LENGTH_SHORT).show();
-                                                        } else {
-                                                            // Fail to update password
-                                                            Toast.makeText(getActivity(), "Failed to update password", Toast.LENGTH_SHORT).show();
+                            // Read from the database
+                            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users").child(currentUser.getUid());
+                            userRef.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    if (dataSnapshot.exists()) {
+                                        User user = dataSnapshot.getValue(User.class);
+                                        String currentPass = user.getPassword();
+                                        if(currentPass.equals(ETCurrentPassword.getText().toString())){
+                                            currentUser.updatePassword(newPassword)
+                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                            if (task.isSuccessful()) {
+                                                                // Password updated successfully
+                                                                Map<String, Object> updates = new HashMap<>();
+                                                                updates.put("password", newPassword);
+                                                                userRef.updateChildren(updates);
+                                                                Toast.makeText(getActivity(), "Password Updated", Toast.LENGTH_SHORT).show();
+                                                            } else {
+                                                                // Fail to update password
+                                                                Toast.makeText(getActivity(), "Failed to update password", Toast.LENGTH_SHORT).show();
+                                                            }
                                                         }
-                                                    }
-                                                });
-                                    }else{
-                                        Toast.makeText(getActivity(), "Password Mismatch", Toast.LENGTH_SHORT).show();
+                                                    });
+                                        }else{
+                                            Toast.makeText(getActivity(), "Password Mismatch", Toast.LENGTH_SHORT).show();
+                                        }
                                     }
                                 }
-                            }
 
-                            @Override
-                            public void onCancelled(DatabaseError error) {
-                                // Handle errors
-                                Toast.makeText(getActivity(), "Error in Retrieving Account Data", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                                @Override
+                                public void onCancelled(DatabaseError error) {
+                                    // Handle errors
+                                    Toast.makeText(getActivity(), "Error in Retrieving Account Data", Toast.LENGTH_SHORT).show();
+                                }
+                            });
 
+                        }
+                    }else{
+                        TextView TVWeakNewEditPass = view.findViewById(R.id.TVWeakNewEditPass);
+                        TVWeakNewEditPass.setTextColor(Color.RED);
                     }
                 }
             }
