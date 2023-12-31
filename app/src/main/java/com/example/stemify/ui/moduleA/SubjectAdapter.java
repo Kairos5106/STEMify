@@ -1,6 +1,7 @@
 package com.example.stemify.ui.moduleA;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.stemify.HomeworkHelp_PostDetail;
 import com.example.stemify.R;
 
 import java.util.List;
@@ -48,7 +50,19 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectV
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(context, "Subject clicked!", Toast.LENGTH_LONG).show();
+                    // Upon clicking a subject, user will be redirected to a page listing the topics of the subject
+                    Intent goToTopicLibrary = new Intent(context, TopicLibrary.class);
+                    int position = getAdapterPosition();
+
+                    goToTopicLibrary.putExtra("title", list.get(position).getTitle());
+                    goToTopicLibrary.putExtra("description", list.get(position).getDescription());
+                    goToTopicLibrary.putExtra("postKey", list.get(position).getPostKey());
+                    goToTopicLibrary.putExtra("userPfp", list.get(position).getUserPfp());
+                    goToTopicLibrary.putExtra("username", list.get(position).getUsername());
+                    long timestamp = (long) list.get(position).getTimeStamp();
+                    goToTopicLibrary.putExtra("postDate", timestamp);
+                    context.startActivity(goToTopicLibrary);
+
                 }
             });
         }
