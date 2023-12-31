@@ -13,4 +13,78 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+
+    <string name ="health_lifestyle">Embracing a healthy lifestyle involves eating well, staying active, and taking care of your mental well-being.</string>
+
+    <string name="health_1">A healthy diet
+        \nA healthy diet involves eating a variety of foods in the correct proportions and consuming a calorie intake that allows for the maintenance of healthy body weight. Although this varies for everyone,
+        as a general guide, this should include:
+    \n\n\ta. Five portions of fruit and vegetables per day
+    \n\tb. Lean proteins, especially fish, eggs, and white meat, are essential for cellular repair and provide a range of vitamins and minerals
+    \n\tc. Dairy foods and their alternatives, which are a good source of protein and provide calcium.
+    \n\td. Starchy foods, particularly wholegrain varieties which contain more fiber and nutrients
+    \n\te. Limited amounts of unsaturated fats.
+    </string>
+
+    <string name="health_2">Physical activity
+    \nThe World Health Organisation recommends that all adults undertake regular physical activity, including at least thirty minutes of moderate aerobic activity daily, supplemented by at least two weight-bearing activity sessions per week.
+    \n</string>
+
+    <string name="health_3">Sleep
+    \nTry to get 7-8 hours every night and try to keep a regular sleep-wake cycle – go to bed and get up at the same time every day. A good nights sleep may make you more productive and efficient on the next day.\n </string>
+
+    <string name="health_4">Drink Plenty of Water
+    \nOur body is 75% water and it is necessary to maintain the amount of liquid we consume, especially water as it is the most vital liquid humans require. 8 glasses a day also equal to 3 litres of water a day should keep you
+    hydrated and healthy. \n</string>
+
+    <string name="health_5">Socialise
+    \nHaving a healthy diet and exercising aren\'t the only contributors in having a healthy lifestyle, socialise with your peers and have some fun once in a while to keep yourself
+    (mind and body) healthy and free of stress\n</string>
+
+    <string name="mental_main"> It is understandable to feel scared, anxious or helpless during this
+        unprecedented time. But whatever situation you are in and wherever you are in the World,
+        you have the power to look after your mental health and well-being.</string>
+
+    <string name="mental_1">Amidst the whirlwind of academics and social engagements, remember to prioritize self-care. This includes nourishing your body with proper nutrition, getting adequate sleep, and engaging in physical activity.
+        Taking care of yourself physically can profoundly impact your mental health. Small acts of self-care can make a big difference in how you feel every day.</string>
+
+    <string name="mental_2">It’s okay to feel down sometimes. Life has its highs and lows, and experiencing a range of emotions is entirely normal. Don’t be too hard on yourself for feeling sad, anxious, or stressed. Acknowledging these
+        emotions and allowing yourself to feel them is an essential part of coping and healing. Remember, it’s okay not to be okay sometimes.</string>
+
+    <string name="mental_3">Try to continue doing the activities that you find meaningful and enjoyable, such as cooking for yourself or your loved ones, playing with your pet, walking in the park, reading a book, or watching a film or TV series.
+        Having a regular routine with activities that make you feel happy will help you maintain good mental health.</string>
+
+    <string name="mental_4">You\'re not alone in this journey. Having a support network can make a world of difference. Whether it\'s friends, family, teachers, or counselors, having someone to confide in can provide comfort and guidance during tough
+        times. Don’t hesitate to seek help when you need it. Support is crucial for maintaining good mental health.</string>
+
+    <string name="mental_5">Help free yourself of constantly swirling thoughts by reconnecting yourself with where you are at this moment in time. Follow along with the video below or simply take three slow deep breaths, feel your feet grounded on the floor</string>
+
+    <string name="clean_main">Cleanliness is the most important habit one can possess, as cleanliness and health are interrelated.\n
+    So how to keep it clean? </string>
+
+    <string name="clean_wash">Your hands may look clean but doesn’t necessarily mean they are. Wash hand properly and thoroughly with soap and water</string>
+
+    <string name="clean_bath">Showering twice a day in the ideal way to keep our bodies clean and hygiene. Not only does it keep our body clean, it also makes us feel clean and more comfortable. It is important to make sure to clean your entire body in the shower.\n
+    Showering 5-10 minutes a day is a suitable amount of time for soaping up and rinsing off. Keeping our bodies clean ultimately help us to be more healthy! </string>
+
+    <string name="clean_teeth">Taking care of your teeth and gums is vital for good oral health, especially in areas with limited resources. Brushing teeth twice daily with fluoride toothpaste, using traditional methods like chewing sticks or neem twigs, and visiting
+        a local dental worker can help prevent tooth decay and gum disease.\nRegular care ensures healthier smiles and reduces dental issues even in areas with fewer resources.</string>
+
+    <string name="clean_cloth">It\'s recommended to wash clothes regularly, especially undergarments and those worn close to the skin, after each use or every few wears, depending on the level of activity and sweat. Airing clothes in the sun also helps reduce odors and keeps clothes clean.\n
+    Regular washing is crucial as it prevents skin infections, improves personal hygiene and makes life healthier and more comfortable.</string>
+
+    <string name="fit_main">Explore the benefits of exercising outdoors, enhancing brain health through meditation, and making small yet impactful exercise choices. Remember, a balanced routine is key to a healthier mind and body</string>
+
+    <string name="fit_hiking">Who needs a gym membership when you have the outdoors?\n
+	Outdoor exercise has a stronger effect on blood pressure and mood than indoor exercise. Stress is relieved within minutes of exposure to nature as measured by muscle tension, blood pressure, and brain activity.\
+        To put it simply, time spent outside is good for you!</string>
+
+    <string name="fit_yoga">With your eyes closed, simply breathe in while saying "breathe in" in your head as you do. Then breathe out and say "breathe out". For the next 20 minutes or so, your aim is to focus on this circular breath and the simple words in your head as much as possible.\n
+	Focusing on your brain health is one of the best things you can do to improve your concentration, focus, memory, and mental agility, no matter what age you are.</string>
+
+    <string name="fit_squat">	When you\'re feeling too lazy and tired to exercise, these are some activities you can follow that can help.\nSquatting and stretching!\n
+    Squats burn calories and might help you lose weight. They also lower your chances of injuring your knees and ankles.\nStretching keeps your muscles flexible, strong and healthy, and we need that flexibility to maintain a range of motion in the joints. </string>
+
+    <string name="fit_rest">Sometimes all you need is a good lazy day where you do not make your muscles and body more tired. Taking rest days can improve sleep, much like regular exercises. Moreover, lack of sleep may result in low motivation to take part in leisure activities. Always have a good balance in keeping your body and mind fit. </string>
+
 </resources>

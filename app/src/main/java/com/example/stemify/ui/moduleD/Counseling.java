@@ -3,64 +3,40 @@ package com.example.stemify.ui.moduleD;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.stemify.Counselor;
+import com.example.stemify.CounselorAdapter;
+import com.example.stemify.CounselorData;
 import com.example.stemify.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Counseling#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class Counseling extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public Counseling() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Counseling.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Counseling newInstance(String param1, String param2) {
-        Counseling fragment = new Counseling();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_counseling, container, false);
+        View rootView =  inflater.inflate(R.layout.fragment_counseling, container, false);
+
+        RecyclerView recyclerView = rootView.findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+
+        CounselorData[] counselorData = new CounselorData[]{
+                new CounselorData("Dr.Melissa Ho", "Specialist in treating mental health issues with young adults", "Experience: 12 Years", "Patients: 216", R.drawable.confused),
+                new CounselorData("Dr.Adam Carlson", "Specialist in treating insomnia among young adults aged 13-22", "Experience: 7 Years", "Patients: 110", R.drawable.confused),
+                new CounselorData("Dr.H.J. Kamal", "Specialist in helping young adults with ADHD", "Experience: 5 Years", "Patients: 96", R.drawable.confused),
+
+        };
+
+        CounselorAdapter counselorAdapter = new CounselorAdapter(counselorData, Counseling.this);
+        recyclerView.setAdapter(counselorAdapter);
+
+        return rootView;
     }
 }

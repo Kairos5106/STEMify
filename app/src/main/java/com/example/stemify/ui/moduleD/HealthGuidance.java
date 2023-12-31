@@ -1,66 +1,76 @@
 package com.example.stemify.ui.moduleD;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.appcompat.widget.Toolbar;
 
+import com.example.stemify.Cleanliness;
+import com.example.stemify.HealthFitness;
+import com.example.stemify.HealthGuide;
+import com.example.stemify.Lifestyle;
+import com.example.stemify.MentalHealth;
 import com.example.stemify.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link HealthGuidance#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class HealthGuidance extends Fragment {
+public class HealthGuidance extends Fragment{
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public HealthGuidance() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HealthGuidance.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static HealthGuidance newInstance(String param1, String param2) {
-        HealthGuidance fragment = new HealthGuidance();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    CardView health, mental, fitness, clean;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_health_guidance, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_home_page_d, container, false);
+
+        //first cardview to new page
+        health = rootView.findViewById(R.id.card_health1);
+        health.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),Lifestyle.class);
+                startActivity(intent);
+            }
+        });
+
+        //second cardview to new page
+        mental = rootView.findViewById(R.id.card_health2);
+        mental.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MentalHealth.class);
+                startActivity(intent);
+            }
+        });
+
+        //third cardview to new page
+        fitness = rootView.findViewById(R.id.card_health3);
+        fitness.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), HealthFitness.class);
+                startActivity(intent);
+            }
+        });
+
+        //forth carview to new page
+        clean = rootView.findViewById(R.id.card_health4);
+        clean.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Cleanliness.class);
+                startActivity(intent);
+            }
+        });
+
+        return rootView;
     }
+
 }
