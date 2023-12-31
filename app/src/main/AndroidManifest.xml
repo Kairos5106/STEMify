@@ -17,6 +17,9 @@
         android:theme="@style/Theme.STEMify"
         tools:targetApi="31">
         <activity
+            android:name=".TestActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.moduleA.GradeLibrary"
             android:exported="false" />
         <activity
@@ -55,22 +58,26 @@
         <activity
             android:name=".Splash2"
             android:exported="false" />
-
-
-        <activity android:name=".ModuleHealthMain"
-            android:exported="false"/>
-        <activity android:name=".HealthGuide"
-            android:exported="false"/>
-        <activity android:name=".Lifestyle"
+        <activity
+            android:name=".ModuleHealthMain"
             android:exported="false" />
-        <activity android:name=".MentalHealth"
+        <activity
+            android:name=".HealthGuide"
             android:exported="false" />
-        <activity android:name=".HealthFitness"
+        <activity
+            android:name=".Lifestyle"
             android:exported="false" />
-        <activity android:name=".Cleanliness"
+        <activity
+            android:name=".MentalHealth"
             android:exported="false" />
-
-        <activity android:name=".Counselor"
+        <activity
+            android:name=".HealthFitness"
+            android:exported="false" />
+        <activity
+            android:name=".Cleanliness"
+            android:exported="false" />
+        <activity
+            android:name=".Counselor"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

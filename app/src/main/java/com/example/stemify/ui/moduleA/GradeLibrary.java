@@ -36,7 +36,7 @@ public class GradeLibrary extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         // Set the title for the app bar for this particular page
-        getSupportActionBar().setTitle("Topics");
+        getSupportActionBar().setTitle("Grades");
 
         // Set the back button at app bar to be white
         Drawable arrow = AppCompatResources.getDrawable(this, R.drawable.ic_arrow_back);

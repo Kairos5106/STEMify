@@ -34,8 +34,8 @@ public class TopicLibrary extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.TBTopicLibrary);
         toolbar.bringToFront(); // brings toolbar to the top-most layer
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         // Set the title for the app bar for this particular page
         getSupportActionBar().setTitle("Topics");
