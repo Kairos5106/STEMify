@@ -75,23 +75,18 @@ public class SignUp1 extends Fragment {
         return inflater.inflate(R.layout.fragment_sign_up1, container, false);
     }
 
-    //checker for identity selection
     boolean selectionChecker = false;
     String chosenIdentity = "";
-
-    SignUp3 SU3 = new SignUp3();
-    Bundle bundleOne = new Bundle();
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
 
         TextView TVSelectIdentity = view.findViewById(R.id.TVSelectIdentity);
 
-        //dropdown for identity
+        //dropdown (spinner) for identity
         String[] IDENTITY = new String[]{
                 "Identity", "Student", "Tutor", "Parent", "Company", "Community", "Psychiatrist"
         };
-
         Spinner SPIdentity = (Spinner) view.findViewById(R.id.SPIdentity);
         ArrayAdapter<String> arrAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, IDENTITY);
         arrAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -101,6 +96,7 @@ public class SignUp1 extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //check if the selection is "Identity"
                 if (parent.getItemAtPosition(position).equals("Identity")){
+                    //if no identity selected, notify the user
                     TVSelectIdentity.setText("Please Select An Identity");
                     TVSelectIdentity.setTextColor(Color.RED);
                 }else{
@@ -148,7 +144,7 @@ public class SignUp1 extends Fragment {
                     String email = ETRegisterEmail.getText().toString();
                     String organization = ETOrganization.getText().toString();
 
-                    //send data to SignUp3
+                    //get Data Manager class to temporarily hold data
                     DataManager.getInstance().putData("fullname", fullname);
                     DataManager.getInstance().putData("email", email);
                     DataManager.getInstance().putData("identity", chosenIdentity);

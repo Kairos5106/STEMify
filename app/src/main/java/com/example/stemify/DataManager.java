@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DataManager {
+    //a public class to temporarily hold data in key-value pair
     private static DataManager instance;
     private static DataManager postInstance;
     private Map<String, Object> dataMap;
