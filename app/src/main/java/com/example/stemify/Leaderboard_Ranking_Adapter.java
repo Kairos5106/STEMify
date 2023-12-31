@@ -30,7 +30,7 @@ public class Leaderboard_Ranking_Adapter extends RecyclerView.Adapter<Leaderboar
     private List<User> mData;
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser currentUser = mAuth.getCurrentUser();
-    DatabaseReference userRef;
+    DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users");;
 
     public Leaderboard_Ranking_Adapter(Context mContext, List<User> mData) {
         this.mContext = mContext;
@@ -50,10 +50,6 @@ public class Leaderboard_Ranking_Adapter extends RecyclerView.Adapter<Leaderboar
         holder.TVRankNumber.setText(String.valueOf(position));
         holder.TVUsernameRankRow.setText(mData.get(position).getDisplayName());
         //holder.TVDigitXPRankRow.setText(mData.get(position).getCommentCount());
-
-        mAuth = FirebaseAuth.getInstance();
-        currentUser = mAuth.getCurrentUser();
-        userRef = FirebaseDatabase.getInstance().getReference().child("users");
 
         if (currentUser != null) {
             String userId = currentUser.getUid();
