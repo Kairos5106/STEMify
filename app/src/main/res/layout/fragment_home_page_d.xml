@@ -86,7 +86,7 @@
                     android:layout_width="60dp"
                     android:layout_height="66dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/food1" />
+                    android:src="@drawable/food" />
 
                 <TextView
                     android:layout_width="wrap_content"
