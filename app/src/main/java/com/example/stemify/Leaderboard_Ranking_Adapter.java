@@ -49,9 +49,10 @@ public class Leaderboard_Ranking_Adapter extends RecyclerView.Adapter<Leaderboar
 
         holder.TVRankNumber.setText(String.valueOf(position));
         holder.TVUsernameRankRow.setText(mData.get(position).getDisplayName());
+        Picasso.get().load(mData.get(position).getPhotoUrl()).into(holder.IVUserPfpRankRow);
         //holder.TVDigitXPRankRow.setText(mData.get(position).getCommentCount());
 
-        if (currentUser != null) {
+        /*if (currentUser != null) {
             String userId = currentUser.getUid();
 
             userRef.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -74,7 +75,7 @@ public class Leaderboard_Ranking_Adapter extends RecyclerView.Adapter<Leaderboar
                     // Error handling
                 }
             });
-        }
+        }*/
 
     }
 
