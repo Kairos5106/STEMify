@@ -27,6 +27,7 @@ public class MentalHealth extends AppCompatActivity {
         setContentView(R.layout.fragment_mental_health);
 
         //toolbar
+
         Toolbar toolbar = findViewById(R.id.TBMentalHealth);
         setSupportActionBar(toolbar);
 
@@ -36,6 +37,7 @@ public class MentalHealth extends AppCompatActivity {
         setTitle("Health Guidance");
 
         TextView textView = findViewById(R.id.textviewClick);
+
 
         String text = "Click Here to find out more";
 
