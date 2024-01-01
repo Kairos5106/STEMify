@@ -1,54 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="#F2F6FC">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/IVSectionIcon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/ic_mod_a"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="32dp"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="32dp"/>
-
-    <TextView
-        android:id="@+id/TVSectionTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Section Title"
-        android:textSize="20sp"/>
-
-    <TextView
-        android:id="@+id/TVSubtopicMasteryPoints"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Achieved Points/Total Points mastery points"
-        android:textSize="12sp"/>
-
-    <LinearLayout
-        android:id="@+id/divider1"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/black"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:id="@+id/divider2"
-        android:layout_width="match_parent"
-        android:layout_height="16dp"
-        android:background="#F2F6FC"
-        android:orientation="vertical" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/divider3"
-        android:layout_width="match_parent"
-        android:layout_height="16dp"
-        android:background="@color/white"
-        android:orientation="vertical" />
+            <TextView
+                android:id="@+id/TVSectionTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Section Title"
+                android:textStyle="bold"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/TVSectionMasteryPoints"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Points"
+                android:layout_alignTop="@+id/TVSectionTitle"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="16dp"/>
+
+            <LinearLayout
+                android:id="@+id/divider1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#A4ABB5"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/TVSectionTitle"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RVMaterialList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/divider1"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="8dp"
+                tools:listitem="@layout/item_material"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
