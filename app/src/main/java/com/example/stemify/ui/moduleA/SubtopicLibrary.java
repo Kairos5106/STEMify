@@ -76,6 +76,7 @@ public class SubtopicLibrary extends AppCompatActivity {
 
         // Populate list with grade items
         Subtopic subtopic1 = new Subtopic("Subtopic 1");
+        subtopic1.setImageId(R.drawable.sampleimage);
         Section section1a = new Section("Section 1");
         Section section1b = new Section("Section 2");
         Section section1c = new Section("Section 3");
@@ -84,5 +85,27 @@ public class SubtopicLibrary extends AppCompatActivity {
         subtopic1.addSection(section1c);
 
         listOfItems.add(subtopic1);
+
+        Subtopic subtopic2 = new Subtopic("Subtopic 2");
+        subtopic2.setImageId(R.drawable.sampleimage);
+        Section section2a = new Section("Section 1");
+        Section section2b = new Section("Section 2");
+        Section section2c = new Section("Section 3");
+        subtopic2.addSection(section2a);
+        subtopic2.addSection(section2b);
+        subtopic2.addSection(section2c);
+
+        listOfItems.add(subtopic2);
+
+        Subtopic subtopic3 = new Subtopic("Subtopic 3");
+        subtopic3.setImageId(R.drawable.sampleimage);
+        Section section3a = new Section("Section 1");
+        Section section3b = new Section("Section 2");
+        Section section3c = new Section("Section 3");
+        subtopic3.addSection(section3a);
+        subtopic3.addSection(section3b);
+        subtopic3.addSection(section3c);
+
+        listOfItems.add(subtopic3);
     }
 }

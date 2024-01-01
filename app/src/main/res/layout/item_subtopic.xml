@@ -57,11 +57,31 @@
         android:layout_height="wrap_content"
         android:text="Item1\nItem2\nItem3"
         app:layout_constraintTop_toBottomOf="@+id/divider1"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="32dp"
         android:paddingStart="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="32dp"/>
+
+    <LinearLayout
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:background="#F2F6FC"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/TVSectionList"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <LinearLayout
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/divider2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
