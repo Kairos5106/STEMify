@@ -18,17 +18,17 @@
     <fragment
         android:id="@+id/homePageA"
         android:name="com.example.stemify.ui.moduleA.HomePageA"
-        android:label="fragment_home_page_a"
+        android:label="Learning Resources"
         tools:layout="@layout/fragment_home_page_a" />
     <fragment
         android:id="@+id/homePageB"
         android:name="com.example.stemify.ui.moduleB.HomePageB"
-        android:label="fragment_home_page_b"
+        android:label="Tutoring &amp; Support"
         tools:layout="@layout/fragment_home_page_b" />
     <fragment
         android:id="@+id/homePageC"
         android:name="com.example.stemify.ui.moduleC.HomePageC"
-        android:label="fragment_home_page_c"
+        android:label="Career &amp; Skill Development"
         tools:layout="@layout/fragment_home_page_c" />
     <fragment
         android:id="@+id/homePageD"
@@ -38,7 +38,7 @@
     <fragment
         android:id="@+id/homePageE"
         android:name="com.example.stemify.ui.moduleE.HomePageE"
-        android:label="fragment_home_page_e"
+        android:label="Community Engagement"
         tools:layout="@layout/fragment_home_page_e" />
     <fragment
         android:id="@+id/setting_privacy"

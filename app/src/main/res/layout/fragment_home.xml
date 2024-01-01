@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:id="@+id/fragment_home"
     tools:context=".ui.home.HomeFragment">
-
         <TextView
             android:id="@+id/TVHello"
             android:layout_width="wrap_content"
