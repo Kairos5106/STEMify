@@ -16,7 +16,7 @@ public class Welcome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        //go to home page screen
+        //welcome the user and go to home page screen
         Button BtnContinueToHome = findViewById(R.id.BtnContinueToHome);
         BtnContinueToHome.setOnClickListener(new View.OnClickListener() {
             @Override

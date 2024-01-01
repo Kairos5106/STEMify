@@ -4,7 +4,7 @@ import com.google.firebase.database.IgnoreExtraProperties;
 
 @IgnoreExtraProperties
 public class User {
-
+    //a public class that hold user's attributes to be stored into Firebase Realtime Database
     private String fullname;
     private String identity;
     private String organization;
@@ -16,6 +16,17 @@ public class User {
     private boolean checkAnonymous;
     private String displayName;
     private String password;
+    private long attemptTime;
+    private int loginTrial;
+
+    public long getAttemptTime() { return attemptTime; }
+
+    public void setAttemptTime(long attemptTime) { this.attemptTime = attemptTime; }
+
+    public int getLoginTrial() { return loginTrial; }
+
+    public void setLoginTrial(int loginTrial) { this.loginTrial = loginTrial; }
+
 
     public boolean isCheckAnonymous() {
         return checkAnonymous;
