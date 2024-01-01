@@ -11,6 +11,10 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.stemify.Cleanliness;
@@ -19,6 +23,9 @@ import com.example.stemify.HealthGuide;
 import com.example.stemify.Lifestyle;
 import com.example.stemify.MentalHealth;
 import com.example.stemify.R;
+
+import java.text.DateFormat;
+import java.util.Calendar;
 
 public class HealthGuidance extends Fragment{
 
@@ -29,6 +36,60 @@ public class HealthGuidance extends Fragment{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_health_guidance, container, false);
+
+
+        //calender for daily checking
+        Calendar calendar = Calendar.getInstance();
+        String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+
+        TextView txtViewDate = rootView.findViewById(R.id.TVDate);
+        txtViewDate.setText(currentDate);
+
+        //emoticon picker for user to choose
+        ImageView emoticon1 = rootView.findViewById(R.id.BtnSad);
+        ImageView emoticon2 = rootView.findViewById(R.id.BtnNormal);
+        ImageView emoticon3 = rootView.findViewById(R.id.BtnHappy);
+        ImageView emoticon4 = rootView.findViewById(R.id.BtnExcited);
+
+        emoticon1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                emoticon2.setVisibility(View.GONE);
+                emoticon3.setVisibility(View.GONE);
+                emoticon4.setVisibility(View.GONE);
+                Toast.makeText(getActivity().getApplicationContext(), "Hope you feel better soon", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        emoticon2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                emoticon1.setVisibility(View.GONE);
+                emoticon3.setVisibility(View.GONE);
+                emoticon4.setVisibility(View.GONE);
+                Toast.makeText(getActivity().getApplicationContext(), "Cheer up a little! ", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        emoticon3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                emoticon2.setVisibility(View.GONE);
+                emoticon1.setVisibility(View.GONE);
+                emoticon4.setVisibility(View.GONE);
+                Toast.makeText(getActivity().getApplicationContext(), "Glad to see you feeling good", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        emoticon4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                emoticon2.setVisibility(View.GONE);
+                emoticon3.setVisibility(View.GONE);
+                emoticon1.setVisibility(View.GONE);
+                Toast.makeText(getActivity().getApplicationContext(), "Great! Keep smiling! ", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         //first cardview to new page
         health = rootView.findViewById(R.id.card_health1);

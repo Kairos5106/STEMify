@@ -6,9 +6,72 @@
     android:layout_height="match_parent"
     tools:context=".ui.moduleD.HealthGuidance">
 
+    <TextView
+        android:id="@+id/TVHello"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello! How are you today?"
+        android:layout_marginTop="40dp"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="#E33D6A"
+        android:textSize="24dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/TVDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="date"
+        android:textSize="18dp"
+        android:layout_below="@+id/TVHello"
+        android:layout_centerHorizontal="true"/>
+
+    <LinearLayout
+        android:id="@+id/emojilinear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="22dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/TVDate">
+
+        <ImageView
+            android:id="@+id/BtnSad"
+            android:layout_width="57dp"
+            android:layout_height="70dp"
+            android:layout_marginRight="15dp"
+            app:srcCompat="@drawable/sadness" />
+
+        <ImageView
+            android:id="@+id/BtnNormal"
+            android:layout_width="57dp"
+            android:layout_height="70dp"
+            android:layout_marginRight="15dp"
+            app:srcCompat="@drawable/confused" />
+        <ImageView
+            android:id="@+id/BtnHappy"
+            android:layout_width="57dp"
+            android:layout_height="70dp"
+            android:layout_marginRight="15dp"
+            app:srcCompat="@drawable/smile" />
+
+        <ImageView
+            android:id="@+id/BtnExcited"
+            android:layout_width="57dp"
+            android:layout_height="70dp"
+            android:layout_marginRight="15dp"
+            app:srcCompat="@drawable/laughing" />
+
+    </LinearLayout>
+
+
     <GridLayout
         android:layout_width="358dp"
-        android:layout_height="430dp"
+        android:layout_height="390dp"
+        android:layout_below="@id/emojilinear"
         android:layout_centerInParent="true"
         android:layout_marginStart="2dp"
         android:layout_marginLeft="35dp"
@@ -21,8 +84,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_health1"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="70dp"
             android:layout_row="1"
             android:layout_rowWeight="1"
             android:layout_column="0"
@@ -57,8 +120,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_health2"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="70dp"
             android:layout_row="1"
             android:layout_rowWeight="1"
             android:layout_column="1"
@@ -95,8 +158,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_health3"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="70dp"
             android:layout_row="2"
             android:layout_rowWeight="1"
             android:layout_column="0"
@@ -133,8 +196,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_health4"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="100dp"
+            android:layout_height="70dp"
             android:layout_row="2"
             android:layout_rowWeight="1"
             android:layout_column="1"
