@@ -14,16 +14,20 @@ import android.view.MenuItem;
 
 import com.example.stemify.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SubtopicLibrary extends AppCompatActivity {
     SubtopicAdapter subtopicAdapter;
     RecyclerView recyclerView;
-    List<ResourceTopic> listOfItems;
+    List<Subtopic> listOfItems;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subtopic_library);
+
+        // Assign sample data for RecyclerView usage
+        initializeData();
 
         // Enable back button in the action bar
         Toolbar toolbar = findViewById(R.id.TBSubtopicLibrary);
@@ -48,11 +52,11 @@ public class SubtopicLibrary extends AppCompatActivity {
         super.onStart();
 
         // Setup RecyclerView
-//        recyclerView = findViewById(R.id.RVSubtopicLibrary);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-//        subtopicAdapter = new TopicAdapter(SubtopicLibrary.this, listOfItems);
-//        recyclerView.setAdapter(subtopicAdapter);
-//        subtopicAdapter.notifyDataSetChanged();
+        recyclerView = findViewById(R.id.RVSubtopicLibrary);
+        recyclerView.setLayoutManager(new LinearLayoutManager(SubtopicLibrary.this));
+        subtopicAdapter = new SubtopicAdapter(SubtopicLibrary.this, listOfItems);
+        recyclerView.setAdapter(subtopicAdapter);
+        subtopicAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -64,5 +68,21 @@ public class SubtopicLibrary extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void initializeData(){
+        // Initializing list of topic items
+        listOfItems = new ArrayList<Subtopic>();
+
+        // Populate list with grade items
+        Subtopic subtopic1 = new Subtopic("Subtopic 1");
+        Section section1a = new Section("Section 1");
+        Section section1b = new Section("Section 2");
+        Section section1c = new Section("Section 3");
+        subtopic1.addSection(section1a);
+        subtopic1.addSection(section1b);
+        subtopic1.addSection(section1c);
+
+        listOfItems.add(subtopic1);
     }
 }

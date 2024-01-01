@@ -50,7 +50,7 @@ public class GradeLibrary extends AppCompatActivity {
 
         // Setup RecyclerView
         recyclerView = findViewById(R.id.RVGradeLibrary);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(GradeLibrary.this));
         gradeAdapter = new GradeAdapter(GradeLibrary.this, listOfItems);
         recyclerView.setAdapter(gradeAdapter);
         gradeAdapter.notifyDataSetChanged();

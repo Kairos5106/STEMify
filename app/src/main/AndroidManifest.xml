@@ -23,17 +23,17 @@
             android:name=".TestActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.moduleA.GradeLibrary"
+            android:name=".ui.moduleA.SubtopicLibrary"
             android:exported="false"
-            android:parentActivityName=".HomeActivity" />
+            android:parentActivityName=".ui.moduleA.TopicLibrary" />
         <activity
             android:name=".ui.moduleA.TopicLibrary"
             android:exported="false"
             android:parentActivityName=".ui.moduleA.GradeLibrary" />
         <activity
-            android:name=".ui.moduleA.SubtopicLibrary"
+            android:name=".ui.moduleA.GradeLibrary"
             android:exported="false"
-            android:parentActivityName=".ui.moduleA.TopicLibrary" />
+            android:parentActivityName=".HomeActivity" />
         <activity
             android:name=".HomeworkHelp_PostDetail"
             android:exported="false" />

@@ -54,7 +54,7 @@ public class TopicLibrary extends AppCompatActivity {
 
         // Setup RecyclerView
         recyclerView = findViewById(R.id.RVTopicLibrary);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(TopicLibrary.this));
         topicAdapter = new TopicAdapter(TopicLibrary.this, listOfItems);
         recyclerView.setAdapter(topicAdapter);
         topicAdapter.notifyDataSetChanged();
