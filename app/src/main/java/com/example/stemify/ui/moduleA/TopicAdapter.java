@@ -50,8 +50,8 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent goToGrade = new Intent(context, EmptyTestActivity.class);
-                    context.startActivity(goToGrade);
+                    Intent goToSubtopics = new Intent(context, SubtopicLibrary.class);
+                    context.startActivity(goToSubtopics);
                 }
             });
         }

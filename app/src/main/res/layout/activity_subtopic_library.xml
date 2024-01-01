@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.moduleA.SubtopicLibrary">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/TBSubtopicLibrary"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:title="Subtopic Library"
+        app:titleTextColor="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/TVGradeLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Grade Level"
+        app:layout_constraintTop_toBottomOf="@+id/TBSubtopicLibrary"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp"/>
+
+    <TextView
+        android:id="@+id/TVSubjectWithTopic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Subject With Topic"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/TVGradeLevel"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp"/>
+
+    <LinearLayout
+        android:id="@+id/divider1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/TVSubjectWithTopic"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:paddingStart="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingEnd="4dp"/>
+
+    <TextView
+        android:id="@+id/TVTopicMasteryPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Achieved Points / Total Points (Completion)\nMastery Points"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/divider1"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/TVTopicMasteryPoints"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RVSubtopicLibrary"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintVertical_weight="1"
+                android:scrollbars="vertical"
+                tools:listitem="@layout/item_subtopic"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:paddingTop="63dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

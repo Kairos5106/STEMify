@@ -31,6 +31,10 @@
             android:exported="false"
             android:parentActivityName=".ui.moduleA.GradeLibrary" />
         <activity
+            android:name=".ui.moduleA.SubtopicLibrary"
+            android:exported="false"
+            android:parentActivityName=".ui.moduleA.TopicLibrary" />
+        <activity
             android:name=".HomeworkHelp_PostDetail"
             android:exported="false" />
         <activity
