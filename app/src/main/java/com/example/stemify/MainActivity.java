@@ -25,8 +25,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //check if the user has logged in recently (didn't log out)
-                //if yes, direct to home page
+                //check if a user has logged in recently (didn't log out)
+                //if yes, use back the same account and go to welcome page (don't have to login again)
+                //if no, go to splash 2 page where the user can login/sign up
                 FirebaseUser currentUser = mAuth.getCurrentUser();
                 if(currentUser != null){
                     Intent nextScreen = new Intent(getApplicationContext(), Welcome.class);
