@@ -52,9 +52,6 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectV
                 public void onClick(View v) {
                     // Upon clicking a subject, user will be redirected to a page listing the topics of the subject
                     Intent goToGradeLibrary = new Intent(context, GradeLibrary.class);
-                    int position = getAdapterPosition();
-
-                    goToGradeLibrary.putExtra("selectedSubject", listOfSubjects.get(position).getSubjectTitle());
                     context.startActivity(goToGradeLibrary);
                 }
             });

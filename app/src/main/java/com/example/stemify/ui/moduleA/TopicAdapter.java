@@ -1,6 +1,7 @@
 package com.example.stemify.ui.moduleA;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.stemify.EmptyTestActivity;
 import com.example.stemify.R;
 
 import java.util.List;
@@ -45,6 +47,13 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
         public TopicViewHolder(@NonNull View itemView) {
             super(itemView);
             this.title = itemView.findViewById(R.id.TVDownloadTitle);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent goToGrade = new Intent(context, EmptyTestActivity.class);
+                    context.startActivity(goToGrade);
+                }
+            });
         }
     }
 }

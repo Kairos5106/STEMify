@@ -51,7 +51,7 @@ public class GradeLibrary extends AppCompatActivity {
         // Setup RecyclerView
         recyclerView = findViewById(R.id.RVGradeLibrary);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        gradeAdapter = new GradeAdapter(getApplicationContext(), listOfItems);
+        gradeAdapter = new GradeAdapter(GradeLibrary.this, listOfItems);
         recyclerView.setAdapter(gradeAdapter);
         gradeAdapter.notifyDataSetChanged();
     }
@@ -61,7 +61,7 @@ public class GradeLibrary extends AppCompatActivity {
         // Handle the back button click
         if (item.getItemId() == android.R.id.home) {
             // Navigate back to the previous fragment or activity
-            onBackPressed();
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);

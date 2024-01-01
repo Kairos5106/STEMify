@@ -34,8 +34,10 @@ public class TopicLibrary extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.TBTopicLibrary);
         toolbar.bringToFront(); // brings toolbar to the top-most layer
         setSupportActionBar(toolbar);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
 
         // Set the title for the app bar for this particular page
         getSupportActionBar().setTitle("Topics");
@@ -53,7 +55,7 @@ public class TopicLibrary extends AppCompatActivity {
         // Setup RecyclerView
         recyclerView = findViewById(R.id.RVTopicLibrary);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        topicAdapter = new TopicAdapter(getApplicationContext(), listOfItems);
+        topicAdapter = new TopicAdapter(TopicLibrary.this, listOfItems);
         recyclerView.setAdapter(topicAdapter);
         topicAdapter.notifyDataSetChanged();
     }
@@ -63,7 +65,7 @@ public class TopicLibrary extends AppCompatActivity {
         // Handle the back button click
         if (item.getItemId() == android.R.id.home) {
             // Navigate back to the previous fragment or activity
-            onBackPressed();
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);

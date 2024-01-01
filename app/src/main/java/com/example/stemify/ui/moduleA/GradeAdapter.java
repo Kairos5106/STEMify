@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.stemify.MainActivity;
 import com.example.stemify.R;
 import com.example.stemify.TestActivity;
 
@@ -50,10 +51,7 @@ public class GradeAdapter extends RecyclerView.Adapter<GradeAdapter.GradeViewHol
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // Upon clicking a grade, user will be redirected to a page listing the topics of the grade
-                    Intent goToTopicLibrary = new Intent(context, TestActivity.class);
-//                    int position = getAdapterPosition();
-
+                    Intent goToTopicLibrary = new Intent(context, TopicLibrary.class);
                     context.startActivity(goToTopicLibrary);
                 }
             });
