@@ -23,9 +23,13 @@
             android:name=".TestActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.moduleA.VideoLessonPage"
+            android:name=".ui.moduleA.PracticePage"
             android:exported="false"
             android:parentActivityName=".ui.moduleA.SectionLibrary"/>
+        <activity
+            android:name=".ui.moduleA.VideoLessonPage"
+            android:exported="false"
+            android:parentActivityName=".ui.moduleA.SectionLibrary" />
         <activity
             android:name=".ui.moduleA.SectionLibrary"
             android:exported="false"
