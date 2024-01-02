@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SectionLibrary extends AppCompatActivity {
-    SubtopicAdapter subtopicAdapter; // change to SectionAdapter
+    SectionAdapter sectionAdapter;
     RecyclerView recyclerView;
     List<Section> listOfItems;
     @Override
@@ -30,7 +30,7 @@ public class SectionLibrary extends AppCompatActivity {
         initializeData();
 
         // Enable back button in the action bar
-        Toolbar toolbar = findViewById(R.id.TBSubtopicLibrary); // edit here
+        Toolbar toolbar = findViewById(R.id.TBSectionLibrary);
         toolbar.bringToFront(); // brings toolbar to the top-most layer
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
@@ -52,11 +52,11 @@ public class SectionLibrary extends AppCompatActivity {
         super.onStart();
 
         // Setup RecyclerView
-        recyclerView = findViewById(R.id.RVSubtopicLibrary); // change here
-        recyclerView.setLayoutManager(new LinearLayoutManager(SubtopicLibrary.this)); // change this
-        subtopicAdapter = new SubtopicAdapter(SubtopicLibrary.this, listOfItems); // change this
-        recyclerView.setAdapter(subtopicAdapter); // change this
-        subtopicAdapter.notifyDataSetChanged(); // change this
+        recyclerView = findViewById(R.id.RVSectionLibrary);
+        recyclerView.setLayoutManager(new LinearLayoutManager(SectionLibrary.this));
+        sectionAdapter = new SectionAdapter(SectionLibrary.this, listOfItems);
+        recyclerView.setAdapter(sectionAdapter);
+        sectionAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -72,40 +72,9 @@ public class SectionLibrary extends AppCompatActivity {
 
     public void initializeData(){
         // Initializing list of topic items
-        listOfItems = new ArrayList<Subtopic>();
+        listOfItems = new ArrayList<Section>();
 
         // Populate list with grade items
-        Subtopic subtopic1 = new Subtopic("Subtopic 1");
-        subtopic1.setImageId(R.drawable.sampleimage);
-        Section section1a = new Section("Section 1");
-        Section section1b = new Section("Section 2");
-        Section section1c = new Section("Section 3");
-        subtopic1.addSection(section1a);
-        subtopic1.addSection(section1b);
-        subtopic1.addSection(section1c);
-
-        listOfItems.add(subtopic1);
-
-        Subtopic subtopic2 = new Subtopic("Subtopic 2");
-        subtopic2.setImageId(R.drawable.sampleimage);
-        Section section2a = new Section("Section 1");
-        Section section2b = new Section("Section 2");
-        Section section2c = new Section("Section 3");
-        subtopic2.addSection(section2a);
-        subtopic2.addSection(section2b);
-        subtopic2.addSection(section2c);
-
-        listOfItems.add(subtopic2);
-
-        Subtopic subtopic3 = new Subtopic("Subtopic 3");
-        subtopic3.setImageId(R.drawable.sampleimage);
-        Section section3a = new Section("Section 1");
-        Section section3b = new Section("Section 2");
-        Section section3c = new Section("Section 3");
-        subtopic3.addSection(section3a);
-        subtopic3.addSection(section3b);
-        subtopic3.addSection(section3c);
-
-        listOfItems.add(subtopic3);
+        Section section1 = new Section("Section 1");
     }
 }

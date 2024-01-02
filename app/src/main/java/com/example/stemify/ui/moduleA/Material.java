@@ -2,7 +2,7 @@ package com.example.stemify.ui.moduleA;
 
 public class Material {
     String title, type;
-    int points;
+    int points, iconId;
 
     public Material(String title) {
         this.title = title;
@@ -38,5 +38,18 @@ public class Material {
 
     public void setPoints(int points) {
         this.points = points;
+    }
+
+    public int getIconId() {
+        return iconId;
+    }
+
+    public void setIconId(int iconId) {
+        this.iconId = iconId;
+    }
+
+    public String getMasteryPoints(){
+        // Work on the backend logic later
+        return "Points";
     }
 }

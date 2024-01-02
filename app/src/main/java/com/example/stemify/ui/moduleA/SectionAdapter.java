@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.stemify.R;
@@ -40,7 +41,11 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.SectionV
         holder.title.setText(section.getTitle());
         holder.masteryPoints.setText(section.getMasteryPoints());
 
-
+        listOfMaterial = section.getListOfMaterial();
+        MaterialAdapter materialAdapter = new MaterialAdapter(listOfMaterial);
+        holder.materialRV.setLayoutManager(new LinearLayoutManager(context));
+        holder.materialRV.setAdapter(materialAdapter);
+        materialAdapter.notifyDataSetChanged();
     }
 
     @Override
