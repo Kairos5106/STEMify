@@ -39,7 +39,10 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
         holder.questionDiagram.setImageResource(question.getDiagramId());
 
         // Implementation for MCQ features
+        if(question instanceof MultipleChoice){
 
+            holder.multipleAnswerRV.setAdapter();
+        }
 
         // Specific implmentation for FillBlank features
     }
