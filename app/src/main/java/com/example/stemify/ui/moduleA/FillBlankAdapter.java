@@ -33,7 +33,7 @@ public class FillBlankAdapter extends RecyclerView.Adapter<FillBlankAdapter.Fill
 
     @Override
     public void onBindViewHolder(@NonNull FillBlankAdapter.FillBlankViewHolder holder, int position) {
-        holder.answerBox.setHint("Answer for slot " + (position + 1));
+        holder.answerBox.setText("Answer for slot " + (position + 1));
     }
 
     @Override
