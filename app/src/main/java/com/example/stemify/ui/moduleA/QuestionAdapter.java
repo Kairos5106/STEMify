@@ -1,7 +1,6 @@
 package com.example.stemify.ui.moduleA;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +29,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
     @Override
     public QuestionAdapter.QuestionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if(listOfQuestions.get(this.position) instanceof MultipleChoice){
-            return new QuestionViewHolder(LayoutInflater.from(context).inflate(R.layout.item_multiple_choice_question, parent, false)); // change to inflate different layout item later
+            return new QuestionViewHolder(LayoutInflater.from(context).inflate(R.layout.item_question, parent, false)); // change to inflate different layout item later
         }
 //        else if () {
 //        }

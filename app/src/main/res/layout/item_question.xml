@@ -55,8 +55,7 @@
                 android:id="@+id/RVMultipleAnswer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scrollbars="vertical"
-                tools:listitem="@layout/item_choice_box"/>
+                android:scrollbars="vertical"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
