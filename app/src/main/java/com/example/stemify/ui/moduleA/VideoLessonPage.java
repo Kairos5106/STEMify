@@ -24,7 +24,7 @@ public class VideoLessonPage extends AppCompatActivity {
         setContentView(R.layout.activity_video_lesson_page);
 
         // Enable back button in the action bar
-        Toolbar toolbar = findViewById(R.id.TBSectionLibrary);
+        Toolbar toolbar = findViewById(R.id.TBVideoLesson);
         toolbar.bringToFront(); // brings toolbar to the top-most layer
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {

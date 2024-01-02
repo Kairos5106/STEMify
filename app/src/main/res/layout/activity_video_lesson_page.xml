@@ -7,7 +7,7 @@
     tools:context=".ui.moduleA.VideoLessonPage">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/TBToolbar"
+        android:id="@+id/TBVideoLesson"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
@@ -20,7 +20,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintTop_toBottomOf="@+id/TBToolbar"
+        app:layout_constraintTop_toBottomOf="@+id/TBVideoLesson"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">

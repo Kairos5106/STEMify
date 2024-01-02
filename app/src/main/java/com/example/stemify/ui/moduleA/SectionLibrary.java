@@ -76,9 +76,12 @@ public class SectionLibrary extends AppCompatActivity {
 
         // Populate list with grade items
         Section section1 = new Section("Section 1");
-        Material material1a = new Material("Material 1a");
+        Material material1a = new Material("Material 1a: Video Lesson");
         Material material1b = new Material("Material 1b");
         Material material1c = new Material("Material 1c");
+        material1a.setType("VideoLesson");
+        material1b.setType("Practice");
+        material1c.setType("Quiz");
         section1.addMaterial(material1a);
         section1.addMaterial(material1b);
         section1.addMaterial(material1c);
@@ -88,6 +91,9 @@ public class SectionLibrary extends AppCompatActivity {
         Material material2a = new Material("Material 2a");
         Material material2b = new Material("Material 2b");
         Material material2c = new Material("Material 2c");
+        material2a.setType("VideoLesson");
+        material2b.setType("Practice");
+        material2c.setType("Quiz");
         section2.addMaterial(material2a);
         section2.addMaterial(material2b);
         section2.addMaterial(material2c);
@@ -97,6 +103,9 @@ public class SectionLibrary extends AppCompatActivity {
         Material material3a = new Material("Material 3a");
         Material material3b = new Material("Material 3b");
         Material material3c = new Material("Material 3c");
+        material2a.setType("VideoLesson");
+        material2b.setType("Practice");
+        material2c.setType("Quiz");
         section3.addMaterial(material3a);
         section3.addMaterial(material3b);
         section3.addMaterial(material3c);

@@ -1,7 +1,8 @@
 package com.example.stemify.ui.moduleA;
 
 public class Material {
-    String title, type;
+    String title;
+    String type; // Can either be "VideoLesson", "Practice" or "Quiz"
     int points, iconId;
 
     public Material(String title) {

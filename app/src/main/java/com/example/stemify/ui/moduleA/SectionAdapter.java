@@ -42,7 +42,7 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.SectionV
         holder.masteryPoints.setText(section.getMasteryPoints());
 
         listOfMaterial = section.getListOfMaterial();
-        MaterialAdapter materialAdapter = new MaterialAdapter(listOfMaterial);
+        MaterialAdapter materialAdapter = new MaterialAdapter(context, listOfMaterial);
         holder.materialRV.setLayoutManager(new LinearLayoutManager(context));
         holder.materialRV.setAdapter(materialAdapter);
         materialAdapter.notifyDataSetChanged();
