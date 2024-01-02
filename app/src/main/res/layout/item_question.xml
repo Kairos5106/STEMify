@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/TVQuestionNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Question X"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/IVQuestionDiagram"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/sampleimage"
+        android:layout_below="@+id/TVQuestionNumber"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="8dp"/>
+
+    <TextView
+        android:id="@+id/TVQuestionDiagramDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Diagram Description"
+        android:layout_below="@+id/IVQuestionDiagram"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/TVQuestionDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Question Description"
+        android:layout_below="@+id/TVQuestionDiagramDesc"
+        android:paddingTop="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:layout_below="@+id/TVQuestionDescription">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RVAnswer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="horizontal"/>
+
+        </FrameLayout>
+    </androidx.core.widget.NestedScrollView>
+</RelativeLayout>
