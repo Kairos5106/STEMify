@@ -97,6 +97,10 @@
         <activity
             android:name=".Counselor"
             android:exported="false" />
+
+        <activity android:name=".CommunityEventDetails"
+            android:exported="false"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
