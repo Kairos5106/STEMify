@@ -17,19 +17,54 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/TBVideoLesson"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <VideoView
-            android:id="@+id/VVVideoLesson"
+        <FrameLayout
+            android:id="@+id/FLVideoLesson"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content">
 
-    </FrameLayout>
+            <VideoView
+                android:id="@+id/VVVideoLesson"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/TVTranscriptTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Transcript"
+            android:layout_below="@+id/FLVideoLesson"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"/>
+
+        <LinearLayout
+            android:id="@+id/divider1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#A4ABB5"
+            android:orientation="vertical"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/TVTranscriptTitle"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/RVTranscript"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/divider1"
+            android:paddingTop="8dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"/>
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
