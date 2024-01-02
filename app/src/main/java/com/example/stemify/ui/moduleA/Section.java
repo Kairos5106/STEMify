@@ -50,4 +50,8 @@ public class Section {
     public String getMasteryPoints(){ // work on the logic later
         return "Points";
     }
+
+    public void addMaterial(Material material){
+        listOfMaterial.add(material);
+    }
 }

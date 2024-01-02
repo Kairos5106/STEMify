@@ -1,6 +1,7 @@
 package com.example.stemify.ui.moduleA;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +56,14 @@ public class SubtopicAdapter extends RecyclerView.Adapter<SubtopicAdapter.Subtop
             this.sectionList = itemView.findViewById(R.id.TVSectionList);
             this.masteryPoints = itemView.findViewById(R.id.TVSubtopicMasteryPoints);
             this.image = itemView.findViewById(R.id.IVSubtopicImage);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent goToSectionLibrary = new Intent(context, SectionLibrary.class);
+                    context.startActivity(goToSectionLibrary);
+                }
+            });
         }
     }
 }

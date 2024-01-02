@@ -33,7 +33,7 @@ public class MaterialAdapter extends RecyclerView.Adapter<MaterialAdapter.Materi
         // Bind View objects
         holder.title.setText(material.getTitle());
         holder.masteryPoints.setText(material.getMasteryPoints());
-        holder.icon.setImageResource(material.getIconId());
+        holder.icon.setImageResource(R.drawable.sampleimage); // change to material.getIconId() later
     }
 
     @Override
