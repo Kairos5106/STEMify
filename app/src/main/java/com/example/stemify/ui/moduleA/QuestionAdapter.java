@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.stemify.R;
@@ -38,13 +39,15 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
         holder.questionDesc.setText(question.getQuestionDesc());
         holder.questionDiagram.setImageResource(question.getDiagramId());
 
-        // Implementation for MCQ features
-        if(question instanceof MultipleChoice){
-
-            holder.multipleAnswerRV.setAdapter();
+        if(question instanceof MultipleChoice){ // Implementation for MCQ features
+            MCQAnswerAdapter mcqAnswerAdapter = new MCQAnswerAdapter(context, ((MultipleChoice) question).getListOfAnswers());
+            holder.multipleAnswerRV.setLayoutManager(new LinearLayoutManager(context));
+            holder.multipleAnswerRV.setAdapter(mcqAnswerAdapter);
+            mcqAnswerAdapter.notifyDataSetChanged();
         }
-
-        // Specific implmentation for FillBlank features
+//        else if () { // Specific implementation for FillBlank features
+//            // Add code for FillBlank question
+//        }
     }
 
     @Override
