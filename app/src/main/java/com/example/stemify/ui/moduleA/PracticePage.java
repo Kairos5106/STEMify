@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import com.example.stemify.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class PracticePage extends AppCompatActivity {
@@ -83,5 +84,32 @@ public class PracticePage extends AppCompatActivity {
         question1.setCorrectAnswer("Answer 1a");
         question1.setDiagramDesc("Sample Diagram Description");
         listOfItems.add(question1);
+
+        FillBlank question5 = new FillBlank("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+        HashMap<Integer, String> answer5 = new HashMap<Integer, String>();
+        answer5.put(0, "Lorem");
+        answer5.put(1, "ipsum");
+        question5.setCorrectAnswers(answer5);
+        listOfItems.add(question5);
+
+        MultipleChoice question2 = new MultipleChoice("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+        question2.addAnswer("Answer 2a");
+        question2.addAnswer("Answer 2b");
+        question2.addAnswer("Answer 2c");
+        question2.addAnswer("Answer 2d");
+        question2.setDiagramId(R.drawable.sampleimage);
+        question2.setCorrectAnswer("Answer 2a");
+        question2.setDiagramDesc("Sample Diagram Description");
+        listOfItems.add(question2);
+
+        FillBlank question3 = new FillBlank("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+        question3.addAnswer("Lorem");
+        question3.addAnswer("ipsum");
+        listOfItems.add(question3);
+
+        FillBlank question4 = new FillBlank("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+        question4.addAnswer("Lorem");
+        question4.addAnswer("ipsum");
+        listOfItems.add(question4);
     }
 }

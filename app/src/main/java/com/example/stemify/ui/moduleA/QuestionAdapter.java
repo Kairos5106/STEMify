@@ -28,12 +28,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
     @NonNull
     @Override
     public QuestionAdapter.QuestionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if(listOfQuestions.get(this.position) instanceof MultipleChoice){
-            return new QuestionViewHolder(LayoutInflater.from(context).inflate(R.layout.item_question, parent, false)); // change to inflate different layout item later
-        }
-//        else if () {
-//        }
-        return null;
+        return new QuestionViewHolder(LayoutInflater.from(context).inflate(R.layout.item_question, parent, false));
     }
 
     @Override
@@ -46,13 +41,16 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
 
         if(question instanceof MultipleChoice){ // Implementation for MCQ features
             MCQAnswerAdapter mcqAnswerAdapter = new MCQAnswerAdapter(context, ((MultipleChoice) question).getListOfAnswers());
-            holder.multipleAnswerRV.setLayoutManager(new LinearLayoutManager(context));
-            holder.multipleAnswerRV.setAdapter(mcqAnswerAdapter);
+            holder.recyclerView.setLayoutManager(new LinearLayoutManager(context));
+            holder.recyclerView.setAdapter(mcqAnswerAdapter);
             mcqAnswerAdapter.notifyDataSetChanged();
         }
-//        else if () { // Specific implementation for FillBlank features
-//            // Add code for FillBlank question
-//        }
+        else if (question instanceof FillBlank) { // Specific implementation for FillBlank features
+            FillBlankAdapter fillBlankAdapter = new FillBlankAdapter(context, (FillBlank) question);
+            holder.recyclerView.setLayoutManager(new LinearLayoutManager(context));
+            holder.recyclerView.setAdapter(fillBlankAdapter);
+            fillBlankAdapter.notifyDataSetChanged();
+        }
 
         this.position++;
     }
@@ -65,14 +63,14 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
     public class QuestionViewHolder extends RecyclerView.ViewHolder{
         TextView questionNumber, diagramDesc, questionDesc;
         ImageView questionDiagram;
-        RecyclerView multipleAnswerRV;
+        RecyclerView recyclerView;
         public QuestionViewHolder(@NonNull View itemView) {
             super(itemView);
             this.questionNumber = itemView.findViewById(R.id.TVQuestionNumber);
             this.diagramDesc = itemView.findViewById(R.id.TVQuestionDiagramDesc);
             this.questionDesc = itemView.findViewById(R.id.TVQuestionDescription);
             this.questionDiagram = itemView.findViewById(R.id.IVQuestionDiagram);
-            this.multipleAnswerRV = itemView.findViewById(R.id.RVMultipleAnswer);
+            this.recyclerView = itemView.findViewById(R.id.RVAnswer);
         }
     }
 }
