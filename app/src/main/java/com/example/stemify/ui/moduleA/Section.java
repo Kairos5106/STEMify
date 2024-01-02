@@ -46,4 +46,8 @@ public class Section {
     public void setListOfMaterial(List<Material> listOfMaterial) {
         this.listOfMaterial = listOfMaterial;
     }
+
+    public String getMasteryPoints(){ // work on the logic later
+        return "Points";
+    }
 }

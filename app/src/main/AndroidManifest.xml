@@ -17,14 +17,15 @@
         android:theme="@style/Theme.STEMify"
         tools:targetApi="31">
         <activity
-            android:name=".ui.moduleA.SectionLibrary"
-            android:exported="false" />
-        <activity
             android:name=".EmptyTestActivity"
             android:exported="false" />
         <activity
             android:name=".TestActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.moduleA.SectionLibrary"
+            android:exported="false"
+            android:parentActivityName=".ui.moduleA.SubtopicLibrary"/>
         <activity
             android:name=".ui.moduleA.SubtopicLibrary"
             android:exported="false"
