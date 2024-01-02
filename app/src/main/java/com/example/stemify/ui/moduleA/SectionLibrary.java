@@ -77,8 +77,8 @@ public class SectionLibrary extends AppCompatActivity {
         // Populate list with grade items
         Section section1 = new Section("Section 1");
         Material material1a = new Material("Material 1a: Video Lesson");
-        Material material1b = new Material("Material 1b");
-        Material material1c = new Material("Material 1c");
+        Material material1b = new Material("Material 1b: Practice");
+        Material material1c = new Material("Material 1c: Quiz");
         material1a.setType("VideoLesson");
         material1b.setType("Practice");
         material1c.setType("Quiz");
@@ -88,9 +88,9 @@ public class SectionLibrary extends AppCompatActivity {
         listOfItems.add(section1);
 
         Section section2 = new Section("Section 2");
-        Material material2a = new Material("Material 2a");
-        Material material2b = new Material("Material 2b");
-        Material material2c = new Material("Material 2c");
+        Material material2a = new Material("Material 2a: Video Lesson");
+        Material material2b = new Material("Material 2b: Practice");
+        Material material2c = new Material("Material 2c: Quiz");
         material2a.setType("VideoLesson");
         material2b.setType("Practice");
         material2c.setType("Quiz");
@@ -100,9 +100,9 @@ public class SectionLibrary extends AppCompatActivity {
         listOfItems.add(section2);
 
         Section section3 = new Section("Section 3");
-        Material material3a = new Material("Material 3a");
-        Material material3b = new Material("Material 3b");
-        Material material3c = new Material("Material 3c");
+        Material material3a = new Material("Material 3a: Video Lesson");
+        Material material3b = new Material("Material 3b: Practice");
+        Material material3c = new Material("Material 3c: Quiz");
         material2a.setType("VideoLesson");
         material2b.setType("Practice");
         material2c.setType("Quiz");

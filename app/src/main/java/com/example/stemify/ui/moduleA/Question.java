@@ -19,6 +19,9 @@ public class Question {
     // For general initialization, use this constructor
     public Question(String questionDesc) {
         this.questionDesc = questionDesc;
+        this.correctAnswer = "";
+        this.diagramId = 0;
+        this.diagramDesc = "";
     }
 
     public Question(String questionDesc, String correctAnswer) {

@@ -8,7 +8,12 @@ public class MultipleChoice extends Question{
 
     public MultipleChoice() {
         super();
-        this.listOfAnswers = new ArrayList<>();
+        this.listOfAnswers = new ArrayList<String>();
+    }
+
+    public MultipleChoice(String questionDesc){
+        super(questionDesc);
+        this.listOfAnswers = new ArrayList<String>();
     }
 
     public List<String> getListOfAnswers() {
@@ -17,5 +22,13 @@ public class MultipleChoice extends Question{
 
     public void setListOfAnswers(List<String> listOfAnswers) {
         this.listOfAnswers = listOfAnswers;
+    }
+
+    public void addAnswer(String answer){
+        if (listOfAnswers != null) {
+            listOfAnswers.add(answer);
+        } else {
+            // Handle the case where the list is null (possibly log an error)
+        }
     }
 }

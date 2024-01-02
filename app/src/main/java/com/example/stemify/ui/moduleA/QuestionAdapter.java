@@ -19,16 +19,22 @@ import java.util.List;
 public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.QuestionViewHolder> {
     Context context;
     List<Question> listOfQuestions;
+    static int position = 0;
 
     public QuestionAdapter(Context context, List<Question> listOfQuestions) {
         this.context = context;
-        this.listOfQuestions = QuestionAdapter.this.listOfQuestions;
+        this.listOfQuestions = listOfQuestions;
     }
 
     @NonNull
     @Override
     public QuestionAdapter.QuestionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new QuestionViewHolder(LayoutInflater.from(context).inflate(R.layout.item_multiple_choice_question, parent, false)); // change to inflate different layout item later
+        if(listOfQuestions.get(this.position) instanceof MultipleChoice){
+            return new QuestionViewHolder(LayoutInflater.from(context).inflate(R.layout.item_multiple_choice_question, parent, false)); // change to inflate different layout item later
+        }
+//        else if () {
+//        }
+        return null;
     }
 
     @Override
@@ -48,6 +54,8 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
 //        else if () { // Specific implementation for FillBlank features
 //            // Add code for FillBlank question
 //        }
+
+        this.position++;
     }
 
     @Override
@@ -60,14 +68,6 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
         ImageView questionDiagram;
         RecyclerView multipleAnswerRV;
         public QuestionViewHolder(@NonNull View itemView) {
-            super(itemView);
-            this.questionNumber = itemView.findViewById(R.id.TVQuestionNumber);
-            this.diagramDesc = itemView.findViewById(R.id.TVQuestionDiagramDesc);
-            this.questionDesc = itemView.findViewById(R.id.TVQuestionDescription);
-            this.questionDiagram = itemView.findViewById(R.id.IVQuestionDiagram);
-        }
-
-        public QuestionViewHolder(@NonNull View itemView, RecyclerView multipleAnswerRV) {
             super(itemView);
             this.questionNumber = itemView.findViewById(R.id.TVQuestionNumber);
             this.diagramDesc = itemView.findViewById(R.id.TVQuestionDiagramDesc);

@@ -63,7 +63,7 @@ public class MaterialAdapter extends RecyclerView.Adapter<MaterialAdapter.Materi
             if(materialType.equalsIgnoreCase("VideoLesson")){
                 goToMaterialPage = new Intent(context, VideoLessonPage.class);
             } else if (materialType.equalsIgnoreCase("Practice")) {
-                goToMaterialPage = new Intent(context, VideoLessonPage.class); // change later
+                goToMaterialPage = new Intent(context, PracticePage.class); // change later
             } else if (materialType.equalsIgnoreCase("Quiz")) {
                 goToMaterialPage = new Intent(context, VideoLessonPage.class); // change later
             }
