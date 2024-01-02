@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.example.stemify.R;
 
@@ -22,6 +23,9 @@ public class QuizPage extends AppCompatActivity {
     QuestionAdapter questionAdapter;
     RecyclerView recyclerView;
     List<Question> listOfItems;
+    CustomTimer timer;
+    TextView countdownTimer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +50,12 @@ public class QuizPage extends AppCompatActivity {
         Drawable arrow = AppCompatResources.getDrawable(this, R.drawable.ic_arrow_back);
         DrawableCompat.setTint(arrow, Color.WHITE);
         getSupportActionBar().setHomeAsUpIndicator(arrow);
+
+        // Setup timer in page
+        countdownTimer = findViewById(R.id.TVTimer);
+        timer = new CustomTimer(10, countdownTimer);
+        timer.updateCountDownText();
+        timer.startTimer();
     }
 
     @Override
