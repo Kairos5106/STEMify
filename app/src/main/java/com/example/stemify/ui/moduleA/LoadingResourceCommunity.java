@@ -4,11 +4,14 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.stemify.R;
@@ -32,11 +35,26 @@ public class LoadingResourceCommunity extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Get user identity
+        getUserIdentity();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        // Switch to appropriate activity
+        handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getChildFragmentManager().beginTransaction()
+                        .replace(R.id.FLLoading, getAppropriateLayout()).commit();
+                ProgressBar progressBar = getActivity().findViewById(R.id.PBLoading);
+                progressBar.setVisibility(View.INVISIBLE);
+            }
+        }, 7000);
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_loading_resource_community, container, false);
     }

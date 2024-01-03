@@ -45,7 +45,7 @@ public class ResourceCommunityEducator extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // Setup RecyclerView for community resources
-        recyclerViewComm = view.findViewById(R.id.RVCommunityResource);
+        recyclerViewComm = view.findViewById(R.id.RVCommunityResourceEdu);
         recyclerViewComm.setLayoutManager(new LinearLayoutManager(getContext()));
         communityResourceAdapter = new CommunityResourceAdapter(getContext(), listOfItems);
         recyclerViewComm.setAdapter(communityResourceAdapter);
