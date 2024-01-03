@@ -51,12 +51,6 @@ public class ResourceCommunityEducator extends Fragment {
         recyclerViewComm.setAdapter(communityResourceAdapter);
         communityResourceAdapter.notifyDataSetChanged();
 
-        // Setup RecyclerView for educator resources
-        recyclerViewEdu = view.findViewById(R.id.RVEducatorResource);
-        recyclerViewEdu.setLayoutManager(new LinearLayoutManager(getContext()));
-        communityResourceAdapter = new CommunityResourceAdapter(getContext(), listOfItems);
-        recyclerViewEdu.setAdapter(communityResourceAdapter);
-        communityResourceAdapter.notifyDataSetChanged();
     }
 
     public void initalizeData(){
