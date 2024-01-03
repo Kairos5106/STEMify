@@ -98,7 +98,7 @@
             <Button
                 android:id="@+id/BtnCreateResource"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="48dp"
                 android:text="+ CREATE"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/divider2"

@@ -2,7 +2,11 @@ package com.example.stemify.ui.moduleA;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,51 +14,23 @@ import android.view.ViewGroup;
 
 import com.example.stemify.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ResourceCommunityEducator#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+
 public class ResourceCommunityEducator extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    CommunityResourceAdapter communityResourceAdapter;
+    RecyclerView recyclerViewComm;
+    RecyclerView recyclerViewEdu;
+    List<CommunityResourceItem> listOfItems;
 
     public ResourceCommunityEducator() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ResourceCommunityEducator.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ResourceCommunityEducator newInstance(String param1, String param2) {
-        ResourceCommunityEducator fragment = new ResourceCommunityEducator();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        initalizeData();
     }
 
     @Override
@@ -62,5 +38,41 @@ public class ResourceCommunityEducator extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_resource_community_educator, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // Setup RecyclerView for community resources
+        recyclerViewComm = view.findViewById(R.id.RVCommunityResource);
+        recyclerViewComm.setLayoutManager(new LinearLayoutManager(getContext()));
+        communityResourceAdapter = new CommunityResourceAdapter(getContext(), listOfItems);
+        recyclerViewComm.setAdapter(communityResourceAdapter);
+        communityResourceAdapter.notifyDataSetChanged();
+
+        // Setup RecyclerView for educator resources
+        recyclerViewEdu = view.findViewById(R.id.RVEducatorResource);
+        recyclerViewEdu.setLayoutManager(new LinearLayoutManager(getContext()));
+        communityResourceAdapter = new CommunityResourceAdapter(getContext(), listOfItems);
+        recyclerViewEdu.setAdapter(communityResourceAdapter);
+        communityResourceAdapter.notifyDataSetChanged();
+    }
+
+    public void initalizeData(){
+        // Initializing list of download items
+        listOfItems = new ArrayList<CommunityResourceItem>();
+
+        // Populate list with download items
+        listOfItems.add(new CommunityResourceItem("Test1", "Sample description", "Kairos5106", R.drawable.pfp, R.drawable.sampleimage));
+        listOfItems.add(new CommunityResourceItem("Test2", "Sample description", "Kairos5106", R.drawable.pfp, R.drawable.sampleimage));
+        listOfItems.add(new CommunityResourceItem("Test3", "Sample description", "Kairos5106", R.drawable.pfp, R.drawable.sampleimage));
+        listOfItems.add(new CommunityResourceItem("Test4", "Sample description", "Kairos5106", R.drawable.pfp, R.drawable.sampleimage));
+        listOfItems.add(new CommunityResourceItem("Test5", "Sample description", "Kairos5106", R.drawable.pfp, R.drawable.sampleimage));
+        listOfItems.add(new CommunityResourceItem("Test6", "Sample description", "Kairos5106", R.drawable.pfp, R.drawable.sampleimage));
+        listOfItems.add(new CommunityResourceItem("Test7", "Sample description", "Kairos5106", R.drawable.pfp, R.drawable.sampleimage));
+        listOfItems.add(new CommunityResourceItem("Test8", "Sample description", "Kairos5106", R.drawable.pfp, R.drawable.sampleimage));
+        listOfItems.add(new CommunityResourceItem("Test9", "Sample description", "Kairos5106", R.drawable.pfp, R.drawable.sampleimage));
+        listOfItems.add(new CommunityResourceItem("Test10", "Sample description", "Kairos5106", R.drawable.pfp, R.drawable.sampleimage));
     }
 }
