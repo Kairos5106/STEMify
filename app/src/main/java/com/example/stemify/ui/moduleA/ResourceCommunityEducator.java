@@ -1,5 +1,6 @@
 package com.example.stemify.ui.moduleA;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,8 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.stemify.R;
+import com.example.stemify.TestActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +23,9 @@ import java.util.List;
 public class ResourceCommunityEducator extends Fragment {
     CommunityResourceAdapter communityResourceAdapter;
     RecyclerView recyclerViewComm;
-    RecyclerView recyclerViewEdu;
     List<CommunityResourceItem> listOfItems;
 
+    Button btnToOwnResources;
     public ResourceCommunityEducator() {
         // Required empty public constructor
     }
@@ -37,7 +40,19 @@ public class ResourceCommunityEducator extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_resource_community_educator, container, false);
+        View view = inflater.inflate(R.layout.fragment_resource_community_educator, container, false);
+
+        // Setup button to lead to Educators' resources page
+        btnToOwnResources = view.findViewById(R.id.BtnGoToOwnResources);
+        btnToOwnResources.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goToGradeLibrary = new Intent(getContext(), EducatorResources.class); // change test activity later
+                getContext().startActivity(goToGradeLibrary);
+            }
+        });
+
+        return view;
     }
 
     @Override
