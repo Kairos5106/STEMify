@@ -17,53 +17,64 @@
         app:layout_constraintTop_toTopOf="parent"
         android:title="Live Tutoring" />
 
-    <TextView
-        android:id="@+id/TVIncomingCallTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="128dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="128dp"
-        android:text="Someone is calling you..."
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TBLiveTutoring" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/ACBtnAcceptCall"
-        android:layout_width="150dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/CLIncomingCallNotification"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="221dp"
-        android:background="#0B6623"
-        android:text="Accept"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/TVIncomingCallTitle" />
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/TBLiveTutoring">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/ACBtnDeclineCall"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="31dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="40dp"
-        android:background="#D82C20"
-        android:text="Decline"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ACBtnAcceptCall"
-        app:layout_constraintTop_toBottomOf="@id/TVIncomingCallTitle" />
+        <TextView
+            android:id="@+id/TVIncomingCallTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="128dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="128dp"
+            android:text="Someone is calling you..."
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/ACBtnAcceptCall"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="221dp"
+            android:background="#81CDC6"
+            android:text="Accept"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/TVIncomingCallTitle" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/ACBtnDeclineCall"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="31dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="40dp"
+            android:background="#E39B96"
+            android:text="Decline"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ACBtnAcceptCall"
+            app:layout_constraintTop_toBottomOf="@id/TVIncomingCallTitle" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="400dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ACBtnAcceptCall">
+        app:layout_constraintTop_toBottomOf="@+id/CLIncomingCallNotification">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

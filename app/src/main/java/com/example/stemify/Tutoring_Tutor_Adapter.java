@@ -68,7 +68,7 @@ public class Tutoring_Tutor_Adapter extends RecyclerView.Adapter<Tutoring_Tutor_
                     Intent tutorDetailActivity = new Intent(mContext, Tutoring_TutorDetail.class);
                     int position = getAdapterPosition();
 
-                    tutorDetailActivity.putExtra("tutorName", mData.get(position).getDisplayName());
+                    tutorDetailActivity.putExtra("tutorName", mData.get(position).getFullname());
                     tutorDetailActivity.putExtra("organisation", mData.get(position).getOrganization());
                     tutorDetailActivity.putExtra("email", mData.get(position).getEmail());
                     tutorDetailActivity.putExtra("tutorPfp", mData.get(position).getPhotoUrl());
