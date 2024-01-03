@@ -1,6 +1,6 @@
 package com.example.stemify.ui.moduleB;
 
-import android.content.Intent;
+import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,16 +8,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.stemify.HomeworkHelp_NewQuestion;
 import com.example.stemify.R;
-import com.example.stemify.Tutoring_CallTutor;
 import com.example.stemify.Tutoring_Tutor_Adapter;
 import com.example.stemify.User;
 import com.google.firebase.auth.FirebaseAuth;
@@ -52,6 +49,7 @@ public class Tutoring extends Fragment {
     FirebaseUser currentUser;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    private Dialog incomingCallDialog;
 
     public Tutoring() {
         // Required empty public constructor
@@ -102,18 +100,14 @@ public class Tutoring extends Fragment {
 
 
         // Binding - BtnCallTutor
-        Button BtnCallTutor = rootView.findViewById(R.id.BtnCallTutor);
+        Button BtnCheckSchedule = rootView.findViewById(R.id.BtnCheckSchedule);
 
         // Set OnClickListener for the button
-        BtnCallTutor.setOnClickListener(new View.OnClickListener() {
+        BtnCheckSchedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Debug
-                Log.d("TutoringFragment", "Button clicked. Starting CallTutor activity.");
 
-                // Create an Intent to start Tutoring_CallTutor activity
-                Intent intent = new Intent(getActivity(), Tutoring_CallTutor.class);
-                startActivity(intent);
+                Toast.makeText(getActivity(), "Button clicked", Toast.LENGTH_SHORT).show();
 
             }
         });

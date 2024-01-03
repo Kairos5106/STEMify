@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Tutoring_VideoCall">
+
+    <org.webrtc.SurfaceViewRenderer
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/SVRRemoteView"/>
+
+    <org.webrtc.SurfaceViewRenderer
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:id="@+id/SVRLocalView"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@id/LLControlPanelLayout"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/CLTitleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#999999"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/TVCallTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="00:01"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:drawableStartCompat="@drawable/vc_recording_red_dot"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/TVCallTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Video Call With Aireen"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <LinearLayout
+        android:id="@+id/LLControlPanelLayout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#999999"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/AppCptImgBtnEndCall"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/vc_end_call" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/AppCptImgBtnToggleMicrophone"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/vc_mic_off" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/AppCptImgBtnToggleCamera"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/vc_camera_off" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/AppCptImgBtnSwitchCamera"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/vc_switch_camera" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/AppCptImgBtnToggleAudio"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/vc_earphone" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/AppCptImgBtnScreenShare"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/vc_screen_share" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,6 +18,7 @@ public class Tutoring_TutorDetail extends AppCompatActivity {
     TextView TVOrganisationTutorDetail;
     TextView TVAboutDescriptionTutorDetail;
     Button BtnBookASession;
+    Button BtnStartVideoCall;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class Tutoring_TutorDetail extends AppCompatActivity {
         TVOrganisationTutorDetail = findViewById(R.id.TVOrganisationTutorDetail);
         TVAboutDescriptionTutorDetail = findViewById(R.id.TVAboutDescriptionTutorDetail);
         BtnBookASession = findViewById(R.id.BtnBookASession);
+        BtnStartVideoCall = findViewById(R.id.BtnStartVideoCall);
 
         // Get tutor detail data from firebase realtime database
         // Based on tutor position on adapter that was clicked
