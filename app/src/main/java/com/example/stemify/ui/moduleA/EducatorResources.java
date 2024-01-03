@@ -14,9 +14,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import com.example.stemify.R;
 import com.example.stemify.TestActivity;
+import com.google.android.material.badge.BadgeUtils;
 
 import java.util.ArrayList;
 import java.util.List;

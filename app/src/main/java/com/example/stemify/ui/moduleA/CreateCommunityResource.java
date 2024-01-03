@@ -1,5 +1,6 @@
 package com.example.stemify.ui.moduleA;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
@@ -8,16 +9,22 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.stemify.R;
 import com.example.stemify.TestActivity;
 
 public class CreateCommunityResource extends AppCompatActivity {
-
+    private static final int SELECT_IMAGE = 100;
+    Button BtnSelectIcon;
+    ImageView IVIconPreview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +46,28 @@ public class CreateCommunityResource extends AppCompatActivity {
         Drawable arrow = AppCompatResources.getDrawable(this, R.drawable.ic_arrow_back);
         DrawableCompat.setTint(arrow, Color.WHITE);
         getSupportActionBar().setHomeAsUpIndicator(arrow);
+
+        // Setup button for icon selection
+        BtnSelectIcon = (Button) findViewById(R.id.BtnSelectIcon);
+        IVIconPreview = (ImageView) findViewById(R.id.IVIconPreview);
+        BtnSelectIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent pickImage = new Intent(Intent.ACTION_GET_CONTENT);
+                pickImage.setType("image/*");
+                startActivityForResult(Intent.createChooser(pickImage, "Select an icon"), SELECT_IMAGE);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == SELECT_IMAGE && null != data){
+            Uri uri = data.getData();
+            IVIconPreview.setImageURI(uri);
+        }
     }
 
     // Give action to options in app bar
