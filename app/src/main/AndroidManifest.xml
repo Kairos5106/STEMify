@@ -59,8 +59,8 @@
         <activity android:name=".Cleanliness"
             android:exported="false" />
 
-        <activity android:name=".Counselor"
-            android:exported="false" />
+        <activity android:name=".CounselorBooking"
+            android:exported="false"/>
 
         <activity android:name=".CommunityEventDetails"
             android:exported="false"/>

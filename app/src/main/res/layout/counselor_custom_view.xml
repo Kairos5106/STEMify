@@ -4,16 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_height="wrap_content"
-    android:background="#fcf2d7">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Available Pyschiatrists"
-        android:textStyle="bold"
-        android:textSize="30dp"
-        android:padding="14dp"
-        />
+    android:background="#fad9e2">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewCounselor"
@@ -34,11 +25,11 @@
                 android:layout_width="120dp"
                 android:layout_height="150dp"
                 android:layout_margin="10dp"
-                android:src="@drawable/confused" />
+                android:src="@drawable/drfem" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -50,14 +41,15 @@
                     android:layout_margin="8dp"
                     android:text="Dr Name"
                     android:textColor="#000"
-                    android:textSize="20sp"
+                    android:textSize="22dp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/textInfo"
+                    android:textSize="16dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
+                    android:layout_margin="10dp"
                     android:text="Dr info" />
 
                 <TextView
@@ -65,14 +57,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
+                    android:textSize="16dp"
                     android:text="Dr Exp" />
 
                 <TextView
-                    android:id="@+id/textPatients"
+                    android:id="@+id/textEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="Dr patients" />
+                    android:textSize="16dp"
+                    android:text="Dr Email" />
 
 
 

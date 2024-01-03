@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.stemify.Counselor;
 import com.example.stemify.CounselorAdapter;
 import com.example.stemify.CounselorData;
 import com.example.stemify.R;
@@ -23,18 +22,18 @@ public class Counseling extends Fragment {
         // Inflate the layout for this fragment
         View rootView =  inflater.inflate(R.layout.fragment_counseling, container, false);
 
-        RecyclerView recyclerView = rootView.findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = rootView.findViewById(R.id.recyclerViewCounseling);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         CounselorData[] counselorData = new CounselorData[]{
-                new CounselorData("Dr.Melissa Ho", "Specialist in treating mental health issues with young adults", "Experience: 12 Years", "Patients: 216", R.drawable.confused),
-                new CounselorData("Dr.Adam Carlson", "Specialist in treating insomnia among young adults aged 13-22", "Experience: 7 Years", "Patients: 110", R.drawable.confused),
-                new CounselorData("Dr.H.J. Kamal", "Specialist in helping young adults with ADHD", "Experience: 5 Years", "Patients: 96", R.drawable.confused),
+                new CounselorData("Dr.Melissa Ho", "Specialist in treating mental health issues with young adults", "Experience: 12 Years", "melissaDr@gmail.com", R.drawable.drfem),
+                new CounselorData("Dr.Adam Carlson", "Specialist in treating insomnia among young adults aged 13-22", "Experience: 7 Years", "dradamcarlson@gmail.com", R.drawable.drman),
+                new CounselorData("Dr.H.J. Kamal", "Specialist in helping young adults with ADHD", "Experience: 5 Years", "hjkamal@gmail.com", R.drawable.drman),
 
         };
 
-        CounselorAdapter counselorAdapter = new CounselorAdapter(counselorData, Counseling.this);
+        CounselorAdapter counselorAdapter = new CounselorAdapter(counselorData, getContext());
         recyclerView.setAdapter(counselorAdapter);
 
         return rootView;

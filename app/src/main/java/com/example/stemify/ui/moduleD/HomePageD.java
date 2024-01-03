@@ -10,12 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.stemify.Counselor;
 import com.example.stemify.R;
 import com.example.stemify.VPAdapter;
-import com.example.stemify.ui.moduleA.Downloads;
-import com.example.stemify.ui.moduleA.ResourceCommunity;
-import com.example.stemify.ui.moduleA.ResourceLibrary;
 import com.google.android.material.tabs.TabLayout;
 
 public class HomePageD extends Fragment {
