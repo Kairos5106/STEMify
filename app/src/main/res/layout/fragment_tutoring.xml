@@ -47,40 +47,39 @@
     </androidx.core.widget.NestedScrollView>
 
     <TextView
-        android:id="@+id/TVSchedules"
+        android:id="@+id/TVCallTutor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="72dp"
-        android:layout_marginEnd="326dp"
-        android:text="Schedules"
+        android:layout_marginEnd="257dp"
+        android:text="Live Tutoring Session"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nestedScrollView2" />
 
     <TextView
-        android:id="@+id/TVSchedulesDescription"
+        android:id="@+id/TVCallTutorDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="1dp"
-        android:layout_marginEnd="155dp"
-        android:hint="Check you tutoring sessions schedule"
+        android:layout_marginEnd="94dp"
+        android:hint="Start a live conferencing session with your tutor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TVSchedules" />
+        app:layout_constraintTop_toBottomOf="@+id/TVCallTutor" />
 
     <Button
-        android:id="@+id/BtnCheckSchedule"
+        android:id="@+id/BtnCallTutor"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="19dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:text="CHECK SCHEDULE"
+        android:text="CALL TUTOR"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TVSchedulesDescription" />
+        app:layout_constraintTop_toBottomOf="@+id/TVCallTutorDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

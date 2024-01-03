@@ -1,6 +1,5 @@
 package com.example.stemify.ui.moduleB;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,17 +7,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.stemify.HomeworkHelp_NewQuestion;
-import com.example.stemify.HomeworkHelp_Post;
-import com.example.stemify.HomeworkHelp_PostDetail;
-import com.example.stemify.HomeworkHelp_Post_Adapter;
 import com.example.stemify.Leaderboard_Ranking_Adapter;
 import com.example.stemify.R;
 import com.example.stemify.User;
@@ -31,7 +25,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -97,7 +90,7 @@ public class Leaderboard extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_leaderboard, container, false);
 
         // RecyclerView for posts list
-        leaderboardRankRecyclerView = rootView.findViewById(R.id.RVLeaderboardRanking);
+        leaderboardRankRecyclerView = rootView.findViewById(R.id.RVLiveConferenceList);
         leaderboardRankRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         firebaseDatabase = FirebaseDatabase.getInstance(); // get instance of the realtime database in firebase
