@@ -53,7 +53,7 @@ public class LoadingResourceCommunity extends Fragment {
                 ProgressBar progressBar = getActivity().findViewById(R.id.PBLoading);
                 progressBar.setVisibility(View.INVISIBLE);
             }
-        }, 7000);
+        }, 3000);
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_loading_resource_community, container, false);
