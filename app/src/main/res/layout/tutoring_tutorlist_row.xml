@@ -18,7 +18,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/IVTutorPfp"
+                android:id="@+id/IVTutorPfpRow"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="20dp"
@@ -32,24 +32,24 @@
                 app:srcCompat="@drawable/ic_setting_person_24" />
 
             <TextView
-                android:id="@+id/TVTutorUsername"
+                android:id="@+id/TVTutorUsernameRow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="25dp"
                 android:text="Tutor Name"
-                app:layout_constraintStart_toEndOf="@+id/IVTutorPfp"
+                app:layout_constraintStart_toEndOf="@+id/IVTutorPfpRow"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/TVTutorOrganisation"
+                android:id="@+id/TVTutorOrganisationRow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="1dp"
                 android:hint="Organisation"
-                app:layout_constraintStart_toEndOf="@+id/IVTutorPfp"
-                app:layout_constraintTop_toBottomOf="@+id/TVTutorUsername" />
+                app:layout_constraintStart_toEndOf="@+id/IVTutorPfpRow"
+                app:layout_constraintTop_toBottomOf="@+id/TVTutorUsernameRow" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
