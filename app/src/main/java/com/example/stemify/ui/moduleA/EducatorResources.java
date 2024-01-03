@@ -7,6 +7,7 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.example.stemify.R;
+import com.example.stemify.TestActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,9 +47,23 @@ public class EducatorResources extends AppCompatActivity {
         Drawable arrow = AppCompatResources.getDrawable(this, R.drawable.ic_arrow_back);
         DrawableCompat.setTint(arrow, Color.WHITE);
         getSupportActionBar().setHomeAsUpIndicator(arrow);
+    }
 
-
-
+    // Give action to options in app bar
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle the back button click
+        if (item.getItemId() == android.R.id.home) {
+            // Navigate back to the previous fragment or activity
+            finish();
+            return true;
+        }
+        if(item.getItemId() == R.id.BtnAddResource){
+            Intent goToAddResourcePage = new Intent(EducatorResources.this, CreateCommunityResource.class);
+            startActivity(goToAddResourcePage);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     // Setup add resource button in app bar
@@ -68,17 +84,6 @@ public class EducatorResources extends AppCompatActivity {
         communityResourceAdapter = new CommunityResourceAdapter(EducatorResources.this, listOfItems);
         recyclerView.setAdapter(communityResourceAdapter);
         communityResourceAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle the back button click
-        if (item.getItemId() == android.R.id.home) {
-            // Navigate back to the previous fragment or activity
-            finish();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     public void initalizeData(){
