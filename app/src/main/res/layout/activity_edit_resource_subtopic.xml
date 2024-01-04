@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.moduleA.CreateCommunityResource">
+    tools:context=".ui.moduleA.EditResourceSubtopic">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/TBCreateCommunityResource"
+        android:id="@+id/TBEditResourceSubtopic"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
@@ -25,7 +25,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TBCreateCommunityResource"
+        app:layout_constraintTop_toBottomOf="@+id/TBEditResourceSubtopic"
         app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:gravity="start"
-                android:text="Resource Details"
+                android:text="Subtopic Details"
                 android:textSize="32sp"
                 android:textStyle="bold" />
 
@@ -58,51 +58,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="8dp"
-                        android:text="Title"
+                        android:text="Subtopic title"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/ETResourceTitle"
+                        android:id="@+id/ETResourceSubtopicTitle"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
-                        android:hint="Add a title that describes your resource well..."
+                        android:hint="Add a subtopic title that describes your subtopic well..."
                         android:padding="8dp"
                         android:textSize="16sp" />
 
                 </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#F2F6FC"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="8dp"
-                        android:text="Description"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <EditText
-                        android:id="@+id/ETResourceDescription"
-                        android:layout_width="match_parent"
-                        android:layout_height="100dp"
-                        android:hint="Add a brief description to explain what your resource is about..."
-                        android:padding="8dp"
-                        android:textSize="16sp" />
-
-                </LinearLayout>
-
             </androidx.cardview.widget.CardView>
 
             <TextView
@@ -110,48 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:gravity="start"
-                android:text="Icon"
-                android:textSize="32sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:gravity="start"
-                android:text="Select a proper resource icon that appropriately matches your content"
-                android:textColor="#9F9F9F"
-                android:textSize="12sp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/BtnSelectIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="8dp"
-                android:text="SELECT IMAGE FOR ICON" />
-
-            <FrameLayout
-                android:layout_width="300dp"
-                android:layout_height="300dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="10dp">
-
-                <ImageView
-                    android:id="@+id/IVIconPreview"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/sampleimage" />
-
-            </FrameLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:gravity="start"
-                android:text="Subtopics"
+                android:text="Sections"
                 android:textSize="32sp"
                 android:textStyle="bold" />
 
@@ -169,30 +96,30 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Number of subtopics"
+                        android:text="Number of sections"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:layout_gravity="center_vertical"
                         android:layout_marginTop="10dp"/>
 
                     <ImageButton
-                        android:id="@+id/BtnAddSubtopic"
+                        android:id="@+id/BtnAddSection"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_add_black"
-                        android:layout_alignStart="@+id/BtnRemoveSubtopic"
+                        android:layout_alignStart="@+id/BtnRemoveSection"
                         android:layout_marginStart="-50dp"/>
 
                     <ImageButton
-                        android:id="@+id/BtnRemoveSubtopic"
+                        android:id="@+id/BtnRemoveSection"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_remove_black"
-                        android:layout_alignStart="@+id/ETSubtopicCount"
+                        android:layout_alignStart="@+id/ETSectionCount"
                         android:layout_marginStart="-70dp"/>
 
                     <EditText
-                        android:id="@+id/ETSubtopicCount"
+                        android:id="@+id/ETSectionCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="XX"
@@ -202,8 +129,6 @@
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
-
-
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -216,29 +141,29 @@
                     android:padding="8dp">
 
                     <TextView
-                        android:id="@+id/TVNumberOfSubtopics"
+                        android:id="@+id/TVNumberOfSections"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Subtopics list"
+                        android:text="Sections list"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:layout_marginBottom="8dp"/>
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/RVResSubtopic"
+                        android:id="@+id/RVResSection"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/TVNumberOfSubtopics"
-                        tools:listitem="@layout/item_resource_subtopic_details"/>
+                        android:layout_below="@+id/TVNumberOfSections"
+                        tools:listitem="@layout/item_resource_subtopic_details_alt"/>
 
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
             <Button
-                android:id="@+id/BtnCreateResource"
+                android:id="@+id/BtnSaveChanges"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="+ CREATE RESOURCE"
+                android:text="SAVE CHANGES"
                 android:layout_gravity="center_horizontal"/>
 
         </LinearLayout>

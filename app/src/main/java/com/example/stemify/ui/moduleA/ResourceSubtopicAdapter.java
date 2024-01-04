@@ -16,24 +16,24 @@ import com.example.stemify.TestActivity;
 
 import java.util.List;
 
-public class ResSubtopicAltAdapter extends RecyclerView.Adapter<ResSubtopicAltAdapter.SubtopicItemAltViewHolder> {
+public class ResourceSubtopicAdapter extends RecyclerView.Adapter<ResourceSubtopicAdapter.ResourceSubtopicViewHolder> {
     Context context;
-    List<ResSubtopicItem> listOfSubtopicItemsAlt;
+    List<Section> listOfSections;
 
-    public ResSubtopicAltAdapter(Context context, List<ResSubtopicItem> listOfSubtopicItemsAlt) {
+    public ResourceSubtopicAdapter(Context context, List<Section> listOfSections) {
         this.context = context;
-        this.listOfSubtopicItemsAlt = listOfSubtopicItemsAlt;
+        this.listOfSections = listOfSections;
     }
 
     @NonNull
     @Override
-    public ResSubtopicAltAdapter.SubtopicItemAltViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new SubtopicItemAltViewHolder(LayoutInflater.from(context).inflate(R.layout.item_resource_subtopic_details_alt, parent, false));
+    public ResourceSubtopicAdapter.ResourceSubtopicViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new ResourceSubtopicViewHolder(LayoutInflater.from(context).inflate(R.layout.item_resource_subtopic_details_alt, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ResSubtopicAltAdapter.SubtopicItemAltViewHolder holder, int position) {
-        ResSubtopicItem subtopic = listOfSubtopicItemsAlt.get(position);
+    public void onBindViewHolder(@NonNull ResourceSubtopicAdapter.ResourceSubtopicViewHolder holder, int position) {
+        Section subtopic = listOfSections.get(position);
 
         // Setup button actions
         holder.subtopicEdit.setOnClickListener(new View.OnClickListener() {
@@ -54,15 +54,15 @@ public class ResSubtopicAltAdapter extends RecyclerView.Adapter<ResSubtopicAltAd
 
     @Override
     public int getItemCount() {
-        return listOfSubtopicItemsAlt.size();
+        return listOfSections.size();
     }
 
-    public class SubtopicItemAltViewHolder extends RecyclerView.ViewHolder {
+    public class ResourceSubtopicViewHolder extends RecyclerView.ViewHolder {
         EditText subtopicTitle;
         ImageButton subtopicDelete;
         ImageButton subtopicEdit;
 
-        public SubtopicItemAltViewHolder(@NonNull View itemView) {
+        public ResourceSubtopicViewHolder(@NonNull View itemView) {
             super(itemView);
             this.subtopicTitle = itemView.findViewById(R.id.ETSubtopicTitle);
             this.subtopicDelete = itemView.findViewById(R.id.BtnSubtopicDelete);

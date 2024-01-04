@@ -27,10 +27,9 @@ import com.example.stemify.TestActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EditEducatorResources extends AppCompatActivity {
-    private static final int SELECT_IMAGE = 100;
+public class EditResourceSubtopic extends AppCompatActivity {
     Button BtnSelectIcon;
-    Button BtnCreateResource;
+    Button BtnSaveChanges;
     ImageView IVIconPreview;
     RecyclerView recyclerView;
     ResSubtopicAltAdapter resSubtopicAltAdapter;
@@ -39,11 +38,11 @@ public class EditEducatorResources extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_educator_resources);
+        setContentView(R.layout.activity_edit_resource_subtopic);
         initializeData();
 
         // Enable back button in the action bar
-        Toolbar toolbar = findViewById(R.id.TBEditEducatorResources);
+        Toolbar toolbar = findViewById(R.id.TBEditResourceSubtopic);
         toolbar.bringToFront(); // brings toolbar to the top-most layer
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
@@ -52,39 +51,27 @@ public class EditEducatorResources extends AppCompatActivity {
         }
 
         // Set the title for the app bar for this particular page
-        getSupportActionBar().setTitle("Edit Resource");
+        getSupportActionBar().setTitle("Edit Subtopic(s)");
 
         // Set the back button at app bar to be white
         Drawable arrow = AppCompatResources.getDrawable(this, R.drawable.ic_arrow_back);
         DrawableCompat.setTint(arrow, Color.WHITE);
         getSupportActionBar().setHomeAsUpIndicator(arrow);
 
-        // Setup button for icon selection
-        BtnSelectIcon = (Button) findViewById(R.id.BtnChangeIcon);
-        IVIconPreview = (ImageView) findViewById(R.id.IVIconPreview);
-        BtnSelectIcon.setOnClickListener(new View.OnClickListener() {
+        // Setup button: save changes to subtopic edits
+        BtnSaveChanges = (Button) findViewById(R.id.BtnSaveChanges);
+        BtnSaveChanges.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent pickImage = new Intent(Intent.ACTION_GET_CONTENT);
-                pickImage.setType("image/*");
-                startActivityForResult(Intent.createChooser(pickImage, "Select an icon"), SELECT_IMAGE);
-            }
-        });
-
-        // Setup button to finish resource creation and save
-        BtnCreateResource = (Button) findViewById(R.id.BtnCreateResource);
-        BtnCreateResource.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(EditEducatorResources.this, "Changes applied", Toast.LENGTH_LONG).show();
+                Toast.makeText(EditResourceSubtopic.this, "Changes applied", Toast.LENGTH_LONG).show();
                 finish();
             }
         });
 
         // Setup RecyclerView in subtopics list
-        recyclerView = findViewById(R.id.RVResSubtopic);
-        recyclerView.setLayoutManager(new LinearLayoutManager(EditEducatorResources.this));
-        resSubtopicAltAdapter = new ResSubtopicAltAdapter(EditEducatorResources.this, listOfItems);
+        recyclerView = findViewById(R.id.RVResSection);
+        recyclerView.setLayoutManager(new LinearLayoutManager(EditResourceSubtopic.this));
+        resSubtopicAltAdapter = new ResSubtopicAltAdapter(EditResourceSubtopic.this, listOfItems);
         recyclerView.setAdapter(resSubtopicAltAdapter);
         resSubtopicAltAdapter.notifyDataSetChanged();
     }
@@ -101,16 +88,6 @@ public class EditEducatorResources extends AppCompatActivity {
         listOfItems.add(item3);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == SELECT_IMAGE && null != data){
-            Uri uri = data.getData();
-            IVIconPreview.setImageURI(uri);
-        }
-    }
-
     // Give action to options in app bar
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -121,7 +98,7 @@ public class EditEducatorResources extends AppCompatActivity {
             return true;
         }
         if(item.getItemId() == R.id.BtnAddResource){
-            Intent goToAddResourcePage = new Intent(EditEducatorResources.this, TestActivity.class); // chg ltr
+            Intent goToAddResourcePage = new Intent(EditResourceSubtopic.this, TestActivity.class); // chg ltr
             startActivity(goToAddResourcePage);
             finish();
             return true;

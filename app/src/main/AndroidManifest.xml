@@ -17,6 +17,9 @@
         android:theme="@style/Theme.STEMify"
         tools:targetApi="31">
         <activity
+            android:name=".ui.moduleA.EditResourceSubtopic"
+            android:exported="false" />
+        <activity
             android:name=".ui.moduleA.EditEducatorResources"
             android:exported="false" />
         <activity

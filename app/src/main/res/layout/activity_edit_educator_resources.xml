@@ -181,7 +181,7 @@
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_add_black"
                         android:layout_alignStart="@+id/BtnRemoveSubtopic"
-                        android:layout_marginStart="-60dp"/>
+                        android:layout_marginStart="-50dp"/>
 
                     <ImageButton
                         android:id="@+id/BtnRemoveSubtopic"
