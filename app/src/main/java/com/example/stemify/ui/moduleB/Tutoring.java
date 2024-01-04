@@ -134,7 +134,7 @@ public class Tutoring extends Fragment {
                     User user = snapshot.getValue(User.class);
 
                     // Check if the user's identity is "tutor"
-                    if (user != null && "Tutor".equals(user.getIdentity())) {
+                    if (user != null /*&& "Tutor".equals(user.getIdentity())*/) {
                         userList.add(user);
                     }
                 }

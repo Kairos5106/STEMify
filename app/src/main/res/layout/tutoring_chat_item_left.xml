@@ -25,7 +25,10 @@
         android:background="@drawable/tutoring_chatbackground_left"
         android:padding="8dp"
         android:text="Message"
+        android:textColor="#000000"
+        android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/IVPfp"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_max="200dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

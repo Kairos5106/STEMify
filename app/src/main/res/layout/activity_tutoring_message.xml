@@ -22,7 +22,7 @@
         android:id="@+id/RVConversations"
         android:layout_width="match_parent"
         android:layout_height="582dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginBottom="5dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

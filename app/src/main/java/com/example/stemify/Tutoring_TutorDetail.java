@@ -32,7 +32,6 @@ public class Tutoring_TutorDetail extends AppCompatActivity {
     TextView TVTutorUsernameTutorDetail;
     TextView TVOrganisationTutorDetail;
     TextView TVAboutDescriptionTutorDetail;
-    Button BtnBookASession;
     Button BtnStartVideoCall;
 
     @Override
@@ -59,7 +58,6 @@ public class Tutoring_TutorDetail extends AppCompatActivity {
         TVTutorUsernameTutorDetail = findViewById(R.id.TVTutorUsernameTutorDetail);
         TVOrganisationTutorDetail = findViewById(R.id.TVOrganisationTutorDetail);
         TVAboutDescriptionTutorDetail = findViewById(R.id.TVAboutDescriptionTutorDetail);
-        BtnBookASession = findViewById(R.id.BtnBookASession);
         BtnStartVideoCall = findViewById(R.id.BtnStartVideoCall);
 
         // Load current user info
@@ -101,16 +99,6 @@ public class Tutoring_TutorDetail extends AppCompatActivity {
 
         String email = getIntent().getExtras().getString("email");
         TVAboutDescriptionTutorDetail.setText(email);
-
-        // BtnBookASession onClickListener
-        BtnBookASession.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Toast.makeText(Tutoring_TutorDetail.this, "Button clicked", Toast.LENGTH_SHORT).show();
-
-            }
-        });
 
         // BtnStartVideoCall onClickListener
         BtnStartVideoCall.setOnClickListener(new View.OnClickListener() {
