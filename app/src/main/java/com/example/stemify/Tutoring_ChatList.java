@@ -23,7 +23,7 @@ import java.util.List;
 public class Tutoring_ChatList extends AppCompatActivity {
 
     private RecyclerView RVChatList;
-    private Tutoring_Tutor_Adapter userAdapter;
+    private Tutoring_ChatList_Adapter userAdapter;
     private List<User> mUsers;
 
     FirebaseUser fUser;
@@ -123,7 +123,7 @@ public class Tutoring_ChatList extends AppCompatActivity {
                 }
 
 
-                userAdapter = new Tutoring_Tutor_Adapter(getApplicationContext(), mUsers);
+                userAdapter = new Tutoring_ChatList_Adapter(getApplicationContext(), mUsers);
                 RVChatList.setAdapter(userAdapter);
             }
 
