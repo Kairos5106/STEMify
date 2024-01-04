@@ -27,23 +27,23 @@ import com.example.stemify.TestActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CreateCommunityResource extends AppCompatActivity {
+public class EditEducatorResources extends AppCompatActivity {
     private static final int SELECT_IMAGE = 100;
     Button BtnSelectIcon;
     Button BtnCreateResource;
     ImageView IVIconPreview;
     RecyclerView recyclerView;
-    ResSubtopicAdapter resSubtopicAdapter;
+    ResSubtopicAltAdapter resSubtopicAltAdapter;
     List<ResSubtopicItem> listOfItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_community_resource);
+        setContentView(R.layout.activity_edit_educator_resources);
         initializeData();
 
         // Enable back button in the action bar
-        Toolbar toolbar = findViewById(R.id.TBCreateCommunityResource);
+        Toolbar toolbar = findViewById(R.id.TBEditEducatorResources);
         toolbar.bringToFront(); // brings toolbar to the top-most layer
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
@@ -52,7 +52,7 @@ public class CreateCommunityResource extends AppCompatActivity {
         }
 
         // Set the title for the app bar for this particular page
-        getSupportActionBar().setTitle("Create Resource");
+        getSupportActionBar().setTitle("Edit Resource");
 
         // Set the back button at app bar to be white
         Drawable arrow = AppCompatResources.getDrawable(this, R.drawable.ic_arrow_back);
@@ -76,17 +76,17 @@ public class CreateCommunityResource extends AppCompatActivity {
         BtnCreateResource.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(CreateCommunityResource.this, "Resource Successfully Created!", Toast.LENGTH_LONG).show();
+                Toast.makeText(EditEducatorResources.this, "Changes applied", Toast.LENGTH_LONG).show();
                 finish();
             }
         });
 
         // Setup RecyclerView in subtopics list
         recyclerView = findViewById(R.id.RVResSubtopic);
-        recyclerView.setLayoutManager(new LinearLayoutManager(CreateCommunityResource.this));
-        resSubtopicAdapter = new ResSubtopicAdapter(CreateCommunityResource.this, listOfItems);
-        recyclerView.setAdapter(resSubtopicAdapter);
-        resSubtopicAdapter.notifyDataSetChanged();
+        recyclerView.setLayoutManager(new LinearLayoutManager(EditEducatorResources.this));
+        resSubtopicAltAdapter = new ResSubtopicAltAdapter(EditEducatorResources.this, listOfItems);
+        recyclerView.setAdapter(resSubtopicAltAdapter);
+        resSubtopicAltAdapter.notifyDataSetChanged();
     }
 
     private void initializeData() {
@@ -121,7 +121,7 @@ public class CreateCommunityResource extends AppCompatActivity {
             return true;
         }
         if(item.getItemId() == R.id.BtnAddResource){
-            Intent goToAddResourcePage = new Intent(CreateCommunityResource.this, TestActivity.class); // chg ltr
+            Intent goToAddResourcePage = new Intent(EditEducatorResources.this, TestActivity.class); // chg ltr
             startActivity(goToAddResourcePage);
             finish();
             return true;
@@ -133,7 +133,7 @@ public class CreateCommunityResource extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu_create_resource, menu);
+        menuInflater.inflate(R.menu.menu_create_resource, menu); // change later to add collaboration
         return true;
     }
 }

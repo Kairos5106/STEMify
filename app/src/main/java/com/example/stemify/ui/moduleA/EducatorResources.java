@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EducatorResources extends AppCompatActivity {
-    CommunityResourceAdapter communityResourceAdapter;
+    EducatorResourcesAdapter educatorResourcesAdapter;
     RecyclerView recyclerView;
     List<CommunityResourceItem> listOfItems;
     @Override
@@ -83,9 +83,9 @@ public class EducatorResources extends AppCompatActivity {
         // Setup RecyclerView
         recyclerView = findViewById(R.id.RVEducatorResources);
         recyclerView.setLayoutManager(new LinearLayoutManager(EducatorResources.this));
-        communityResourceAdapter = new CommunityResourceAdapter(EducatorResources.this, listOfItems);
-        recyclerView.setAdapter(communityResourceAdapter);
-        communityResourceAdapter.notifyDataSetChanged();
+        educatorResourcesAdapter = new EducatorResourcesAdapter(EducatorResources.this, listOfItems);
+        recyclerView.setAdapter(educatorResourcesAdapter);
+        educatorResourcesAdapter.notifyDataSetChanged();
     }
 
     public void initalizeData(){
