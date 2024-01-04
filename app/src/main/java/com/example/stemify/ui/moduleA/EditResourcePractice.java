@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -23,15 +25,25 @@ import android.widget.VideoView;
 import com.example.stemify.R;
 import com.example.stemify.TestActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class EditResourcePractice extends AppCompatActivity {
     Button BtnSelectVideo;
     Button BtnSaveChanges;
+    RecyclerView recyclerView;
+    ResourceQuestionAdapter resourceQuestionAdapter;
+    List<Question> listOfItems;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_resource_practice);
+
+        // Populate list with sample data
+        initializeData();
+
         // Enable back button in the action bar
-        Toolbar toolbar = findViewById(R.id.TBEditResourceVideo);
+        Toolbar toolbar = findViewById(R.id.TBEditResourcePractice);
         toolbar.bringToFront(); // brings toolbar to the top-most layer
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
@@ -56,6 +68,13 @@ public class EditResourcePractice extends AppCompatActivity {
                 finish();
             }
         });
+
+        // Setup RecyclerView in subtopics list
+        recyclerView = findViewById(R.id.RVQuestionList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(EditResourcePractice.this));
+        resourceQuestionAdapter = new ResourceQuestionAdapter(EditResourcePractice.this, listOfItems);
+        recyclerView.setAdapter(resourceQuestionAdapter);
+        resourceQuestionAdapter.notifyDataSetChanged();
     }
 
     // Give action to options in app bar
@@ -82,5 +101,17 @@ public class EditResourcePractice extends AppCompatActivity {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_edit_resource, menu); // change later to add collaboration
         return true;
+    }
+
+    public void initializeData(){
+        listOfItems = new ArrayList<Question>();
+
+        Question question1 = new Question();
+        Question question2 = new Question();
+        Question question3 = new Question();
+
+        listOfItems.add(question1);
+        listOfItems.add(question2);
+        listOfItems.add(question3);
     }
 }

@@ -23,9 +23,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Question XX"
-                android:textSize="16sp"
+                android:textSize="24sp"
                 android:textStyle="bold"
-                android:layout_marginBottom="8dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
 
@@ -38,19 +37,165 @@
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintTop_toBottomOf="@+id/TVQuestionNumber"
-                app:layout_constraintStart_toStartOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent"
+                android:paddingStart="2dp"
+                android:paddingTop="10dp"/>
 
             <Spinner
                 android:id="@+id/SpinQuestionType"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                app:layout_constraintTop_toBottomOf="@+id/ETSubtopicTitle"
+                app:layout_constraintTop_toBottomOf="@+id/TVQuestionType"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/BtnSubtopicEdit"
-                android:layout_marginEnd="120dp"/>
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <FrameLayout
+                android:id="@+id/FLQuestionDiagram"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                app:layout_constraintTop_toBottomOf="@+id/SpinQuestionType"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="30dp">
+
+                <ImageView
+                    android:id="@+id/IVQuestionDiagram"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/sampleimage" />
+
+            </FrameLayout>
+
+            <Button
+                android:id="@+id/BtnSelectDiagram"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="8dp"
+                android:text="SELECT DIAGRAM"
+                app:layout_constraintTop_toBottomOf="@+id/FLQuestionDiagram"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="10dp"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/CVDiagramDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/BtnSelectDiagram"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#F2F6FC"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="Diagram description"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/ETDiagramDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:hint="Describe the diagram briefly"
+                        android:padding="8dp"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/CVQuestionDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/CVDiagramDescription"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#F2F6FC"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="Question description"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/ETQuestionDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:hint="Write the question here"
+                        android:padding="8dp"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/CVAnswerCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/CVQuestionDescription">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#F2F6FC"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Number of questions"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="10dp"/>
+
+                    <ImageButton
+                        android:id="@+id/BtnAddQuestion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_add_black"
+                        android:layout_alignStart="@+id/BtnRemoveQuestion"
+                        android:layout_marginStart="-50dp"/>
+
+                    <ImageButton
+                        android:id="@+id/BtnRemoveQuestion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_remove_black"
+                        android:layout_alignStart="@+id/ETQuestionCount"
+                        android:layout_marginStart="-70dp"/>
+
+                    <EditText
+                        android:id="@+id/ETQuestionCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="XX"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="16dp"/>
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
