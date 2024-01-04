@@ -94,7 +94,7 @@
 
             <!-- Recyclerview show posts -->
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/RVLeaderboardRanking"
+                android:id="@+id/RVLiveConferenceList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scrollbars="vertical"
@@ -102,18 +102,6 @@
                 app:layout_constraintHeight_default="wrap"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <!-- Button: click to show more posts -->
-            <Button
-                android:id="@+id/BtnLoadMore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:text="Load More"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/RVLeaderboardRanking" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
