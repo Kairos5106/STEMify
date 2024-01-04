@@ -52,8 +52,8 @@ public class Tutoring_Message extends AppCompatActivity {
 
         // Set the title for the app bar for this particular page
         // The name of the tutor you're chatting with
-        String tutorName = getIntent().getExtras().getString("tutorName");
-        setTitle("Chat with " + tutorName);
+        String tutorUsername = getIntent().getExtras().getString("tutorUsername");
+        setTitle("Chat with " + tutorUsername);
 
         // Binding
         ETMessage = findViewById(R.id.ETMessage);

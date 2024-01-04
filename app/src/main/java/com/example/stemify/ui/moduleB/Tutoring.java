@@ -93,7 +93,7 @@ public class Tutoring extends Fragment {
                              Bundle savedInstanceState) {
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
-        
+
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_tutoring, container, false);
 
