@@ -42,7 +42,7 @@ public class ResourceQuestionAdapter extends RecyclerView.Adapter<ResourceQuesti
         holder.questionEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goToQuestionEditing = new Intent(context, EditResourcePractice.class);
+                Intent goToQuestionEditing = new Intent(context, EditResourceQuestion.class);
                 context.startActivity(goToQuestionEditing);
             }
         });
