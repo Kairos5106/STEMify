@@ -46,7 +46,7 @@ public class ResourceMaterialAdapter extends RecyclerView.Adapter<ResourceMateri
             holder.materialEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent goToMaterialEditing = new Intent(context, TestActivity.class); // change to edit material page
+                    Intent goToMaterialEditing = new Intent(context, EditResourceVideo.class);
                     context.startActivity(goToMaterialEditing);
                 }
             });
