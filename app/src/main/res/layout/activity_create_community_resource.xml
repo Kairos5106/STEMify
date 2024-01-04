@@ -6,25 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".ui.moduleA.CreateCommunityResource">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/ABLCreateCommunityResource"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/TBCreateCommunityResource"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:title="Title"
+        app:titleTextColor="@color/white"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/TBCreateCommunityResource"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:title="Title"
-            app:titleTextColor="@color/white"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-    </com.google.android.material.appbar.AppBarLayout>
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -34,7 +25,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ABLCreateCommunityResource"
+        app:layout_constraintTop_toBottomOf="@+id/TBCreateCommunityResource"
         app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
@@ -211,12 +202,40 @@
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#F2F6FC"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Number of subtopics"
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
             <Button
                 android:id="@+id/BtnCreateResource"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="+ CREATE RESOURCE"
                 android:layout_gravity="center_horizontal"/>
+
+<!--            temporary -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="500dp"/>
 
         </LinearLayout>
 

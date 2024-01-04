@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.stemify.R;
 import com.example.stemify.TestActivity;
@@ -24,6 +25,7 @@ import com.example.stemify.TestActivity;
 public class CreateCommunityResource extends AppCompatActivity {
     private static final int SELECT_IMAGE = 100;
     Button BtnSelectIcon;
+    Button BtnCreateResource;
     ImageView IVIconPreview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +60,18 @@ public class CreateCommunityResource extends AppCompatActivity {
                 startActivityForResult(Intent.createChooser(pickImage, "Select an icon"), SELECT_IMAGE);
             }
         });
+
+        // Setup button to finish resource creation and save
+        BtnCreateResource = (Button) findViewById(R.id.BtnCreateResource);
+        BtnCreateResource.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(CreateCommunityResource.this, "Resource Successfully Created!", Toast.LENGTH_LONG).show();
+                finish();
+            }
+        });
+
+        // Setup RecyclerView in subtopics list
     }
 
     @Override
