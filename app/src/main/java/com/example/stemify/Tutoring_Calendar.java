@@ -3,8 +3,11 @@ package com.example.stemify;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +25,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class Tutoring_Calendar extends AppCompatActivity {
@@ -127,16 +131,20 @@ public class Tutoring_Calendar extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.getValue() != null) {
+
                     // Display existing event details in UI
                     Tutoring_CalendarEvent event = snapshot.getValue(Tutoring_CalendarEvent.class);
                     if (event != null) {
                         ETCalendarEventTitle.setText(event.getTitle());
                         ETCalendarEventDescription.setText(event.getDescription());
+
                     }
+
                 } else {
                     // No existing events for the selected date, clear UI fields or set default values
                     ETCalendarEventTitle.setText("");
                     ETCalendarEventDescription.setText("");
+
                 }
             }
 
