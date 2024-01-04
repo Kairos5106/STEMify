@@ -33,6 +33,7 @@ public class Tutoring_Calendar extends AppCompatActivity {
     private EditText ETCalendarEventDescription;
     private Button BtnSaveEvent;
     private String dateSelected;
+    private FirebaseDatabase database;
     private DatabaseReference databaseReference;
 
     @Override
@@ -59,6 +60,10 @@ public class Tutoring_Calendar extends AppCompatActivity {
         ETCalendarEventDescription = findViewById(R.id.ETCalendarEventDescription);
         BtnSaveEvent = findViewById(R.id.BtnSaveEvent);
 
+        // Initialise databaseReference
+        database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference("Calendar");
+
         // CVCalendar Listener
         CVCalendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -81,7 +86,7 @@ public class Tutoring_Calendar extends AppCompatActivity {
                             ETCalendarEventDescription.getText().toString(),
                             currentUser.getUid());
 
-                    // Add post object to Firebase database
+                    // Add event object to Firebase database
                     addEvent(event);
 
                 } else {
@@ -94,9 +99,6 @@ public class Tutoring_Calendar extends AppCompatActivity {
     }
 
     public void addEvent(Tutoring_CalendarEvent event) {
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        databaseReference = database.getReference("Calendar").push();
 
         // Set the event data to the Firebase reference under "Calendar"
         databaseReference.child(dateSelected).setValue(event)
