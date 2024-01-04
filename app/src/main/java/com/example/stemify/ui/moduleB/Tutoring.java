@@ -91,6 +91,9 @@ public class Tutoring extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+        
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_tutoring, container, false);
 
@@ -133,8 +136,8 @@ public class Tutoring extends Fragment {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     User user = snapshot.getValue(User.class);
 
-                    // Check if the user's identity is "tutor"
-                    if (user != null /*&& "Tutor".equals(user.getIdentity())*/) {
+                    // Display all users except myself
+                    if (user != null && !user.getEmail().equals(currentUser.getEmail())/*&& "Tutor".equals(user.getIdentity())*/) {
                         userList.add(user);
                     }
                 }
