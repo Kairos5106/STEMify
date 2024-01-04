@@ -23,7 +23,6 @@ import java.util.List;
 public class ResourceMaterialAdapter extends RecyclerView.Adapter<ResourceMaterialAdapter.ResourceMaterialViewHolder> implements AdapterView.OnItemSelectedListener{
     Context context;
     List<Material> listOfMaterials;
-    AdapterView.OnItemSelectedListener onItemSelectedListener;
     public ResourceMaterialAdapter(Context context, List<Material> listOfMaterials) {
         this.context = context;
         this.listOfMaterials = listOfMaterials;
@@ -83,7 +82,7 @@ public class ResourceMaterialAdapter extends RecyclerView.Adapter<ResourceMateri
         ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(context, R.array.materialType, android.R.layout.simple_spinner_item);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         holder.materialType.setAdapter(spinnerAdapter);
-        holder.materialType.setOnItemSelectedListener(onItemSelectedListener);
+        holder.materialType.setOnItemSelectedListener(this);
     }
 
     @Override
