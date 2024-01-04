@@ -101,7 +101,7 @@ public class Tutoring_Calendar extends AppCompatActivity {
     public void addEvent(Tutoring_CalendarEvent event) {
 
         // Set the event data to the Firebase reference under "Calendar"
-        databaseReference.child(dateSelected).setValue(event)
+        databaseReference.child(currentUser.getUid()).child(dateSelected).setValue(event)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -123,7 +123,7 @@ public class Tutoring_Calendar extends AppCompatActivity {
     // Retrieve existing event from database for a particular date
     private void calendarClicked() {
 
-        databaseReference.child(dateSelected).addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.child(currentUser.getUid()).child(dateSelected).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.getValue() != null) {
