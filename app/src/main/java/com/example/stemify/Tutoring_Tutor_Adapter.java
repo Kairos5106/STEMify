@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -52,6 +53,8 @@ public class Tutoring_Tutor_Adapter extends RecyclerView.Adapter<Tutoring_Tutor_
         ImageView IVTutorPfpRow;
         TextView TVTutorUsernameRow;
         TextView TVTutorOrganisationRow;
+        ImageButton ImgBtnTutorProfile;
+        ImageButton ImgBtnChat;
 
         public TutorListViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -59,9 +62,11 @@ public class Tutoring_Tutor_Adapter extends RecyclerView.Adapter<Tutoring_Tutor_
             IVTutorPfpRow = itemView.findViewById(R.id.IVTutorPfpRow);
             TVTutorUsernameRow = itemView.findViewById(R.id.TVTutorUsernameRow);
             TVTutorOrganisationRow = itemView.findViewById(R.id.TVTutorOrganisationRow);
+            ImgBtnTutorProfile = itemView.findViewById(R.id.ImgBtnTutorProfile);
+            ImgBtnChat = itemView.findViewById(R.id.ImgBtnChat);
 
-            // When user click on one of the post, will show up new activity (tutor detail)
-            itemView.setOnClickListener(new View.OnClickListener() {
+            // Set click listener for ImgBtnTutorProfile
+            ImgBtnTutorProfile.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     // Create an Intent to start Tutoring_TutorDetail activity
@@ -73,9 +78,19 @@ public class Tutoring_Tutor_Adapter extends RecyclerView.Adapter<Tutoring_Tutor_
                     tutorDetailActivity.putExtra("email", mData.get(position).getEmail());
                     tutorDetailActivity.putExtra("tutorPfp", mData.get(position).getPhotoUrl());
                     mContext.startActivity(tutorDetailActivity);
-
                 }
             });
+
+            // Set click listener for ImgBtnChat
+            /*ImgBtnChat.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Create an Intent to start Tutoring_Chat activity
+                    Intent chatActivity = new Intent(mContext, Tutoring_Chat.class);
+                    // Add any necessary extras for the chat activity
+                    mContext.startActivity(chatActivity);
+                }
+            });*/
 
         }
     }
