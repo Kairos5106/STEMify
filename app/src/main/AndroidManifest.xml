@@ -23,6 +23,9 @@
         android:theme="@style/Theme.STEMify"
         tools:targetApi="31">
         <activity
+            android:name=".Tutoring_ChatList"
+            android:exported="false" />
+        <activity
             android:name=".Tutoring_Message"
             android:exported="false" />
         <activity

@@ -13,11 +13,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.stemify.HomeworkHelp_NewQuestion;
 import com.example.stemify.R;
 import com.example.stemify.Tutoring_Calendar;
+import com.example.stemify.Tutoring_ChatList;
 import com.example.stemify.Tutoring_Tutor_Adapter;
 import com.example.stemify.User;
 import com.google.firebase.auth.FirebaseAuth;
@@ -104,6 +106,18 @@ public class Tutoring extends Fragment {
         firebaseDatabase = FirebaseDatabase.getInstance(); // get instance of the realtime database in firebase
         databaseReference = firebaseDatabase.getReference("users"); // go into users node
 
+        // Binding - ImgBtnChatList
+        ImageButton ImgBtnChatList = rootView.findViewById(R.id.ImgBtnChatList);
+
+        // Set OnClickListener for the button
+        ImgBtnChatList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create an Intent to start Tutoring_Calendar activity
+                Intent intent = new Intent(getActivity(), Tutoring_ChatList.class);
+                startActivity(intent);
+            }
+        });
 
         // Binding - BtnCheckSchedule
         Button BtnCheckSchedule = rootView.findViewById(R.id.BtnCheckSchedule);
