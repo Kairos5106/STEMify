@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
@@ -82,15 +83,26 @@ public class Tutoring_Tutor_Adapter extends RecyclerView.Adapter<Tutoring_Tutor_
             });
 
             // Set click listener for ImgBtnChat
-            /*ImgBtnChat.setOnClickListener(new View.OnClickListener() {
+            ImgBtnChat.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     // Create an Intent to start Tutoring_Chat activity
                     Intent chatActivity = new Intent(mContext, Tutoring_Chat.class);
-                    // Add any necessary extras for the chat activity
+                    int position = getAdapterPosition();
+
+                    chatActivity.putExtra("tutorName", mData.get(position).getFullname());
+                    chatActivity.putExtra("organisation", mData.get(position).getOrganization());
+                    chatActivity.putExtra("email", mData.get(position).getEmail());
+                    chatActivity.putExtra("tutorPfp", mData.get(position).getPhotoUrl());
+                    chatActivity.putExtra("tutorUsername", mData.get(position).getDisplayName());
+
+                    /*// Get the user ID from Firebase Authentication
+                    String tutorUID = mData.get(position).getUid();
+                    chatActivity.putExtra("tutorUID", tutorUID);*/
+
                     mContext.startActivity(chatActivity);
                 }
-            });*/
+            });
 
         }
     }
