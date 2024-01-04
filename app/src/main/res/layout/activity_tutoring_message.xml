@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E6E6E6"
-    tools:context=".Tutoring_Chat">
+    tools:context=".Tutoring_Message">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/TBChatConversation"

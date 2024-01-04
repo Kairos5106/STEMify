@@ -12,10 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -86,8 +83,8 @@ public class Tutoring_Tutor_Adapter extends RecyclerView.Adapter<Tutoring_Tutor_
             ImgBtnChat.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // Create an Intent to start Tutoring_Chat activity
-                    Intent chatActivity = new Intent(mContext, Tutoring_Chat.class);
+                    // Create an Intent to start Tutoring_Message activity
+                    Intent chatActivity = new Intent(mContext, Tutoring_Message.class);
                     int position = getAdapterPosition();
 
                     chatActivity.putExtra("tutorName", mData.get(position).getFullname());
