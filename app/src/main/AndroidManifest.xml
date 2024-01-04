@@ -31,6 +31,40 @@
         <activity
             android:name=".Tutoring_TutorDetail"
             android:exported="false" />
+         <activity
+            android:name=".EmptyTestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.moduleA.QuizPage"
+            android:exported="false"
+            android:parentActivityName=".ui.moduleA.SectionLibrary"/>
+        <activity
+            android:name=".ui.moduleA.PracticePage"
+            android:exported="false"
+            android:parentActivityName=".ui.moduleA.SectionLibrary" />
+        <activity
+            android:name=".ui.moduleA.VideoLessonPage"
+            android:exported="false"
+            android:parentActivityName=".ui.moduleA.SectionLibrary" />
+        <activity
+            android:name=".ui.moduleA.SectionLibrary"
+            android:exported="false"
+            android:parentActivityName=".ui.moduleA.SubtopicLibrary" />
+        <activity
+            android:name=".ui.moduleA.SubtopicLibrary"
+            android:exported="false"
+            android:parentActivityName=".ui.moduleA.TopicLibrary" />
+        <activity
+            android:name=".ui.moduleA.TopicLibrary"
+            android:exported="false"
+            android:parentActivityName=".ui.moduleA.GradeLibrary" />
+        <activity
+            android:name=".ui.moduleA.GradeLibrary"
+            android:exported="false"
+            android:parentActivityName=".HomeActivity" />
         <activity
             android:name=".HomeworkHelp_PostDetail"
             android:exported="false" />
@@ -80,7 +114,22 @@
             android:name=".Cleanliness"
             android:exported="false" />
         <activity
+            android:name=".Lifestyle"
+            android:exported="false" />
+        <activity
+            android:name=".MentalHealth"
+            android:exported="false" />
+        <activity
+            android:name=".HealthFitness"
+            android:exported="false" />
+        <activity
+            android:name=".Cleanliness"
+            android:exported="false" />
+        <activity
             android:name=".Counselor"
+            android:exported="false" />
+        <activity
+            android:name=".CommunityEventDetails"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

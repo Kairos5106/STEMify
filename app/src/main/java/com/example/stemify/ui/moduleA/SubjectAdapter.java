@@ -1,6 +1,7 @@
 package com.example.stemify.ui.moduleA;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,16 +11,17 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.stemify.HomeworkHelp_PostDetail;
 import com.example.stemify.R;
 
 import java.util.List;
 public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectViewHolder> {
     Context context;
-    List<Subject> list;
+    List<Subject> listOfSubjects;
 
-    public SubjectAdapter(Context context, List<Subject> list) {
+    public SubjectAdapter(Context context, List<Subject> listOfSubjects) {
         this.context = context;
-        this.list = list;
+        this.listOfSubjects = listOfSubjects;
     }
 
     @NonNull
@@ -30,13 +32,13 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectV
 
     @Override
     public void onBindViewHolder(@NonNull SubjectAdapter.SubjectViewHolder holder, int position) {
-        Subject subject = list.get(position);
+        Subject subject = listOfSubjects.get(position);
         holder.title.setText(subject.subjectTitle);
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return listOfSubjects.size();
     }
 
     public class SubjectViewHolder extends RecyclerView.ViewHolder{
@@ -48,7 +50,9 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectV
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(context, "Subject clicked!", Toast.LENGTH_LONG).show();
+                    // Upon clicking a subject, user will be redirected to a page listing the topics of the subject
+                    Intent goToGradeLibrary = new Intent(context, GradeLibrary.class);
+                    context.startActivity(goToGradeLibrary);
                 }
             });
         }

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/homePageA">
 
     <fragment
         android:id="@+id/nav_home"
@@ -70,5 +70,10 @@
         android:name="com.example.stemify.ui.settings.setting_editemail"
         android:label="fragment_setting_editemail"
         tools:layout="@layout/fragment_setting_editemail" />
+    <activity
+        android:id="@+id/modA_topiclibrary"
+        android:name="com.example.stemify.ui.moduleA.TopicLibrary"
+        android:label="Topic Library"
+        tools:layout="@layout/activity_topic_library"/>
 
 </navigation>

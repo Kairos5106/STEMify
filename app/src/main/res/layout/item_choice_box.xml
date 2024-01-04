@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:id="@+id/FLChoiceBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#E3D0D0"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="8dp">
+
+        <TextView
+            android:id="@+id/TVAnswer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Answer"
+            android:padding="16dp"
+            android:layout_marginStart="16dp"/>
+
+    </FrameLayout>
+</RelativeLayout>

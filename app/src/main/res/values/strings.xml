@@ -82,9 +82,14 @@
     <string name="fit_yoga">With your eyes closed, simply breathe in while saying "breathe in" in your head as you do. Then breathe out and say "breathe out". For the next 20 minutes or so, your aim is to focus on this circular breath and the simple words in your head as much as possible.\n
 	Focusing on your brain health is one of the best things you can do to improve your concentration, focus, memory, and mental agility, no matter what age you are.</string>
 
-    <string name="fit_squat">	When you\'re feeling too lazy and tired to exercise, these are some activities you can follow that can help.\nSquatting and stretching!\n
+    <string name="fit_squat">When you\'re feeling too lazy and tired to exercise, these are some activities you can follow that can help.\nSquatting and stretching!\n
     Squats burn calories and might help you lose weight. They also lower your chances of injuring your knees and ankles.\nStretching keeps your muscles flexible, strong and healthy, and we need that flexibility to maintain a range of motion in the joints. </string>
 
     <string name="fit_rest">Sometimes all you need is a good lazy day where you do not make your muscles and body more tired. Taking rest days can improve sleep, much like regular exercises. Moreover, lack of sleep may result in low motivation to take part in leisure activities. Always have a good balance in keeping your body and mind fit. </string>
+
+    <string name="event1">The World Health Assembly is the decision-making body of WHO. It is attended by delegations from all WHO Member States and focuses on a specific health agenda to notify all the citizens on the World Health Association and the upcoming projects. People from all around the world are invited to join the assembly</string>
+    <string name="event2">MedicHealth is proud to offer a comprehensive medical check-up to prioritize your well-being. Join us for this special event where everyone in the community can benefit from a free health assessment.\nEarly attendees will receive special giveaways and informative handouts. Do not miss this chance to take charge of your health.
+    \nSave the date and join MedicHealth for this essential event.</string>
+    <string name="event3">Join us at SMK Padang Besar for an interactive workshop on proper teeth brushing techniques for our young ones. This fun event aims to educate young learners on essential dental care in an engaging way.</string>
 
 </resources>

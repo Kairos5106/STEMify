@@ -49,11 +49,19 @@ public class ResourceLibrary extends Fragment {
     }
 
     public void initalizeData(){
-        // Initializing list of download items
+        // Initializing list of subject items
         listOfItems = new ArrayList<Subject>();
 
         // Populate list with download items
-        listOfItems.add(new Subject("Test1"));
+        Subject subject1 = new Subject("Test1");
+        Grade topic1a = new Grade("Form 1");
+        Grade topic1b = new Grade("Form 2");
+        Grade topic1c = new Grade("Form 3");
+        subject1.addGrade(topic1a);
+        subject1.addGrade(topic1b);
+        subject1.addGrade(topic1c);
+
+        listOfItems.add(subject1);
         listOfItems.add(new Subject("Test2"));
         listOfItems.add(new Subject("Test3"));
         listOfItems.add(new Subject("Test4"));
