@@ -121,7 +121,7 @@ public class Tutoring_Message extends AppCompatActivity {
         });
     }
 
-    private void initRVConversations (String myID, String userID, String imageUrl) {
+    private void initRVConversations(String myID, String userID, String imageUrl) {
         mChat = new ArrayList<>();
 
         // Query to get the UID based on the email address
@@ -164,6 +164,7 @@ public class Tutoring_Message extends AppCompatActivity {
             }
         });
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
