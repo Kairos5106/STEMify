@@ -27,22 +27,22 @@ import com.example.stemify.TestActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EditResourceSubtopic extends AppCompatActivity {
+public class EditResourceSection extends AppCompatActivity {
     Button BtnSelectIcon;
     Button BtnSaveChanges;
     ImageView IVIconPreview;
     RecyclerView recyclerView;
-    ResourceSectionAdapter resourceSectionAdapter;
-    List<Section> listOfItems;
+    ResourceMaterialAdapter resourceMaterialAdapter;
+    List<Material> listOfItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_resource_subtopic);
+        setContentView(R.layout.activity_edit_resource_section);
         initializeData();
 
         // Enable back button in the action bar
-        Toolbar toolbar = findViewById(R.id.TBEditResourceSubtopic);
+        Toolbar toolbar = findViewById(R.id.TBEditResourceSection);
         toolbar.bringToFront(); // brings toolbar to the top-most layer
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
@@ -51,7 +51,7 @@ public class EditResourceSubtopic extends AppCompatActivity {
         }
 
         // Set the title for the app bar for this particular page
-        getSupportActionBar().setTitle("Edit Subtopic(s)");
+        getSupportActionBar().setTitle("Edit Material(s)");
 
         // Set the back button at app bar to be white
         Drawable arrow = AppCompatResources.getDrawable(this, R.drawable.ic_arrow_back);
@@ -63,25 +63,28 @@ public class EditResourceSubtopic extends AppCompatActivity {
         BtnSaveChanges.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(EditResourceSubtopic.this, "Changes applied", Toast.LENGTH_LONG).show();
+                Toast.makeText(EditResourceSection.this, "Changes applied", Toast.LENGTH_LONG).show();
                 finish();
             }
         });
 
         // Setup RecyclerView in subtopics list
         recyclerView = findViewById(R.id.RVResSection);
-        recyclerView.setLayoutManager(new LinearLayoutManager(EditResourceSubtopic.this));
-        resourceSectionAdapter = new ResourceSectionAdapter(EditResourceSubtopic.this, listOfItems);
-        recyclerView.setAdapter(resourceSectionAdapter);
-        resourceSectionAdapter.notifyDataSetChanged();
+        recyclerView.setLayoutManager(new LinearLayoutManager(EditResourceSection.this));
+        resourceMaterialAdapter = new ResourceMaterialAdapter(EditResourceSection.this, listOfItems);
+        recyclerView.setAdapter(resourceMaterialAdapter);
+        resourceMaterialAdapter.notifyDataSetChanged();
     }
 
     private void initializeData() {
-        listOfItems = new ArrayList<Section>();
+        listOfItems = new ArrayList<Material>();
 
-        Section item1 = new Section();
-        Section item2 = new Section();
-        Section item3 = new Section();
+        Material item1 = new Material();
+        item1.setType("Video Lesson");
+        Material item2 = new Material();
+        item2.setType("Practice");
+        Material item3 = new Material();
+        item3.setType("Quiz");
 
         listOfItems.add(item1);
         listOfItems.add(item2);
@@ -98,7 +101,7 @@ public class EditResourceSubtopic extends AppCompatActivity {
             return true;
         }
         if(item.getItemId() == R.id.BtnAddResource){
-            Intent goToAddResourcePage = new Intent(EditResourceSubtopic.this, TestActivity.class); // chg ltr
+            Intent goToAddResourcePage = new Intent(EditResourceSection.this, TestActivity.class); // chg ltr
             startActivity(goToAddResourcePage);
             finish();
             return true;

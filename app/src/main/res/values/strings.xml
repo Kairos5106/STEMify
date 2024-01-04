@@ -91,5 +91,9 @@
     <string name="event2">MedicHealth is proud to offer a comprehensive medical check-up to prioritize your well-being. Join us for this special event where everyone in the community can benefit from a free health assessment.\nEarly attendees will receive special giveaways and informative handouts. Do not miss this chance to take charge of your health.
     \nSave the date and join MedicHealth for this essential event.</string>
     <string name="event3">Join us at SMK Padang Besar for an interactive workshop on proper teeth brushing techniques for our young ones. This fun event aims to educate young learners on essential dental care in an engaging way.</string>
-
+    <string-array name="materialType">
+        <item>Video Lesson</item>
+        <item>Practice</item>
+        <item>Quiz</item>
+    </string-array>
 </resources>

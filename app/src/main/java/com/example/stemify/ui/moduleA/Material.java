@@ -5,6 +5,12 @@ public class Material {
     String type; // Can either be "VideoLesson", "Practice" or "Quiz"
     int points, iconId;
 
+    public Material() {
+        this.title = "";
+        this.type = "";
+        this.points = 0;
+    }
+
     public Material(String title) {
         this.title = title;
         this.type = "";
