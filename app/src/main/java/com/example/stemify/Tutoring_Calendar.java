@@ -128,10 +128,15 @@ public class Tutoring_Calendar extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.getValue() != null) {
                     // Display existing event details in UI
-                    ETCalendarEventTitle.setText(snapshot.getValue().toString());
+                    Tutoring_CalendarEvent event = snapshot.getValue(Tutoring_CalendarEvent.class);
+                    if (event != null) {
+                        ETCalendarEventTitle.setText(event.getTitle());
+                        ETCalendarEventDescription.setText(event.getDescription());
+                    }
                 } else {
                     // No existing events for the selected date, clear UI fields or set default values
                     ETCalendarEventTitle.setText("");
+                    ETCalendarEventDescription.setText("");
                 }
             }
 

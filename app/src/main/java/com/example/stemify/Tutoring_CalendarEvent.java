@@ -18,6 +18,9 @@ public class Tutoring_CalendarEvent {
         this.timeStamp = ServerValue.TIMESTAMP;
     }
 
+    public Tutoring_CalendarEvent() {
+    }
+
     public String getDateSelected() {
         return dateSelected;
     }
