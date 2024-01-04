@@ -53,6 +53,7 @@ public class CounselorBooking extends AppCompatActivity {
     Calendar calendar;
     String selectedTime, emailUser, emailDr, nameDr;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -81,12 +82,13 @@ public class CounselorBooking extends AppCompatActivity {
             String exp = intent.getStringExtra("Experience");
             String info = intent.getStringExtra("Information");
             emailDr = intent.getStringExtra("Email");
-            int image = intent.getIntExtra("IMAGE", R.drawable.drfem);
+            int image = intent.getIntExtra("Image", R.drawable.drfem);
 
             drName.setText(nameDr);
             drInfo.setText(info);
             drExp.setText(exp);
             drEmail.setText(emailDr);
+            Log.d("EmailDr", "Doctor's Email: " + emailDr);
 
             detailImage.setImageResource(image);
         }
@@ -101,6 +103,7 @@ public class CounselorBooking extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.exists()) {
                         emailUser = currentUser.getEmail();
+                        Log.d("EmailRetrieval", "User Email: " + emailUser);
                     }
                 }
 
@@ -237,15 +240,16 @@ public class CounselorBooking extends AppCompatActivity {
             });
 
             MimeMessage mimeMessage = new MimeMessage(session);
-            InternetAddress[] toAddresses = { new InternetAddress(receiverEmail) };
+            InternetAddress[] toAddresses = { new InternetAddress(emailUser) };
             mimeMessage.addRecipients(Message.RecipientType.TO, toAddresses);
 
             // cc recipient
-            InternetAddress[] ccAddresses = { new InternetAddress(ccDrEmail) };
+            InternetAddress[] ccAddresses = { new InternetAddress(emailDr) };
             mimeMessage.addRecipients(Message.RecipientType.CC, ccAddresses);
 
             mimeMessage.setSubject("STEMify Psychiatrist Booking");
-            mimeMessage.setText("Your booking with Dr" + nameDr + "is confirmed at " + selectedTime + "\nPlease wait for the meeting link to arrive. \nThank You and have a good day!");
+            mimeMessage.setText("Your booking with " + nameDr + " is confirmed at " + selectedTime + "\nPlease wait for the meeting link to arrive. " +
+                    "\nThank you for using STEMify ~ your partner in STEM, have a good day!");
 
             Thread thread = new Thread(new Runnable() {
                 @Override

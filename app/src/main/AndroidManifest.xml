@@ -47,7 +47,7 @@
             android:name=".Splash2"
             android:exported="false" />
 
-        <activity android:name=".HealthGuide"
+        <activity android:name=".ui.moduleD.HealthGuidance"
             android:exported="false"/>
 
         <activity android:name=".Lifestyle"
