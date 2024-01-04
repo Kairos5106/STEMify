@@ -216,11 +216,20 @@
                     android:padding="8dp">
 
                     <TextView
+                        android:id="@+id/TVNumberOfSubtopics"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Number of subtopics"
                         android:textSize="16sp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/RVResSubtopic"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/TVNumberOfSubtopics"
+                        tools:listitem="@layout/item_resource_subtopic_details"/>
 
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
@@ -231,11 +240,6 @@
                 android:layout_height="wrap_content"
                 android:text="+ CREATE RESOURCE"
                 android:layout_gravity="center_horizontal"/>
-
-<!--            temporary -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="500dp"/>
 
         </LinearLayout>
 

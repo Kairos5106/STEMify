@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -22,15 +24,23 @@ import android.widget.Toast;
 import com.example.stemify.R;
 import com.example.stemify.TestActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CreateCommunityResource extends AppCompatActivity {
     private static final int SELECT_IMAGE = 100;
     Button BtnSelectIcon;
     Button BtnCreateResource;
     ImageView IVIconPreview;
+    RecyclerView recyclerView;
+    ResSubtopicAdapter resSubtopicAdapter;
+    List<ResSubtopicItem> listOfItems;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_community_resource);
+        initializeData();
 
         // Enable back button in the action bar
         Toolbar toolbar = findViewById(R.id.TBCreateCommunityResource);
@@ -72,6 +82,23 @@ public class CreateCommunityResource extends AppCompatActivity {
         });
 
         // Setup RecyclerView in subtopics list
+        recyclerView = findViewById(R.id.RVResSubtopic);
+        recyclerView.setLayoutManager(new LinearLayoutManager(CreateCommunityResource.this));
+        resSubtopicAdapter = new ResSubtopicAdapter(CreateCommunityResource.this, listOfItems);
+        recyclerView.setAdapter(resSubtopicAdapter);
+        resSubtopicAdapter.notifyDataSetChanged();
+    }
+
+    private void initializeData() {
+        listOfItems = new ArrayList<>();
+
+        ResSubtopicItem item1 = new ResSubtopicItem();
+        ResSubtopicItem item2 = new ResSubtopicItem();
+        ResSubtopicItem item3 = new ResSubtopicItem();
+
+        listOfItems.add(item1);
+        listOfItems.add(item2);
+        listOfItems.add(item3);
     }
 
     @Override
