@@ -22,7 +22,7 @@ import java.util.List;
 public class Downloads extends Fragment {
     DownloadAdapter downloadAdapter;
     RecyclerView recyclerView;
-    List<DownloadItem> listOfItems;
+    List<CommunityResourceItem> listOfItems;
 
     public Downloads() {
         // Required empty public constructor
@@ -55,18 +55,18 @@ public class Downloads extends Fragment {
 
     public void initalizeData(){
         // Initializing list of download items
-        listOfItems = new ArrayList<DownloadItem>();
+        listOfItems = new ArrayList<CommunityResourceItem>();
 
         // Populate list with download items
-        listOfItems.add(new DownloadItem("Test1", R.drawable.sampleimage));
-        listOfItems.add(new DownloadItem("Test2", R.drawable.sampleimage));
-        listOfItems.add(new DownloadItem("Test3", R.drawable.sampleimage));
-        listOfItems.add(new DownloadItem("Test4", R.drawable.sampleimage));
-        listOfItems.add(new DownloadItem("Test5", R.drawable.sampleimage));
-        listOfItems.add(new DownloadItem("Test6", R.drawable.sampleimage));
-        listOfItems.add(new DownloadItem("Test7", R.drawable.sampleimage));
-        listOfItems.add(new DownloadItem("Test8", R.drawable.sampleimage));
-        listOfItems.add(new DownloadItem("Test9", R.drawable.sampleimage));
-        listOfItems.add(new DownloadItem("Test10", R.drawable.sampleimage));
+        listOfItems.add(new CommunityResourceItem("Test1", "Sample description", "Kairos5106", R.drawable.pfp, R.drawable.sampleimage));
+        listOfItems.add(new CommunityResourceItem("Test2", "Sample description", "Kairos5106", R.drawable.pfp, R.drawable.sampleimage));
+        listOfItems.add(new CommunityResourceItem("Test3", "Sample description", "Kairos5106", R.drawable.pfp, R.drawable.sampleimage));
+        listOfItems.add(new CommunityResourceItem("Test4", "Sample description", "Kairos5106", R.drawable.pfp, R.drawable.sampleimage));
+        listOfItems.add(new CommunityResourceItem("Test5", "Sample description", "Kairos5106", R.drawable.pfp, R.drawable.sampleimage));
+        listOfItems.add(new CommunityResourceItem("Test6", "Sample description", "Kairos5106", R.drawable.pfp, R.drawable.sampleimage));
+        listOfItems.add(new CommunityResourceItem("Test7", "Sample description", "Kairos5106", R.drawable.pfp, R.drawable.sampleimage));
+        listOfItems.add(new CommunityResourceItem("Test8", "Sample description", "Kairos5106", R.drawable.pfp, R.drawable.sampleimage));
+        listOfItems.add(new CommunityResourceItem("Test9", "Sample description", "Kairos5106", R.drawable.pfp, R.drawable.sampleimage));
+        listOfItems.add(new CommunityResourceItem("Test10", "Sample description", "Kairos5106", R.drawable.pfp, R.drawable.sampleimage));
     }
 }
