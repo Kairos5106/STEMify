@@ -15,23 +15,23 @@ import com.example.stemify.R;
 
 import java.util.List;
 
-public class CommunityResourceAdapter extends RecyclerView.Adapter<CommunityResourceAdapter.CommunityResourceViewHolder> {
+public class EducatorResourcesAdapter extends RecyclerView.Adapter<EducatorResourcesAdapter.EducatorResourcesViewHolder> {
     Context context;
     List<CommunityResourceItem> list;
 
-    public CommunityResourceAdapter(Context context, List<CommunityResourceItem> list) {
+    public EducatorResourcesAdapter(Context context, List<CommunityResourceItem> list) {
         this.context = context;
         this.list = list;
     }
 
     @NonNull
     @Override
-    public CommunityResourceAdapter.CommunityResourceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new CommunityResourceViewHolder(LayoutInflater.from(context).inflate(R.layout.item_community_resource, parent, false));
+    public EducatorResourcesAdapter.EducatorResourcesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new EducatorResourcesViewHolder(LayoutInflater.from(context).inflate(R.layout.item_community_resource, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CommunityResourceAdapter.CommunityResourceViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull EducatorResourcesAdapter.EducatorResourcesViewHolder holder, int position) {
         CommunityResourceItem communityResourceItem = list.get(position);
         holder.title.setText(communityResourceItem.title);
         holder.description.setText(communityResourceItem.description);
@@ -45,11 +45,11 @@ public class CommunityResourceAdapter extends RecyclerView.Adapter<CommunityReso
         return list.size();
     }
 
-    public class CommunityResourceViewHolder extends RecyclerView.ViewHolder {
+    public class EducatorResourcesViewHolder extends RecyclerView.ViewHolder {
         TextView title, description, author;
         ImageView authorImage, resourceImage;
 
-        public CommunityResourceViewHolder(@NonNull View itemView) {
+        public EducatorResourcesViewHolder(@NonNull View itemView) {
             super(itemView);
             this.title = itemView.findViewById(R.id.TVResourceTitle);
             this.description = itemView.findViewById(R.id.TVResourceDesc);
@@ -60,8 +60,8 @@ public class CommunityResourceAdapter extends RecyclerView.Adapter<CommunityReso
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent goToSubtopicsPage = new Intent(context, SubtopicLibrary.class);
-                    context.startActivity(goToSubtopicsPage);
+                    Intent goToEditResources = new Intent(context, EditEducatorResources.class);
+                    context.startActivity(goToEditResources);
                 }
             });
         }

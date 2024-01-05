@@ -1,5 +1,6 @@
 package com.example.stemify.ui.moduleA;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,20 +12,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
-import com.example.stemify.DownloadAdapter;
-import com.example.stemify.DownloadItem;
 import com.example.stemify.R;
+import com.example.stemify.TestActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Downloads extends Fragment {
-    DownloadAdapter downloadAdapter;
-    RecyclerView recyclerView;
+public class ResourceCommunityEducator extends Fragment {
+    CommunityResourceAdapter communityResourceAdapter;
+    RecyclerView recyclerViewComm;
     List<CommunityResourceItem> listOfItems;
 
-    public Downloads() {
+    Button btnToOwnResources;
+    public ResourceCommunityEducator() {
         // Required empty public constructor
     }
 
@@ -38,19 +40,32 @@ public class Downloads extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_downloads, container, false);
+        View view = inflater.inflate(R.layout.fragment_resource_community_educator, container, false);
+
+        // Setup button to lead to Educators' resources page
+        btnToOwnResources = view.findViewById(R.id.BtnGoToOwnResources);
+        btnToOwnResources.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goToGradeLibrary = new Intent(getContext(), EducatorResources.class); // change test activity later
+                getContext().startActivity(goToGradeLibrary);
+            }
+        });
+
+        return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Setup RecyclerView
-        recyclerView = view.findViewById(R.id.RVDownloads);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        downloadAdapter = new DownloadAdapter(getContext(), listOfItems);
-        recyclerView.setAdapter(downloadAdapter);
-        downloadAdapter.notifyDataSetChanged();
+        // Setup RecyclerView for community resources
+        recyclerViewComm = view.findViewById(R.id.RVCommunityResourceEdu);
+        recyclerViewComm.setLayoutManager(new LinearLayoutManager(getContext()));
+        communityResourceAdapter = new CommunityResourceAdapter(getContext(), listOfItems);
+        recyclerViewComm.setAdapter(communityResourceAdapter);
+        communityResourceAdapter.notifyDataSetChanged();
+
     }
 
     public void initalizeData(){

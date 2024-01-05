@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -22,6 +26,34 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.STEMify"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.moduleA.EditResourceQuiz"
+            android:exported="false" />
+        <activity
+            android:name=".ui.moduleA.EditResourceQuestion"
+            android:exported="false" />
+        <activity
+            android:name=".ui.moduleA.EditResourcePractice"
+            android:exported="false" />
+        <activity
+            android:name=".ui.moduleA.EditResourceVideo"
+            android:exported="false" />
+        <activity
+            android:name=".ui.moduleA.EditResourceSection"
+            android:exported="false" />
+        <activity
+            android:name=".ui.moduleA.EditResourceSubtopic"
+            android:exported="false" />
+        <activity
+            android:name=".ui.moduleA.EditEducatorResources"
+            android:exported="false" />
+        <activity
+            android:name=".ui.moduleA.CreateCommunityResource"
+            android:exported="false"
+            android:parentActivityName=".ui.moduleA.EducatorResources" />
+        <activity
+            android:name=".ui.moduleA.EducatorResources"
+            android:exported="false" />
         <activity
             android:name=".Tutoring_ChatList"
             android:exported="false" />
@@ -104,9 +136,9 @@
         <activity
             android:name=".Splash2"
             android:exported="false" />
-        <activity 
+        <activity
             android:name=".ui.moduleD.HealthGuidance"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".HealthGuide"
             android:exported="false" />
@@ -119,27 +151,14 @@
         <activity
             android:name=".HealthFitness"
             android:exported="false" />
-        <activity android:name=".CounselorBooking"
-            android:exported="false"/>
-        <activity android:name=".CommunityEventDetails"
-            android:exported="false"/>
         <activity
-            android:name=".Cleanliness"
-            android:exported="false" />
-        <activity
-            android:name=".Lifestyle"
-            android:exported="false" />
-        <activity
-            android:name=".MentalHealth"
-            android:exported="false" />
-        <activity
-            android:name=".HealthFitness"
-            android:exported="false" />
-        <activity
-            android:name=".Counselor"
+            android:name=".CounselorBooking"
             android:exported="false" />
         <activity
             android:name=".CommunityEventDetails"
+            android:exported="false" />
+        <activity
+            android:name=".Cleanliness"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

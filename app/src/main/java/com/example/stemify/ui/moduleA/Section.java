@@ -8,6 +8,13 @@ public class Section {
     int achievedPoints, totalPoints;
     List<Material> listOfMaterial;
 
+    public Section() {
+        this.title = "";
+        this.achievedPoints = 0;
+        this.totalPoints = 0;
+        this.listOfMaterial = new ArrayList<>();
+    }
+
     public Section(String title) {
         this.title = title;
         this.achievedPoints = 0;
