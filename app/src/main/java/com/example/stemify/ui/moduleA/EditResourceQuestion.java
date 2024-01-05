@@ -27,11 +27,15 @@ import java.util.List;
 
 public class EditResourceQuestion extends AppCompatActivity {
     Button BtnSaveChanges;
+    QuestionAnswerAdapter questionAnswerAdapter;
+    List<String> listOfItems;
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_resource_question);
+        initializeData();
 
         // Enable back button in the action bar
         Toolbar toolbar = findViewById(R.id.TBEditQuestion);
@@ -59,6 +63,27 @@ public class EditResourceQuestion extends AppCompatActivity {
                 finish();
             }
         });
+
+        // Setup RecyclerView for answers
+        recyclerView = findViewById(R.id.RVAnswer);
+        questionAnswerAdapter = new QuestionAnswerAdapter(EditResourceQuestion.this, listOfItems);
+        recyclerView.setLayoutManager(new LinearLayoutManager(EditResourceQuestion.this));
+        recyclerView.setAdapter(questionAnswerAdapter);
+        questionAnswerAdapter.notifyDataSetChanged();
+    }
+
+    public void initializeData(){
+        listOfItems = new ArrayList<String>();
+
+        String answer1 = "Answer 1";
+        String answer2 = "Answer 2";
+        String answer3 = "Answer 3";
+        String answer4 = "Answer 4";
+
+        listOfItems.add(answer1);
+        listOfItems.add(answer2);
+        listOfItems.add(answer3);
+        listOfItems.add(answer4);
     }
 
     // Give action to options in app bar
