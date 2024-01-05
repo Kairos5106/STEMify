@@ -23,6 +23,12 @@
         android:theme="@style/Theme.STEMify"
         tools:targetApi="31">
         <activity
+            android:name=".Tutoring_ChatList"
+            android:exported="false" />
+        <activity
+            android:name=".Tutoring_Message"
+            android:exported="false" />
+        <activity
             android:name=".Tutoring_Calendar"
             android:exported="false" />
         <activity
@@ -31,7 +37,7 @@
         <activity
             android:name=".Tutoring_TutorDetail"
             android:exported="false" />
-         <activity
+        <activity
             android:name=".EmptyTestActivity"
             android:exported="false" />
         <activity
@@ -40,7 +46,7 @@
         <activity
             android:name=".ui.moduleA.QuizPage"
             android:exported="false"
-            android:parentActivityName=".ui.moduleA.SectionLibrary"/>
+            android:parentActivityName=".ui.moduleA.SectionLibrary" />
         <activity
             android:name=".ui.moduleA.PracticePage"
             android:exported="false"

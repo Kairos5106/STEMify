@@ -13,11 +13,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.stemify.HomeworkHelp_NewQuestion;
 import com.example.stemify.R;
 import com.example.stemify.Tutoring_Calendar;
+import com.example.stemify.Tutoring_ChatList;
 import com.example.stemify.Tutoring_Tutor_Adapter;
 import com.example.stemify.User;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,6 +31,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -91,6 +94,9 @@ public class Tutoring extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_tutoring, container, false);
 
@@ -101,6 +107,18 @@ public class Tutoring extends Fragment {
         firebaseDatabase = FirebaseDatabase.getInstance(); // get instance of the realtime database in firebase
         databaseReference = firebaseDatabase.getReference("users"); // go into users node
 
+        // Binding - ImgBtnChatList
+        ImageButton ImgBtnChatList = rootView.findViewById(R.id.ImgBtnChatList);
+
+        // Set OnClickListener for the button
+        ImgBtnChatList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create an Intent to start Tutoring_Calendar activity
+                Intent intent = new Intent(getActivity(), Tutoring_ChatList.class);
+                startActivity(intent);
+            }
+        });
 
         // Binding - BtnCheckSchedule
         Button BtnCheckSchedule = rootView.findViewById(R.id.BtnCheckSchedule);
@@ -124,7 +142,7 @@ public class Tutoring extends Fragment {
 
         // Load users data from Firebase Realtime Database
         // Order the users by their display names
-        databaseReference.orderByChild("displayName").addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.orderByChild("identity").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -133,11 +151,13 @@ public class Tutoring extends Fragment {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     User user = snapshot.getValue(User.class);
 
-                    // Check if the user's identity is "tutor"
-                    if (user != null && "Tutor".equals(user.getIdentity())) {
+                    // Display all users except myself
+                    if (user != null && !user.getEmail().equals(currentUser.getEmail())/*&& "Tutor".equals(user.getIdentity())*/) {
                         userList.add(user);
                     }
                 }
+
+                Collections.reverse(userList);
 
                 // Set up and attach the adapter to RecyclerView
                 // i.e. these lines of code establish the connection between the custom adapter and the RecyclerView
