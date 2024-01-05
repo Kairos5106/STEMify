@@ -15,8 +15,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.stemify.R;
@@ -25,11 +28,12 @@ import com.example.stemify.TestActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EditResourceQuestion extends AppCompatActivity {
+public class EditResourceQuestion extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     Button BtnSaveChanges;
     QuestionAnswerAdapter questionAnswerAdapter;
     List<String> listOfItems;
     RecyclerView recyclerView;
+    Spinner durationSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +74,13 @@ public class EditResourceQuestion extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(EditResourceQuestion.this));
         recyclerView.setAdapter(questionAnswerAdapter);
         questionAnswerAdapter.notifyDataSetChanged();
+
+        // Setup spinner options
+        durationSpinner = (Spinner) findViewById(R.id.SpinQuestionType);
+        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(EditResourceQuestion.this, R.array.questionType, android.R.layout.simple_spinner_item);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        durationSpinner.setAdapter(spinnerAdapter);
+        durationSpinner.setOnItemSelectedListener(EditResourceQuestion.this);
     }
 
     public void initializeData(){
@@ -84,6 +95,17 @@ public class EditResourceQuestion extends AppCompatActivity {
         listOfItems.add(answer2);
         listOfItems.add(answer3);
         listOfItems.add(answer4);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String text = parent.getItemAtPosition(position).toString();
+        Toast.makeText(parent.getContext(), "Question type selected: " + text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 
     // Give action to options in app bar

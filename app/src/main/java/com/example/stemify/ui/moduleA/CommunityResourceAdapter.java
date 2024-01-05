@@ -1,6 +1,7 @@
 package com.example.stemify.ui.moduleA;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +56,14 @@ public class CommunityResourceAdapter extends RecyclerView.Adapter<CommunityReso
             this.author = itemView.findViewById(R.id.TVResourceAuthor);
             this.authorImage = itemView.findViewById(R.id.IVAuthorImage);
             this.resourceImage = itemView.findViewById(R.id.IVResourceImage);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent goToSubtopicsPage = new Intent(context, SubtopicLibrary.class);
+                    context.startActivity(goToSubtopicsPage);
+                }
+            });
         }
     }
 }
