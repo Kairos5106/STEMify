@@ -1,5 +1,8 @@
 package com.example.stemify.ui.moduleB;
 
+import static org.webrtc.ContextUtils.getApplicationContext;
+
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,9 +16,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.stemify.HomeworkHelp_NewQuestion;
 import com.example.stemify.Leaderboard_Ranking_Adapter;
 import com.example.stemify.R;
 import com.example.stemify.User;
+import com.example.stemify.ui.moduleA.Downloads;
+import com.example.stemify.ui.moduleA.QuizPage;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -108,6 +114,11 @@ public class Leaderboard extends Fragment {
             public void onClick(View v) {
 
                 Toast.makeText(getActivity(), "Button clicked", Toast.LENGTH_SHORT).show();
+
+                // Create an Intent to start HomeworkHelp_NewQuestion activity
+                Intent intent = new Intent(getActivity(), QuizPage.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
 
             }
         });
