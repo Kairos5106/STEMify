@@ -1,5 +1,8 @@
 package com.example.stemify.ui.moduleB;
 
+import static org.webrtc.ContextUtils.getApplicationContext;
+
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,9 +16,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.stemify.HomeworkHelp_NewQuestion;
 import com.example.stemify.Leaderboard_Ranking_Adapter;
 import com.example.stemify.R;
 import com.example.stemify.User;
+import com.example.stemify.ui.moduleA.Downloads;
+import com.example.stemify.ui.moduleA.QuizPage;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -25,6 +31,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -107,6 +115,11 @@ public class Leaderboard extends Fragment {
 
                 Toast.makeText(getActivity(), "Button clicked", Toast.LENGTH_SHORT).show();
 
+                // Create an Intent to start HomeworkHelp_NewQuestion activity
+                Intent intent = new Intent(getActivity(), QuizPage.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+
             }
         });
 
@@ -131,6 +144,14 @@ public class Leaderboard extends Fragment {
                     User user = snapshot.getValue(User.class);
                     userList.add(user);
                 }
+
+                // Sort the userList by display name (ignore case)
+                Collections.sort(userList, new Comparator<User>() {
+                    @Override
+                    public int compare(User user1, User user2) {
+                        return String.CASE_INSENSITIVE_ORDER.compare(user1.getDisplayName(), user2.getDisplayName());
+                    }
+                });
 
                 // Set up and attach the adapter to RecyclerView
                 // i.e. these lines of code establish the connection between the custom adapter (HomeworkHelp_Post_Adapter) and the RecyclerView (postRecyclerView)

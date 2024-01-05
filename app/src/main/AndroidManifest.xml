@@ -50,6 +50,12 @@
             android:parentActivityName=".ui.moduleA.EducatorResources" />
         <activity
             android:name=".ui.moduleA.EducatorResources"
+            android:exported="false"/>
+        <activity
+            android:name=".Tutoring_ChatList"
+            android:exported="false" />
+        <activity
+            android:name=".Tutoring_Message"
             android:exported="false" />
         <activity
             android:name=".Tutoring_Calendar"
@@ -127,6 +133,9 @@
         <activity
             android:name=".Splash2"
             android:exported="false" />
+        <activity 
+            android:name=".ui.moduleD.HealthGuidance"
+            android:exported="false"/>
         <activity
             android:name=".HealthGuide"
             android:exported="false" />
@@ -139,14 +148,12 @@
         <activity
             android:name=".HealthFitness"
             android:exported="false" />
+        <activity android:name=".CounselorBooking"
+            android:exported="false"/>
+        <activity android:name=".CommunityEventDetails"
+            android:exported="false"/>
         <activity
             android:name=".Cleanliness"
-            android:exported="false" />
-        <activity
-            android:name=".Counselor"
-            android:exported="false" />
-        <activity
-            android:name=".CommunityEventDetails"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

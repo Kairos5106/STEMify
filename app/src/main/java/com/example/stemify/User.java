@@ -18,6 +18,7 @@ public class User {
     private String password;
     private long attemptTime;
     private int loginTrial;
+    private String id;
 
     public long getAttemptTime() { return attemptTime; }
 
@@ -116,4 +117,11 @@ public class User {
         this.photoUrl = photoUrl;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }

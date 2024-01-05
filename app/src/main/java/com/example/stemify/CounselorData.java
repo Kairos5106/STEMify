@@ -5,15 +5,15 @@ public class CounselorData {
     private String name;
     private String information;
     private String experience;
-    private String patients;
+    private String email;
     private Integer imagedr;
 
 
-    public CounselorData(String name, String infomation, String experience, String patients, Integer imagedr){
+    public CounselorData(String name, String infomation, String experience, String email, Integer imagedr){
         this.experience = experience;
         this.name = name;
         this.information = infomation;
-        this.patients = patients;
+        this.email = email;
         this.imagedr = imagedr;
     }
 
@@ -41,12 +41,12 @@ public class CounselorData {
         this.experience = experience;
     }
 
-    public String getPatients() {
-        return patients;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPatients(String patients) {
-        this.patients = patients;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Integer getImagedr() {
