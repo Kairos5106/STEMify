@@ -25,6 +25,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -131,6 +133,14 @@ public class Leaderboard extends Fragment {
                     User user = snapshot.getValue(User.class);
                     userList.add(user);
                 }
+
+                // Sort the userList by display name (ignore case)
+                Collections.sort(userList, new Comparator<User>() {
+                    @Override
+                    public int compare(User user1, User user2) {
+                        return String.CASE_INSENSITIVE_ORDER.compare(user1.getDisplayName(), user2.getDisplayName());
+                    }
+                });
 
                 // Set up and attach the adapter to RecyclerView
                 // i.e. these lines of code establish the connection between the custom adapter (HomeworkHelp_Post_Adapter) and the RecyclerView (postRecyclerView)

@@ -46,7 +46,7 @@ public class Tutoring_TutorDetail extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         // Set the title for the app bar for this particular page
-        setTitle("Tutor Profile");
+        setTitle("Profile");
 
         // Initiate Firebase components
         mAuth = FirebaseAuth.getInstance();

@@ -31,6 +31,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -141,7 +142,7 @@ public class Tutoring extends Fragment {
 
         // Load users data from Firebase Realtime Database
         // Order the users by their display names
-        databaseReference.orderByChild("displayName").addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.orderByChild("identity").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -155,6 +156,8 @@ public class Tutoring extends Fragment {
                         userList.add(user);
                     }
                 }
+
+                Collections.reverse(userList);
 
                 // Set up and attach the adapter to RecyclerView
                 // i.e. these lines of code establish the connection between the custom adapter and the RecyclerView
