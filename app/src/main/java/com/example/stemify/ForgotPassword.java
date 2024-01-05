@@ -28,10 +28,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ForgotPassword extends AppCompatActivity {
 
-    public int counter = 0;
-    FirebaseAuth mAuth;
     boolean selectionChecker = false;
     String chosenSecurityQuestion = "";
 
@@ -47,6 +48,7 @@ public class ForgotPassword extends AppCompatActivity {
 
         TextView TVSelectSQ = findViewById(R.id.TVSelectSQ);
 
+        //spinner to display security questions for user selection
         Spinner SPSecurityQ = (Spinner) findViewById(R.id.SPSecurityQ);
         ArrayAdapter<String> arrAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, SECURITYQ);
         arrAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -56,6 +58,7 @@ public class ForgotPassword extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //check if the selection is "Security Question"
                 if (parent.getItemAtPosition(position).equals("Security Question")){
+                    //notify the user to pick a question
                     TVSelectSQ.setText("Please Select A Question");
                     TVSelectSQ.setTextColor(Color.RED);
                 }else{
@@ -96,19 +99,20 @@ public class ForgotPassword extends AppCompatActivity {
                     String answer = ETAnswer.getText().toString();
 
                     DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("users");
-
                     usersRef.orderByChild("email").equalTo(enteredEmail).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             if (dataSnapshot.exists()) {
-                                // User with the provided email exists
+                                //user with the provided email exists
                                 for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                                     String userId = userSnapshot.getKey();
                                     String email = userSnapshot.child("email").getValue(String.class);
                                     String securityQuestion = userSnapshot.child("securityques").getValue(String.class);
                                     String securityAnswer = userSnapshot.child("answer").getValue(String.class);
                                     String password = userSnapshot.child("password").getValue(String.class);
+                                    int loginTrial = userSnapshot.child("loginTrial").getValue(Integer.class);
 
+                                    //if the security question and answer match, move to change password page to allow the user change their password
                                     if(chosenSecurityQuestion.equals(securityQuestion) && answer.equals(securityAnswer)){
                                         Intent nextScreen = new Intent(getApplicationContext(), ChangePassword.class);
                                         nextScreen.putExtra("email", email);
@@ -116,26 +120,32 @@ public class ForgotPassword extends AppCompatActivity {
                                         startActivity(nextScreen);
                                         finish();
                                     }else{
-                                        counter++;
+                                        //if either of them match, increase the loginTrial counter
                                         Toast.makeText(ForgotPassword.this, "Wrong inputs", Toast.LENGTH_SHORT).show();
-                                        if (counter == 3) {
-                                            counter = 0;
+                                        if (loginTrial > 3) {
+                                            //if the attempt is more than three times, record the time to lock the account
+                                            loginTrial = 0;
+                                            Map<String, Object> updates = new HashMap<>();
+                                            updates.put("loginTrial", loginTrial);
+                                            updates.put("attemptTime", System.currentTimeMillis());
+                                            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users").child(userId);
+                                            userRef.updateChildren(updates);
                                             Intent nextScreen = new Intent(getApplicationContext(), LoginFailed.class);
                                             startActivity(nextScreen);
                                             finish();
+                                        }else{
+                                            loginTrial++;
+                                            //update at Firebase Realtime Database the number of loginTrial
+                                            Map<String, Object> updates = new HashMap<>();
+                                            updates.put("loginTrial", loginTrial);
+                                            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users").child(userId);
+                                            userRef.updateChildren(updates);
                                         }
                                     }
                                 }
                             } else {
-                                counter++;
-                                Toast.makeText(ForgotPassword.this, "Wrong inputs", Toast.LENGTH_SHORT).show();
-                                //unsuccessful attempts for three times, go to Login Fail page
-                                if (counter == 3) {
-                                    counter = 0;
-                                    Intent nextScreen = new Intent(getApplicationContext(), LoginFailed.class);
-                                    startActivity(nextScreen);
-                                    finish();
-                                }
+                                //if the email does not exist at all, inform the user
+                                Toast.makeText(ForgotPassword.this, "Invalid Email", Toast.LENGTH_SHORT).show();
                             }
                         }
 

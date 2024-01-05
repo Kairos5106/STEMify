@@ -3,21 +3,21 @@
     <item
         android:id="@+id/homePageA"
         android:icon="@drawable/ic_mod_a"
-        android:title="ModA"/>
+        android:title="Learn"/>
     <item
         android:id="@+id/homePageB"
         android:icon="@drawable/ic_mod_b"
-        android:title="ModB"/>
+        android:title="Support"/>
     <item
         android:id="@+id/homePageC"
         android:icon="@drawable/ic_mod_c"
-        android:title="ModC"/>
+        android:title="Career"/>
     <item
         android:id="@+id/homePageD"
         android:icon="@drawable/ic_mod_d"
-        android:title="ModD"/>
+        android:title="Health"/>
     <item
         android:id="@+id/homePageE"
         android:icon="@drawable/ic_mod_e"
-        android:title="ModE"/>
+        android:title="Community"/>
 </menu>
