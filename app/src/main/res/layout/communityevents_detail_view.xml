@@ -13,7 +13,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="#FB6B92"
         android:elevation="4dp"
-        android:title="Healthy Lifestyle" />
+        android:title="Community Events" />
 
     <ScrollView
         android:layout_width="match_parent"

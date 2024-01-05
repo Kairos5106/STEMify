@@ -33,6 +33,10 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    packagingOptions {
+        resources.excludes.add("META-INF/*.md")
+
+    }
 }
 
 dependencies {
@@ -52,6 +56,8 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation("androidx.cardview:cardview:1.0.0")
     implementation ("com.squareup.picasso:picasso:2.71828")
+    implementation ("com.sun.mail:android-mail:1.6.6")
+    implementation ("com.sun.mail:android-activation:1.6.7")
     implementation("com.mesibo.api:webrtc:1.0.5")
     implementation("com.guolindev.permissionx:permissionx:1.6.1")
 }

@@ -98,6 +98,9 @@
         <activity
             android:name=".Splash2"
             android:exported="false" />
+        <activity 
+            android:name=".ui.moduleD.HealthGuidance"
+            android:exported="false"/>
         <activity
             android:name=".HealthGuide"
             android:exported="false" />
@@ -110,6 +113,10 @@
         <activity
             android:name=".HealthFitness"
             android:exported="false" />
+        <activity android:name=".CounselorBooking"
+            android:exported="false"/>
+        <activity android:name=".CommunityEventDetails"
+            android:exported="false"/>
         <activity
             android:name=".Cleanliness"
             android:exported="false" />
@@ -121,9 +128,6 @@
             android:exported="false" />
         <activity
             android:name=".HealthFitness"
-            android:exported="false" />
-        <activity
-            android:name=".Cleanliness"
             android:exported="false" />
         <activity
             android:name=".Counselor"
