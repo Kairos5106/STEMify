@@ -104,6 +104,9 @@
             android:exported="false"
             android:parentActivityName=".HomeActivity" />
         <activity
+            android:name=".ui.moduleC.ResourceDetails"
+            android:exported="false" />
+        <activity
             android:name=".HomeworkHelp_PostDetail"
             android:exported="false" />
         <activity
