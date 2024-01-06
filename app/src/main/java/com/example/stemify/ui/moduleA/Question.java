@@ -1,8 +1,15 @@
 package com.example.stemify.ui.moduleA;
 
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+import org.parceler.Parcel;
+
 import java.util.List;
 
-public class Question{
+@Parcel
+public class Question {
     String questionDesc;
     String correctAnswer;
     int diagramId; // image to further depict question

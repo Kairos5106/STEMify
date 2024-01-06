@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.ProxyFileDescriptorCallback;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ import com.example.stemify.R;
 import com.example.stemify.TestActivity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class SectionLibrary extends AppCompatActivity {
@@ -77,11 +79,14 @@ public class SectionLibrary extends AppCompatActivity {
         // Initializing list of topic items
         listOfItems = new ArrayList<Section>();
 
-        // Populate list with grade items
+        // Populate list with section items
+        // Section 1
         Section section1 = new Section("Section 1");
         VideoLesson material1a = new VideoLesson("Material 1a: Video Lesson");
-        Material material1b = new Material("Material 1b: Practice");
+        Practice material1b = new Practice("Material 1b: Practice");
         Material material1c = new Material("Material 1c: Quiz");
+
+        // Set video lesson details for Material1a
         material1a.setType("VideoLesson");
         material1a.setVideoResourceId(R.raw.samplevideo);
         material1a.setTranscript("Testing with the transcript");
@@ -90,34 +95,52 @@ public class SectionLibrary extends AppCompatActivity {
 //                "velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit " +
 //                "anim id est laborum.\n");
         material1b.setType("Practice");
+
+        // Set practice questions for Material 1b
+        MultipleChoice question1 = new MultipleChoice("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+        question1.addAnswer("Answer 1a");
+        question1.addAnswer("Answer 1b");
+        question1.addAnswer("Answer 1c");
+        question1.addAnswer("Answer 1d");
+        question1.setDiagramId(R.drawable.sampleimage);
+        question1.setCorrectAnswer("Answer 1a");
+        question1.setDiagramDesc("Sample Diagram Description");
+        material1b.addQuestion(question1);
+
+        FillBlank question5 = new FillBlank("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+        List<String> answer5 = new ArrayList<>();
+        answer5.add("Lorem");
+        answer5.add("ipsum");
+        question5.setCorrectAnswers(answer5);
+        material1b.addQuestion(question5);
+
+        MultipleChoice question2 = new MultipleChoice("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+        question2.addAnswer("Answer 2a");
+        question2.addAnswer("Answer 2b");
+        question2.addAnswer("Answer 2c");
+        question2.addAnswer("Answer 2d");
+        question2.setDiagramId(R.drawable.sampleimage);
+        question2.setCorrectAnswer("Answer 2a");
+        question2.setDiagramDesc("Sample Diagram Description");
+        material1b.addQuestion(question2);
+
+        FillBlank question3 = new FillBlank("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+        question3.addAnswer("Lorem");
+        question3.addAnswer("ipsum");
+        material1b.addQuestion(question3);
+
+        FillBlank question4 = new FillBlank("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+        question4.addAnswer("Lorem");
+        question4.addAnswer("ipsum");
+        material1b.addQuestion(question4);
+
+        // Setting questions for Material 1c
         material1c.setType("Quiz");
+
+        // Adding section 1 materials to list of items
         section1.addMaterial(material1a);
         section1.addMaterial(material1b);
         section1.addMaterial(material1c);
         listOfItems.add(section1);
-
-        Section section2 = new Section("Section 2");
-        Material material2a = new Material("Material 2a: Video Lesson");
-        Material material2b = new Material("Material 2b: Practice");
-        Material material2c = new Material("Material 2c: Quiz");
-        material2a.setType("VideoLesson");
-        material2b.setType("Practice");
-        material2c.setType("Quiz");
-        section2.addMaterial(material2a);
-        section2.addMaterial(material2b);
-        section2.addMaterial(material2c);
-        listOfItems.add(section2);
-
-        Section section3 = new Section("Section 3");
-        Material material3a = new Material("Material 3a: Video Lesson");
-        Material material3b = new Material("Material 3b: Practice");
-        Material material3c = new Material("Material 3c: Quiz");
-        material2a.setType("VideoLesson");
-        material2b.setType("Practice");
-        material2c.setType("Quiz");
-        section3.addMaterial(material3a);
-        section3.addMaterial(material3b);
-        section3.addMaterial(material3c);
-        listOfItems.add(section3);
     }
 }

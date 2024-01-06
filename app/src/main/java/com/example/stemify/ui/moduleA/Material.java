@@ -29,6 +29,7 @@ public class Material implements Parcelable {
     }
 
     protected Material(Parcel in) {
+        this();
         title = in.readString();
         type = in.readString();
         points = in.readInt();

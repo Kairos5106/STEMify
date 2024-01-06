@@ -96,9 +96,9 @@ public class QuizPage extends AppCompatActivity {
         listOfItems.add(question1);
 
         FillBlank question5 = new FillBlank("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
-        HashMap<Integer, String> answer5 = new HashMap<Integer, String>();
-        answer5.put(0, "Lorem");
-        answer5.put(1, "ipsum");
+        List<String> answer5 = new ArrayList<>();
+        answer5.add("Lorem");
+        answer5.add("ipsum");
         question5.setCorrectAnswers(answer5);
         listOfItems.add(question5);
 

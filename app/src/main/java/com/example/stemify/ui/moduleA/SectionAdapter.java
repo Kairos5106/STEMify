@@ -2,6 +2,7 @@ package com.example.stemify.ui.moduleA;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.stemify.R;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,19 +51,27 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.SectionV
 
         // Setting navigation to specific material page and transferring proper data to next
         materialAdapter.setOnItemClickListener(new MaterialAdapter.OnItemClickListener() {
+
             @Override
             public void onItemClick(int position) {
                 String materialType = listOfMaterial.get(position).getType();
                 Intent intent = new Intent();
+                Toast.makeText(context, "ItemPosition: " + (position+1), Toast.LENGTH_SHORT).show(); // debug
                 if("VideoLesson".equalsIgnoreCase(materialType)){
                     intent = new Intent(context, VideoLessonPage.class);
                     intent.putExtra("VideoLesson", listOfMaterial.get(position));
                 }
                 else if("Practice".equalsIgnoreCase(materialType)){
                     intent = new Intent(context, PracticePage.class);
+                    Toast.makeText(context, "Got it", Toast.LENGTH_SHORT).show(); // debug
+                    Practice practice = (Practice) listOfMaterial.get(position);
+                    List<Question> listOfQuestions = practice.getListOfQuestions();
+                    Parcelable practiceParcel = Parcels.wrap(listOfQuestions);
+                    intent.putExtra("Practice", practiceParcel);
                 }
                 else if("Quiz".equalsIgnoreCase(materialType)){
                     intent = new Intent(context, QuizPage.class);
+                    intent.putExtra("Quiz", listOfMaterial.get(position));
                 }
                 context.startActivity(intent);
             }

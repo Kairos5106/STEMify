@@ -7,12 +7,16 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.MenuItem;
 
 import com.example.stemify.R;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,7 +25,8 @@ import java.util.List;
 public class PracticePage extends AppCompatActivity {
     QuestionAdapter questionAdapter;
     RecyclerView recyclerView;
-    List<Question> listOfItems;
+    Material practice;
+    List<Question> listOfQuestions;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +60,7 @@ public class PracticePage extends AppCompatActivity {
         // Setup RecyclerView
         recyclerView = findViewById(R.id.RVPracticePage);
         recyclerView.setLayoutManager(new LinearLayoutManager(PracticePage.this));
-        questionAdapter = new QuestionAdapter(PracticePage.this, listOfItems);
+        questionAdapter = new QuestionAdapter(PracticePage.this, listOfQuestions);
         recyclerView.setAdapter(questionAdapter);
         questionAdapter.notifyDataSetChanged();
     }
@@ -72,44 +77,10 @@ public class PracticePage extends AppCompatActivity {
     }
 
     public void initializeData(){
-        listOfItems = new ArrayList<Question>();
+        Intent intent = getIntent();
 
-        // Populate listOfItems with sample question objects
-        MultipleChoice question1 = new MultipleChoice("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
-        question1.addAnswer("Answer 1a");
-        question1.addAnswer("Answer 1b");
-        question1.addAnswer("Answer 1c");
-        question1.addAnswer("Answer 1d");
-        question1.setDiagramId(R.drawable.sampleimage);
-        question1.setCorrectAnswer("Answer 1a");
-        question1.setDiagramDesc("Sample Diagram Description");
-        listOfItems.add(question1);
-
-        FillBlank question5 = new FillBlank("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
-        HashMap<Integer, String> answer5 = new HashMap<Integer, String>();
-        answer5.put(0, "Lorem");
-        answer5.put(1, "ipsum");
-        question5.setCorrectAnswers(answer5);
-        listOfItems.add(question5);
-
-        MultipleChoice question2 = new MultipleChoice("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
-        question2.addAnswer("Answer 2a");
-        question2.addAnswer("Answer 2b");
-        question2.addAnswer("Answer 2c");
-        question2.addAnswer("Answer 2d");
-        question2.setDiagramId(R.drawable.sampleimage);
-        question2.setCorrectAnswer("Answer 2a");
-        question2.setDiagramDesc("Sample Diagram Description");
-        listOfItems.add(question2);
-
-        FillBlank question3 = new FillBlank("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
-        question3.addAnswer("Lorem");
-        question3.addAnswer("ipsum");
-        listOfItems.add(question3);
-
-        FillBlank question4 = new FillBlank("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
-        question4.addAnswer("Lorem");
-        question4.addAnswer("ipsum");
-        listOfItems.add(question4);
+        // Collect parcelable object from intent
+        Parcelable practiceParcel = intent.getParcelableExtra("Practice");
+        listOfQuestions = Parcels.unwrap(practiceParcel);
     }
 }
