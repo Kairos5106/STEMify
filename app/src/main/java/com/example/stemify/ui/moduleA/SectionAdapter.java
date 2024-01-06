@@ -63,7 +63,6 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.SectionV
                 }
                 else if("Practice".equalsIgnoreCase(materialType)){
                     intent = new Intent(context, PracticePage.class);
-                    Toast.makeText(context, "Got it", Toast.LENGTH_SHORT).show(); // debug
                     Practice practice = (Practice) listOfMaterial.get(position);
                     List<Question> listOfQuestions = practice.getListOfQuestions();
                     Parcelable practiceParcel = Parcels.wrap(listOfQuestions);
@@ -71,7 +70,18 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.SectionV
                 }
                 else if("Quiz".equalsIgnoreCase(materialType)){
                     intent = new Intent(context, QuizPage.class);
-                    intent.putExtra("Quiz", listOfMaterial.get(position));
+
+                    Quiz quiz = (Quiz) listOfMaterial.get(position);
+
+                    List<Question> listOfQuestions = quiz.getListOfQuestions();
+                    int duration = quiz.getDuration();
+
+                    Toast.makeText(context, "listOfQuestions size: " + listOfQuestions.size(), Toast.LENGTH_SHORT).show(); // debug
+                    Parcelable quizQuestions = Parcels.wrap(listOfQuestions);
+                    Parcelable quizDuration = Parcels.wrap(duration);
+
+                    intent.putExtra("quizQuestions", quizQuestions);
+                    intent.putExtra("quizDuration", quizDuration);
                 }
                 context.startActivity(intent);
             }
