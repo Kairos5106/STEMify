@@ -19,6 +19,16 @@ public class MaterialAdapter extends RecyclerView.Adapter<MaterialAdapter.Materi
     Context context;
     List<Material> listOfMaterial;
 
+    OnItemClickListener mListener;
+
+    public void setOnItemClickListener(OnItemClickListener mListener) {
+        this.mListener = mListener;
+    }
+
+    public interface OnItemClickListener{
+        void onItemClick(int position);
+    }
+
     public MaterialAdapter(Context context, List<Material> listOfMaterial) {
         this.context = context;
         this.listOfMaterial = listOfMaterial;
@@ -38,7 +48,6 @@ public class MaterialAdapter extends RecyclerView.Adapter<MaterialAdapter.Materi
         holder.title.setText(material.getTitle());
         holder.masteryPoints.setText(material.getMasteryPoints());
         holder.icon.setImageResource(R.drawable.sampleimage); // change to material.getIconId() later
-        holder.setNavigationToNext(material.getType());
     }
 
     @Override
@@ -56,22 +65,16 @@ public class MaterialAdapter extends RecyclerView.Adapter<MaterialAdapter.Materi
             this.title = itemView.findViewById(R.id.TVMaterialTitle);
             this.masteryPoints = itemView.findViewById(R.id.TVMaterialMasteryPoints);
             this.icon = itemView.findViewById(R.id.IVMaterialIcon);
-        }
-
-        // Sets an onClickListener for the viewholder depending on the type of material passed
-        public void setNavigationToNext(String materialType){
-            if(materialType.equalsIgnoreCase("VideoLesson")){
-                goToMaterialPage = new Intent(context, VideoLessonPage.class);
-            } else if (materialType.equalsIgnoreCase("Practice")) {
-                goToMaterialPage = new Intent(context, PracticePage.class);
-            } else if (materialType.equalsIgnoreCase("Quiz")) {
-                goToMaterialPage = new Intent(context, QuizPage.class);
-            }
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    context.startActivity(goToMaterialPage);
+                    if(mListener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            mListener.onItemClick(position);
+                        }
+                    }
                 }
             });
         }

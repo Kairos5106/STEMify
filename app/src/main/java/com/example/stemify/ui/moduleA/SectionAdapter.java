@@ -1,10 +1,12 @@
 package com.example.stemify.ui.moduleA;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,12 +21,9 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.SectionV
     Context context;
     List<Section> listOfSection;
 
-    List<Material> listOfMaterial;
-
     public SectionAdapter(Context context, List<Section> listOfSection) {
         this.context = context;
         this.listOfSection = listOfSection;
-        this.listOfMaterial = new ArrayList<>();
     }
 
     @NonNull
@@ -41,11 +40,31 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.SectionV
         holder.title.setText(section.getTitle());
         holder.masteryPoints.setText(section.getMasteryPoints());
 
-        listOfMaterial = section.getListOfMaterial();
+        List<Material> listOfMaterial = section.getListOfMaterial();
         MaterialAdapter materialAdapter = new MaterialAdapter(context, listOfMaterial);
         holder.materialRV.setLayoutManager(new LinearLayoutManager(context));
         holder.materialRV.setAdapter(materialAdapter);
         materialAdapter.notifyDataSetChanged();
+
+        // Setting navigation to specific material page and transferring proper data to next
+        materialAdapter.setOnItemClickListener(new MaterialAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                String materialType = listOfMaterial.get(position).getType();
+                Intent intent = new Intent();
+                if("VideoLesson".equalsIgnoreCase(materialType)){
+                    intent = new Intent(context, VideoLessonPage.class);
+                    intent.putExtra("VideoLesson", listOfMaterial.get(position));
+                }
+                else if("Practice".equalsIgnoreCase(materialType)){
+                    intent = new Intent(context, PracticePage.class);
+                }
+                else if("Quiz".equalsIgnoreCase(materialType)){
+                    intent = new Intent(context, QuizPage.class);
+                }
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

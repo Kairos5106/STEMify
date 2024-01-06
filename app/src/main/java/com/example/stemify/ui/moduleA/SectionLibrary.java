@@ -7,12 +7,15 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.stemify.R;
+import com.example.stemify.TestActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,10 +79,16 @@ public class SectionLibrary extends AppCompatActivity {
 
         // Populate list with grade items
         Section section1 = new Section("Section 1");
-        Material material1a = new Material("Material 1a: Video Lesson");
+        VideoLesson material1a = new VideoLesson("Material 1a: Video Lesson");
         Material material1b = new Material("Material 1b: Practice");
         Material material1c = new Material("Material 1c: Quiz");
         material1a.setType("VideoLesson");
+        material1a.setVideoResourceId(R.raw.samplevideo);
+        material1a.setTranscript("Testing with the transcript");
+//        material1a.setTranscript("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim " +
+//                "veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate " +
+//                "velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit " +
+//                "anim id est laborum.\n");
         material1b.setType("Practice");
         material1c.setType("Quiz");
         section1.addMaterial(material1a);

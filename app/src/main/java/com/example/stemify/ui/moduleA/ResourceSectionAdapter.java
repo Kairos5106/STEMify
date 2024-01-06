@@ -19,7 +19,10 @@ import java.util.List;
 public class ResourceSectionAdapter extends RecyclerView.Adapter<ResourceSectionAdapter.ResourceSectionViewHolder> {
     Context context;
     List<Section> listOfSections;
-
+    OnItemClickListener mListener;
+    public interface OnItemClickListener{
+        void onItemClick(int position);
+    }
     public ResourceSectionAdapter(Context context, List<Section> listOfSections) {
         this.context = context;
         this.listOfSections = listOfSections;
@@ -69,6 +72,18 @@ public class ResourceSectionAdapter extends RecyclerView.Adapter<ResourceSection
             this.sectionTitle = itemView.findViewById(R.id.ETSubtopicTitle);
             this.sectionDelete = itemView.findViewById(R.id.BtnSubtopicDelete);
             this.sectionEdit = itemView.findViewById(R.id.BtnSubtopicEdit);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(mListener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            mListener.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 }

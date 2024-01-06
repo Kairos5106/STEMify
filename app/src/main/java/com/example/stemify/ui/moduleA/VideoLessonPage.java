@@ -7,6 +7,7 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -21,14 +22,15 @@ import com.example.stemify.R;
 public class VideoLessonPage extends AppCompatActivity {
     TranscriptAdapter transcriptAdapter;
     RecyclerView recyclerView;
-    String transcript = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim " +
-                        "veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate " +
-                        "velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit " +
-                        "anim id est laborum.\n";
+    VideoView videoView;
+    VideoLesson videoLesson;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_lesson_page);
+
+        // Get data from Section page
+        initializeData();
 
         // Enable back button in the action bar
         Toolbar toolbar = findViewById(R.id.TBVideoLesson);
@@ -46,10 +48,16 @@ public class VideoLessonPage extends AppCompatActivity {
         Drawable arrow = AppCompatResources.getDrawable(this, R.drawable.ic_arrow_back);
         DrawableCompat.setTint(arrow, Color.WHITE);
         getSupportActionBar().setHomeAsUpIndicator(arrow);
+    }
 
-        // Setup VideoView
-        VideoView videoView = findViewById(R.id.VVVideoLesson);
-        videoView.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.samplevideo));
+    private void initializeData() {
+        // Get parcelable object
+        Intent intent = getIntent();
+        videoLesson = (VideoLesson) intent.getParcelableExtra("VideoLesson");
+
+        // Get video data and setup VideoView
+        videoView = findViewById(R.id.VVVideoLesson);
+        videoView.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + videoLesson.getVideoResourceId()));
         MediaController mediaController = new MediaController(this);
         videoView.setMediaController(mediaController);
         mediaController.setAnchorView(videoView);
@@ -62,7 +70,7 @@ public class VideoLessonPage extends AppCompatActivity {
         // Setup transcript adapter to fit in transcript
         recyclerView = findViewById(R.id.RVTranscript);
         recyclerView.setLayoutManager(new LinearLayoutManager(VideoLessonPage.this));
-        transcriptAdapter = new TranscriptAdapter(VideoLessonPage.this, transcript);
+        transcriptAdapter = new TranscriptAdapter(VideoLessonPage.this, videoLesson.getTranscript());
         recyclerView.setAdapter(transcriptAdapter);
         transcriptAdapter.notifyDataSetChanged();
     }

@@ -1,5 +1,6 @@
 package com.example.stemify.ui.moduleA;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.stemify.DownloadAdapter;
 import com.example.stemify.DownloadItem;
@@ -46,6 +48,16 @@ public class ResourceLibrary extends Fragment {
         subjectAdapter = new SubjectAdapter(getContext(), listOfItems);
         recyclerView.setAdapter(subjectAdapter);
         subjectAdapter.notifyDataSetChanged();
+
+
+        // Upon clicking a subject, user will be redirected to a page listing the topics of the subject
+        subjectAdapter.setOnItemClickListener(new SubjectAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent goToGradeLibrary = new Intent(getContext(), GradeLibrary.class);
+                startActivity(goToGradeLibrary);
+            }
+        });
     }
 
     public void initalizeData(){

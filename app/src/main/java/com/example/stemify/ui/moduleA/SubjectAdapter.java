@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +19,14 @@ import java.util.List;
 public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectViewHolder> {
     Context context;
     List<Subject> listOfSubjects;
+    OnItemClickListener mListener;
+    public interface OnItemClickListener{
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        mListener = listener;
+    }
 
     public SubjectAdapter(Context context, List<Subject> listOfSubjects) {
         this.context = context;
@@ -50,9 +59,12 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.SubjectV
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // Upon clicking a subject, user will be redirected to a page listing the topics of the subject
-                    Intent goToGradeLibrary = new Intent(context, GradeLibrary.class);
-                    context.startActivity(goToGradeLibrary);
+                    if(mListener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION) {
+                            mListener.onItemClick(position);
+                        }
+                    }
                 }
             });
         }

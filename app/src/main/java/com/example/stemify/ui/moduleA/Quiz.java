@@ -1,6 +1,6 @@
 package com.example.stemify.ui.moduleA;
 
-public class Quiz extends Material{
+public class Quiz extends Practice{
     int duration; // in minutes
     int completedQuestions;
 

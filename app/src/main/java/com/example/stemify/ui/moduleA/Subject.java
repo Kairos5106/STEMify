@@ -1,5 +1,10 @@
 package com.example.stemify.ui.moduleA;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +14,7 @@ public class Subject {
 
     public Subject(String subjectTitle) {
         this.subjectTitle = subjectTitle;
-        this.listOfGrades = new ArrayList<>();
+        this.listOfGrades = new ArrayList<Grade>();
     }
 
     public String getSubjectTitle() {

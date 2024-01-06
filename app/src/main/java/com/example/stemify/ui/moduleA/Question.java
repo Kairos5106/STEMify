@@ -2,7 +2,7 @@ package com.example.stemify.ui.moduleA;
 
 import java.util.List;
 
-public class Question {
+public class Question{
     String questionDesc;
     String correctAnswer;
     int diagramId; // image to further depict question
