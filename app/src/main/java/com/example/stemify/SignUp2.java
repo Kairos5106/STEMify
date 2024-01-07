@@ -136,7 +136,7 @@ public class SignUp2 extends Fragment {
                 if(hasInput && selectionChecker){
 
                     //check if the password has more than 6 characters
-                    if(ETRegPassword.getText().toString().length()>6){
+                    if(ETRegPassword.getText().toString().length()>=6){
                         //check if password == confirm password
                         if(ETRegPassword.getText().toString().equals(ETConfirmRegPassword.getText().toString())) {
                             String answer = ETRegAns.getText().toString();

@@ -111,7 +111,7 @@ public class setting_editpassword extends Fragment {
                 if(hasInput){
                     //override the old password with the new password in the database
                     String newPassword = ETNewPassword.getText().toString();
-                    if(newPassword.length()>6){
+                    if(newPassword.length()>=6){
                         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
                         if (currentUser != null) {
 

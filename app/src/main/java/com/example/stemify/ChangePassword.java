@@ -69,7 +69,7 @@ public class ChangePassword extends AppCompatActivity {
                     //override the old password with the new password in the database
                     String newPassword = ETNewPassword.getText().toString();
 
-                    if(newPassword.length()>6){
+                    if(newPassword.length()>=6){
                         if(newPassword.equals(ETConfirmNewPassword.getText().toString())){
                             FirebaseAuth mAuth = FirebaseAuth.getInstance();
                             mAuth.signInWithEmailAndPassword(email, password)
