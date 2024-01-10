@@ -15,7 +15,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.stemify.HomeworkHelp_TagsInputEditText;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -74,8 +73,6 @@ public class HomeworkHelp_NewQuestion extends AppCompatActivity {
         TextView TVUsername = findViewById(R.id.TVUsername);
         ETQuestion = findViewById(R.id.ETQuestion);
         ETDescription = findViewById(R.id.ETDescription);
-        TextInputLayout TagsLayout = findViewById(R.id.TagsLayout);
-        HomeworkHelp_TagsInputEditText ETTags = findViewById(R.id.ETTags);
         Button BtnPost = findViewById(R.id.BtnPost);
 
         // Load current user profile pic from Realtime Database
@@ -117,8 +114,6 @@ public class HomeworkHelp_NewQuestion extends AppCompatActivity {
 
                 // Test all input fields (Title, description, tags), if all fields are filled:
 
-                List<String> tags = ETTags.getTags();
-
                 if (!ETQuestion.getText().toString().isEmpty() &&
                         !ETDescription.getText().toString().isEmpty() /*&&
                         ETTags != null &&
@@ -127,7 +122,6 @@ public class HomeworkHelp_NewQuestion extends AppCompatActivity {
                     // Save data to DataManager for later use
                     postDataManager.putPostData("question", ETQuestion.getText().toString());
                     postDataManager.putPostData("description", ETDescription.getText().toString());
-                    postDataManager.putPostData("tags", tags);
 
                     // Create post object
                     HomeworkHelp_Post post = new HomeworkHelp_Post(ETQuestion.getText().toString(),
@@ -152,8 +146,8 @@ public class HomeworkHelp_NewQuestion extends AppCompatActivity {
     private void addPost(HomeworkHelp_Post post) {
 
         // Get an instance of the Firebase Realtime Database
-        // If a db instance doesn't alrd exist, it will create one
-        // If a db instance alrd exists, it will return the existing instance
+        // If a db instance doesn't already exist, it will create one
+        // If a db instance already exists, it will return the existing instance
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
         // Create a reference to the "Posts" node and generate a unique key using push()
