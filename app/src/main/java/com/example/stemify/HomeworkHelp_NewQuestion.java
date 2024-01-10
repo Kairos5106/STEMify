@@ -45,6 +45,9 @@ public class HomeworkHelp_NewQuestion extends AppCompatActivity {
     private String userPhotoUrl;
     private String username;
 
+    EditText ETQuestion;
+    EditText ETDescription;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +72,8 @@ public class HomeworkHelp_NewQuestion extends AppCompatActivity {
         // Binding
         ImageView IVProfilePic = findViewById(R.id.IVProfilePic);
         TextView TVUsername = findViewById(R.id.TVUsername);
-        EditText ETQuestion = findViewById(R.id.ETQuestion);
-        EditText ETDescription = findViewById(R.id.ETDescription);
+        ETQuestion = findViewById(R.id.ETQuestion);
+        ETDescription = findViewById(R.id.ETDescription);
         TextInputLayout TagsLayout = findViewById(R.id.TagsLayout);
         HomeworkHelp_TagsInputEditText ETTags = findViewById(R.id.ETTags);
         Button BtnPost = findViewById(R.id.BtnPost);
@@ -169,6 +172,8 @@ public class HomeworkHelp_NewQuestion extends AppCompatActivity {
                         Log.d("Debug", "Post added successfully");
                         String messageOnSuccess = "Post added successfully.";
                         Toast.makeText(HomeworkHelp_NewQuestion.this, messageOnSuccess, Toast.LENGTH_LONG).show();
+                        ETQuestion.setText("");
+                        ETDescription.setText("");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
