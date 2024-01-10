@@ -41,55 +41,42 @@
     \nHaving a healthy diet and exercising aren\'t the only contributors in having a healthy lifestyle, socialise with your peers and have some fun once in a while to keep yourself
     (mind and body) healthy and free of stress\n</string>
 
-    <string name="mental_main"> It is understandable to feel scared, anxious or helpless during this
-        unprecedented time. But whatever situation you are in and wherever you are in the World,
-        you have the power to look after your mental health and well-being.</string>
+    <string name="mental_main">Mental health is crucial, but what about understanding the science behind it? Unravel the brain\'s adaptability with neuroplasticity, uncover the neurotransmitters that sway emotions, and understand your
+        stress response system. Get set to dive deep into the fascinating science that underpins mental health!</string>
 
-    <string name="mental_1">Amidst the whirlwind of academics and social engagements, remember to prioritize self-care. This includes nourishing your body with proper nutrition, getting adequate sleep, and engaging in physical activity.
-        Taking care of yourself physically can profoundly impact your mental health. Small acts of self-care can make a big difference in how you feel every day.</string>
-
-    <string name="mental_2">It’s okay to feel down sometimes. Life has its highs and lows, and experiencing a range of emotions is entirely normal. Don’t be too hard on yourself for feeling sad, anxious, or stressed. Acknowledging these
-        emotions and allowing yourself to feel them is an essential part of coping and healing. Remember, it’s okay not to be okay sometimes.</string>
-
-    <string name="mental_3">Try to continue doing the activities that you find meaningful and enjoyable, such as cooking for yourself or your loved ones, playing with your pet, walking in the park, reading a book, or watching a film or TV series.
-        Having a regular routine with activities that make you feel happy will help you maintain good mental health.</string>
-
-    <string name="mental_4">You\'re not alone in this journey. Having a support network can make a world of difference. Whether it\'s friends, family, teachers, or counselors, having someone to confide in can provide comfort and guidance during tough
-        times. Don’t hesitate to seek help when you need it. Support is crucial for maintaining good mental health.</string>
-
+    <string name="mental_1">Think of your brain as a flexible gym for mental fitness! Neuroplasticity highlights your brain\'s ability to adapt and grow, shaping how you learn and cope with challenges. Its the secret ingredient behind building resilience and positive mental habits.</string>
+    <string name="mental_2">Imagine your brain as a chemical orchestra! Serotonin, dopamine, and other neurotransmitters dictate your mood, motivation, and stress responses. They\'re the conductors ensuring your brain\'s performance stays in harmony.</string>
+    <string name="mental_3">Your brain, the superhero managing stress! The amygdala acts like a vigilant guard, orchestrating your body\'s fight-or-flight response. Its your brain\'s way of preparing you for action in demanding situations.</string>
+    <string name="mental_4">Picture your brain and body as dance partners! Your thoughts and emotions have a direct impact on your physical well-being, showcasing the strong link between mental health and overall health. It\'s a seamless coordination for your overall wellness!</string>
     <string name="mental_5">Help free yourself of constantly swirling thoughts by reconnecting yourself with where you are at this moment in time. Follow along with the video below or simply take three slow deep breaths, feel your feet grounded on the floor</string>
 
-    <string name="clean_main">Cleanliness is the most important habit one can possess, as cleanliness and health are interrelated.\n
-    So how to keep it clean? </string>
+    <string name="clean_main">Many people equate hygiene with "cleanliness", but hygiene is a broad term. It includes such personal habit choices as how frequently to take a shower or bath, wash hands, trim fingernails, and wash clothes. It also includes attention to keeping surfaces in the home and workplace clean, including bathroom facilities.\n
+    So, when did it all start?</string>
 
-    <string name="clean_wash">Your hands may look clean but doesn’t necessarily mean they are. Wash hand properly and thoroughly with soap and water</string>
+    <string name="clean_wash">The history of hygiene spans civilizations, evolving from early practices like ancient bathing rituals to the modern understanding of germ theory, prompting advancements in sanitation, clean water access, and public health measures.</string>
 
-    <string name="clean_bath">Showering twice a day in the ideal way to keep our bodies clean and hygiene. Not only does it keep our body clean, it also makes us feel clean and more comfortable. It is important to make sure to clean your entire body in the shower.\n
-    Showering 5-10 minutes a day is a suitable amount of time for soaping up and rinsing off. Keeping our bodies clean ultimately help us to be more healthy! </string>
+    <string name="clean_germs">The exploration of pivotal scientific moments in cleanliness history involves significant milestones, such as the discovery of bacteria by Antonie van Leeuwenhoek in the 17th century, revolutionizing our understanding of hygiene and prompting advancements in public health measures.</string>
 
-    <string name="clean_teeth">Taking care of your teeth and gums is vital for good oral health, especially in areas with limited resources. Brushing teeth twice daily with fluoride toothpaste, using traditional methods like chewing sticks or neem twigs, and visiting
-        a local dental worker can help prevent tooth decay and gum disease.\nRegular care ensures healthier smiles and reduces dental issues even in areas with fewer resources.</string>
+    <string name="clean_micro">Microbes are like the superheroes and villains of our body—they help with digestion but can also cause diseases. Learning about them is like uncovering a tiny, invisible world that impacts our health!</string>
 
-    <string name="clean_cloth">It\'s recommended to wash clothes regularly, especially undergarments and those worn close to the skin, after each use or every few wears, depending on the level of activity and sweat. Airing clothes in the sun also helps reduce odors and keeps clothes clean.\n
-    Regular washing is crucial as it prevents skin infections, improves personal hygiene and makes life healthier and more comfortable.</string>
+    <string name="clean_micro2">The exploration of the human microbiome, the vast community of microbes living in and on our bodies, has been a recent focus. This area of research has unveiled surprising connections between microbial communities and our health, influencing everything from our immune system to mental well-being.
+        \n\nUnderstanding the microbial world has transformed hygiene practices. From the development of effective antibiotics to the implementation of stringent sterilization techniques, STEM-driven innovations have significantly improved sanitation standards, minimizing the risk of infectious diseases.</string>
 
-    <string name="fit_main">Explore the benefits of exercising outdoors, enhancing brain health through meditation, and making small yet impactful exercise choices. Remember, a balanced routine is key to a healthier mind and body</string>
+   <string name="clean_practice">Now that we know more about hygiene, how do we practice living a clean and hygienic lifestyle?\nIts easy, make sure
+   to always take care of your personal hygiene by washing your wash every morning and evening, brushing your teeth for at least 3 times a day and taking a bath for a minimum
+   of 2 times a day. Always remember to wash your hands and feet to prevent the unwanted microorganisms entering your body.</string>
 
-    <string name="fit_hiking">Who needs a gym membership when you have the outdoors?\n
-	Outdoor exercise has a stronger effect on blood pressure and mood than indoor exercise. Stress is relieved within minutes of exposure to nature as measured by muscle tension, blood pressure, and brain activity.\
-        To put it simply, time spent outside is good for you!</string>
+    <string name="clean_future">In the world of tomorrow, cleanliness is taking on a whole new dimension. Picture this: cleaning robots zipping around using UV-C rays to zap germs out of existence, smart toilets analyzing health data, and surfaces that stay spotless, all thanks to innovative technology. But it is not just about being tidy; it is
+        about being eco-smart too! The future of cleanliness embraces sustainability with biodegradable products and zero-waste practices. And lets not forget the personalized touch – from skincare customized for your skin type to hygiene routines tailored to your needs, cleanliness in the future is all about personalized, tech-savvy, and eco-friendly approaches.</string>
 
-    <string name="fit_yoga">With your eyes closed, simply breathe in while saying "breathe in" in your head as you do. Then breathe out and say "breathe out". For the next 20 minutes or so, your aim is to focus on this circular breath and the simple words in your head as much as possible.\n
-	Focusing on your brain health is one of the best things you can do to improve your concentration, focus, memory, and mental agility, no matter what age you are.</string>
+    <string name="fit_main">Explore the captivating biology behind health and fitness, delving into how our bodies function during exercise, recover, and adapt. Uncover the intricate interplay of muscles, metabolism, and endurance that empowers us in our pursuit of a healthier lifestyle.</string>
+    <string name="fit_cardio">Picture your heart as a champion athlete! Through regular exercise, it pumps more efficiently, just like a supercharged engine, delivering oxygen and nutrients to your muscles faster. Its like your heart upgrading to a turbo mode!</string>
 
-    <string name="fit_squat">When you\'re feeling too lazy and tired to exercise, these are some activities you can follow that can help.\nSquatting and stretching!\n
-    Squats burn calories and might help you lose weight. They also lower your chances of injuring your knees and ankles.\nStretching keeps your muscles flexible, strong and healthy, and we need that flexibility to maintain a range of motion in the joints. </string>
-
-    <string name="fit_rest">Sometimes all you need is a good lazy day where you do not make your muscles and body more tired. Taking rest days can improve sleep, much like regular exercises. Moreover, lack of sleep may result in low motivation to take part in leisure activities. Always have a good balance in keeping your body and mind fit. </string>
+    <string name="fit_yoga">Your brain becomes a happy factory during exercise! It releases mood-lifting chemicals called endorphins, making you feel like you have just had a dose of joy. Its like a dance party for your brain cells!</string>
+    <string name="fit_muscle">Think of muscles as adaptable superheroes! When you exercise, they respond by repairing and growing stronger. Imagine them like construction workers building a fortress; each workout adds more strength and resilience</string>
+    <string name="fit_rest">Your body becomes a metabolic magician during workouts! It shifts gears between different energy systems, burning calories like a furnace and giving you that energized feeling. Think of it as your body\'s power-up mode, turning you into a calorie-burning superhero!</string>
 
     <string name="event1">The World Health Assembly is the decision-making body of WHO. It is attended by delegations from all WHO Member States and focuses on a specific health agenda to notify all the citizens on the World Health Association and the upcoming projects. People from all around the world are invited to join the assembly</string>
-    <string name="event2">MedicHealth is proud to offer a comprehensive medical check-up to prioritize your well-being. Join us for this special event where everyone in the community can benefit from a free health assessment.\nEarly attendees will receive special giveaways and informative handouts. Do not miss this chance to take charge of your health.
-    \nSave the date and join MedicHealth for this essential event.</string>
-    <string name="event3">Join us at SMK Padang Besar for an interactive workshop on proper teeth brushing techniques for our young ones. This fun event aims to educate young learners on essential dental care in an engaging way.</string>
-
+    <string name="event2">Come join us in investigating the science behind mental health and how it is transmitted in the brain. With a group of talented professors from University Sabah Malaysia, watch us unfold how the brain and mental health are interrelated. Free admission so save the date and join!</string>
+    <string name="event3">Technology and Wellness are about to reach great lengths, join TechCares as they share how technology can positively impact the environment in ensuring a healthy life for the future generations. With insights and lucky draw sessions in the end, this forum is going to be on of the best yet!</string>
 </resources>

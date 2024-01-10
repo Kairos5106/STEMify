@@ -56,4 +56,5 @@ dependencies {
     implementation ("com.squareup.picasso:picasso:2.71828")
     implementation ("com.sun.mail:android-mail:1.6.6")
     implementation ("com.sun.mail:android-activation:1.6.7")
+    implementation ("com.google.android.gms:play-services-location:19.0.1")
 }
