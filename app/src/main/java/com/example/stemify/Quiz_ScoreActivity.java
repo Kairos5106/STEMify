@@ -34,11 +34,13 @@ public class Quiz_ScoreActivity extends AppCompatActivity {
         TVTotalDigit = findViewById(R.id.TVTotalDigit);
         TVTitleYourScore = findViewById(R.id.TVTitleYourScore);
 
+        // Display score and total
         score = getIntent().getIntExtra("score", 0);
         total = getIntent().getIntExtra("total", 0);
         TVScoreDigit.setText(String.valueOf(score));
         TVTotalDigit.setText(String.valueOf(total));
 
+        // Set title of score screen according to student score
         if (score == total) {
             TVTitleYourScore.setText("Congratulations!");
         } else if (score == 0) {
