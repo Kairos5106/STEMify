@@ -76,7 +76,7 @@ public class Quiz_StartQuiz extends AppCompatActivity {
         // Set the title for the app bar for this particular page
         setTitle("Quiz");
 
-        // Binding
+        // Binding UI elements
         TVQuizQuestion = findViewById(R.id.TVQuizQuestion);
         TVIndicator = findViewById(R.id.TVIndicator);
         BtnAns1 = findViewById(R.id.BtnAns1);
@@ -132,11 +132,11 @@ public class Quiz_StartQuiz extends AppCompatActivity {
                     listQuestionData.add(new Quiz_QuestionData(option1, option2, option3, option4, question, correctAnswer));
                 }
 
-                // Load the question that was retrieved from the database into the activity screen
+                // Load the first question onto the activity screen
                 if (listQuestionData.size() > 0) {
                     loadQuestion(TVQuizQuestion, 0, listQuestionData.get(position).getQuestion());
 
-                    // When student click on one of the mcq options
+                    // Set click listener for the mcq options
                     for (int i = 0 ; i < 4 ; i++) {
                         LinearLayoutOptions.getChildAt(i).setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -146,7 +146,7 @@ public class Quiz_StartQuiz extends AppCompatActivity {
                         });
                     }
 
-                    // Button to go to next question
+                    // Button BtnNextQuestionQuiz listener to go to next question
                     BtnNextQuestionQuiz.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -155,6 +155,7 @@ public class Quiz_StartQuiz extends AppCompatActivity {
                             enabled(true);
                             position++;
 
+                            // If reach end of quiz, show the score
                             if (position == listQuestionData.size()) {
                                 Intent intent = new Intent(Quiz_StartQuiz.this, Quiz_ScoreActivity.class);
                                 intent.putExtra("score", score);
@@ -164,6 +165,7 @@ public class Quiz_StartQuiz extends AppCompatActivity {
                                 return;
                             }
 
+                            // Load next question
                             count = 0;
                             loadQuestion(TVQuizQuestion, 0, listQuestionData.get(position).getQuestion());
 
@@ -186,9 +188,12 @@ public class Quiz_StartQuiz extends AppCompatActivity {
 
     private void loadQuestion(View view, int value, String data) {
 
+        // Reset background tint for options
         for (int i = 0 ; i < 4 ; i++) {
             LinearLayoutOptions.getChildAt(i).setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#989898")));
         }
+
+        // Animate question loading
         view.animate().alpha(value).scaleX(value).scaleY(value).setDuration(500)
                 .setStartDelay(100).setInterpolator(new DecelerateInterpolator())
                 .setListener(new Animator.AnimatorListener() {
@@ -220,6 +225,7 @@ public class Quiz_StartQuiz extends AppCompatActivity {
 
                     @Override
                     public void onAnimationEnd(@NonNull Animator animation) {
+                        // Next question
                         if (value == 0) {
 
                             try {
@@ -252,6 +258,7 @@ public class Quiz_StartQuiz extends AppCompatActivity {
         BtnNextQuestionQuiz.setEnabled(true);
         BtnNextQuestionQuiz.setAlpha(1);
 
+        // Check student answer is correct or not
         if (selectedOption.getText().toString().equals(listQuestionData.get(position).getAnswer())) {
             score++;
             selectedOption.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#4CAF50")));
