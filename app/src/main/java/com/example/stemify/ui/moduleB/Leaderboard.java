@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.stemify.HomeworkHelp_NewQuestion;
 import com.example.stemify.Leaderboard_Ranking_Adapter;
+import com.example.stemify.Quiz_StartQuiz;
 import com.example.stemify.R;
 import com.example.stemify.User;
 import com.example.stemify.ui.moduleA.Downloads;
@@ -113,11 +114,11 @@ public class Leaderboard extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getActivity(), "Button clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Start Quiz", Toast.LENGTH_SHORT).show();
 
                 // Create an Intent to start HomeworkHelp_NewQuestion activity
-                Intent intent = new Intent(getActivity(), QuizPage.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                Intent intent = new Intent(getActivity(), Quiz_StartQuiz.class);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
 
             }
