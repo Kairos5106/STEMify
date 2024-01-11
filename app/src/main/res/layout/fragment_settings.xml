@@ -164,30 +164,6 @@
                 android:layout_marginTop="5dp"
                 android:background="@drawable/ic_setting_divider" />
 
-            <RelativeLayout
-                android:id="@+id/ClickableLinkedDevices"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:clickable="true">
-
-                <TextView
-                    android:id="@+id/TVLinkedDevices"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="Linked Devices"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textSize="16sp"/>
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="13dp"
-                    android:src="@drawable/ic_arrow_right_24"
-                    android:layout_alignParentEnd="true"/>
-            </RelativeLayout>
-
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"

@@ -23,6 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ChangePassword extends AppCompatActivity {
     String email;
@@ -61,60 +63,72 @@ public class ChangePassword extends AppCompatActivity {
                     ETNewPassword.setError("Enter a new password");
                     hasInput = false;
                 }
+
                 if(isEmpty(ETConfirmNewPassword)){
                     ETConfirmNewPassword.setError("Confirm your password");
                     hasInput = false;
                 }
+
+                if(!isEmpty(ETNewPassword)){
+                    //check if the password has more than 6 characters
+                    if(ETNewPassword.getText().toString().length()>=6){
+                        boolean checker = hasTwoNonAlphaCharacters(ETNewPassword.getText().toString());
+                        if(!checker){
+                            ETNewPassword.setError("Requirements not fulfilled!");
+                        }
+                        hasInput = checker;
+                    }else{
+                        hasInput = false;
+                        TextView TVWeakNewPass = findViewById(R.id.TVWeakNewPass);
+                        TVWeakNewPass.setTextColor(Color.RED);
+                    }
+                }
+
                 if(hasInput){
                     //override the old password with the new password in the database
                     String newPassword = ETNewPassword.getText().toString();
 
-                    if(newPassword.length()>=6){
-                        if(newPassword.equals(ETConfirmNewPassword.getText().toString())){
-                            FirebaseAuth mAuth = FirebaseAuth.getInstance();
-                            mAuth.signInWithEmailAndPassword(email, password)
-                                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<AuthResult> task) {
-                                            if (task.isSuccessful()) {
-                                                FirebaseUser user = mAuth.getCurrentUser();
-                                                user.updatePassword(newPassword)
-                                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                            @Override
-                                                            public void onComplete(@NonNull Task<Void> task) {
-                                                                if (task.isSuccessful()) {
-                                                                    //password updated successfully (at Firebase User Authentication)
-                                                                    //update at Firebase Realtime Database too
-                                                                    Map<String, Object> updates = new HashMap<>();
-                                                                    updates.put("password", newPassword);
-                                                                    DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users").child(user.getUid());
-                                                                    userRef.updateChildren(updates);
+                    if(newPassword.equals(ETConfirmNewPassword.getText().toString())){
+                        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                        mAuth.signInWithEmailAndPassword(email, password)
+                                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        if (task.isSuccessful()) {
+                                            FirebaseUser user = mAuth.getCurrentUser();
+                                            user.updatePassword(newPassword)
+                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                            if (task.isSuccessful()) {
+                                                                //password updated successfully (at Firebase User Authentication)
+                                                                //update at Firebase Realtime Database too
+                                                                Map<String, Object> updates = new HashMap<>();
+                                                                updates.put("password", newPassword);
+                                                                DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users").child(user.getUid());
+                                                                userRef.updateChildren(updates);
 
-                                                                    //move to password change done page to inform the user that their password has changed
-                                                                    Intent nextScreen = new Intent(getApplicationContext(), PasswordChangeDone.class);
-                                                                    startActivity(nextScreen);
-                                                                    finish();
-                                                                } else {
-                                                                    // If updating the password fails, display a message to the user
-                                                                    Toast.makeText(getApplicationContext(), "Failed to update password", Toast.LENGTH_SHORT).show();
-                                                                }
+                                                                //move to password change done page to inform the user that their password has changed
+                                                                Intent nextScreen = new Intent(getApplicationContext(), PasswordChangeDone.class);
+                                                                startActivity(nextScreen);
+                                                                finish();
+                                                            } else {
+                                                                // If updating the password fails, display a message to the user
+                                                                Toast.makeText(getApplicationContext(), "Failed to update password", Toast.LENGTH_SHORT).show();
                                                             }
-                                                        });
-                                            } else {
-                                                Toast.makeText(getApplicationContext(), "Failed to retrieve account", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    });
+                                        } else {
+                                            Toast.makeText(getApplicationContext(), "Failed to retrieve account", Toast.LENGTH_SHORT).show();
 
-                                            }
                                         }
-                                    });
-                            FirebaseAuth.getInstance().signOut();
-                        }else{
-                            TextView TVIncorrectPass = findViewById(R.id.TVIncorrectPass);
-                            TVIncorrectPass.setText("Password Mismatch");
-                            TVIncorrectPass.setTextColor(Color.RED);
-                        }
+                                    }
+                                });
+                        FirebaseAuth.getInstance().signOut();
                     }else{
-                        TextView TVWeakNewPass = findViewById(R.id.TVWeakNewPass);
-                        TVWeakNewPass.setTextColor(Color.RED);
+                        TextView TVIncorrectPass = findViewById(R.id.TVIncorrectPass);
+                        TVIncorrectPass.setText("Password Mismatch");
+                        TVIncorrectPass.setTextColor(Color.RED);
                     }
                 }
             }
@@ -123,5 +137,19 @@ public class ChangePassword extends AppCompatActivity {
     boolean isEmpty(EditText text){
         CharSequence str = text.getText().toString();
         return TextUtils.isEmpty(str);
+    }
+
+    boolean hasTwoNonAlphaCharacters(String inputString) {
+        Pattern pattern = Pattern.compile("[^a-zA-Z]");
+        Matcher matcher = pattern.matcher(inputString);
+
+        int nonAlphaCount = 0;
+        while (matcher.find()) {
+            nonAlphaCount++;
+            if (nonAlphaCount >= 2) {
+                return true;
+            }
+        }
+        return false;
     }
 }

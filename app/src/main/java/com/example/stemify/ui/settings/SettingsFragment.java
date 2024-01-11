@@ -172,14 +172,6 @@ public class SettingsFragment extends Fragment {
             }
         });
 
-        ClickableLinkedDevices = view.findViewById(R.id.ClickableLinkedDevices);
-        ClickableLinkedDevices.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.setting_otherdevices);
-            }
-        });
-
         //button to log out
         BtnLogout = view.findViewById(R.id.BtnLogout);
         BtnLogout.setOnClickListener(new View.OnClickListener() {
