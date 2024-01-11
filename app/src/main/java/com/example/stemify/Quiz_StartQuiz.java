@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.animation.Animator;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -134,6 +135,41 @@ public class Quiz_StartQuiz extends AppCompatActivity {
                 // Load the question that was retrieved from the database into the activity screen
                 if (listQuestionData.size() > 0) {
                     loadQuestion(TVQuizQuestion, 0, listQuestionData.get(position).getQuestion());
+
+                    // When student click on one of the mcq options
+                    for (int i = 0 ; i < 4 ; i++) {
+                        LinearLayoutOptions.getChildAt(i).setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                checkAnswer((Button)view);
+                            }
+                        });
+                    }
+
+                    // Button to go to next question
+                    BtnNextQuestionQuiz.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            BtnNextQuestionQuiz.setEnabled(false);
+                            BtnNextQuestionQuiz.setAlpha(0.7f);
+                            enabled(true);
+                            position++;
+
+                            if (position == listQuestionData.size()) {
+                                Intent intent = new Intent(Quiz_StartQuiz.this, Quiz_ScoreActivity.class);
+                                intent.putExtra("score", score);
+                                intent.putExtra("total", listQuestionData.size());
+                                startActivity(intent);
+                                finish();
+                                return;
+                            }
+
+                            count = 0;
+                            loadQuestion(TVQuizQuestion, 0, listQuestionData.get(position).getQuestion());
+
+                        }
+                    });
+
                 } else {
                     Toast.makeText(Quiz_StartQuiz.this, "No data found.", Toast.LENGTH_SHORT).show();
                 }
@@ -209,6 +245,33 @@ public class Quiz_StartQuiz extends AppCompatActivity {
                     }
                 });
 
+    }
+
+    private void checkAnswer(Button selectedOption) {
+        enabled(false);
+        BtnNextQuestionQuiz.setEnabled(true);
+        BtnNextQuestionQuiz.setAlpha(1);
+
+        if (selectedOption.getText().toString().equals(listQuestionData.get(position).getAnswer())) {
+            score++;
+            selectedOption.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#4CAF50")));
+        } else {
+            selectedOption.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FF0000")));
+            Button correctOption = LinearLayoutOptions.findViewWithTag(listQuestionData.get(position).getAnswer());
+            correctOption.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#4CAF50")));
+        }
+
+
+    }
+
+    private void enabled(Boolean enable) {
+        for (int i = 0 ; i < 4 ; i++) {
+            LinearLayoutOptions.getChildAt(i).setEnabled(enable);
+
+            if (enable) {
+                LinearLayoutOptions.getChildAt(i).setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#989898")));
+            }
+        }
     }
 
     @Override
