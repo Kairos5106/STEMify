@@ -4,10 +4,19 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.animation.Animator;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.animation.DecelerateInterpolator;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -17,6 +26,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Quiz_StartQuiz extends AppCompatActivity {
 
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -25,6 +39,22 @@ public class Quiz_StartQuiz extends AppCompatActivity {
 
     private String userPhotoUrl;
     private String username;
+
+    private TextView TVQuizQuestion;
+    private TextView TVIndicator;
+    private MaterialButton BtnAns1;
+    private MaterialButton BtnAns2;
+    private MaterialButton BtnAns3;
+    private MaterialButton BtnAns4;
+    private Button BtnNextQuestionQuiz;
+    private LinearLayout LinearLayoutOptions;
+
+    private int score = 0;
+    private int position = 0;
+    private int count = 0;
+
+    DatabaseReference reference;
+    private List<Quiz_QuestionData> listQuestionData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +76,14 @@ public class Quiz_StartQuiz extends AppCompatActivity {
         setTitle("Quiz");
 
         // Binding
-
-
+        TVQuizQuestion = findViewById(R.id.TVQuizQuestion);
+        TVIndicator = findViewById(R.id.TVIndicator);
+        BtnAns1 = findViewById(R.id.BtnAns1);
+        BtnAns2 = findViewById(R.id.BtnAns2);
+        BtnAns3 = findViewById(R.id.BtnAns3);
+        BtnAns4 = findViewById(R.id.BtnAns4);
+        BtnNextQuestionQuiz = findViewById(R.id.BtnNextQuestionQuiz);
+        LinearLayoutOptions = findViewById(R.id.LinearLayoutOptions);
 
         // Load current user info from Realtime Database
         if (currentUser != null) {
@@ -73,6 +109,106 @@ public class Quiz_StartQuiz extends AppCompatActivity {
                 }
             });
         }
+
+        // Play quiz
+        listQuestionData = new ArrayList<>();
+        reference = FirebaseDatabase.getInstance().getReference(); // get instance of the database so that can perform read/write operation
+
+        reference.child("QuizQuestions").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                // Get question set from database
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    String question = snapshot.child("question").getValue().toString();
+                    String option1 = snapshot.child("option1").getValue().toString();
+                    String option2 = snapshot.child("option2").getValue().toString();
+                    String option3 = snapshot.child("option3").getValue().toString();
+                    String option4 = snapshot.child("option4").getValue().toString();
+                    String correctAnswer = snapshot.child("answer").getValue().toString();
+
+                    // Make the particular question set object
+                    listQuestionData.add(new Quiz_QuestionData(option1, option2, option3, option4, question, correctAnswer));
+                }
+
+                // Load the question that was retrieved from the database into the activity screen
+                if (listQuestionData.size() > 0) {
+                    loadQuestion(TVQuizQuestion, 0, listQuestionData.get(position).getQuestion());
+                } else {
+                    Toast.makeText(Quiz_StartQuiz.this, "No data found.", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(Quiz_StartQuiz.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    private void loadQuestion(View view, int value, String data) {
+
+        for (int i = 0 ; i < 4 ; i++) {
+            LinearLayoutOptions.getChildAt(i).setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#989898")));
+        }
+        view.animate().alpha(value).scaleX(value).scaleY(value).setDuration(500)
+                .setStartDelay(100).setInterpolator(new DecelerateInterpolator())
+                .setListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart(@NonNull Animator animation) {
+                        if (value == 0 && count < 4) {
+                            String option = "";
+
+                            switch (count) {
+                                case 0:
+                                    option = listQuestionData.get(position).getOption1();
+                                    break;
+                                case 1:
+                                    option = listQuestionData.get(position).getOption2();
+                                    break;
+                                case 2:
+                                    option = listQuestionData.get(position).getOption3();
+                                    break;
+                                case 3:
+                                    option = listQuestionData.get(position).getOption4();
+                                    break;
+                            }
+
+                            loadQuestion(LinearLayoutOptions.getChildAt(count), 0, option);
+                            count++;
+
+                        }
+                    }
+
+                    @Override
+                    public void onAnimationEnd(@NonNull Animator animation) {
+                        if (value == 0) {
+
+                            try {
+                                ((TextView)view).setText(data);
+                                TVIndicator.setText((position + 1) + "/" + listQuestionData.size());
+                            } catch (ClassCastException e) {
+                                ((Button)view).setText(data);
+                            }
+
+                            view.setTag(data);
+                            loadQuestion(view, 1, data);
+                        }
+                    }
+
+                    @Override
+                    public void onAnimationCancel(@NonNull Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(@NonNull Animator animation) {
+
+                    }
+                });
+
     }
 
     @Override
