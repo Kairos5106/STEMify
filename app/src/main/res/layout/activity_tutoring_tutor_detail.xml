@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Tutoring_TutorDetail">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/TBTutorDetail"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:title="Tutor Profile" />
+
+    <ImageView
+        android:id="@+id/IVTutorPfpTutorDetail"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TBTutorDetail"
+        tools:srcCompat="@drawable/megumi" />
+
+    <TextView
+        android:id="@+id/TVTutorUsernameTutorDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="25dp"
+        android:text="Tutor Name"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IVTutorPfpTutorDetail" />
+
+    <TextView
+        android:id="@+id/TVOrganisationTutorDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Organisation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVTutorUsernameTutorDetail" />
+
+    <TextView
+        android:id="@+id/TVAboutTutorDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="348dp"
+        android:text="About"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVOrganisationTutorDetail" />
+
+    <TextView
+        android:id="@+id/TVAboutDescriptionTutorDetail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eu bibendum elit, sed placerat metus. Sed hendrerit hendrerit libero, id sollicitudin odio ultrices quis. Nullam sed ante eu elit venenatis tincidunt vel non velit. In ultrices leo nulla, sed fermentum orci commodo quis. Vestibulum porttitor elit lectus, non euismod purus laoreet iaculis. Sed non mi dignissim, placerat magna vitae, euismod enim. Aliquam cursus quam odio, non consequat ante placerat ac. In eu aliquet metus. Donec lectus dui, pretium sit amet suscipit quis, condimentum imperdiet libero."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVAboutTutorDetail" />
+
+    <Button
+        android:id="@+id/BtnStartVideoCall"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="START LIVE CONFERENCING SESSION (CALL)"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVAboutDescriptionTutorDetail" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

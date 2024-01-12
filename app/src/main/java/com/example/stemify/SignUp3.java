@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -88,6 +89,7 @@ public class SignUp3 extends Fragment {
     ImageView ProfilePic;
     String userIcon;
 
+    //url to icon for each identity
     String studentIcon = "https://firebasestorage.googleapis.com/v0/b/stemify-708cf.appspot.com/o/profile_icons%2Fstudent.jpg?alt=media&token=2e43d78e-f53d-41d0-8074-9c027435d037";
     String tutorIcon = "https://firebasestorage.googleapis.com/v0/b/stemify-708cf.appspot.com/o/profile_icons%2Ftutor.jpg?alt=media&token=47359f41-fac1-458d-a531-d3bb545e271b";
     String parentIcon = "https://firebasestorage.googleapis.com/v0/b/stemify-708cf.appspot.com/o/profile_icons%2Fparent.jpg?alt=media&token=e717737a-4a92-4abd-b2e7-1a95800b4b1c";
@@ -98,6 +100,7 @@ public class SignUp3 extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
+        //load the respective image into the Image View based on the chosen identity previously
         ProfilePic = view.findViewById(R.id.ProfilePic);
         String identity = (String) DataManager.getInstance().getData("identity");
         switch(identity){
@@ -133,6 +136,14 @@ public class SignUp3 extends Fragment {
 
         }
 
+        Button BtnBackToSU2 = view.findViewById(R.id.BtnBackToSU2);
+        BtnBackToSU2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.NavSignUp2);
+            }
+        });
+
         mAuth = FirebaseAuth.getInstance();
         Button BtnCreateAcc = view.findViewById(R.id.BtnCreateAcc);
         BtnCreateAcc.setOnClickListener(new View.OnClickListener() {
@@ -148,11 +159,9 @@ public class SignUp3 extends Fragment {
                 }
 
                 if(hasInput) {
-
                     //save all data from SignUp1 till SignUp3
                     //from Sign Up 1:
                     //ETFullname, ETRegisterEmail, chosenIdentity, ETOrganization
-                    //retrieving data
                     String fullname = (String) DataManager.getInstance().getData("fullname");
                     String email = (String) DataManager.getInstance().getData("email");
                     String organization = (String) DataManager.getInstance().getData("organization");
@@ -179,19 +188,22 @@ public class SignUp3 extends Fragment {
                     user.setPhotoUrl(userIcon);
                     user.setDisplayName(username);
                     user.setCheckAnonymous(false);
+                    user.setLoginTrial(0);
+                    user.setAttemptTime(0);
 
-                    //saving data in firebase
+                    //create the user account in the Firebase User Authentication
                     mAuth.createUserWithEmailAndPassword(email, password)
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
+                                        //sign in successfully
                                         String userId = mAuth.getUid();
 
-                                        // Save additional details to the database
+                                        // Save additional details to the Firebase Realtime Database
                                         userRef.child("users").child(userId).setValue(user);
 
-                                        //sign in successfully
+                                        //move to the congrats class
                                         Intent nextScreen = new Intent(getActivity(), Congrats.class);
                                         startActivity(nextScreen);
                                         nextScreen.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

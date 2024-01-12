@@ -13,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.stemify.Counselor;
 import com.example.stemify.HealthGuide;
 import com.example.stemify.Lifestyle;
 import com.example.stemify.R;

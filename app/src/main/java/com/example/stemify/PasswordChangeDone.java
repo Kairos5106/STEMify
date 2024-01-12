@@ -16,7 +16,7 @@ public class PasswordChangeDone extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_password_change_done);
 
-        //return to login page
+        //inform the user that their password has changed and return to login page
         Button BtnBackToLogin = findViewById(R.id.BtnBackToLogin);
         BtnBackToLogin.setOnClickListener(new View.OnClickListener() {
             @Override

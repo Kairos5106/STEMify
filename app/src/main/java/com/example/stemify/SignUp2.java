@@ -72,24 +72,19 @@ public class SignUp2 extends Fragment {
         return inflater.inflate(R.layout.fragment_sign_up2, container, false);
     }
 
-    //checker for security question
     boolean selectionChecker = false;
 
     public String chosenSecQ = "";
-
-    SignUp3 SU3 = new SignUp3();
-    Bundle bundle = new Bundle();
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
 
         TextView TVSelectQ = view.findViewById(R.id.TVSelectQ);
 
-        //dropdown for security questions
+        //dropdown (spinner) for security questions
         String[] SecurityQ = new String[]{
                 "Security Question", "What is the name of your favourite teacher?", "What is your favourite food?", "What is your favourite colour?", "What is your favourite city?"
         };
-
         Spinner SPSecurityQues = (Spinner) view.findViewById(R.id.SPSecurityQues);
         ArrayAdapter<String> arrAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, SecurityQ);
         arrAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -97,7 +92,9 @@ public class SignUp2 extends Fragment {
         SPSecurityQues.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //check if the selection is "Security Question"
                 if (parent.getItemAtPosition(position).equals("Security Question")){
+                    //inform the user to make a true selection
                     TVSelectQ.setText("Please Select A Security Question");
                     TVSelectQ.setTextColor(Color.RED);
                 }else{
@@ -138,23 +135,29 @@ public class SignUp2 extends Fragment {
 
                 if(hasInput && selectionChecker){
 
-                    //check if password == confirm password
-                    if(ETRegPassword.getText().toString().equals(ETConfirmRegPassword.getText().toString())) {
-                        String answer = ETRegAns.getText().toString();
-                        String password = ETRegPassword.getText().toString();
+                    //check if the password has more than 6 characters
+                    if(ETRegPassword.getText().toString().length()>=6){
+                        //check if password == confirm password
+                        if(ETRegPassword.getText().toString().equals(ETConfirmRegPassword.getText().toString())) {
+                            String answer = ETRegAns.getText().toString();
+                            String password = ETRegPassword.getText().toString();
 
-                        //using Bundle to send data to SignUp3
-                        DataManager.getInstance().putData("answer", answer);
-                        DataManager.getInstance().putData("securityques", chosenSecQ);
-                        DataManager.getInstance().putData("password", password);
+                            //using Data Manager class to hold data
+                            DataManager.getInstance().putData("answer", answer);
+                            DataManager.getInstance().putData("securityques", chosenSecQ);
+                            DataManager.getInstance().putData("password", password);
 
-                        //transit to SignUp3
-                        Navigation.findNavController(view).navigate(R.id.NavSignUp3);
+                            //transit to SignUp3
+                            Navigation.findNavController(view).navigate(R.id.NavSignUp3);
 
+                        }else{
+                            TextView TVWrongPass = view.findViewById(R.id.TVWrongPass);
+                            TVWrongPass.setText("Password Mismatch");
+                            TVWrongPass.setTextColor(Color.RED);
+                        }
                     }else{
-                        TextView TVWrongPass = view.findViewById(R.id.TVWrongPass);
-                        TVWrongPass.setText("Password Mismatch");
-                        TVWrongPass.setTextColor(Color.RED);
+                        TextView TVWeakPass = view.findViewById(R.id.TVWeakPass);
+                        TVWeakPass.setTextColor(Color.RED);
                     }
                 }
             }

@@ -28,7 +28,7 @@ public class HomePageC extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_home_page_c, container, false);
 
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.modC_TLHomePageC);
@@ -39,7 +39,6 @@ public class HomePageC extends Fragment {
         VPAdapter vpAdapter = new VPAdapter(getChildFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         vpAdapter.addFragment(new Career(), "CAREER");
         vpAdapter.addFragment(new Scholarship(),  "SCHOLARSHIP");
-        vpAdapter.addFragment(new Challenges(), "CHALLENGES");
         viewPager.setAdapter(vpAdapter);
 
         return view;
