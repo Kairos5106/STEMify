@@ -89,11 +89,10 @@ public class SectionLibrary extends AppCompatActivity {
         // Set video lesson details for Material1a
         material1a.setType("VideoLesson");
         material1a.setVideoResourceId(R.raw.samplevideo);
-        material1a.setTranscript("Testing with the transcript");
-//        material1a.setTranscript("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim " +
-//                "veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate " +
-//                "velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit " +
-//                "anim id est laborum.\n");
+        material1a.setTranscript("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim " +
+                "veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate " +
+                "velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit " +
+                "anim id est laborum.\n");
 
         // Set practice questions for Material 1b
         material1b.setType("Practice");
@@ -180,5 +179,105 @@ public class SectionLibrary extends AppCompatActivity {
         section1.addMaterial(material1b);
         section1.addMaterial(material1c);
         listOfItems.add(section1);
+
+        // Section 2
+        Section section2 = new Section("Section 2");
+        VideoLesson material2a = new VideoLesson("Material 2a: Video Lesson");
+        Practice material2b = new Practice("Material 2b: Practice");
+        Quiz material2c = new Quiz("Material 2c: Quiz", 20);
+
+        // Set video lesson details for Material1a
+        material2a.setType("VideoLesson");
+        material2a.setVideoResourceId(R.raw.samplevideo);
+        material2a.setTranscript("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim " +
+                "veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate " +
+                "velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit " +
+                "anim id est laborum.\n");
+
+        // Set practice questions for Material 1b
+        material2b.setType("Practice");
+
+        MultipleChoice question1a = new MultipleChoice("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+        question1a.addAnswer("Answer 1a");
+        question1a.addAnswer("Answer 1b");
+        question1a.addAnswer("Answer 1c");
+        question1a.addAnswer("Answer 1d");
+        question1a.setDiagramId(R.drawable.sampleimage);
+        question1a.setCorrectAnswer("Answer 1a");
+        question1a.setDiagramDesc("Sample Diagram Description");
+        material2b.addQuestion(question1a);
+
+        FillBlank question5a = new FillBlank("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+        List<String> answer5a = new ArrayList<>();
+        answer5a.add("Lorem");
+        answer5a.add("ipsum");
+        question5a.setCorrectAnswers(answer5a);
+        material2b.addQuestion(question5a);
+
+        MultipleChoice question2a = new MultipleChoice("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+        question2a.addAnswer("Answer 2a");
+        question2a.addAnswer("Answer 2b");
+        question2a.addAnswer("Answer 2c");
+        question2a.addAnswer("Answer 2d");
+        question2a.setDiagramId(R.drawable.sampleimage);
+        question2a.setCorrectAnswer("Answer 2a");
+        question2a.setDiagramDesc("Sample Diagram Description");
+        material2b.addQuestion(question2a);
+
+        FillBlank question3a = new FillBlank("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+        question3a.addAnswer("Lorem");
+        question3a.addAnswer("ipsum");
+        material2b.addQuestion(question3a);
+
+        FillBlank question4a = new FillBlank("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+        question4a.addAnswer("Lorem");
+        question4a.addAnswer("ipsum");
+        material2b.addQuestion(question4a);
+
+        // Setting questions for Material 1c
+        material2c.setType("Quiz");
+
+        MultipleChoice question1alternate = new MultipleChoice("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+        question1alternate.addAnswer("Answer 1a");
+        question1alternate.addAnswer("Answer 1b");
+        question1alternate.addAnswer("Answer 1c");
+        question1alternate.addAnswer("Answer 1d");
+        question1alternate.setDiagramId(R.drawable.sampleimage);
+        question1alternate.setCorrectAnswer("Answer 1a");
+        question1alternate.setDiagramDesc("Sample Diagram Description");
+        material2c.addQuestion(question1alternate);
+
+        FillBlank question5alternate = new FillBlank("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+        List<String> answer5alternate = new ArrayList<>();
+        answer5alternate.add("Lorem");
+        answer5alternate.add("ipsum");
+        question5alternate.setCorrectAnswers(answer5alternate);
+        material2c.addQuestion(question5alternate);
+
+        MultipleChoice question2alternate = new MultipleChoice("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+        question2alternate.addAnswer("Answer 2a");
+        question2alternate.addAnswer("Answer 2b");
+        question2alternate.addAnswer("Answer 2c");
+        question2alternate.addAnswer("Answer 2d");
+        question2alternate.setDiagramId(R.drawable.sampleimage);
+        question2alternate.setCorrectAnswer("Answer 2a");
+        question2alternate.setDiagramDesc("Sample Diagram Description");
+        material2c.addQuestion(question2alternate);
+
+        FillBlank question3alternate = new FillBlank("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+        question3alternate.addAnswer("Lorem");
+        question3alternate.addAnswer("ipsum");
+        material2c.addQuestion(question3alternate);
+
+        FillBlank question4alternate = new FillBlank("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+        question4alternate.addAnswer("Lorem");
+        question4alternate.addAnswer("ipsum");
+        material2c.addQuestion(question4alternate);
+
+        // Adding section 1 materials to list of items
+        section2.addMaterial(material2a);
+        section2.addMaterial(material2b);
+        section2.addMaterial(material2c);
+        listOfItems.add(section2);
     }
 }
