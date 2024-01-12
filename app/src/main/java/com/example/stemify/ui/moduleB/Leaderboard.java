@@ -110,16 +110,33 @@ public class Leaderboard extends Fragment {
         // Display the leaderboard rankings
         listScoreData = new ArrayList<>();
 
-        databaseReference.orderByChild("result").addValueEventListener(new ValueEventListener() {
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                listScoreData.clear(); // Clear the list before adding new data
 
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Leaderboard_ScoreData data = snapshot.getValue(Leaderboard_ScoreData.class);
-                    listScoreData.add(data);
+                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                    String userUid = userSnapshot.getKey();
+
+                    if (userUid != null) {
+                        String username = userSnapshot.child("username").getValue(String.class);
+                        String userPfp = userSnapshot.child("userPhotoUrl").getValue(String.class);
+                        Long score = userSnapshot.child("result").getValue(Long.class);
+
+                        if (username != null && userPfp != null && score != null) {
+                            Leaderboard_ScoreData data = new Leaderboard_ScoreData(username, userPfp, score);
+                            listScoreData.add(data);
+                        }
+                    }
                 }
 
-                Collections.reverse(listScoreData);
+                // Sort the list by score in descending order
+                Collections.sort(listScoreData, new Comparator<Leaderboard_ScoreData>() {
+                    @Override
+                    public int compare(Leaderboard_ScoreData o1, Leaderboard_ScoreData o2) {
+                        return Long.compare(o2.getScore(), o1.getScore());
+                    }
+                });
 
                 leaderboardRankingAdapter = new Leaderboard_Ranking_Adapter(getActivity(), listScoreData);
                 leaderboardRankRecyclerView.setAdapter(leaderboardRankingAdapter);
