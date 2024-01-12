@@ -30,6 +30,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -104,59 +106,70 @@ public class setting_editpassword extends Fragment {
                     Toast.makeText(getActivity(), "Enter Your Password", Toast.LENGTH_SHORT).show();
                     hasInput = false;
                 }
+
                 if(isEmpty(ETNewPassword)){
                     Toast.makeText(getActivity(), "Enter Your New Password", Toast.LENGTH_SHORT).show();
                     hasInput = false;
                 }
+
+                if(!isEmpty(ETNewPassword)){
+                    //check if the password has more than 6 characters
+                    if(ETNewPassword.getText().toString().length()>=6){
+                        boolean checker = hasTwoNonAlphaCharacters(ETNewPassword.getText().toString());
+                        if(!checker){
+                            ETNewPassword.setError("Requirements not fulfilled!");
+                        }
+                        hasInput = checker;
+                    }else{
+                        hasInput = false;
+                        TextView TVWeakNewEditPass = view.findViewById(R.id.TVWeakNewEditPass);
+                        TVWeakNewEditPass.setTextColor(Color.RED);
+                    }
+
+                }
                 if(hasInput){
                     //override the old password with the new password in the database
                     String newPassword = ETNewPassword.getText().toString();
-                    if(newPassword.length()>=6){
-                        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-                        if (currentUser != null) {
-
-                            // Read from the database
-                            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users").child(currentUser.getUid());
-                            userRef.addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(DataSnapshot dataSnapshot) {
-                                    if (dataSnapshot.exists()) {
-                                        User user = dataSnapshot.getValue(User.class);
-                                        String currentPass = user.getPassword();
-                                        if(currentPass.equals(ETCurrentPassword.getText().toString())){
-                                            currentUser.updatePassword(newPassword)
-                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                        @Override
-                                                        public void onComplete(@NonNull Task<Void> task) {
-                                                            if (task.isSuccessful()) {
-                                                                // Password updated successfully
-                                                                Map<String, Object> updates = new HashMap<>();
-                                                                updates.put("password", newPassword);
-                                                                userRef.updateChildren(updates);
-                                                                Toast.makeText(getActivity(), "Password Updated", Toast.LENGTH_SHORT).show();
-                                                            } else {
-                                                                // Fail to update password
-                                                                Toast.makeText(getActivity(), "Failed to update password", Toast.LENGTH_SHORT).show();
-                                                            }
+                    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                    if (currentUser != null) {
+                        // Read from the database
+                        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users").child(currentUser.getUid());
+                        userRef.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                if (dataSnapshot.exists()) {
+                                    User user = dataSnapshot.getValue(User.class);
+                                    String currentPass = user.getPassword();
+                                    if(currentPass.equals(ETCurrentPassword.getText().toString())){
+                                        currentUser.updatePassword(newPassword)
+                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                        if (task.isSuccessful()) {
+                                                            // Password updated successfully
+                                                            Map<String, Object> updates = new HashMap<>();
+                                                            updates.put("password", newPassword);
+                                                            userRef.updateChildren(updates);
+                                                            Toast.makeText(getActivity(), "Password Updated", Toast.LENGTH_SHORT).show();
+                                                        } else {
+                                                            // Fail to update password
+                                                            Toast.makeText(getActivity(), "Failed to update password", Toast.LENGTH_SHORT).show();
                                                         }
-                                                    });
-                                        }else{
-                                            Toast.makeText(getActivity(), "Password Mismatch", Toast.LENGTH_SHORT).show();
-                                        }
+                                                    }
+                                                });
+                                    }else{
+                                        Toast.makeText(getActivity(), "Password Mismatch", Toast.LENGTH_SHORT).show();
                                     }
                                 }
+                            }
 
-                                @Override
-                                public void onCancelled(DatabaseError error) {
-                                    // Handle errors
-                                    Toast.makeText(getActivity(), "Error in Retrieving Account Data", Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                            @Override
+                            public void onCancelled(DatabaseError error) {
+                                // Handle errors
+                                Toast.makeText(getActivity(), "Error in Retrieving Account Data", Toast.LENGTH_SHORT).show();
+                            }
+                        });
 
-                        }
-                    }else{
-                        TextView TVWeakNewEditPass = view.findViewById(R.id.TVWeakNewEditPass);
-                        TVWeakNewEditPass.setTextColor(Color.RED);
                     }
                 }
             }
@@ -165,5 +178,19 @@ public class setting_editpassword extends Fragment {
     boolean isEmpty(EditText text){
         CharSequence str = text.getText().toString();
         return TextUtils.isEmpty(str);
+    }
+
+    boolean hasTwoNonAlphaCharacters(String inputString) {
+        Pattern pattern = Pattern.compile("[^a-zA-Z]");
+        Matcher matcher = pattern.matcher(inputString);
+
+        int nonAlphaCount = 0;
+        while (matcher.find()) {
+            nonAlphaCount++;
+            if (nonAlphaCount >= 2) {
+                return true;
+            }
+        }
+        return false;
     }
 }
