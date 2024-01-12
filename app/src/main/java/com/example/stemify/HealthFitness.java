@@ -22,7 +22,7 @@ public class HealthFitness extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.health_fitness);
+        setContentView(R.layout.fragment_health_fitness);
 
         //toolbar
         Toolbar toolbar = findViewById(R.id.TBFitness);
@@ -35,7 +35,7 @@ public class HealthFitness extends AppCompatActivity {
 
         TextView textView = findViewById(R.id.textviewClick);
 
-        String text = "Click Here to find out more";
+        String text = "Click Here For More Information";
 
         SpannableString ss = new SpannableString(text);
 
@@ -46,7 +46,7 @@ public class HealthFitness extends AppCompatActivity {
 
                 Uri uri = Uri.parse(url);
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
+                HealthFitness.this.startActivity(intent);
 
             }
 
