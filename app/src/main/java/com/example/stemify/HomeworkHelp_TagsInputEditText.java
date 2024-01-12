@@ -1,4 +1,4 @@
-package com.example.stemify;
+/*package com.example.stemify;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -167,3 +167,4 @@ public class HomeworkHelp_TagsInputEditText extends TextInputEditText {
         }
     }
 }
+*/

@@ -80,9 +80,6 @@ public class HomeworkHelp_Post_Adapter extends RecyclerView.Adapter<HomeworkHelp
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView TVQuestionPostList;
-        TextView TVTag1PostListRow;
-        TextView TVTag2PostListRow;
-        TextView TVTag3PostListRow;
         TextView TVPostTimePostListRow;
         TextView TVUsernamePosterPostListRow;
         ImageView IVPfpPosterPostListRow;
@@ -92,9 +89,6 @@ public class HomeworkHelp_Post_Adapter extends RecyclerView.Adapter<HomeworkHelp
             super(itemView);
 
             TVQuestionPostList = itemView.findViewById(R.id.TVQuestionPostList);
-            TVTag1PostListRow = itemView.findViewById(R.id.TVTag1PostListRow);
-            TVTag2PostListRow = itemView.findViewById(R.id.TVTag2PostListRow);
-            TVTag3PostListRow = itemView.findViewById(R.id.TVTag3PostListRow);
             TVPostTimePostListRow = itemView.findViewById(R.id.TVPostTimePostListRow);
             TVUsernamePosterPostListRow = itemView.findViewById(R.id.TVUsernamePosterPostListRow);
             IVPfpPosterPostListRow = itemView.findViewById(R.id.IVPfpPosterPostListRow);

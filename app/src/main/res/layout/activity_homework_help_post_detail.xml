@@ -49,53 +49,17 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/TVTag1PostDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="38dp"
-                android:layout_marginTop="10dp"
-                android:background="#28CC9E"
-                android:text="Tag1"
-                android:textColor="#000000"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TVQuestionPostDetail" />
-
-            <TextView
-                android:id="@+id/TVTag2PostDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="10dp"
-                android:background="#28CC9E"
-                android:text="Tag2"
-                android:textColor="#000000"
-                app:layout_constraintStart_toEndOf="@+id/TVTag1PostDetail"
-                app:layout_constraintTop_toBottomOf="@+id/TVQuestionPostDetail" />
-
-            <TextView
-                android:id="@+id/TVTag3PostDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="10dp"
-                android:background="#28CC9E"
-                android:text="Tag3"
-                android:textColor="#000000"
-                app:layout_constraintStart_toEndOf="@+id/TVTag2PostDetail"
-                app:layout_constraintTop_toBottomOf="@+id/TVQuestionPostDetail" />
-
-            <TextView
                 android:id="@+id/TVDescriptionPostDetail"
                 android:layout_width="327dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="38dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginEnd="37dp"
                 android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus a nisi faucibus, luctus purus non, condimentum tortor. Proin in interdum libero, vitae elementum odio. Duis sodales porttitor blandit. Mauris quis ullamcorper tortor, id tincidunt nibh. Sed sed massa quis est gravida vehicula vitae ut dui. Aenean venenatis sed quam eget accumsan. Pellentesque commodo elementum lacus at consectetur. Morbi eget mollis urna. Quisque quis commodo magna, non sodales dolor."
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TVTag1PostDetail" />
+                app:layout_constraintTop_toBottomOf="@+id/TVQuestionPostDetail" />
 
             <ImageView
                 android:id="@+id/IVPfpPosterPostDetail"

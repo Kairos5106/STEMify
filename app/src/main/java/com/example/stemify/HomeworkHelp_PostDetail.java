@@ -36,9 +36,6 @@ import java.util.Locale;
 
 public class HomeworkHelp_PostDetail extends AppCompatActivity {
     TextView TVQuestionPostDetail;
-    TextView TVTag1PostDetail;
-    TextView TVTag2PostDetail;
-    TextView TVTag3PostDetail;
     TextView TVDescriptionPostDetail;
     ImageView IVPfpPosterPostDetail;
     TextView TVUsernamePosterPostDetail;
@@ -75,9 +72,6 @@ public class HomeworkHelp_PostDetail extends AppCompatActivity {
 
         // Binding
         TVQuestionPostDetail = findViewById(R.id.TVQuestionPostDetail);
-        TVTag1PostDetail = findViewById(R.id.TVTag1PostDetail);
-        TVTag2PostDetail = findViewById(R.id.TVTag2PostDetail);;
-        TVTag3PostDetail = findViewById(R.id.TVTag3PostDetail);;
         TVDescriptionPostDetail = findViewById(R.id.TVDescriptionPostDetail);
         IVPfpPosterPostDetail = findViewById(R.id.IVPfpPosterPostDetail);
         TVUsernamePosterPostDetail = findViewById(R.id.TVUsernamePosterPostDetail);

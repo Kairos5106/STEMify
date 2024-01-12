@@ -110,7 +110,7 @@ public class Tutoring_Calendar extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         // Event added successfully
-                        String message = "Event added successfully!";
+                        String message = "Event saved successfully!";
                         Toast.makeText(Tutoring_Calendar.this, message, Toast.LENGTH_SHORT).show();
                     }
                 })
@@ -118,7 +118,7 @@ public class Tutoring_Calendar extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         // Failed to add event
-                        String message = "Failed to add event. Please try again.";
+                        String message = "Failed to save event. Please try again.";
                         Toast.makeText(Tutoring_Calendar.this, message, Toast.LENGTH_SHORT).show();
                     }
                 });
