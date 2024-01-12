@@ -18,9 +18,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Healthy Fitness"
+        android:text="Biology Behind Health &amp; Fitness"
         android:textColor="#66001B"
-        android:textSize="30dp"
+        android:textSize="26dp"
         android:textStyle="bold"
         android:layout_margin="16dp"
         android:layout_gravity="center"
@@ -43,20 +43,21 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/textView15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="22dp"
-                android:text="@string/fit_main"
-                android:id="@+id/textView15" />
+                android:layout_marginTop="15dp"
+                android:fontFamily="sans-serif-black"
+                android:text="@string/fit_main" />
 
             <TextView
                 android:textStyle="bold"
                 android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="22dp"
+                android:layout_marginTop="22dp"
                 android:layout_gravity="center"
-                android:text="Hiking, Swimming, Cycling!"
+                android:text="Cardiovascular Adaptations"
                 android:id="@+id/textView16" />
 
             <ImageView
@@ -65,22 +66,24 @@
                 android:layout_height="152dp"
                 android:layout_gravity="center"
                 android:paddingTop="12dp"
-                android:src="@drawable/trek" />
+                android:src="@drawable/cardio" />
 
             <TextView
+                android:id="@+id/textView12z"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/fit_hiking"
-                android:id="@+id/textView12z" />
+                android:layout_marginTop="12dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/fit_cardio" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="22dp"
+                android:layout_marginTop="22dp"
                 android:textStyle="bold"
                 android:textSize="16dp"
-                android:text="Meditate "
+                android:text="Neurological Benefits"
                 android:layout_gravity="center"
                 android:id="@+id/textView12b" />
 
@@ -89,22 +92,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
-                android:src="@drawable/meditate" />
+                android:src="@drawable/brain" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/fit_yoga" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/fit_yoga"
-                android:id="@+id/textView13" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Simple exercises: squats, stretching"
+                android:text="Muscle Adaptation"
                 android:textStyle="bold"
                 android:textSize="16dp"
                 android:layout_gravity="center"
-                android:paddingTop="22dp"
+                android:layout_marginTop="22dp"
                 android:id="@+id/textView9" />
 
             <ImageView
@@ -115,19 +119,21 @@
                 android:src="@drawable/squat" />
 
             <TextView
+                android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/fit_squat"
-                android:id="@+id/textView10" />
+                android:layout_marginTop="12dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/fit_muscle" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Have a rest day and sleep well"
+                android:text="Metabolic Changes"
                 android:textStyle="bold"
                 android:textSize="16dp"
                 android:layout_gravity="center"
-                android:paddingTop="22dp"
+                android:layout_marginTop="22dp"
                 android:id="@+id/textView6" />
 
             <ImageView
@@ -135,17 +141,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
-                android:src="@drawable/rest" />
+                android:src="@drawable/meta" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/fit_rest" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/fit_rest"
-                android:id="@+id/textView7" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Click Here to find out more"
                 android:id="@+id/textviewClick" />

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_height="wrap_content"
-    android:background="#FFE5EC"
+    android:background="#fff"
     tools:context=".CounselorBooking">
 
     <androidx.appcompat.widget.Toolbar
@@ -19,11 +19,12 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:padding="14dp"
         android:text="Book an Appointment"
-        android:textStyle="bold"
-        android:textColor="#66001B"
-        android:textSize="30dp"
-        android:padding="14dp" />
+        android:textColor="#E33D6A"
+        android:textSize="27dp"
+        android:textStyle="bold" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -55,7 +56,7 @@
                         android:layout_width="105dp"
                         android:layout_height="125dp"
                         android:layout_margin="10dp"
-                        android:src="@drawable/confused" />
+                        android:src="@drawable/female" />
 
                     <LinearLayout
                         android:id="@+id/textMain"
@@ -70,6 +71,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="8dp"
+                            android:fontFamily="sans-serif-black"
                             android:text="Dr Name"
                             android:textColor="#000"
                             android:textSize="20sp"
@@ -80,6 +82,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="8dp"
+                            android:fontFamily="sans-serif-medium"
                             android:text="Dr info" />
 
                         <TextView
@@ -87,6 +90,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
+                            android:fontFamily="sans-serif-medium"
                             android:text="Dr Exp" />
 
                         <TextView
@@ -94,6 +98,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
+                            android:fontFamily="sans-serif-medium"
                             android:text="Dr Email" />
 
                      </LinearLayout>
@@ -120,6 +125,7 @@
                         android:layout_marginRight="1dp"
                         android:layout_weight="1"
                         android:backgroundTint="#FFC2D2"
+                        android:fontFamily="@font/inter_light"
                         android:text="8:00 A.M"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
@@ -131,6 +137,7 @@
                         android:layout_marginRight="2dp"
                         android:layout_weight="1"
                         android:backgroundTint="#FFC2D2"
+                        android:fontFamily="@font/inter_light"
                         android:text="10:00 A.M"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
@@ -142,6 +149,7 @@
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
                         android:backgroundTint="#FFC2D2"
+                        android:fontFamily="@font/inter_light"
                         android:text="12:00 P.M"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
@@ -162,6 +170,7 @@
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
                         android:backgroundTint="#FFC2D2"
+                        android:fontFamily="@font/inter_light"
                         android:text="2:00 P.M"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
@@ -173,6 +182,7 @@
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
                         android:backgroundTint="#FFC2D2"
+                        android:fontFamily="@font/inter_light"
                         android:text="4:00 P.M"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
@@ -184,6 +194,7 @@
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
                         android:backgroundTint="#FFC2D2"
+                        android:fontFamily="@font/inter_light"
                         android:text="6:00 P.M"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
