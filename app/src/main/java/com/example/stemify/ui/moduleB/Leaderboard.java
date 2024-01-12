@@ -149,7 +149,7 @@ public class Leaderboard extends Fragment {
         });
 
 
-        // Binding - BtnEarnXP: navigate student to forum page
+        // Binding - BtnEarnXP
         Button BtnEarnXP = rootView.findViewById(R.id.BtnEarnXP);
 
         // Set OnClickListener for the button
