@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.stemify.HomeworkHelp_NewQuestion;
 import com.example.stemify.Leaderboard_Ranking_Adapter;
+import com.example.stemify.Leaderboard_ScoreData;
 import com.example.stemify.Quiz_StartQuiz;
 import com.example.stemify.R;
 import com.example.stemify.User;
@@ -57,6 +58,7 @@ public class Leaderboard extends Fragment {
     FirebaseUser currentUser;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    List<Leaderboard_ScoreData> listScoreData;
 
     public Leaderboard() {
         // Required empty public constructor
@@ -103,7 +105,31 @@ public class Leaderboard extends Fragment {
         leaderboardRankRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         firebaseDatabase = FirebaseDatabase.getInstance(); // get instance of the realtime database in firebase
-        databaseReference = firebaseDatabase.getReference("users"); // go into users node
+        databaseReference = firebaseDatabase.getReference("QuizScores"); // go into QuizScores node
+
+        // Display the leaderboard rankings
+        listScoreData = new ArrayList<>();
+
+        databaseReference.orderByChild("result").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Leaderboard_ScoreData data = snapshot.getValue(Leaderboard_ScoreData.class);
+                    listScoreData.add(data);
+                }
+
+                Collections.reverse(listScoreData);
+
+                leaderboardRankingAdapter = new Leaderboard_Ranking_Adapter(getActivity(), listScoreData);
+                leaderboardRankRecyclerView.setAdapter(leaderboardRankingAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getActivity(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
         // Binding - BtnEarnXP: navigate student to forum page
@@ -129,45 +155,4 @@ public class Leaderboard extends Fragment {
 
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // Load users data from Firebase Realtime Database
-        // Order the users by their display names
-        databaseReference.orderByChild("displayName").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                List<User> userList = new ArrayList<>();
-
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    User user = snapshot.getValue(User.class);
-
-                    // Check if the user has the identity as "Student"
-                    if (user != null && "Student".equals(user.getIdentity())) {
-                        userList.add(user);
-                    }
-                }
-
-                // Sort the userList by display name (ignore case)
-                Collections.sort(userList, new Comparator<User>() {
-                    @Override
-                    public int compare(User user1, User user2) {
-                        return String.CASE_INSENSITIVE_ORDER.compare(user1.getDisplayName(), user2.getDisplayName());
-                    }
-                });
-
-                // Set up and attach the adapter to RecyclerView
-                // i.e. these lines of code establish the connection between the custom adapter (Leaderboard_Ranking_Adapter) and the RecyclerView (leaderboardRankRecyclerView)
-                leaderboardRankingAdapter = new Leaderboard_Ranking_Adapter(getActivity(), userList);
-                leaderboardRankRecyclerView.setAdapter(leaderboardRankingAdapter);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // Handle the error if needed
-            }
-        });
-    }
 }
