@@ -26,31 +26,17 @@
 
             <TextView
                 android:id="@+id/page_title1"
+                android:paddingTop="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="36dp"
-                android:fontFamily="sans-serif-black"
                 android:text="Health Events"
-                android:textColor="#E33D6A"
-                android:textSize="25dp"
+                android:textSize="30dp"
                 android:textStyle="bold"
+                android:textColor="#66001B"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/BtnNearMe"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="85dp"
-                android:backgroundTint="#ffe9f0"
-                android:text="Event Near Me"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.94"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider1"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="16dp"/>
 
             <LinearLayout
                 android:id="@+id/divider1"
@@ -71,8 +57,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/BtnNearMe" />
-
+                app:layout_constraintTop_toBottomOf="@+id/divider1" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
