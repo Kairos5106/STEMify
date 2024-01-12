@@ -88,9 +88,9 @@
     <string name="fit_rest">Sometimes all you need is a good lazy day where you do not make your muscles and body more tired. Taking rest days can improve sleep, much like regular exercises. Moreover, lack of sleep may result in low motivation to take part in leisure activities. Always have a good balance in keeping your body and mind fit. </string>
 
     <string name="event1">The World Health Assembly is the decision-making body of WHO. It is attended by delegations from all WHO Member States and focuses on a specific health agenda to notify all the citizens on the World Health Association and the upcoming projects. People from all around the world are invited to join the assembly</string>
-    <string name="event2">MedicHealth is proud to offer a comprehensive medical check-up to prioritize your well-being. Join us for this special event where everyone in the community can benefit from a free health assessment.\nEarly attendees will receive special giveaways and informative handouts. Do not miss this chance to take charge of your health.
-    \nSave the date and join MedicHealth for this essential event.</string>
-    <string name="event3">Join us at SMK Padang Besar for an interactive workshop on proper teeth brushing techniques for our young ones. This fun event aims to educate young learners on essential dental care in an engaging way.</string>
+    <string name="event2">Come join us in investigating the science behind mental health and how it is transmitted in the brain. With a group of talented professors from San Jose, watch us unfold how the brain and mental health are interrelated. Free admission so save the date and join!</string>
+    <string name="event3">Technology and Wellness are about to reach great lengths, join TechCares as they share how technology can positively impact the environment in ensuring a healthy life for the future generations. With insights and lucky draw sessions in the end, this forum is going to be on of the best yet!</string>
+
     <string-array name="materialType">
         <item>Type of material</item>
         <item>Video Lesson</item>
