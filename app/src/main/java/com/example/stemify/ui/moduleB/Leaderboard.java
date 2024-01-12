@@ -159,7 +159,7 @@ public class Leaderboard extends Fragment {
 
                 Toast.makeText(getActivity(), "Start Quiz", Toast.LENGTH_SHORT).show();
 
-                // Create an Intent to start HomeworkHelp_NewQuestion activity
+                // Create an Intent to start Quiz_StartQuiz activity
                 Intent intent = new Intent(getActivity(), Quiz_StartQuiz.class);
                 //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
