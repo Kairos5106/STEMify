@@ -13,14 +13,14 @@
         android:layout_height="?attr/actionBarSize"
         android:background="#FB6B92"
         android:elevation="4dp"
-        android:title="Clean" />
+        android:title="Cleanliness" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="The Science Behind A Hygienic Life And How To Live It"
+        android:text="Keeping It Clean! "
         android:textColor="#66001B"
-        android:textSize="26.5dp"
+        android:textSize="30dp"
         android:textStyle="bold"
         android:layout_margin="16dp"
         android:layout_gravity="center"
@@ -43,22 +43,20 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="sans-serif-black"
+                android:paddingTop="10dp"
                 android:text="@string/clean_main"
-                android:textStyle="bold" />
+                android:id="@+id/textView15" />
 
             <TextView
                 android:textStyle="bold"
                 android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:paddingTop="22dp"
                 android:layout_gravity="center"
-                android:text="The History Of Hygiene"
+                android:text="Wash Your Hands Using the 7 Steps"
                 android:id="@+id/textView16" />
 
             <ImageView
@@ -66,42 +64,67 @@
                 android:layout_width="151dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="12dp"
+                android:paddingTop="12dp"
                 android:src="@drawable/clean_main" />
 
             <TextView
-                android:id="@+id/textView17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
+                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="@string/clean_wash"
                 android:textAlignment="textStart"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:id="@+id/textView17" />
 
             <ImageView
                 android:id="@+id/wash123"
                 android:layout_width="206dp"
                 android:layout_height="106dp"
                 android:layout_gravity="center"
-                android:src="@drawable/bacteria" />
+                android:src="@drawable/wash123" />
 
             <TextView
-                android:id="@+id/textView12a"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:fontFamily="sans-serif-medium"
-                android:text="@string/clean_germs" />
+                android:text="Wash with\nsufficient soap \t\t\tScrub palms\t\t\tScrub fingers\nand clean water"
+                android:id="@+id/textView12a" />
 
+            <ImageView
+                android:id="@+id/wash45"
+                android:layout_width="170dp"
+                android:layout_height="69dp"
+                android:layout_gravity="center"
+                android:src="@drawable/wash45" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
+                android:layout_gravity="center"
+                android:text="Scrub nail on palms\t\t\t Scrub back of hands"
+                android:id="@+id/textView12x" />
+
+            <ImageView
+                android:id="@+id/wash67"
+                android:layout_width="170dp"
+                android:layout_height="69dp"
+                android:layout_gravity="center"
+                android:src="@drawable/wash67" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Rinse hands with clean water\t\t\t Dry with clean towel"
+                android:id="@+id/textView12z" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="22dp"
                 android:textStyle="bold"
                 android:textSize="16dp"
                 android:layout_gravity="center"
-                android:text="Microorganisms 101"
+                android:text="Bathing and showering regularly"
                 android:id="@+id/textView12b" />
 
             <ImageView
@@ -109,32 +132,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
-                android:src="@drawable/micro" />
-
-            <TextView
-                android:id="@+id/textView23"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:fontFamily="sans-serif-medium"
-                android:text="@string/clean_micro" />
-
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:fontFamily="sans-serif-medium"
-                android:text="@string/clean_micro2" />
+                android:src="@drawable/shower" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Clean Living Practices"
+                android:text="@string/clean_bath"
+                android:id="@+id/textView13" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dental hygiene"
                 android:textStyle="bold"
                 android:textSize="16dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="22dp"
+                android:paddingTop="22dp"
                 android:id="@+id/textView9" />
 
             <ImageView
@@ -142,23 +155,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
-                android:src="@drawable/practice" />
-
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
-                android:text="@string/clean_practice" />
+                android:src="@drawable/teeth" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Future of Hygiene"
+                android:text="@string/clean_teeth"
+                android:id="@+id/textView10" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wearing clean cloths"
                 android:textStyle="bold"
                 android:textSize="16dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="22dp"
+                android:paddingTop="22dp"
                 android:id="@+id/textView6" />
 
             <ImageView
@@ -166,15 +178,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
-                android:src="@drawable/future" />
+                android:src="@drawable/cloths" />
 
             <TextView
-                android:id="@+id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:fontFamily="sans-serif-medium"
-                android:text="@string/clean_future" />
+                android:text="@string/clean_cloth"
+                android:id="@+id/textView7" />
 
             <TextView
                 android:layout_width="wrap_content"
