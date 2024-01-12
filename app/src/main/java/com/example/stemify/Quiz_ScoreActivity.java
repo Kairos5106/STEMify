@@ -13,8 +13,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Quiz_ScoreActivity extends AppCompatActivity {
 
@@ -61,19 +64,26 @@ public class Quiz_ScoreActivity extends AppCompatActivity {
             TVTitleYourScore.setText("Almost there!");
         }
 
-        // Store the score in database so that can display in leaderboard later
+        // Store the score (cumulative) in database so that can display in leaderboard later
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference();
 
-        reference.child("QuizScores").child(user.getUid()).child("result").setValue(score).addOnCompleteListener(new OnCompleteListener<Void>() {
+        reference.child("QuizScores").child(user.getUid()).child("result").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onComplete(@NonNull Task<Void> task) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                if (task.isSuccessful()) {
-                    Toast.makeText(Quiz_ScoreActivity.this, "Score Saved", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(Quiz_ScoreActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                if (dataSnapshot.exists()) {
+                    // Get score history from database
+                    score += Integer.parseInt(dataSnapshot.getValue().toString());
+
                 }
+
+                // Add new score to database (cumulatively)
+                dataSnapshot.getRef().setValue(score);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
