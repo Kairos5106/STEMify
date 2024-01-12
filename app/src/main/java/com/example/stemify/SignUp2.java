@@ -18,6 +18,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link SignUp2#newInstance} factory method to
@@ -133,31 +136,41 @@ public class SignUp2 extends Fragment {
                     hasInput = false;
                 }
 
-                if(hasInput && selectionChecker){
-
+                if(!isEmpty(ETRegPassword)){
                     //check if the password has more than 6 characters
                     if(ETRegPassword.getText().toString().length()>=6){
-                        //check if password == confirm password
-                        if(ETRegPassword.getText().toString().equals(ETConfirmRegPassword.getText().toString())) {
-                            String answer = ETRegAns.getText().toString();
-                            String password = ETRegPassword.getText().toString();
-
-                            //using Data Manager class to hold data
-                            DataManager.getInstance().putData("answer", answer);
-                            DataManager.getInstance().putData("securityques", chosenSecQ);
-                            DataManager.getInstance().putData("password", password);
-
-                            //transit to SignUp3
-                            Navigation.findNavController(view).navigate(R.id.NavSignUp3);
-
-                        }else{
-                            TextView TVWrongPass = view.findViewById(R.id.TVWrongPass);
-                            TVWrongPass.setText("Password Mismatch");
-                            TVWrongPass.setTextColor(Color.RED);
+                        boolean checker = hasTwoNonAlphaCharacters(ETRegPassword.getText().toString());
+                        if(!checker){
+                            ETRegPassword.setError("Requirements not fulfilled!");
                         }
+                        hasInput = checker;
                     }else{
+                        hasInput = false;
                         TextView TVWeakPass = view.findViewById(R.id.TVWeakPass);
                         TVWeakPass.setTextColor(Color.RED);
+                    }
+
+                }
+
+                if(hasInput && selectionChecker){
+
+                    //check if password == confirm password
+                    if(ETRegPassword.getText().toString().equals(ETConfirmRegPassword.getText().toString())) {
+                        String answer = ETRegAns.getText().toString();
+                        String password = ETRegPassword.getText().toString();
+
+                        //using Data Manager class to hold data
+                        DataManager.getInstance().putData("answer", answer);
+                        DataManager.getInstance().putData("securityques", chosenSecQ);
+                        DataManager.getInstance().putData("password", password);
+
+                        //transit to SignUp3
+                        Navigation.findNavController(view).navigate(R.id.NavSignUp3);
+
+                    }else{
+                        TextView TVWrongPass = view.findViewById(R.id.TVWrongPass);
+                        TVWrongPass.setText("Password Mismatch");
+                        TVWrongPass.setTextColor(Color.RED);
                     }
                 }
             }
@@ -175,5 +188,19 @@ public class SignUp2 extends Fragment {
     boolean isEmpty(EditText text){
         CharSequence str = text.getText().toString();
         return TextUtils.isEmpty(str);
+    }
+
+    boolean hasTwoNonAlphaCharacters(String inputString) {
+        Pattern pattern = Pattern.compile("[^a-zA-Z]");
+        Matcher matcher = pattern.matcher(inputString);
+
+        int nonAlphaCount = 0;
+        while (matcher.find()) {
+            nonAlphaCount++;
+            if (nonAlphaCount >= 2) {
+                return true;
+            }
+        }
+        return false;
     }
 }

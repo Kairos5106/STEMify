@@ -46,11 +46,6 @@
         android:label="fragment_setting_privacy"
         tools:layout="@layout/fragment_setting_privacy" />
     <fragment
-        android:id="@+id/setting_otherdevices"
-        android:name="com.example.stemify.ui.settings.setting_otherdevices"
-        android:label="fragment_setting_otherdevices"
-        tools:layout="@layout/fragment_setting_otherdevices" />
-    <fragment
         android:id="@+id/setting_editprofile"
         android:name="com.example.stemify.ui.settings.setting_editprofile"
         android:label="fragment_setting_editprofile"

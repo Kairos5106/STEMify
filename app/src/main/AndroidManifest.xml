@@ -10,11 +10,6 @@
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission
-        android:name="android.permission.CAPTURE_VIDEO_OUTPUT"
-        tools:ignore="ProtectedPermissions" />
 
     <application
         android:allowBackup="true"
@@ -26,6 +21,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.STEMify"
         tools:targetApi="31">
+        <activity
+            android:name=".Quiz_ScoreActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Quiz_StartQuiz"
+            android:exported="false" />
         <activity
             android:name=".ui.moduleA.EditResourceQuiz"
             android:exported="false" />
