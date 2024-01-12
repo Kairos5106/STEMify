@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import com.example.stemify.HomeworkHelp_NewQuestion;
 import com.example.stemify.Leaderboard_Ranking_Adapter;
+import com.example.stemify.Leaderboard_ScoreData;
+import com.example.stemify.Quiz_StartQuiz;
 import com.example.stemify.R;
 import com.example.stemify.User;
 import com.example.stemify.ui.moduleA.Downloads;
@@ -56,6 +58,7 @@ public class Leaderboard extends Fragment {
     FirebaseUser currentUser;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    List<Leaderboard_ScoreData> listScoreData;
 
     public Leaderboard() {
         // Required empty public constructor
@@ -102,10 +105,51 @@ public class Leaderboard extends Fragment {
         leaderboardRankRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         firebaseDatabase = FirebaseDatabase.getInstance(); // get instance of the realtime database in firebase
-        databaseReference = firebaseDatabase.getReference("users"); // go into users node
+        databaseReference = firebaseDatabase.getReference("QuizScores"); // go into QuizScores node
+
+        // Display the leaderboard rankings
+        listScoreData = new ArrayList<>();
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                listScoreData.clear(); // Clear the list before adding new data
+
+                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                    String userUid = userSnapshot.getKey();
+
+                    if (userUid != null) {
+                        String username = userSnapshot.child("username").getValue(String.class);
+                        String userPfp = userSnapshot.child("userPhotoUrl").getValue(String.class);
+                        Long score = userSnapshot.child("result").getValue(Long.class);
+
+                        if (username != null && userPfp != null && score != null) {
+                            Leaderboard_ScoreData data = new Leaderboard_ScoreData(username, userPfp, score);
+                            listScoreData.add(data);
+                        }
+                    }
+                }
+
+                // Sort the list by score in descending order
+                Collections.sort(listScoreData, new Comparator<Leaderboard_ScoreData>() {
+                    @Override
+                    public int compare(Leaderboard_ScoreData o1, Leaderboard_ScoreData o2) {
+                        return Long.compare(o2.getScore(), o1.getScore());
+                    }
+                });
+
+                leaderboardRankingAdapter = new Leaderboard_Ranking_Adapter(getActivity(), listScoreData);
+                leaderboardRankRecyclerView.setAdapter(leaderboardRankingAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getActivity(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
-        // Binding - BtnEarnXP: navigate student to forum page
+        // Binding - BtnEarnXP
         Button BtnEarnXP = rootView.findViewById(R.id.BtnEarnXP);
 
         // Set OnClickListener for the button
@@ -113,11 +157,11 @@ public class Leaderboard extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getActivity(), "Button clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Start Quiz", Toast.LENGTH_SHORT).show();
 
-                // Create an Intent to start HomeworkHelp_NewQuestion activity
-                Intent intent = new Intent(getActivity(), QuizPage.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                // Create an Intent to start Quiz_StartQuiz activity
+                Intent intent = new Intent(getActivity(), Quiz_StartQuiz.class);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
 
             }
@@ -128,45 +172,4 @@ public class Leaderboard extends Fragment {
 
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // Load users data from Firebase Realtime Database
-        // Order the users by their display names
-        databaseReference.orderByChild("displayName").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                List<User> userList = new ArrayList<>();
-
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    User user = snapshot.getValue(User.class);
-
-                    // Check if the user has the identity as "Student"
-                    if (user != null && "Student".equals(user.getIdentity())) {
-                        userList.add(user);
-                    }
-                }
-
-                // Sort the userList by display name (ignore case)
-                Collections.sort(userList, new Comparator<User>() {
-                    @Override
-                    public int compare(User user1, User user2) {
-                        return String.CASE_INSENSITIVE_ORDER.compare(user1.getDisplayName(), user2.getDisplayName());
-                    }
-                });
-
-                // Set up and attach the adapter to RecyclerView
-                // i.e. these lines of code establish the connection between the custom adapter (Leaderboard_Ranking_Adapter) and the RecyclerView (leaderboardRankRecyclerView)
-                leaderboardRankingAdapter = new Leaderboard_Ranking_Adapter(getActivity(), userList);
-                leaderboardRankRecyclerView.setAdapter(leaderboardRankingAdapter);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // Handle the error if needed
-            }
-        });
-    }
 }
