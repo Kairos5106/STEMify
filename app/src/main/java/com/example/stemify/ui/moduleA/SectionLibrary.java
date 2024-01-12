@@ -13,10 +13,13 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.ProxyFileDescriptorCallback;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.stemify.R;
 import com.example.stemify.TestActivity;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,7 +28,9 @@ import java.util.List;
 public class SectionLibrary extends AppCompatActivity {
     SectionAdapter sectionAdapter;
     RecyclerView recyclerView;
-    List<Section> listOfItems; // change later
+    List<Section> listOfItems;
+    TextView TVSubtopicTitle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,9 +81,13 @@ public class SectionLibrary extends AppCompatActivity {
     }
 
     public void initializeData(){
-        // Initializing list of topic items
+        // Get subtopic title from goToSectionLibrary intent from SubtopicLibrary
+        String subtopicTitle = Parcels.unwrap(getIntent().getParcelableExtra("subtopicTitle"));
+        TVSubtopicTitle = findViewById(R.id.TVSubtopicTitle);
+        TVSubtopicTitle.setText(subtopicTitle);
+
+        // Get section items to be displayed
         listOfItems = new ArrayList<Section>();
-
-
+        listOfItems = Parcels.unwrap(getIntent().getParcelableExtra("listOfSections"));
     }
 }

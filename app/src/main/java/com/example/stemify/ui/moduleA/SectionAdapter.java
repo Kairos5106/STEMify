@@ -59,7 +59,17 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.SectionV
                 Toast.makeText(context, "ItemPosition: " + (position+1), Toast.LENGTH_SHORT).show(); // debug
                 if("VideoLesson".equalsIgnoreCase(materialType)){
                     intent = new Intent(context, VideoLessonPage.class);
-                    intent.putExtra("VideoLesson", listOfMaterial.get(position));
+
+                    VideoLesson videoLesson = (VideoLesson) listOfMaterial.get(position);
+
+                    String transcript = videoLesson.getTranscript();
+                    int videoResourceId = videoLesson.getVideoResourceId();
+
+                    Parcelable transcriptParcel = Parcels.wrap(transcript);
+                    Parcelable videoResourceIdParcel = Parcels.wrap(videoResourceId);
+
+                    intent.putExtra("videoTranscript", transcriptParcel);
+                    intent.putExtra("videoResourceId", videoResourceIdParcel);
                 }
                 else if("Practice".equalsIgnoreCase(materialType)){
                     intent = new Intent(context, PracticePage.class);
