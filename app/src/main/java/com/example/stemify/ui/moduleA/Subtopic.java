@@ -1,8 +1,11 @@
 package com.example.stemify.ui.moduleA;
 
+import org.parceler.Parcel;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Parcel
 public class Subtopic {
     String title = "";
     int achievedPoints, totalPoints, imageId;
@@ -82,5 +85,9 @@ public class Subtopic {
             listOfSections += "\n" + this.listOfSections.get(i).title;
         }
         return listOfSections;
+    }
+
+    public int getSectionCount(){
+        return this.listOfSections.size();
     }
 }

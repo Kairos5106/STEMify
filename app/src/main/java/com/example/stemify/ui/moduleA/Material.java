@@ -1,11 +1,13 @@
 package com.example.stemify.ui.moduleA;
 
-import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
-public class Material implements Parcelable {
+import org.parceler.Parcel;
+
+@Parcel
+public class Material {
     String title;
     String type; // Can either be "VideoLesson", "Practice" or "Quiz"
     int points, iconId;
@@ -27,26 +29,6 @@ public class Material implements Parcelable {
         this.type = type;
         this.points = points;
     }
-
-    protected Material(Parcel in) {
-        this();
-        title = in.readString();
-        type = in.readString();
-        points = in.readInt();
-        iconId = in.readInt();
-    }
-
-    public static final Creator<Material> CREATOR = new Creator<Material>() {
-        @Override
-        public Material createFromParcel(Parcel in) {
-            return new Material(in);
-        }
-
-        @Override
-        public Material[] newArray(int size) {
-            return new Material[size];
-        }
-    };
 
     public String getTitle() {
         return title;
@@ -83,18 +65,5 @@ public class Material implements Parcelable {
     public String getMasteryPoints(){
         // Work on the backend logic later
         return "Points";
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(@NonNull Parcel dest, int flags) {
-        dest.writeString(title);
-        dest.writeString(type);
-        dest.writeInt(points);
-        dest.writeInt(iconId);
     }
 }

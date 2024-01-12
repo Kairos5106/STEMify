@@ -7,12 +7,17 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.stemify.R;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +60,28 @@ public class SubtopicLibrary extends AppCompatActivity {
         recyclerView = findViewById(R.id.RVSubtopicLibrary);
         recyclerView.setLayoutManager(new LinearLayoutManager(SubtopicLibrary.this));
         subtopicAdapter = new SubtopicAdapter(SubtopicLibrary.this, listOfItems);
+        subtopicAdapter.setOnItemClickListener(new MaterialAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent goToSectionLibrary = new Intent(SubtopicLibrary.this, SectionLibrary.class);
+
+                // Get selected subtopic
+                Subtopic selectedSubtopic = listOfItems.get(position);
+
+                // Pack title of selected subtopic
+                String subtopicTitle = selectedSubtopic.getTitle();
+                goToSectionLibrary.putExtra("subtopicTitle", subtopicTitle);
+
+                // Unpack section objects contained within selected subtopic to be passed onto section library page
+                List<Section> listOfSections = selectedSubtopic.getListOfSections();
+
+                // Wrap list of sections to be sent
+                Parcelable listOfSectionsParcel = Parcels.wrap(listOfSections);
+                goToSectionLibrary.putExtra("listOfSections", listOfSectionsParcel);
+
+                startActivity(goToSectionLibrary);
+            }
+        });
         recyclerView.setAdapter(subtopicAdapter);
         subtopicAdapter.notifyDataSetChanged();
     }
