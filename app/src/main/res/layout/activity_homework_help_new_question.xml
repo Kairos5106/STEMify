@@ -71,32 +71,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ETQuestion" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/TagsLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintTop_toBottomOf="@+id/ETDescription"
-        style="@style/Widget.Material3.TextInputLayout.FilledBox"
-        android:hint="Relevant tags (3)"
-        app:helperText="Enter each tag space separated"
-        app:boxStrokeWidthFocused="0sp"
-        app:boxStrokeWidth="0sp"
-        app:boxCornerRadiusTopStart="10sp"
-        app:boxCornerRadiusTopEnd="10sp"
-        app:boxCornerRadiusBottomStart="10sp"
-        app:boxCornerRadiusBottomEnd="10sp">
-
-        <com.example.stemify.HomeworkHelp_TagsInputEditText
-            android:id="@+id/ETTags"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/ThemeOverlay.Material3.TextInputEditText.FilledBox" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
     <Button
         android:id="@+id/BtnPost"
         android:layout_width="110dp"
@@ -108,6 +82,6 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TagsLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/ETDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

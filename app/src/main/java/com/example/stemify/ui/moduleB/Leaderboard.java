@@ -142,7 +142,11 @@ public class Leaderboard extends Fragment {
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     User user = snapshot.getValue(User.class);
-                    userList.add(user);
+
+                    // Check if the user has the identity as "Student"
+                    if (user != null && "Student".equals(user.getIdentity())) {
+                        userList.add(user);
+                    }
                 }
 
                 // Sort the userList by display name (ignore case)
@@ -154,7 +158,7 @@ public class Leaderboard extends Fragment {
                 });
 
                 // Set up and attach the adapter to RecyclerView
-                // i.e. these lines of code establish the connection between the custom adapter (HomeworkHelp_Post_Adapter) and the RecyclerView (postRecyclerView)
+                // i.e. these lines of code establish the connection between the custom adapter (Leaderboard_Ranking_Adapter) and the RecyclerView (leaderboardRankRecyclerView)
                 leaderboardRankingAdapter = new Leaderboard_Ranking_Adapter(getActivity(), userList);
                 leaderboardRankRecyclerView.setAdapter(leaderboardRankingAdapter);
             }
