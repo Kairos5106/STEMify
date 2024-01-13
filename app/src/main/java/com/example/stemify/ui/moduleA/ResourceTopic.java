@@ -4,9 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ResourceTopic {
-    String title;
+    String title, topicImageName;
 
     public ResourceTopic() {
+        this.topicImageName = "sampleimage";
+    }
+
+    public String getTopicImageName() {
+        return topicImageName;
+    }
+
+    public void setTopicImageName(String topicImageName) {
+        this.topicImageName = topicImageName;
     }
 
     public ResourceTopic(String title) {

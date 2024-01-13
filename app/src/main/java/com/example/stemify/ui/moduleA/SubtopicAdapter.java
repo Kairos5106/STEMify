@@ -47,7 +47,7 @@ public class SubtopicAdapter extends RecyclerView.Adapter<SubtopicAdapter.Subtop
         holder.title.setText(subtopic.title);
         holder.sectionList.setText(subtopic.getSectionTitleList());
         holder.masteryPoints.setText(subtopic.assignPoints());
-        holder.image.setImageResource(subtopic.imageId);
+        holder.image.setImageResource(context.getResources().getIdentifier(subtopic.getSubtopicImageName(), "drawable", context.getPackageName()));
     }
 
     @Override

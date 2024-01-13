@@ -116,8 +116,8 @@ public class TopicLibrary extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()){
                     ResourceTopic resourceTopic = dataSnapshot.getValue(ResourceTopic.class);
                     listOfTopics.add(resourceTopic);
+                    topicAdapter.notifyDataSetChanged();
                 }
-                topicAdapter.notifyDataSetChanged();
             }
 
             @Override

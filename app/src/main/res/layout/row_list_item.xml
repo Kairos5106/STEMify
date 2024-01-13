@@ -13,7 +13,7 @@
         app:cardCornerRadius="300dp">
 
         <ImageView
-            android:id="@+id/IVDownloadImage"
+            android:id="@+id/IVItemImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
