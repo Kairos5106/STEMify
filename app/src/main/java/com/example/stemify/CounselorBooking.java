@@ -93,7 +93,7 @@ public class CounselorBooking extends AppCompatActivity {
             String exp = intent.getStringExtra("Experience");
             String info = intent.getStringExtra("Information");
             emailDr = intent.getStringExtra("Email");
-            int image = intent.getIntExtra("Image", R.drawable.drfem);
+            int image = intent.getIntExtra("Image", R.drawable.female);
 
             drName.setText(nameDr);
             drInfo.setText(info);

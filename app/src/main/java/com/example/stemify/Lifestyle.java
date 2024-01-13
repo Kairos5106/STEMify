@@ -33,7 +33,6 @@ public class Lifestyle extends AppCompatActivity {
 
         setTitle("Health Guidance");
 
-
     }
 
     // click back at the toolbar and navigate to health guidance

@@ -22,7 +22,7 @@ public class HealthFitness extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.health_fitness);
+        setContentView(R.layout.fragment_health_fitness);
 
         //toolbar
         Toolbar toolbar = findViewById(R.id.TBFitness);
@@ -32,6 +32,7 @@ public class HealthFitness extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         setTitle("Health Guidance");
+
 
     }
 

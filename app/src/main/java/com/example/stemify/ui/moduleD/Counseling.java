@@ -32,9 +32,9 @@ public class Counseling extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         CounselorData[] counselorData = new CounselorData[]{
-                new CounselorData("Dr. Kevina Ho", "Specialist in treating mental health issues with young adults", "Experience: 12 Years", "kevinhotzewan@gmail.com", R.drawable.drfem),
-                new CounselorData("Dr.Adam Carlson", "Specialist in treating insomnia among young adults aged 13-22", "Experience: 7 Years", "dradamcarlson@gmail.com", R.drawable.drman),
-                new CounselorData("Dr.H.J. Kamal", "Specialist in helping young adults with ADHD", "Experience: 5 Years", "hjkamal@gmail.com", R.drawable.drman),
+                new CounselorData("Dr. Kevina Ho", "Specialist in treating mental health issues with young adults", "Experience: 12 Years", "kevinhotzewan@gmail.com", R.drawable.female),
+                new CounselorData("Dr.Adam Carlson", "Specialist in treating insomnia among young adults aged 13-22", "Experience: 7 Years", "dradamcarlson@gmail.com", R.drawable.male),
+                new CounselorData("Dr.H.J. Kamal", "Specialist in helping young adults with ADHD", "Experience: 5 Years", "hjkamal@gmail.com", R.drawable.male),
 
         };
 

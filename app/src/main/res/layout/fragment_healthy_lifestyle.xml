@@ -16,16 +16,16 @@
         android:title="Healthy Lifestyle" />
 
     <TextView
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="16dp"
+        android:layout_marginTop="12dp"
         android:text="Healthy Lifestyle Guidance"
         android:textColor="#66001B"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:layout_margin="16dp"
-        android:layout_gravity="center"
-        android:paddingTop="12dp"
-        android:id="@+id/textView3" />
+        android:textSize="20dp"
+        android:textStyle="bold" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -43,30 +43,33 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/textView15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:paddingLeft="4dp"
-                android:textSize="16dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="sans-serif-black"
                 android:text="@string/health_lifestyle"
-                android:id="@+id/textView15" />
+                android:textSize="16dp" />
 
             <TextView
+                android:id="@+id/textView16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="22dp"
+                android:layout_marginTop="22dp"
+                android:fontFamily="sans-serif-black"
                 android:text="Step 1"
-                android:textStyle="bold"
                 android:textSize="16dp"
-                android:id="@+id/textView16" />
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/textView17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:fontFamily="sans-serif-medium"
                 android:text="@string/health_1"
                 android:textAlignment="textStart"
-                android:id="@+id/textView17" />
+                android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <ImageView
                 android:layout_width="206dp"
@@ -76,19 +79,21 @@
                 android:id="@+id/healthy_food"/>
 
             <TextView
+                android:id="@+id/textView12b"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
                 android:paddingTop="22dp"
                 android:text="Step 2"
-                android:textStyle="bold"
                 android:textSize="16dp"
-                android:id="@+id/textView12b" />
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/textView13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/health_2"
-                android:id="@+id/textView13" />
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/health_2" />
 
             <ImageView
                 android:id="@+id/healthy_man"
@@ -98,19 +103,21 @@
                 android:src="@drawable/man" />
 
             <TextView
+                android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:fontFamily="sans-serif-black"
                 android:text="Step 3"
-                android:textStyle="bold"
                 android:textSize="16dp"
-                android:paddingTop="22dp"
-                android:id="@+id/textView9" />
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/health_3"
-                android:id="@+id/textView10" />
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/health_3" />
 
             <ImageView
                 android:id="@+id/healthy_sleep"
@@ -120,19 +127,21 @@
                 android:src="@drawable/sleep" />
 
             <TextView
+                android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:fontFamily="sans-serif-black"
                 android:text="Step 4"
-                android:textStyle="bold"
                 android:textSize="16dp"
-                android:paddingTop="22dp"
-                android:id="@+id/textView6" />
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/health_4"
-                android:id="@+id/textView7" />
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/health_4" />
 
             <ImageView
                 android:id="@+id/healthy_drink"
@@ -142,33 +151,30 @@
                 android:src="@drawable/water" />
 
             <TextView
+                android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:fontFamily="sans-serif-black"
                 android:text="Step 5"
-                android:textStyle="bold"
                 android:textSize="16dp"
-                android:paddingTop="22dp"
-                android:id="@+id/textView" />
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/health_5"
-                android:id="@+id/textView2" />
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/health_5" />
 
             <ImageView
                 android:id="@+id/healthy_stress"
                 android:layout_width="wrap_content"
                 android:layout_height="150dp"
+                android:layout_marginBottom="30dp"
                 android:layout_gravity="center"
                 android:src="@drawable/socialise" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Click Here for more info"
-                android:id="@+id/textView4" />
 
 
         </LinearLayout>

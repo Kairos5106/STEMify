@@ -32,6 +32,7 @@ public class Cleanliness extends AppCompatActivity {
 
         setTitle("Health Guidance");
 
+
     }
 
     //click to navigate back to health guidance
