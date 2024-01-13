@@ -53,7 +53,7 @@ public class CounselorBooking extends AppCompatActivity {
     Button time8am, time10am, time12pm, time2pm, time4pm, time6pm, btnBook, btnCancel;
     CalendarView calendarView;
     Calendar calendar;
-    String selectedTime, selected_date, emailUser, emailDr, nameDr;
+    String selectedTime, selectedDate, emailUser, emailDr, nameDr;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
@@ -137,7 +137,7 @@ public class CounselorBooking extends AppCompatActivity {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 Toast.makeText(CounselorBooking.this, dayOfMonth +"/" +month+1 +"/"+year, Toast.LENGTH_SHORT).show();
-
+                selectedDate = dayOfMonth+ "/" +month+1 +"/"+year;
             }
         });
 
@@ -211,7 +211,7 @@ public class CounselorBooking extends AppCompatActivity {
                     HashMap<String, String> usermap = new HashMap<>();
                     usermap.put("booking_dr_name", nameDr);
                     usermap.put("booking_time", selectedTime);
-                    usermap.put("booking_date", selected_date);
+                    usermap.put("booking_date", selectedDate);
 
                     DatabaseReference bookingdata = databaseReference.push();
 
@@ -369,7 +369,7 @@ public class CounselorBooking extends AppCompatActivity {
         long date = calendarView.getDate();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yy", Locale.getDefault());
         calendar.setTimeInMillis(date);
-        selected_date = simpleDateFormat.format(calendar.getTime());
+        String selected_date = simpleDateFormat.format(calendar.getTime());
         Toast.makeText(this, selected_date, Toast.LENGTH_SHORT).show();
     }
 
