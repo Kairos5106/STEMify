@@ -82,7 +82,6 @@ public class VideoLessonPage extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 selectHistory = snapshot.getValue(SelectHistory.class);
 
-                Toast.makeText(VideoLessonPage.this, selectHistory.toString(), Toast.LENGTH_SHORT).show();
                 // Obtain Video Lesson data from database
                 videoLessonRef = FirebaseDatabase.getInstance().getReference("Subjects")
                         .child(selectHistory.getSelectedSubject())
@@ -99,7 +98,6 @@ public class VideoLessonPage extends AppCompatActivity {
                         setupVideoView(videoLesson.getVideoName());
                         transcriptAdapter.setVideoTranscript(videoLesson.getTranscript());
                         transcriptAdapter.notifyDataSetChanged();
-                        Toast.makeText(VideoLessonPage.this, videoLesson.toString(), Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
