@@ -51,13 +51,15 @@ public class VideoLessonPage extends AppCompatActivity {
     }
 
     private void initializeData() {
-        // Get parcelable object
-        Intent intent = getIntent();
-        videoLesson = (VideoLesson) intent.getParcelableExtra("VideoLesson");
+        // Get data about selected video lesson object from SectionLibrary activity
+        Intent prevActivityData = getIntent();
+        String selectedMaterial = prevActivityData.getStringExtra("selectedMaterial");
 
+        // Obtain Video Lesson data from database
+        
         // Get video data and setup VideoView
         videoView = findViewById(R.id.VVVideoLesson);
-        videoView.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + videoLesson.getVideoResourceId()));
+        videoView.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/R.raw." + videoLesson.getVideoName()));
         MediaController mediaController = new MediaController(this);
         videoView.setMediaController(mediaController);
         mediaController.setAnchorView(videoView);

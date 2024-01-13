@@ -8,25 +8,28 @@ import com.example.stemify.R;
 
 @org.parceler.Parcel
 public class VideoLesson extends Material {
-    String transcript;
-    int videoResourceId;
+    String transcript, videoName;
 
     public VideoLesson(){}
 
     public VideoLesson(String title) {
         super(title);
         this.transcript = "No transcript provided";
-        this.videoResourceId = 0;
+        this.videoName = "samplevideo";
     }
 
-    public VideoLesson(String title, String type, int points, String transcript, int videoResourceId) {
+    public VideoLesson(String title, String type, int points, String transcript, String videoName) {
         super(title, type, points);
         this.transcript = transcript;
-        this.videoResourceId = videoResourceId;
+        this.videoName = videoName;
     }
 
-    public int describeContents() {
-        return 0;
+    public String getVideoName() {
+        return videoName;
+    }
+
+    public void setVideoName(String videoName) {
+        this.videoName = videoName;
     }
 
     public String getTranscript() {
@@ -35,13 +38,5 @@ public class VideoLesson extends Material {
 
     public void setTranscript(String transcript) {
         this.transcript = transcript;
-    }
-
-    public int getVideoResourceId() {
-        return videoResourceId;
-    }
-
-    public void setVideoResourceId(int videoResourceId) {
-        this.videoResourceId = videoResourceId;
     }
 }

@@ -39,15 +39,4 @@ public class Practice extends Material {
     public void addQuestion(Question question){
         listOfQuestions.add(question);
     }
-
-    @Override
-    public String toString() {
-        return "Practice{" +
-                "listOfQuestions=" + listOfQuestions +
-                ", title='" + title + '\'' +
-                ", type='" + type + '\'' +
-                ", points=" + points +
-                ", iconId=" + iconId +
-                '}';
-    }
 }

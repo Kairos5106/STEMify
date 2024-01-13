@@ -47,7 +47,16 @@ public class MaterialAdapter extends RecyclerView.Adapter<MaterialAdapter.Materi
         // Bind View objects
         holder.title.setText(material.getTitle());
         holder.masteryPoints.setText(material.getMasteryPoints());
-        holder.icon.setImageResource(R.drawable.sampleimage); // change to material.getIconId() later
+        String materialType = material.getType();
+        if(materialType.equalsIgnoreCase("VideoLesson")){
+            holder.icon.setImageResource(R.drawable.ic_video_lesson);
+        }
+        else if (materialType.equalsIgnoreCase("Practice")) {
+            holder.icon.setImageResource(R.drawable.ic_practice);
+        }
+        else{
+            holder.icon.setImageResource(R.drawable.ic_quiz);
+        }
     }
 
     @Override

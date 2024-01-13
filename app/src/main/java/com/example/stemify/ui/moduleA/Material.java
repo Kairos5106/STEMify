@@ -10,7 +10,7 @@ import org.parceler.Parcel;
 public class Material {
     String title;
     String type; // Can either be "VideoLesson", "Practice" or "Quiz"
-    int points, iconId;
+    int points;
 
     public Material() {
         this.title = "";
@@ -28,6 +28,11 @@ public class Material {
         this.title = title;
         this.type = type;
         this.points = points;
+    }
+
+    public VideoLesson createFromMaterial(String type, Material material){
+
+        return null;
     }
 
     public String getTitle() {
@@ -52,14 +57,6 @@ public class Material {
 
     public void setPoints(int points) {
         this.points = points;
-    }
-
-    public int getIconId() {
-        return iconId;
-    }
-
-    public void setIconId(int iconId) {
-        this.iconId = iconId;
     }
 
     public String getMasteryPoints(){

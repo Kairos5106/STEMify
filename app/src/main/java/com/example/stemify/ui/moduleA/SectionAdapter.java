@@ -56,43 +56,19 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.SectionV
             public void onItemClick(int position) {
                 String materialType = listOfMaterial.get(position).getType();
                 Intent intent = new Intent();
-                Toast.makeText(context, "ItemPosition: " + (position+1), Toast.LENGTH_SHORT).show(); // debug
+
+                // Getting material name from database and sending it to the next appropriate activity for reference
                 if("VideoLesson".equalsIgnoreCase(materialType)){
                     intent = new Intent(context, VideoLessonPage.class);
-
-                    VideoLesson videoLesson = (VideoLesson) listOfMaterial.get(position);
-
-                    String transcript = videoLesson.getTranscript();
-                    int videoResourceId = videoLesson.getVideoResourceId();
-
-                    Parcelable transcriptParcel = Parcels.wrap(transcript);
-                    Parcelable videoResourceIdParcel = Parcels.wrap(videoResourceId);
-
-                    intent.putExtra("videoTranscript", transcriptParcel);
-                    intent.putExtra("videoResourceId", videoResourceIdParcel);
                 }
                 else if("Practice".equalsIgnoreCase(materialType)){
                     intent = new Intent(context, PracticePage.class);
-                    Practice practice = (Practice) listOfMaterial.get(position);
-                    List<Question> listOfQuestions = practice.getListOfQuestions();
-                    Parcelable practiceParcel = Parcels.wrap(listOfQuestions);
-                    intent.putExtra("Practice", practiceParcel);
                 }
                 else if("Quiz".equalsIgnoreCase(materialType)){
                     intent = new Intent(context, QuizPage.class);
-
-                    Quiz quiz = (Quiz) listOfMaterial.get(position);
-
-                    List<Question> listOfQuestions = quiz.getListOfQuestions();
-                    int duration = quiz.getDuration();
-
-                    Toast.makeText(context, "listOfQuestions size: " + listOfQuestions.size(), Toast.LENGTH_SHORT).show(); // debug
-                    Parcelable quizQuestions = Parcels.wrap(listOfQuestions);
-                    Parcelable quizDuration = Parcels.wrap(duration);
-
-                    intent.putExtra("quizQuestions", quizQuestions);
-                    intent.putExtra("quizDuration", quizDuration);
                 }
+                String selectedMaterial = listOfMaterial.get(position).getTitle();
+                intent.putExtra("selectedMaterial", selectedMaterial);
                 context.startActivity(intent);
             }
         });
