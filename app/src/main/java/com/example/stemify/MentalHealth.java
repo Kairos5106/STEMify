@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,33 +39,6 @@ public class MentalHealth extends AppCompatActivity {
 
         TextView textView = findViewById(R.id.textviewClick);
 
-
-        String text = "Click Here to find out more";
-
-        SpannableString ss = new SpannableString(text);
-
-        ClickableSpan clickableSpan1 = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                String url = "https://risemalaysia.com.my/mental-health-hotline-malaysia-for-help/";
-
-                Uri uri = Uri.parse(url);
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
-
-            }
-
-            @Override
-            public void updateDrawState(TextPaint ds) {
-                super.updateDrawState(ds);
-                ds.setColor(Color.BLUE);
-            }
-        };
-
-        ss.setSpan(clickableSpan1, 0, 10, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-        textView.setText(ss);
-        textView.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     @Override
