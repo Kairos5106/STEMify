@@ -9,6 +9,7 @@ import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -39,18 +40,19 @@ public class MentalHealth extends AppCompatActivity {
         TextView textView = findViewById(R.id.textviewClick);
 
 
-        String text = "Click Here to find out more";
+        String text = "Click Here For More Information";
 
         SpannableString ss = new SpannableString(text);
 
         ClickableSpan clickableSpan1 = new ClickableSpan() {
             @Override
             public void onClick(@NonNull View widget) {
-                String url = "https://risemalaysia.com.my/mental-health-hotline-malaysia-for-help/";
+                String url = "https://www.mind.org.uk/information-support/tips-for-everyday-living/wellbeing/";
 
                 Uri uri = Uri.parse(url);
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
+                MentalHealth.this.startActivity(intent);
+                Log.e("Website", "Unable to open website");
 
             }
 

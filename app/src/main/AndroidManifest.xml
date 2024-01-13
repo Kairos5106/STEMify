@@ -10,6 +10,13 @@
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission
+        android:name="android.permission.CAPTURE_VIDEO_OUTPUT"
+        tools:ignore="ProtectedPermissions" />
 
     <application
         android:allowBackup="true"
@@ -140,30 +147,28 @@
         <activity
             android:name=".Splash2"
             android:exported="false" />
-        <activity
-            android:name=".ui.moduleD.HealthGuidance"
+
+        <activity android:name=".ui.moduleD.HealthGuidance"
+            android:exported="false"/>
+
+        <activity android:name=".Lifestyle"
             android:exported="false" />
-        <activity
-            android:name=".HealthGuide"
+
+        <activity android:name=".MentalHealth"
             android:exported="false" />
-        <activity
-            android:name=".Lifestyle"
+
+        <activity android:name=".HealthFitness"
             android:exported="false" />
-        <activity
-            android:name=".MentalHealth"
+
+        <activity android:name=".Cleanliness"
             android:exported="false" />
-        <activity
-            android:name=".HealthFitness"
-            android:exported="false" />
-        <activity
-            android:name=".CounselorBooking"
-            android:exported="false" />
-        <activity
-            android:name=".CommunityEventDetails"
-            android:exported="false" />
-        <activity
-            android:name=".Cleanliness"
-            android:exported="false" />
+
+        <activity android:name=".CounselorBooking"
+            android:exported="false"/>
+
+        <activity android:name=".CommunityEventDetails"
+            android:exported="false"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

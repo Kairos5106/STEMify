@@ -26,17 +26,17 @@
 
             <TextView
                 android:id="@+id/page_title1"
-                android:paddingTop="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Available Psychiatrist"
-                android:textSize="25dp"
+                android:textSize="20dp"
+                android:fontFamily="sans-serif-black"
                 android:textStyle="bold"
-                android:textColor="#66001B"
+                android:textColor="#E33D6A"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="16dp"/>
+                android:layout_marginTop="26dp"/>
 
             <LinearLayout
                 android:id="@+id/divider1"
