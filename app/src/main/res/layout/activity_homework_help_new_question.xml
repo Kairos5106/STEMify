@@ -47,11 +47,10 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="52dp"
         android:ems="10"
-        android:inputType="text"
         android:hint="Question"
+        android:inputType="text"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/IVProfilePic" />
 
@@ -64,8 +63,8 @@
         android:layout_marginEnd="52dp"
         android:ems="10"
         android:gravity="start|top"
-        android:inputType="textMultiLine"
         android:hint="Description"
+        android:inputType="textMultiLine"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

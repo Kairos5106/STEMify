@@ -27,9 +27,9 @@ import java.util.List;
 public class Leaderboard_Ranking_Adapter extends RecyclerView.Adapter<Leaderboard_Ranking_Adapter.RankingViewHolder> {
 
     private Context mContext;
-    private List<User> mData;
+    private List<Leaderboard_ScoreData> mData;
 
-    public Leaderboard_Ranking_Adapter(Context mContext, List<User> mData) {
+    public Leaderboard_Ranking_Adapter(Context mContext, List<Leaderboard_ScoreData> mData) {
         this.mContext = mContext;
         this.mData = mData;
     }
@@ -44,16 +44,12 @@ public class Leaderboard_Ranking_Adapter extends RecyclerView.Adapter<Leaderboar
     @Override
     public void onBindViewHolder(@NonNull Leaderboard_Ranking_Adapter.RankingViewHolder holder, int position) {
 
+        Leaderboard_ScoreData currentItem = mData.get(position);
+
         holder.TVRankNumber.setText(String.valueOf(position + 1));
-        holder.TVUsernameRankRow.setText(mData.get(position).getDisplayName());
-        Picasso.get().load(mData.get(position).getPhotoUrl()).into(holder.IVUserPfpRankRow);
-
-        int firstPlaceValue = 1000;
-        int decreaseFactor = 100;
-        // Calculate the TVDigitXPRankRow value based on the position
-        int digitXPValue = firstPlaceValue - position * decreaseFactor;
-
-        holder.TVDigitXPRankRow.setText(String.valueOf(digitXPValue));
+        holder.TVUsernameRankRow.setText(mData.get(position).getUsername());
+        Picasso.get().load(mData.get(position).getUserPfp()).into(holder.IVUserPfpRankRow);
+        holder.TVDigitXPRankRow.setText(String.valueOf(currentItem.getScore()));
 
     }
 
