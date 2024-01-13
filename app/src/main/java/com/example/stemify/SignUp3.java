@@ -95,7 +95,8 @@ public class SignUp3 extends Fragment {
     String parentIcon = "https://firebasestorage.googleapis.com/v0/b/stemify-708cf.appspot.com/o/profile_icons%2Fparent.jpg?alt=media&token=e717737a-4a92-4abd-b2e7-1a95800b4b1c";
     String companyIcon = "https://firebasestorage.googleapis.com/v0/b/stemify-708cf.appspot.com/o/profile_icons%2Fcompany.jpg?alt=media&token=89054483-42e2-4c2d-9174-1f08dbaecf39";
     String communityIcon = "https://firebasestorage.googleapis.com/v0/b/stemify-708cf.appspot.com/o/profile_icons%2Fcommunity.jpg?alt=media&token=f3473fbb-0b7f-499c-934d-4ccdc2e9c851";
-    String psychiatristIcon = "https://firebasestorage.googleapis.com/v0/b/stemify-708cf.appspot.com/o/profile_icons%2Fpsychiatrist.jpg?alt=media&token=e1843871-58bf-4b94-9f61-ca4cdc8ad855";
+
+    //String psychiatristIcon = "https://firebasestorage.googleapis.com/v0/b/stemify-708cf.appspot.com/o/profile_icons%2Fpsychiatrist.jpg?alt=media&token=e1843871-58bf-4b94-9f61-ca4cdc8ad855";
 
 
     @Override
@@ -129,10 +130,10 @@ public class SignUp3 extends Fragment {
                 Picasso.get().load(userIcon).into(ProfilePic);
                 break;
 
-            case "Psychiatrist":
-                userIcon = psychiatristIcon;
-                Picasso.get().load(userIcon).into(ProfilePic);
-                break;
+//            case "Psychiatrist":
+//                userIcon = psychiatristIcon;
+//                Picasso.get().load(userIcon).into(ProfilePic);
+//                break;
 
         }
 

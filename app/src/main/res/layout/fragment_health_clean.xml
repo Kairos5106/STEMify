@@ -113,6 +113,7 @@
                 android:layout_marginTop="22dp"
                 android:fontFamily="sans-serif-black"
                 android:text="Dental hygiene"
+                android:layout_marginBottom="8dp"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
@@ -128,6 +129,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="18dp"
                 android:text="@string/clean_teeth" />
 
             <TextView
@@ -138,6 +141,7 @@
                 android:layout_marginTop="22dp"
                 android:fontFamily="sans-serif-black"
                 android:text="Wearing clean cloths"
+                android:layout_marginBottom="8dp"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
@@ -153,17 +157,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
-                android:text="@string/clean_cloth" />
-
-            <TextView
-                android:id="@+id/txtClick"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
                 android:layout_marginBottom="55dp"
-                android:fontFamily="sans-serif-light"
-                android:text="Click Here to Find Out More"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:layout_marginTop="8dp"
+                android:text="@string/clean_cloth" />
 
 
         </LinearLayout>

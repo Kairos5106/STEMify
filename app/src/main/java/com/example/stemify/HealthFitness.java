@@ -33,34 +33,7 @@ public class HealthFitness extends AppCompatActivity {
 
         setTitle("Health Guidance");
 
-        TextView textView = findViewById(R.id.textviewClick);
 
-        String text = "Click Here For More Information";
-
-        SpannableString ss = new SpannableString(text);
-
-        ClickableSpan clickableSpan1 = new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View widget) {
-                String url = "https://www.physiotattva.com/blog/20-fun-ways-to-exercise-stay-active-and-healthy";
-
-                Uri uri = Uri.parse(url);
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                HealthFitness.this.startActivity(intent);
-
-            }
-
-            @Override
-            public void updateDrawState(TextPaint ds) {
-                super.updateDrawState(ds);
-                ds.setColor(Color.BLUE);
-            }
-        };
-
-        ss.setSpan(clickableSpan1, 0, 10, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-        textView.setText(ss);
-        textView.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     //click to navigate back to health guidance

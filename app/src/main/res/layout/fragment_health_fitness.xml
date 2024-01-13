@@ -225,18 +225,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="12dp"
+                android:layout_marginBottom="55dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="@string/fit_rest2"
                 android:id="@+id/textView18d" />
 
-            <TextView
-                android:id="@+id/textviewClick"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="52dp"
-                android:text="Click Here For More Information"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
 
 
         </LinearLayout>

@@ -85,7 +85,7 @@ public class SignUp1 extends Fragment {
 
         //dropdown (spinner) for identity
         String[] IDENTITY = new String[]{
-                "Identity", "Student", "Tutor", "Parent", "Company", "Community", "Psychiatrist"
+                "Identity", "Student", "Tutor", "Parent", "Company", "Community"
         };
         Spinner SPIdentity = (Spinner) view.findViewById(R.id.SPIdentity);
         ArrayAdapter<String> arrAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, IDENTITY);
