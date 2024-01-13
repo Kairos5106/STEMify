@@ -9,9 +9,8 @@ import org.parceler.Parcel;
 import java.util.ArrayList;
 import java.util.List;
 
-@Parcel
 public class Practice extends Material {
-    List<Question> listOfQuestions = new ArrayList<>();
+    List<Question> listOfQuestions;
 
     public Practice(){
         super();

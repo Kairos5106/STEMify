@@ -25,6 +25,10 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
         this.listOfQuestions = listOfQuestions;
     }
 
+    public void setListOfQuestions(List<Question> listOfQuestions) {
+        this.listOfQuestions = listOfQuestions;
+    }
+
     @NonNull
     @Override
     public QuestionAdapter.QuestionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -37,7 +41,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
         holder.questionNumber.setText("Question " + (position + 1));
         holder.diagramDesc.setText(question.getDiagramDesc());
         holder.questionDesc.setText(question.getQuestionDesc());
-        holder.questionDiagram.setImageResource(question.getDiagramId());
+        holder.questionDiagram.setImageResource(R.drawable.sampleimage); // change later
 
         if(question instanceof MultipleChoice){ // Implementation for MCQ features
             MCQAnswerAdapter mcqAnswerAdapter = new MCQAnswerAdapter(context, ((MultipleChoice) question).getListOfAnswers());

@@ -10,37 +10,52 @@ import java.util.List;
 
 @Parcel
 public class Question {
+    String questionType; // can be "MCQ" or "FillBlank"
     String questionDesc;
     String correctAnswer;
-    int diagramId; // image to further depict question
+    String diagramName; // image to further depict question
     String diagramDesc;
 
     // Required empty constructor
     public Question(){
+        this.questionType = "";
         this.questionDesc = "";
         this.correctAnswer = "";
-        this.diagramId = 0;
+        this.diagramName = "";
         this.diagramDesc = "";
     }
 
     // For general initialization, use this constructor
     public Question(String questionDesc) {
+        this.questionType = "MCQ";
         this.questionDesc = questionDesc;
         this.correctAnswer = "";
-        this.diagramId = 0;
+        this.diagramName = "";
         this.diagramDesc = "";
     }
 
     public Question(String questionDesc, String correctAnswer) {
+        this.questionType = "MCQ";
         this.questionDesc = questionDesc;
         this.correctAnswer = correctAnswer;
+        this.diagramName = "";
+        this.diagramDesc = "";
     }
 
-    public Question(String questionDesc, String correctAnswer, int diagramId, String diagramDesc) {
+    public Question(String questionType, String questionDesc, String correctAnswer, String diagramName, String diagramDesc) {
+        this.questionType = questionType;
         this.questionDesc = questionDesc;
         this.correctAnswer = correctAnswer;
-        this.diagramId = diagramId;
+        this.diagramName = diagramName;
         this.diagramDesc = diagramDesc;
+    }
+
+    public String getQuestionType() {
+        return questionType;
+    }
+
+    public void setQuestionType(String questionType) {
+        this.questionType = questionType;
     }
 
     public String getQuestionDesc() {
@@ -59,12 +74,12 @@ public class Question {
         this.correctAnswer = correctAnswer;
     }
 
-    public int getDiagramId() {
-        return diagramId;
+    public String getDiagramName() {
+        return diagramName;
     }
 
-    public void setDiagramId(int diagramId) {
-        this.diagramId = diagramId;
+    public void setDiagramName(String diagramName) {
+        this.diagramName = diagramName;
     }
 
     public String getDiagramDesc() {
