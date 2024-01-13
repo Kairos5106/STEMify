@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,36 +11,36 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?attr/actionBarSize"
         android:background="#F5D0D0"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" >
+        app:title="Details"
+        app:titleTextColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="25sp"
-            android:text="Details"
-            android:textColor="@color/white"
-            android:textStyle="bold"/>
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
         android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
         android:elevation="20dp"
-        app:cardCornerRadius="30dp">
+        app:cardCornerRadius="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar2">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
+            android:background="@drawable/pink_border"
             android:orientation="vertical"
-            android:padding="20dp"
-            android:background="@drawable/pink_border">
+            android:padding="20dp">
 
             <ImageView
                 android:id="@+id/IVCardDetails"
@@ -49,8 +49,8 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="16dp"
-                android:src="@drawable/ic_launcher_background"
-                android:scaleType="center"/>
+                android:scaleType="center"
+                android:src="@drawable/ic_launcher_background" />
 
             <TextView
                 android:id="@+id/TVCardNameDetails"
@@ -69,15 +69,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="255dp"
                 android:layout_margin="10dp"
+                android:background="@drawable/pink_border"
                 android:padding="20dp"
                 android:text="Some description"
+                android:textAlignment="gravity"
                 android:textSize="15sp"
-                android:textStyle="normal"
-                android:background="@drawable/pink_border"
-                android:textAlignment="gravity"/>
+                android:textStyle="normal" />
 
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
