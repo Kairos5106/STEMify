@@ -77,6 +77,10 @@ public class SubtopicLibrary extends AppCompatActivity {
             public void onItemClick(int position) {
                 Intent goToSectionLibrary = new Intent(SubtopicLibrary.this, SectionLibrary.class);
 
+                // Get selected subject title and grade level
+                goToSectionLibrary.putExtra("selectedSubject", selectedSubjectTitle);
+                goToSectionLibrary.putExtra("selectedGrade", selectedGrade);
+
                 // Get selected subtopic
                 Subtopic selectedSubtopic = listOfItems.get(position);
 
@@ -103,7 +107,6 @@ public class SubtopicLibrary extends AppCompatActivity {
 
         TVSubjectWithTopic = findViewById(R.id.TVSubjectWithTopic);
         TVSubjectWithTopic.setText(selectedSubjectTitle + ": " + selectedTopic);
-
     }
 
     @Override
@@ -135,18 +138,29 @@ public class SubtopicLibrary extends AppCompatActivity {
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
-                    // Retrieve subtopic title
+                for (DataSnapshot dataSnapshot: snapshot.getChildren()){ // Addition
+                    if(dataSnapshot.getValue() instanceof String){
+                        continue;
+                    }
+
+                    // Retrieve subtopic and add it to listOfItems to be displayed by RecyclerView
                     Subtopic subtopic = dataSnapshot.getValue(Subtopic.class);
 
-                    Toast.makeText(SubtopicLibrary.this, subtopic.getTitle(), Toast.LENGTH_SHORT).show(); // debug
+                    // Retrieve sections of the current subtopic
+                    ArrayList<Section> listOfSections = new ArrayList<>();
+                    for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) { // One Digit, Two Digit
+                        if(childSnapshot.getValue() instanceof String){
+                            continue;
+                        }
 
-                    subtopic.addSection(new Section("Section 1"));
+                        // Retrieve each section of the current subtopic
+                        Section section = childSnapshot.getValue(Section.class);
 
+
+                        listOfSections.add(section);
+                    }
+                    subtopic.setListOfSections(listOfSections);
                     listOfItems.add(subtopic);
-
-                    // Fill subtopic object with sections their sections' material
-
                 }
                 subtopicAdapter.notifyDataSetChanged();
             }
@@ -156,7 +170,6 @@ public class SubtopicLibrary extends AppCompatActivity {
 
             }
         });
-
 
 //        // Populate list with grade items
 //        Subtopic subtopic1 = new Subtopic("Subtopic 1");

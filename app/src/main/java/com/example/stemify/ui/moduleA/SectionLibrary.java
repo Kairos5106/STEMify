@@ -29,7 +29,7 @@ public class SectionLibrary extends AppCompatActivity {
     SectionAdapter sectionAdapter;
     RecyclerView recyclerView;
     List<Section> listOfItems;
-    TextView TVSubtopicTitle;
+    TextView TVSubtopicTitle, TVGradeLevelWithSubject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,13 +81,20 @@ public class SectionLibrary extends AppCompatActivity {
     }
 
     public void initializeData(){
-        // Get subtopic title from goToSectionLibrary intent from SubtopicLibrary
-        String subtopicTitle = Parcels.unwrap(getIntent().getParcelableExtra("subtopicTitle"));
-        TVSubtopicTitle = findViewById(R.id.TVSubtopicTitle);
-        TVSubtopicTitle.setText(subtopicTitle);
-
         // Get section items to be displayed
         listOfItems = new ArrayList<Section>();
         listOfItems = Parcels.unwrap(getIntent().getParcelableExtra("listOfSections"));
+
+        // Update the section information on top of the activity
+        Intent prevActivityData = getIntent();
+
+        String subtopicTitle = prevActivityData.getStringExtra("subtopicTitle");
+        TVSubtopicTitle = findViewById(R.id.TVSubtopicTitle);
+        TVSubtopicTitle.setText(subtopicTitle);
+
+        String selectedSubject = prevActivityData.getStringExtra("selectedSubject");
+        String selectedGrade = prevActivityData.getStringExtra("selectedGrade");
+        TVGradeLevelWithSubject = findViewById(R.id.TVGradeLevelWithSubject);
+        TVGradeLevelWithSubject.setText(selectedGrade + ": " + selectedSubject);
     }
 }
