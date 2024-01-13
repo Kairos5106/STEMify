@@ -160,14 +160,20 @@
         <activity android:name=".HealthFitness"
             android:exported="false" />
 
-        <activity android:name=".Cleanliness"
+        <activity
+            android:name=".CounselorBooking"
             android:exported="false" />
 
-        <activity android:name=".CounselorBooking"
+        <activity android:name=".Counselor_ViewBooking"
             android:exported="false"/>
 
-        <activity android:name=".CommunityEventDetails"
-            android:exported="false"/>
+        <activity
+            android:name=".CommunityEventDetails"
+            android:exported="false" />
+        <activity
+            android:name=".Cleanliness"
+            android:exported="false" />
+
 
         <activity
             android:name=".MainActivity"

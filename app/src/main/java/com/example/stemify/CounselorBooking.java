@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -30,6 +31,7 @@ import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Properties;
 
@@ -51,13 +53,22 @@ public class CounselorBooking extends AppCompatActivity {
     Button time8am, time10am, time12pm, time2pm, time4pm, time6pm, btnBook, btnCancel;
     CalendarView calendarView;
     Calendar calendar;
-    String selectedTime, emailUser, emailDr, nameDr;
+    String selectedTime, selectedDate, emailUser, emailDr, nameDr;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.counselor_booking);
+
+        //database set to node Bookings
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        String userId = currentUser.getUid();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference().child("Bookings").child(userId);
 
         //toolbar
 
@@ -94,7 +105,6 @@ public class CounselorBooking extends AppCompatActivity {
         }
 
         //getting users email address
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null){
             // Read from the database
             DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users").child(currentUser.getUid());
@@ -127,7 +137,7 @@ public class CounselorBooking extends AppCompatActivity {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 Toast.makeText(CounselorBooking.this, dayOfMonth +"/" +month+1 +"/"+year, Toast.LENGTH_SHORT).show();
-
+                selectedDate = dayOfMonth+ "/" +month+1 +"/"+year;
             }
         });
 
@@ -196,6 +206,30 @@ public class CounselorBooking extends AppCompatActivity {
                 if(selectedTime != null){
                     //send email to dr and user
                     sendEmail(v);
+
+                    //save data in firebase
+                    HashMap<String, String> usermap = new HashMap<>();
+                    usermap.put("booking_dr_name", nameDr);
+                    usermap.put("booking_time", selectedTime);
+                    usermap.put("booking_date", selectedDate);
+
+                    DatabaseReference bookingdata = databaseReference.push();
+
+                    bookingdata.setValue(usermap, new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                            if (error == null) {
+                                // Data was successfully written
+                                Log.d("Firebase", "Data saved successfully!");
+                            } else {
+                                // There was an error writing the data
+                                Log.d("Firebase", "Data could not be saved. Error: " + error.getMessage());
+                            }
+                        }
+                    });
+
+
+
                 }else {
                     //alert message to choose time
                     openTimeChooseDialog();

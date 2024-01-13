@@ -171,18 +171,10 @@
                 android:id="@+id/healthy_stress"
                 android:layout_width="wrap_content"
                 android:layout_height="150dp"
+                android:layout_marginBottom="30dp"
                 android:layout_gravity="center"
                 android:src="@drawable/socialise" />
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="55dp"
-                android:fontFamily="sans-serif-light"
-                android:text="Click Here For More Information"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
 
 
         </LinearLayout>

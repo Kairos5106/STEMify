@@ -177,35 +177,18 @@
                 android:layout_gravity="center"
                 android:src="@drawable/world" />
 
-            <TextView
-                android:id="@+id/TVHotlines"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:fontFamily="sans-serif-black"
-                android:text="Do Not Hesitate To Ask For Help"
-                android:textSize="16dp"
-                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/TVHotlines2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="30dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="@string/hotlines"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
-            <TextView
-                android:id="@+id/textviewClick"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="28dp"
-                android:fontFamily="sans-serif-light"
-                android:text="Click Here For More Information"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+
 
 
         </LinearLayout>
