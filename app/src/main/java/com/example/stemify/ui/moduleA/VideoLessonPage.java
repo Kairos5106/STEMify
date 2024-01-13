@@ -1,5 +1,6 @@
 package com.example.stemify.ui.moduleA;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
@@ -15,15 +16,26 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.widget.MediaController;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.example.stemify.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class VideoLessonPage extends AppCompatActivity {
     TranscriptAdapter transcriptAdapter;
     RecyclerView recyclerView;
     VideoView videoView;
     VideoLesson videoLesson;
+    SelectHistory selectHistory;
+    String selectedSection, selectedMaterial;
+    DatabaseReference videoLessonRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +43,9 @@ public class VideoLessonPage extends AppCompatActivity {
 
         // Get data from Section page
         initializeData();
+
+        // Setup videoview
+        setupVideoView(videoLesson.getVideoName());
 
         // Enable back button in the action bar
         Toolbar toolbar = findViewById(R.id.TBVideoLesson);
@@ -51,18 +66,71 @@ public class VideoLessonPage extends AppCompatActivity {
     }
 
     private void initializeData() {
-        // Get data about selected video lesson object from SectionLibrary activity
-        Intent prevActivityData = getIntent();
-        String selectedMaterial = prevActivityData.getStringExtra("selectedMaterial");
+        // Instantiate required variables to prevent the use of null values
+        videoLesson = new VideoLesson();
+        selectHistory = new SelectHistory();
 
-        // Obtain Video Lesson data from database
-        
-        // Get video data and setup VideoView
+        // Gets data from previous activity intent
+        Intent prevActivityData = getIntent();
+        selectedSection = prevActivityData.getStringExtra("selectedSection");
+        selectedMaterial = prevActivityData.getStringExtra("selectedMaterial");
+
+        // Get user select history information
+        DatabaseReference userSelectHistoryRef = FirebaseDatabase.getInstance().getReference("UserSelectHistory").child(getUserId());
+        userSelectHistoryRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                selectHistory = snapshot.getValue(SelectHistory.class);
+
+                Toast.makeText(VideoLessonPage.this, selectHistory.toString(), Toast.LENGTH_SHORT).show();
+                // Obtain Video Lesson data from database
+                videoLessonRef = FirebaseDatabase.getInstance().getReference("Subjects")
+                        .child(selectHistory.getSelectedSubject())
+                        .child(selectHistory.getSelectedGrade())
+                        .child(selectHistory.getSelectedTopic())
+                        .child(selectHistory.getSelectedSubtopic())
+                        .child(selectedSection)
+                        .child(selectedMaterial);
+
+                videoLessonRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        videoLesson = snapshot.getValue(VideoLesson.class);
+                        setupVideoView(videoLesson.getVideoName());
+                        transcriptAdapter.setVideoTranscript(videoLesson.getTranscript());
+                        transcriptAdapter.notifyDataSetChanged();
+                        Toast.makeText(VideoLessonPage.this, videoLesson.toString(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public void setupVideoView(String videoName){
         videoView = findViewById(R.id.VVVideoLesson);
-        videoView.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/R.raw." + videoLesson.getVideoName()));
+        videoView.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/raw/" + videoName));
         MediaController mediaController = new MediaController(this);
         videoView.setMediaController(mediaController);
         mediaController.setAnchorView(videoView);
+    }
+
+    public String getUserId(){
+        String currentUserId = null;
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if(currentUser != null){
+            currentUserId = currentUser.getUid();
+        }
+        return currentUserId;
     }
 
     @Override

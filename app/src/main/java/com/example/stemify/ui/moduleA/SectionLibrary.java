@@ -19,6 +19,9 @@ import android.widget.Toast;
 
 import com.example.stemify.R;
 import com.example.stemify.TestActivity;
+import com.example.stemify.User;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,7 +39,7 @@ public class SectionLibrary extends AppCompatActivity {
     RecyclerView recyclerView;
     List<Section> listOfItems;
     TextView TVSubtopicTitle, TVGradeLevelWithSubject;
-    String selectedTopic;
+    String selectedSubject, selectedGrade, selectedTopic, selectedSubtopic;
     DatabaseReference database;
 
     @Override
@@ -46,6 +49,9 @@ public class SectionLibrary extends AppCompatActivity {
 
         // Assign sample data for RecyclerView usage
         initializeData();
+
+        // Save selected items history to be referred by next activity for material usage
+        saveSelectHistory();
 
         // Enable back button in the action bar
         Toolbar toolbar = findViewById(R.id.TBSectionLibrary);
@@ -63,6 +69,21 @@ public class SectionLibrary extends AppCompatActivity {
         Drawable arrow = AppCompatResources.getDrawable(this, R.drawable.ic_arrow_back);
         DrawableCompat.setTint(arrow, Color.WHITE);
         getSupportActionBar().setHomeAsUpIndicator(arrow);
+    }
+
+    private void saveSelectHistory() {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("UserSelectHistory").child(getUserId());
+        SelectHistory selectHistory = new SelectHistory(selectedSubject, selectedGrade, selectedTopic, selectedSubtopic);
+        reference.setValue(selectHistory);
+    }
+
+    public String getUserId(){
+        String currentUserId = null;
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if(currentUser != null){
+            currentUserId = currentUser.getUid();
+        }
+        return currentUserId;
     }
 
     @Override
@@ -92,12 +113,12 @@ public class SectionLibrary extends AppCompatActivity {
         // Update the section information on top of the activity
         Intent prevActivityData = getIntent();
 
-        String subtopicTitle = prevActivityData.getStringExtra("subtopicTitle");
+        selectedSubtopic = prevActivityData.getStringExtra("subtopicTitle");
         TVSubtopicTitle = findViewById(R.id.TVSubtopicTitle);
-        TVSubtopicTitle.setText(subtopicTitle);
+        TVSubtopicTitle.setText(selectedSubtopic);
 
-        String selectedSubject = prevActivityData.getStringExtra("selectedSubject");
-        String selectedGrade = prevActivityData.getStringExtra("selectedGrade");
+        selectedSubject = prevActivityData.getStringExtra("selectedSubject");
+        selectedGrade = prevActivityData.getStringExtra("selectedGrade");
         TVGradeLevelWithSubject = findViewById(R.id.TVGradeLevelWithSubject);
         TVGradeLevelWithSubject.setText(selectedGrade + ": " + selectedSubject);
 
@@ -112,7 +133,7 @@ public class SectionLibrary extends AppCompatActivity {
                 .child(selectedSubject)
                 .child(selectedGrade)
                 .child(selectedTopic)
-                .child(subtopicTitle);
+                .child(selectedSubtopic);
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

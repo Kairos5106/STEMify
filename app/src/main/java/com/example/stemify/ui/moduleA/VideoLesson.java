@@ -10,7 +10,11 @@ import com.example.stemify.R;
 public class VideoLesson extends Material {
     String transcript, videoName;
 
-    public VideoLesson(){}
+    public VideoLesson(){
+        super();
+        this.transcript = "No transcript provided";
+        this.videoName = "samplevideo";
+    }
 
     public VideoLesson(String title) {
         super(title);
@@ -38,5 +42,13 @@ public class VideoLesson extends Material {
 
     public void setTranscript(String transcript) {
         this.transcript = transcript;
+    }
+
+    @Override
+    public String toString() {
+        return "VideoLesson{" +
+                "transcript='" + transcript + '\'' +
+                ", videoName='" + videoName + '\'' +
+                '}';
     }
 }

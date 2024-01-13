@@ -67,8 +67,10 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.SectionV
                 else if("Quiz".equalsIgnoreCase(materialType)){
                     intent = new Intent(context, QuizPage.class);
                 }
-                String selectedMaterial = listOfMaterial.get(position).getTitle();
-                intent.putExtra("selectedMaterial", selectedMaterial);
+
+                // Add select history information into intent for next activity's use
+                intent.putExtra("selectedSection", section.getTitle());
+                intent.putExtra("selectedMaterial", listOfMaterial.get(position).getTitle());
                 context.startActivity(intent);
             }
         });
