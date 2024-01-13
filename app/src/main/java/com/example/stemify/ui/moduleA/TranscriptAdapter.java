@@ -23,6 +23,10 @@ public class TranscriptAdapter extends RecyclerView.Adapter<TranscriptAdapter.Tr
         this.videoTranscript = videoTranscript;
     }
 
+    public void setVideoTranscript(String videoTranscript) {
+        this.videoTranscript = videoTranscript;
+    }
+
     @NonNull
     @Override
     public TranscriptAdapter.TranscriptViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

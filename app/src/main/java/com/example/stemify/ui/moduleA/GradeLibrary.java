@@ -1,5 +1,6 @@
 package com.example.stemify.ui.moduleA;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
@@ -7,12 +8,19 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.stemify.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +28,10 @@ import java.util.List;
 public class GradeLibrary extends AppCompatActivity {
     GradeAdapter gradeAdapter;
     RecyclerView recyclerView;
-    List<Grade> listOfItems;
+    List<Grade> listOfGrades;
+    DatabaseReference database;
+    String selectedSubjectTitle;
+    String selectedGrade;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,9 +62,20 @@ public class GradeLibrary extends AppCompatActivity {
         // Setup RecyclerView
         recyclerView = findViewById(R.id.RVGradeLibrary);
         recyclerView.setLayoutManager(new LinearLayoutManager(GradeLibrary.this));
-        gradeAdapter = new GradeAdapter(GradeLibrary.this, listOfItems);
+        gradeAdapter = new GradeAdapter(GradeLibrary.this, listOfGrades);
         recyclerView.setAdapter(gradeAdapter);
         gradeAdapter.notifyDataSetChanged();
+
+        // Upon the click of a grade level, send selected subject title and grade level to the next activity
+        gradeAdapter.setOnItemClickListener(new GradeAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent goToTopicLibrary = new Intent(GradeLibrary.this, TopicLibrary.class);
+                goToTopicLibrary.putExtra("selectedSubjectTitle", selectedSubjectTitle);
+                goToTopicLibrary.putExtra("selectedGrade", listOfGrades.get(position).getGradeTitle());
+                startActivity(goToTopicLibrary);
+            }
+        });
     }
 
     @Override
@@ -68,14 +90,16 @@ public class GradeLibrary extends AppCompatActivity {
     }
 
     public void initalizeData(){
-        // Initializing list of topic items
-        listOfItems = new ArrayList<Grade>();
+        Intent prevActivityData = getIntent();
+        selectedSubjectTitle = prevActivityData.getStringExtra("subjectSelected");
 
-        // Populate list with grade items
-        listOfItems.add(new Grade("Grade1"));
-        listOfItems.add(new Grade("Grade2"));
-        listOfItems.add(new Grade("Grade3"));
-        listOfItems.add(new Grade("Grade4"));
-        listOfItems.add(new Grade("Grade5"));
+        // Instantiate list of grade items
+        listOfGrades = new ArrayList<Grade>();
+
+        listOfGrades.add(new Grade("Form 1"));
+        listOfGrades.add(new Grade("Form 2"));
+        listOfGrades.add(new Grade("Form 3"));
+        listOfGrades.add(new Grade("Form 4"));
+        listOfGrades.add(new Grade("Form 5"));
     }
 }

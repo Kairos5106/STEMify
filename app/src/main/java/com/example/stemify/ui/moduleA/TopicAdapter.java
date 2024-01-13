@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,7 +19,14 @@ import java.util.List;
 public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHolder>{
     Context context;
     List<ResourceTopic> list;
+    OnItemClickListener mListener;
+    public interface OnItemClickListener{
+        void onItemClick(int position);
+    }
 
+    public void setOnItemClickListener(OnItemClickListener listener){
+        mListener = listener;
+    }
     public TopicAdapter(Context context, List<ResourceTopic> list) {
         this.context = context;
         this.list = list;
@@ -34,6 +42,7 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
     public void onBindViewHolder(@NonNull TopicAdapter.TopicViewHolder holder, int position) {
         ResourceTopic resourceTopic = list.get(position);
         holder.title.setText(resourceTopic.title);
+        holder.topicImage.setImageResource(context.getResources().getIdentifier(resourceTopic.getTopicImageName(), "drawable", context.getPackageName()));
     }
 
     @Override
@@ -43,15 +52,20 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
 
     public class TopicViewHolder extends RecyclerView.ViewHolder {
         TextView title;
-
+        ImageView topicImage;
         public TopicViewHolder(@NonNull View itemView) {
             super(itemView);
             this.title = itemView.findViewById(R.id.TVDownloadTitle);
+            this.topicImage = itemView.findViewById(R.id.IVItemImage);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent goToSubtopics = new Intent(context, SubtopicLibrary.class);
-                    context.startActivity(goToSubtopics);
+                    if(mListener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            mListener.onItemClick(position);
+                        }
+                    }
                 }
             });
         }

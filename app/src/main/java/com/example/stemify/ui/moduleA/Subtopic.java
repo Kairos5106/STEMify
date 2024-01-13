@@ -1,27 +1,48 @@
 package com.example.stemify.ui.moduleA;
 
+import org.parceler.Parcel;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Subtopic {
-    String title = "";
+    String title, subtopicImageName;
     int achievedPoints, totalPoints, imageId;
     List<Section> listOfSections;
 
-    public Subtopic(String title) {
-        this.title = title;
+    public Subtopic() {
+        this.title = "";
+        this.subtopicImageName = "sampleimage";
         this.achievedPoints = 0;
         this.totalPoints = 0;
         this.imageId = 0;
         this.listOfSections = new ArrayList<>();
     }
 
-    public Subtopic(String title, int achievedPoints, int totalPoints, int imageId, List<Section> listOfSections) {
+    public Subtopic(String title) {
         this.title = title;
+        this.subtopicImageName = "sampleimage";
+        this.achievedPoints = 0;
+        this.totalPoints = 0;
+        this.imageId = 0;
+        this.listOfSections = new ArrayList<>();
+    }
+
+    public Subtopic(String title, String subtopicImageName, int achievedPoints, int totalPoints, int imageId, List<Section> listOfSections) {
+        this.title = title;
+        this.subtopicImageName = subtopicImageName;
         this.achievedPoints = achievedPoints;
         this.totalPoints = totalPoints;
         this.imageId = imageId;
         this.listOfSections = listOfSections;
+    }
+
+    public String getSubtopicImageName() {
+        return subtopicImageName;
+    }
+
+    public void setSubtopicImageName(String subtopicImageName) {
+        this.subtopicImageName = subtopicImageName;
     }
 
     public String getTitle() {
@@ -82,5 +103,9 @@ public class Subtopic {
             listOfSections += "\n" + this.listOfSections.get(i).title;
         }
         return listOfSections;
+    }
+
+    public int getSectionCount(){
+        return this.listOfSections.size();
     }
 }

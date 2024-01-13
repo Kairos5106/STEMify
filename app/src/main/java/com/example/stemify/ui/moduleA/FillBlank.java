@@ -1,31 +1,38 @@
 package com.example.stemify.ui.moduleA;
 
-import java.util.HashMap;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+import org.parceler.Parcel;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
-public class FillBlank extends Question{
-    Map<Integer, String> correctAnswers;
+@Parcel
+public class FillBlank extends Question {
+    List<String> correctAnswers;
     public FillBlank() {
         super();
-        this.correctAnswers = new HashMap<>();
+        this.correctAnswers = new ArrayList<>();
     }
 
     public FillBlank(String questionDesc){
         super(questionDesc);
-        this.correctAnswers = new HashMap<>();
+        this.correctAnswers = new ArrayList<>();
     }
 
-    public Map<Integer, String> getCorrectAnswers() {
+    public List<String> getCorrectAnswers() {
         return correctAnswers;
     }
 
-    public void setCorrectAnswers(Map<Integer, String> correctAnswers) {
+    public void setCorrectAnswers(List<String> correctAnswers) {
         this.correctAnswers = correctAnswers;
     }
 
     public void addAnswer(String answer) {
-        int nextKey = getNumberOfAnswers() + 1;
-        correctAnswers.put(nextKey, answer);
+        correctAnswers.add(answer);
     }
 
     public int getNumberOfAnswers(){

@@ -1,5 +1,6 @@
 package com.example.stemify.ui.moduleA;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
@@ -7,12 +8,23 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.MenuItem;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.stemify.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +33,11 @@ public class SubtopicLibrary extends AppCompatActivity {
     SubtopicAdapter subtopicAdapter;
     RecyclerView recyclerView;
     List<Subtopic> listOfItems;
+    String selectedSubjectTitle;
+    String selectedGrade;
+    String selectedTopic;
+    DatabaseReference database;
+    TextView TVGradeLevel, TVSubjectWithTopic;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,8 +72,35 @@ public class SubtopicLibrary extends AppCompatActivity {
         recyclerView = findViewById(R.id.RVSubtopicLibrary);
         recyclerView.setLayoutManager(new LinearLayoutManager(SubtopicLibrary.this));
         subtopicAdapter = new SubtopicAdapter(SubtopicLibrary.this, listOfItems);
+        subtopicAdapter.setOnItemClickListener(new MaterialAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent goToSectionLibrary = new Intent(SubtopicLibrary.this, SectionLibrary.class);
+
+                // Get selected subject title and grade level
+                goToSectionLibrary.putExtra("selectedSubject", selectedSubjectTitle);
+                goToSectionLibrary.putExtra("selectedGrade", selectedGrade);
+                goToSectionLibrary.putExtra("selectedTopic", selectedTopic);
+
+                // Get selected subtopic
+                Subtopic selectedSubtopic = listOfItems.get(position);
+
+                // Pack title of selected subtopic
+                String subtopicTitle = selectedSubtopic.getTitle();
+                goToSectionLibrary.putExtra("subtopicTitle", subtopicTitle);
+
+                startActivity(goToSectionLibrary);
+            }
+        });
         recyclerView.setAdapter(subtopicAdapter);
         subtopicAdapter.notifyDataSetChanged();
+
+        // Adapt subtopic information on top of page
+        TVGradeLevel = findViewById(R.id.TVGradeLevel);
+        TVGradeLevel.setText(selectedGrade);
+
+        TVSubjectWithTopic = findViewById(R.id.TVSubjectWithTopic);
+        TVSubjectWithTopic.setText(selectedSubjectTitle + ": " + selectedTopic);
     }
 
     @Override
@@ -71,41 +115,52 @@ public class SubtopicLibrary extends AppCompatActivity {
     }
 
     public void initializeData(){
-        // Initializing list of topic items
+        // Get data from previous activity's intent
+        Intent prevActivityData = getIntent();
+        selectedSubjectTitle = prevActivityData.getStringExtra("selectedSubject");
+        selectedGrade = prevActivityData.getStringExtra("selectedGrade");
+        selectedTopic = prevActivityData.getStringExtra("selectedTopic");
+
+        // Initializing list of subtopic items
         listOfItems = new ArrayList<Subtopic>();
 
-        // Populate list with grade items
-        Subtopic subtopic1 = new Subtopic("Subtopic 1");
-        subtopic1.setImageId(R.drawable.sampleimage);
-        Section section1a = new Section("Section 1");
-        Section section1b = new Section("Section 2");
-        Section section1c = new Section("Section 3");
-        subtopic1.addSection(section1a);
-        subtopic1.addSection(section1b);
-        subtopic1.addSection(section1c);
+        // Populate list with subtopics from selected topic
+        database = FirebaseDatabase.getInstance().getReference("Subjects")
+                .child(selectedSubjectTitle)
+                .child(selectedGrade)
+                .child(selectedTopic);
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot: snapshot.getChildren()){ // Addition
+                    if(dataSnapshot.getValue() instanceof String){
+                        continue;
+                    }
 
-        listOfItems.add(subtopic1);
+                    // Retrieve subtopic and add it to listOfItems to be displayed by RecyclerView
+                    Subtopic subtopic = dataSnapshot.getValue(Subtopic.class);
 
-        Subtopic subtopic2 = new Subtopic("Subtopic 2");
-        subtopic2.setImageId(R.drawable.sampleimage);
-        Section section2a = new Section("Section 1");
-        Section section2b = new Section("Section 2");
-        Section section2c = new Section("Section 3");
-        subtopic2.addSection(section2a);
-        subtopic2.addSection(section2b);
-        subtopic2.addSection(section2c);
+                    // Retrieve sections of the current subtopic
+                    ArrayList<Section> listOfSections = new ArrayList<>();
+                    for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) { // One Digit, Two Digit
+                        if(childSnapshot.getValue() instanceof String){
+                            continue;
+                        }
 
-        listOfItems.add(subtopic2);
+                        // Retrieve each section of the current subtopic
+                        Section section = childSnapshot.getValue(Section.class);
+                        listOfSections.add(section);
+                    }
+                    subtopic.setListOfSections(listOfSections);
+                    listOfItems.add(subtopic);
+                }
+                subtopicAdapter.notifyDataSetChanged();
+            }
 
-        Subtopic subtopic3 = new Subtopic("Subtopic 3");
-        subtopic3.setImageId(R.drawable.sampleimage);
-        Section section3a = new Section("Section 1");
-        Section section3b = new Section("Section 2");
-        Section section3c = new Section("Section 3");
-        subtopic3.addSection(section3a);
-        subtopic3.addSection(section3b);
-        subtopic3.addSection(section3c);
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-        listOfItems.add(subtopic3);
+            }
+        });
     }
 }

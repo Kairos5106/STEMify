@@ -1,5 +1,6 @@
 package com.example.stemify.ui.moduleA;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
@@ -7,12 +8,24 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.example.stemify.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,13 +34,18 @@ import java.util.List;
 public class PracticePage extends AppCompatActivity {
     QuestionAdapter questionAdapter;
     RecyclerView recyclerView;
-    List<Question> listOfItems;
+    List<Question> listOfQuestions;
+    Practice practice;
+    SelectHistory selectHistory;
+    String selectedSection, selectedMaterial;
+    DatabaseReference practiceRef;
+    TextView TVGradeLevel, TVSubjectWithTopic;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_practice_page);
 
-        // Assign sample data for RecyclerView usage
+        // Assign data for RecyclerView usage
         initializeData();
 
         // Enable back button in the action bar
@@ -47,6 +65,84 @@ public class PracticePage extends AppCompatActivity {
         DrawableCompat.setTint(arrow, Color.WHITE);
         getSupportActionBar().setHomeAsUpIndicator(arrow);
     }
+    public void initializeData(){
+        // Instantiate required variables to prevent the use of null values
+        practice = new Practice();
+        selectHistory = new SelectHistory();
+        listOfQuestions = new ArrayList<>();
+
+        // Gets data from previous activity intent
+        Intent prevActivityData = getIntent();
+        selectedSection = prevActivityData.getStringExtra("selectedSection");
+        selectedMaterial = prevActivityData.getStringExtra("selectedMaterial");
+
+        // Get user select history information
+        DatabaseReference userSelectHistoryRef = FirebaseDatabase.getInstance().getReference("UserSelectHistory").child(getUserId());
+        userSelectHistoryRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                selectHistory = snapshot.getValue(SelectHistory.class);
+
+                // Obtain Practice page data from database
+                practiceRef = FirebaseDatabase.getInstance().getReference("Subjects")
+                        .child(selectHistory.getSelectedSubject())
+                        .child(selectHistory.getSelectedGrade())
+                        .child(selectHistory.getSelectedTopic())
+                        .child(selectHistory.getSelectedSubtopic())
+                        .child(selectedSection)
+                        .child(selectedMaterial);
+
+                // Change the information on Practice page
+                TVGradeLevel = findViewById(R.id.TVGradeLevel);
+                TVGradeLevel.setText(selectHistory.selectedGrade);
+                TVSubjectWithTopic = findViewById(R.id.TVSubjectWithTopic);
+                TVSubjectWithTopic.setText(selectHistory.getSelectedSubject() + ": " + selectHistory.getSelectedTopic());
+
+
+                practiceRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        // Get questions and insert into Practice object
+                        for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
+                            if(dataSnapshot.getValue() instanceof String){
+                                continue;
+                            }
+                            Question question = dataSnapshot.getValue(Question.class);
+                            if(question.getQuestionType().equalsIgnoreCase("MCQ")){
+                                MultipleChoice multipleChoice = dataSnapshot.getValue(MultipleChoice.class);
+                                listOfQuestions.add(multipleChoice);
+                            }
+                            else{
+                                FillBlank fillBlank = dataSnapshot.getValue(FillBlank.class);
+                                listOfQuestions.add(fillBlank);
+                            }
+                        }
+                        questionAdapter.setListOfQuestions(listOfQuestions);
+                        questionAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public String getUserId(){
+        String currentUserId = null;
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if(currentUser != null){
+            currentUserId = currentUser.getUid();
+        }
+        return currentUserId;
+    }
 
     @Override
     protected void onStart() {
@@ -55,7 +151,7 @@ public class PracticePage extends AppCompatActivity {
         // Setup RecyclerView
         recyclerView = findViewById(R.id.RVPracticePage);
         recyclerView.setLayoutManager(new LinearLayoutManager(PracticePage.this));
-        questionAdapter = new QuestionAdapter(PracticePage.this, listOfItems);
+        questionAdapter = new QuestionAdapter(PracticePage.this, listOfQuestions);
         recyclerView.setAdapter(questionAdapter);
         questionAdapter.notifyDataSetChanged();
     }
@@ -69,47 +165,5 @@ public class PracticePage extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public void initializeData(){
-        listOfItems = new ArrayList<Question>();
-
-        // Populate listOfItems with sample question objects
-        MultipleChoice question1 = new MultipleChoice("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
-        question1.addAnswer("Answer 1a");
-        question1.addAnswer("Answer 1b");
-        question1.addAnswer("Answer 1c");
-        question1.addAnswer("Answer 1d");
-        question1.setDiagramId(R.drawable.sampleimage);
-        question1.setCorrectAnswer("Answer 1a");
-        question1.setDiagramDesc("Sample Diagram Description");
-        listOfItems.add(question1);
-
-        FillBlank question5 = new FillBlank("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
-        HashMap<Integer, String> answer5 = new HashMap<Integer, String>();
-        answer5.put(0, "Lorem");
-        answer5.put(1, "ipsum");
-        question5.setCorrectAnswers(answer5);
-        listOfItems.add(question5);
-
-        MultipleChoice question2 = new MultipleChoice("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
-        question2.addAnswer("Answer 2a");
-        question2.addAnswer("Answer 2b");
-        question2.addAnswer("Answer 2c");
-        question2.addAnswer("Answer 2d");
-        question2.setDiagramId(R.drawable.sampleimage);
-        question2.setCorrectAnswer("Answer 2a");
-        question2.setDiagramDesc("Sample Diagram Description");
-        listOfItems.add(question2);
-
-        FillBlank question3 = new FillBlank("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
-        question3.addAnswer("Lorem");
-        question3.addAnswer("ipsum");
-        listOfItems.add(question3);
-
-        FillBlank question4 = new FillBlank("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
-        question4.addAnswer("Lorem");
-        question4.addAnswer("ipsum");
-        listOfItems.add(question4);
     }
 }

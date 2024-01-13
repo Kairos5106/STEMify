@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.stemify.ui.moduleA.Subject;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
@@ -29,18 +30,16 @@ public class MainActivity extends AppCompatActivity {
                 //if yes, use back the same account and go to welcome page (don't have to login again)
                 //if no, go to splash 2 page where the user can login/sign up
                 FirebaseUser currentUser = mAuth.getCurrentUser();
-                if(currentUser != null){
+                if (currentUser != null) {
                     Intent nextScreen = new Intent(getApplicationContext(), Welcome.class);
                     startActivity(nextScreen);
                     finish();
-                }else {
+                } else {
                     Intent nextScreen = new Intent(getApplicationContext(), Splash2.class);
                     startActivity(nextScreen);
                     finish();
                 }
             }
         });
-
-
     }
 }

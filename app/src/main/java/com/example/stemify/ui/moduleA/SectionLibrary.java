@@ -1,5 +1,6 @@
 package com.example.stemify.ui.moduleA;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
@@ -7,20 +8,40 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.ProxyFileDescriptorCallback;
 import android.view.MenuItem;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.stemify.R;
+import com.example.stemify.TestActivity;
+import com.example.stemify.User;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class SectionLibrary extends AppCompatActivity {
     SectionAdapter sectionAdapter;
     RecyclerView recyclerView;
     List<Section> listOfItems;
+    TextView TVSubtopicTitle, TVGradeLevelWithSubject;
+    String selectedSubject, selectedGrade, selectedTopic, selectedSubtopic;
+    DatabaseReference database;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +49,9 @@ public class SectionLibrary extends AppCompatActivity {
 
         // Assign sample data for RecyclerView usage
         initializeData();
+
+        // Save selected items history to be referred by next activity for material usage
+        saveSelectHistory();
 
         // Enable back button in the action bar
         Toolbar toolbar = findViewById(R.id.TBSectionLibrary);
@@ -45,6 +69,21 @@ public class SectionLibrary extends AppCompatActivity {
         Drawable arrow = AppCompatResources.getDrawable(this, R.drawable.ic_arrow_back);
         DrawableCompat.setTint(arrow, Color.WHITE);
         getSupportActionBar().setHomeAsUpIndicator(arrow);
+    }
+
+    private void saveSelectHistory() {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("UserSelectHistory").child(getUserId());
+        SelectHistory selectHistory = new SelectHistory(selectedSubject, selectedGrade, selectedTopic, selectedSubtopic);
+        reference.setValue(selectHistory);
+    }
+
+    public String getUserId(){
+        String currentUserId = null;
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if(currentUser != null){
+            currentUserId = currentUser.getUid();
+        }
+        return currentUserId;
     }
 
     @Override
@@ -71,44 +110,72 @@ public class SectionLibrary extends AppCompatActivity {
     }
 
     public void initializeData(){
-        // Initializing list of topic items
+        // Update the section information on top of the activity
+        Intent prevActivityData = getIntent();
+
+        selectedSubtopic = prevActivityData.getStringExtra("subtopicTitle");
+        TVSubtopicTitle = findViewById(R.id.TVSubtopicTitle);
+        TVSubtopicTitle.setText(selectedSubtopic);
+
+        selectedSubject = prevActivityData.getStringExtra("selectedSubject");
+        selectedGrade = prevActivityData.getStringExtra("selectedGrade");
+        TVGradeLevelWithSubject = findViewById(R.id.TVGradeLevelWithSubject);
+        TVGradeLevelWithSubject.setText(selectedGrade + ": " + selectedSubject);
+
+        // Get selected topic for database reference purposes
+        selectedTopic = prevActivityData.getStringExtra("selectedTopic");
+
+        // Instantiate list of items arraylist to store section objects
         listOfItems = new ArrayList<Section>();
 
-        // Populate list with grade items
-        Section section1 = new Section("Section 1");
-        Material material1a = new Material("Material 1a: Video Lesson");
-        Material material1b = new Material("Material 1b: Practice");
-        Material material1c = new Material("Material 1c: Quiz");
-        material1a.setType("VideoLesson");
-        material1b.setType("Practice");
-        material1c.setType("Quiz");
-        section1.addMaterial(material1a);
-        section1.addMaterial(material1b);
-        section1.addMaterial(material1c);
-        listOfItems.add(section1);
+        // Populate list with subtopics from selected topic
+        database = FirebaseDatabase.getInstance().getReference("Subjects")
+                .child(selectedSubject)
+                .child(selectedGrade)
+                .child(selectedTopic)
+                .child(selectedSubtopic);
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    if(dataSnapshot.getValue() instanceof String){
+                        continue;
+                    }
 
-        Section section2 = new Section("Section 2");
-        Material material2a = new Material("Material 2a: Video Lesson");
-        Material material2b = new Material("Material 2b: Practice");
-        Material material2c = new Material("Material 2c: Quiz");
-        material2a.setType("VideoLesson");
-        material2b.setType("Practice");
-        material2c.setType("Quiz");
-        section2.addMaterial(material2a);
-        section2.addMaterial(material2b);
-        section2.addMaterial(material2c);
-        listOfItems.add(section2);
+                    // Retrieve sections and add it to listOfItems to be displayed by RecyclerView
+                    Section section = dataSnapshot.getValue(Section.class);
+                    // Retrieve sections of the current subtopic
+                    ArrayList<Material> listOfMaterials = new ArrayList<>();
+                    for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) { // Method of Adding Numbers (Material)
+                        if(childSnapshot.getValue() instanceof String){
+                            continue;
+                        }
 
-        Section section3 = new Section("Section 3");
-        Material material3a = new Material("Material 3a: Video Lesson");
-        Material material3b = new Material("Material 3b: Practice");
-        Material material3c = new Material("Material 3c: Quiz");
-        material2a.setType("VideoLesson");
-        material2b.setType("Practice");
-        material2c.setType("Quiz");
-        section3.addMaterial(material3a);
-        section3.addMaterial(material3b);
-        section3.addMaterial(material3c);
-        listOfItems.add(section3);
+                        // Retrieve each material of the current section and create the appropriate corresponding Material subclass
+                        Material material = childSnapshot.getValue(Material.class);
+                        if(material.getType().equalsIgnoreCase("VideoLesson")){
+                            VideoLesson videoLesson = childSnapshot.getValue(VideoLesson.class);
+                            listOfMaterials.add(videoLesson);
+                        }
+                        else if (material.getType().equalsIgnoreCase("Practice")){
+                            Practice practice = childSnapshot.getValue(Practice.class);
+                            listOfMaterials.add(practice);
+                        }
+                        else{
+                            Quiz quiz = childSnapshot.getValue(Quiz.class);
+                            listOfMaterials.add(quiz);
+                        }
+
+                    }
+                    section.setListOfMaterial(listOfMaterials);
+                    listOfItems.add(section);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

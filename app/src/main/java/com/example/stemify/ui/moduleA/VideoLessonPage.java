@@ -1,5 +1,6 @@
 package com.example.stemify.ui.moduleA;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
@@ -7,6 +8,7 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -14,21 +16,36 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.widget.MediaController;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.example.stemify.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class VideoLessonPage extends AppCompatActivity {
     TranscriptAdapter transcriptAdapter;
     RecyclerView recyclerView;
-    String transcript = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim " +
-                        "veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate " +
-                        "velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit " +
-                        "anim id est laborum.\n";
+    VideoView videoView;
+    VideoLesson videoLesson;
+    SelectHistory selectHistory;
+    String selectedSection, selectedMaterial;
+    DatabaseReference videoLessonRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_lesson_page);
+
+        // Get data from Section page
+        initializeData();
+
+        // Setup videoview
+        setupVideoView(videoLesson.getVideoName());
 
         // Enable back button in the action bar
         Toolbar toolbar = findViewById(R.id.TBVideoLesson);
@@ -46,13 +63,72 @@ public class VideoLessonPage extends AppCompatActivity {
         Drawable arrow = AppCompatResources.getDrawable(this, R.drawable.ic_arrow_back);
         DrawableCompat.setTint(arrow, Color.WHITE);
         getSupportActionBar().setHomeAsUpIndicator(arrow);
+    }
 
-        // Setup VideoView
-        VideoView videoView = findViewById(R.id.VVVideoLesson);
-        videoView.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.samplevideo));
+    private void initializeData() {
+        // Instantiate required variables to prevent the use of null values
+        videoLesson = new VideoLesson();
+        selectHistory = new SelectHistory();
+
+        // Gets data from previous activity intent
+        Intent prevActivityData = getIntent();
+        selectedSection = prevActivityData.getStringExtra("selectedSection");
+        selectedMaterial = prevActivityData.getStringExtra("selectedMaterial");
+
+        // Get user select history information
+        DatabaseReference userSelectHistoryRef = FirebaseDatabase.getInstance().getReference("UserSelectHistory").child(getUserId());
+        userSelectHistoryRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                selectHistory = snapshot.getValue(SelectHistory.class);
+
+                // Obtain Video Lesson data from database
+                videoLessonRef = FirebaseDatabase.getInstance().getReference("Subjects")
+                        .child(selectHistory.getSelectedSubject())
+                        .child(selectHistory.getSelectedGrade())
+                        .child(selectHistory.getSelectedTopic())
+                        .child(selectHistory.getSelectedSubtopic())
+                        .child(selectedSection)
+                        .child(selectedMaterial);
+
+                videoLessonRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        videoLesson = snapshot.getValue(VideoLesson.class);
+                        setupVideoView(videoLesson.getVideoName());
+                        transcriptAdapter.setVideoTranscript(videoLesson.getTranscript());
+                        transcriptAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public void setupVideoView(String videoName){
+        videoView = findViewById(R.id.VVVideoLesson);
+        videoView.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/raw/" + videoName));
         MediaController mediaController = new MediaController(this);
         videoView.setMediaController(mediaController);
         mediaController.setAnchorView(videoView);
+    }
+
+    public String getUserId(){
+        String currentUserId = null;
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if(currentUser != null){
+            currentUserId = currentUser.getUid();
+        }
+        return currentUserId;
     }
 
     @Override
@@ -62,7 +138,7 @@ public class VideoLessonPage extends AppCompatActivity {
         // Setup transcript adapter to fit in transcript
         recyclerView = findViewById(R.id.RVTranscript);
         recyclerView.setLayoutManager(new LinearLayoutManager(VideoLessonPage.this));
-        transcriptAdapter = new TranscriptAdapter(VideoLessonPage.this, transcript);
+        transcriptAdapter = new TranscriptAdapter(VideoLessonPage.this, videoLesson.getTranscript());
         recyclerView.setAdapter(transcriptAdapter);
         transcriptAdapter.notifyDataSetChanged();
     }

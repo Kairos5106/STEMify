@@ -1,10 +1,17 @@
 package com.example.stemify.ui.moduleA;
 
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+import org.parceler.Parcel;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class MultipleChoice extends Question{
-    List<String> listOfAnswers;
+@Parcel
+public class MultipleChoice extends Question {
+    List<String> listOfAnswers = new ArrayList<>();
 
     public MultipleChoice() {
         super();

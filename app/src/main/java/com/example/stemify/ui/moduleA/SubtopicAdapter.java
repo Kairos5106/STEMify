@@ -20,6 +20,15 @@ import java.util.List;
 public class SubtopicAdapter extends RecyclerView.Adapter<SubtopicAdapter.SubtopicViewHolder> {
     Context context;
     List<Subtopic> listOfSubtopics;
+    MaterialAdapter.OnItemClickListener mListener;
+
+    public void setOnItemClickListener(MaterialAdapter.OnItemClickListener mListener) {
+        this.mListener = mListener;
+    }
+
+    public interface OnItemClickListener{
+        void onItemClick(int position);
+    }
 
     public SubtopicAdapter(Context context, List<Subtopic> listOfSubtopics) {
         this.context = context;
@@ -38,7 +47,7 @@ public class SubtopicAdapter extends RecyclerView.Adapter<SubtopicAdapter.Subtop
         holder.title.setText(subtopic.title);
         holder.sectionList.setText(subtopic.getSectionTitleList());
         holder.masteryPoints.setText(subtopic.assignPoints());
-        holder.image.setImageResource(subtopic.imageId);
+        holder.image.setImageResource(context.getResources().getIdentifier(subtopic.getSubtopicImageName(), "drawable", context.getPackageName()));
     }
 
     @Override
@@ -60,8 +69,12 @@ public class SubtopicAdapter extends RecyclerView.Adapter<SubtopicAdapter.Subtop
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent goToSectionLibrary = new Intent(context, SectionLibrary.class);
-                    context.startActivity(goToSectionLibrary);
+                    if(mListener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            mListener.onItemClick(position);
+                        }
+                    }
                 }
             });
         }

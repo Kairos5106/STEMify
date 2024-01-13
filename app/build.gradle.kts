@@ -35,7 +35,6 @@ android {
     }
     packagingOptions {
         resources.excludes.add("META-INF/*.md")
-
     }
 }
 
@@ -60,5 +59,7 @@ dependencies {
     implementation ("com.sun.mail:android-activation:1.6.7")
     implementation("com.mesibo.api:webrtc:1.0.5")
     implementation("com.guolindev.permissionx:permissionx:1.6.1")
+    implementation("org.parceler:parceler-api:1.1.12")
+    annotationProcessor("org.parceler:parceler:1.1.12")
     implementation ("com.google.android.gms:play-services-location:19.0.1")
 }

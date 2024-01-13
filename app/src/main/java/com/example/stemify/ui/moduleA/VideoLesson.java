@@ -1,19 +1,39 @@
 package com.example.stemify.ui.moduleA;
 
-public class VideoLesson extends Material{
-    String transcript;
-    int videoId;
+import android.net.Uri;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import com.example.stemify.R;
+
+@org.parceler.Parcel
+public class VideoLesson extends Material {
+    String transcript, videoName;
+
+    public VideoLesson(){
+        super();
+        this.transcript = "No transcript provided";
+        this.videoName = "samplevideo";
+    }
 
     public VideoLesson(String title) {
         super(title);
         this.transcript = "No transcript provided";
-        this.videoId = 0;
+        this.videoName = "samplevideo";
     }
 
-    public VideoLesson(String title, String type, int points, String transcript, int videoId) {
+    public VideoLesson(String title, String type, int points, String transcript, String videoName) {
         super(title, type, points);
         this.transcript = transcript;
-        this.videoId = videoId;
+        this.videoName = videoName;
+    }
+
+    public String getVideoName() {
+        return videoName;
+    }
+
+    public void setVideoName(String videoName) {
+        this.videoName = videoName;
     }
 
     public String getTranscript() {
@@ -24,11 +44,11 @@ public class VideoLesson extends Material{
         this.transcript = transcript;
     }
 
-    public int getVideoId() {
-        return videoId;
-    }
-
-    public void setVideoId(int videoId) {
-        this.videoId = videoId;
+    @Override
+    public String toString() {
+        return "VideoLesson{" +
+                "transcript='" + transcript + '\'' +
+                ", videoName='" + videoName + '\'' +
+                '}';
     }
 }

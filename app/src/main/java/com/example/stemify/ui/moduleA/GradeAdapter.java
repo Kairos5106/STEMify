@@ -19,6 +19,14 @@ import java.util.List;
 public class GradeAdapter extends RecyclerView.Adapter<GradeAdapter.GradeViewHolder>{
     Context context;
     List<Grade> listOfGrades;
+    OnItemClickListener mListener;
+    public interface OnItemClickListener{
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        mListener = listener;
+    }
 
     public GradeAdapter(Context context, List<Grade> listOfGrades) {
         this.context = context;
@@ -51,8 +59,12 @@ public class GradeAdapter extends RecyclerView.Adapter<GradeAdapter.GradeViewHol
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent goToTopicLibrary = new Intent(context, TopicLibrary.class);
-                    context.startActivity(goToTopicLibrary);
+                    if(mListener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION) {
+                            mListener.onItemClick(position);
+                        }
+                    }
                 }
             });
         }
