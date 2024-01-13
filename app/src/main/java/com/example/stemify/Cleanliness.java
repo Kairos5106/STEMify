@@ -34,7 +34,7 @@ public class Cleanliness extends AppCompatActivity {
 
         TextView textView = findViewById(R.id.txtClick);
 
-        String text = "Click Here to find out more";
+        String text = "Click Here For More Information";
 
         SpannableString ss = new SpannableString(text);
 
@@ -45,7 +45,7 @@ public class Cleanliness extends AppCompatActivity {
 
                 Uri uri = Uri.parse(url);
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
+                Cleanliness.this.startActivity(intent);
 
             }
 

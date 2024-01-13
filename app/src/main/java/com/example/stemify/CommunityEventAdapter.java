@@ -2,6 +2,7 @@ package com.example.stemify;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,16 +10,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.stemify.ui.moduleD.Community;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CommunityEventAdapter extends RecyclerView.Adapter<CommunityEventAdapter.ViewHolder> {
 
     Context context;
     CommunityEventData[] communityEventData;
+    private List<Integer> nearbyEventPositions = new ArrayList<>();
 
     public CommunityEventAdapter(CommunityEventData[] communityEventData, Context context){
         this.context = context;
@@ -42,6 +48,15 @@ public class CommunityEventAdapter extends RecyclerView.Adapter<CommunityEventAd
         holder.textTime.setText(communityEventDataList.getTime());
         holder.textPlace.setText(communityEventDataList.getPlace());
         holder.imageView.setImageResource(communityEventDataList.getImage());
+
+        //to see if events are nearby, then change color on cardview
+        if (nearbyEventPositions.contains(position)) {
+
+            holder.cardView.setBackgroundColor(ContextCompat.getColor(context, R.color.color_change));
+
+        } else {
+            holder.cardView.setBackgroundColor(Color.WHITE); // Reset to default color
+        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,5 +100,12 @@ public class CommunityEventAdapter extends RecyclerView.Adapter<CommunityEventAd
 
         }
     }
+
+    // change nearby events list
+    public void setNearbyEventPositions(List<Integer> nearbyPositions) {
+        //this.nearbyEventPositions.clear();
+        this.nearbyEventPositions = nearbyPositions;
+    }
+
 
 }

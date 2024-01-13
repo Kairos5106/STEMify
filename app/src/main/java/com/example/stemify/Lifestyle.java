@@ -35,7 +35,7 @@ public class Lifestyle extends AppCompatActivity {
 
         TextView textView = findViewById(R.id.textView4);
 
-        String text = "Click Here to find out more";
+        String text = "Click Here For More Information";
 
         SpannableString ss = new SpannableString(text);
 
@@ -46,7 +46,7 @@ public class Lifestyle extends AppCompatActivity {
 
                 Uri uri = Uri.parse(url);
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
+                Lifestyle.this.startActivity(intent);
 
             }
 

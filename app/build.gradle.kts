@@ -35,7 +35,6 @@ android {
     }
     packagingOptions {
         resources.excludes.add("META-INF/*.md")
-
     }
 }
 
@@ -62,4 +61,5 @@ dependencies {
     implementation("com.guolindev.permissionx:permissionx:1.6.1")
     implementation("org.parceler:parceler-api:1.1.12")
     annotationProcessor("org.parceler:parceler:1.1.12")
+    implementation ("com.google.android.gms:play-services-location:19.0.1")
 }
