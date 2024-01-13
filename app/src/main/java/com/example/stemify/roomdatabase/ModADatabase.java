@@ -1,6 +1,10 @@
 package com.example.stemify.roomdatabase;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Context;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
@@ -9,6 +13,7 @@ import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.stemify.ui.moduleA.Subject;
+import com.google.firebase.database.core.Tag;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -50,8 +55,9 @@ public abstract class ModADatabase extends RoomDatabase {
                 // insert a default instance
                 subjectDAO.insertSubject(new Subject("Math"));
                 subjectDAO.insertSubject(new Subject("Science"));
+
+                Log.e(, "Callback executed!");
             });
         }
     };
-
 }

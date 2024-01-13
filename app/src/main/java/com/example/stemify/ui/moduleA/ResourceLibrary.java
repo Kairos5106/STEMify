@@ -1,6 +1,7 @@
 package com.example.stemify.ui.moduleA;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -33,10 +34,6 @@ public class ResourceLibrary extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initalizeData();
-
-        new Thread(){
-
-        }.start();
     }
 
     @Override
@@ -69,8 +66,22 @@ public class ResourceLibrary extends Fragment {
     }
 
     public void initalizeData(){
-        db = ModADatabase.getDatabase(getContext());
-        SubjectDAO subjectDAO = db.subjectDAO();
-        listOfSubjects = subjectDAO.getAll();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // Insert code here
+            }
+        }).start();
+    }
+
+    class InsertAsyncTask extends AsyncTask<Subject, Void, Void>{
+
+        @Override
+        protected Void doInBackground(Subject... subjects) {
+            db = ModADatabase.getDatabase(getContext());
+            SubjectDAO subjectDAO = db.subjectDAO();
+            listOfSubjects = subjectDAO.getAll();
+            return null;
+        }
     }
 }
