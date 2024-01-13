@@ -6,9 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Subtopic {
-    String title = "";
+    String title;
     int achievedPoints, totalPoints, imageId;
     List<Section> listOfSections;
+
+    public Subtopic() {
+        this.title = "";
+        this.achievedPoints = 0;
+        this.totalPoints = 0;
+        this.imageId = 0;
+        this.listOfSections = new ArrayList<>();
+    }
 
     public Subtopic(String title) {
         this.title = title;

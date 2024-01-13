@@ -62,6 +62,4 @@ dependencies {
     implementation("com.guolindev.permissionx:permissionx:1.6.1")
     implementation("org.parceler:parceler-api:1.1.12")
     annotationProcessor("org.parceler:parceler:1.1.12")
-    implementation("androidx.room:room-runtime:2.6.1")
-    annotationProcessor("androidx.room:room-compiler:2.6.1")
 }

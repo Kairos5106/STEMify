@@ -2,6 +2,7 @@ package com.example.stemify.ui.moduleA;
 
 import static java.security.AccessController.getContext;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
@@ -10,12 +11,19 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.stemify.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +31,10 @@ import java.util.List;
 public class TopicLibrary extends AppCompatActivity {
     TopicAdapter topicAdapter;
     RecyclerView recyclerView;
-    List<ResourceTopic> listOfItems;
+    List<ResourceTopic> listOfTopics;
+    String selectedSubjectTitle;
+    String selectedGrade;
+    DatabaseReference database;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,9 +66,24 @@ public class TopicLibrary extends AppCompatActivity {
         // Setup RecyclerView
         recyclerView = findViewById(R.id.RVTopicLibrary);
         recyclerView.setLayoutManager(new LinearLayoutManager(TopicLibrary.this));
-        topicAdapter = new TopicAdapter(TopicLibrary.this, listOfItems);
+        topicAdapter = new TopicAdapter(TopicLibrary.this, listOfTopics);
         recyclerView.setAdapter(topicAdapter);
         topicAdapter.notifyDataSetChanged();
+
+        // Upon clicking a topic, user will be redirected to a page listing the subtopics of the subject
+        topicAdapter.setOnItemClickListener(new TopicAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent goToSubtopicLibrary = new Intent(TopicLibrary.this, SubtopicLibrary.class);
+
+                // Insert information to be transferred to next Activity
+                goToSubtopicLibrary.putExtra("selectedGrade", selectedGrade);
+                goToSubtopicLibrary.putExtra("selectedSubject", selectedSubjectTitle);
+                goToSubtopicLibrary.putExtra("selectedTopic", listOfTopics.get(position).getTitle());
+
+                startActivity(goToSubtopicLibrary);
+            }
+        });
     }
 
     @Override
@@ -72,21 +98,32 @@ public class TopicLibrary extends AppCompatActivity {
     }
 
     public void initalizeData(){
-        // Initializing list of topic items
-        listOfItems = new ArrayList<ResourceTopic>();
+        // Get data from previous activity's intent
+        Intent prevActivityData = getIntent();
+        selectedSubjectTitle = prevActivityData.getStringExtra("selectedSubjectTitle");
+        selectedGrade = prevActivityData.getStringExtra("selectedGrade");
 
-        // Populate list with download items
-        listOfItems.add(new ResourceTopic("Test1"));
-        listOfItems.add(new ResourceTopic("Test2"));
-        listOfItems.add(new ResourceTopic("Test3"));
-        listOfItems.add(new ResourceTopic("Test4"));
-        listOfItems.add(new ResourceTopic("Test5"));
-        listOfItems.add(new ResourceTopic("Test6"));
-        listOfItems.add(new ResourceTopic("Test7"));
-        listOfItems.add(new ResourceTopic("Test8"));
-        listOfItems.add(new ResourceTopic("Test9"));
-        listOfItems.add(new ResourceTopic("Test10"));
-        listOfItems.add(new ResourceTopic("Test11"));
-        listOfItems.add(new ResourceTopic("Test12"));
+        // Initializing list of topic items
+        listOfTopics = new ArrayList<ResourceTopic>();
+
+        // Populate list with topics from selected subject and grade
+        database = FirebaseDatabase.getInstance().getReference("Subjects")
+                .child(selectedSubjectTitle)
+                .child(selectedGrade);
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    ResourceTopic resourceTopic = dataSnapshot.getValue(ResourceTopic.class);
+                    listOfTopics.add(resourceTopic);
+                }
+                topicAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

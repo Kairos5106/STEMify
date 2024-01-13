@@ -5,15 +5,19 @@ import java.util.List;
 
 public class ResourceTopic {
     String title;
-    List<Subtopic> subtopics;
+
+    public ResourceTopic() {
+    }
 
     public ResourceTopic(String title) {
         this.title = title;
-        this.subtopics = new ArrayList<Subtopic>();
     }
 
-    public ResourceTopic(String title, List<Subtopic> subtopics) {
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
         this.title = title;
-        this.subtopics = subtopics;
     }
 }

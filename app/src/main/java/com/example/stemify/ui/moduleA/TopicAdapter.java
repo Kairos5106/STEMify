@@ -18,7 +18,14 @@ import java.util.List;
 public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHolder>{
     Context context;
     List<ResourceTopic> list;
+    OnItemClickListener mListener;
+    public interface OnItemClickListener{
+        void onItemClick(int position);
+    }
 
+    public void setOnItemClickListener(OnItemClickListener listener){
+        mListener = listener;
+    }
     public TopicAdapter(Context context, List<ResourceTopic> list) {
         this.context = context;
         this.list = list;
@@ -50,8 +57,12 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent goToSubtopics = new Intent(context, SubtopicLibrary.class);
-                    context.startActivity(goToSubtopics);
+                    if(mListener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            mListener.onItemClick(position);
+                        }
+                    }
                 }
             });
         }

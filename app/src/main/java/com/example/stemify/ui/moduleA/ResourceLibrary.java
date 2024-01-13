@@ -9,8 +9,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +19,11 @@ import android.widget.Toast;
 import com.example.stemify.DownloadAdapter;
 import com.example.stemify.DownloadItem;
 import com.example.stemify.R;
-import com.example.stemify.roomdatabase.ModADatabase;
-import com.example.stemify.roomdatabase.SubjectDAO;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +32,7 @@ public class ResourceLibrary extends Fragment {
     SubjectAdapter subjectAdapter;
     RecyclerView recyclerView;
     List<Subject> listOfSubjects;
-    private ModADatabase db;
+    DatabaseReference database;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,28 +63,29 @@ public class ResourceLibrary extends Fragment {
             @Override
             public void onItemClick(int position) {
                 Intent goToGradeLibrary = new Intent(getContext(), GradeLibrary.class);
+                goToGradeLibrary.putExtra("subjectSelected", listOfSubjects.get(position).getSubjectTitle());
                 startActivity(goToGradeLibrary);
             }
         });
     }
 
     public void initalizeData(){
-        new Thread(new Runnable() {
+        database = FirebaseDatabase.getInstance().getReference("Subjects");
+        listOfSubjects = new ArrayList<Subject>();
+        database.addValueEventListener(new ValueEventListener() {
             @Override
-            public void run() {
-                // Insert code here
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    Subject subject = dataSnapshot.getValue(Subject.class);
+                    listOfSubjects.add(subject);
+                }
+                subjectAdapter.notifyDataSetChanged();
             }
-        }).start();
-    }
 
-    class InsertAsyncTask extends AsyncTask<Subject, Void, Void>{
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-        @Override
-        protected Void doInBackground(Subject... subjects) {
-            db = ModADatabase.getDatabase(getContext());
-            SubjectDAO subjectDAO = db.subjectDAO();
-            listOfSubjects = subjectDAO.getAll();
-            return null;
-        }
+            }
+        });
     }
 }
