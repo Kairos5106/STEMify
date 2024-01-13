@@ -156,7 +156,34 @@ public class SubtopicLibrary extends AppCompatActivity {
                         // Retrieve each section of the current subtopic
                         Section section = childSnapshot.getValue(Section.class);
 
+                        ArrayList<Material> listOfMaterials = new ArrayList<>();
+                        for (DataSnapshot childSnapshotMaterial: childSnapshot.getChildren()) { // Method of Adding Numbers
+                            if(childSnapshotMaterial.getValue() instanceof String){
+                                continue;
+                            }
 
+                            // Retrieve each section of the current subtopic
+                            Material material = childSnapshotMaterial.getValue(Material.class);
+                            if(material.getType().equalsIgnoreCase("VideoLesson")){
+                                VideoLesson videoLesson = childSnapshotMaterial.getValue(VideoLesson.class);
+                                listOfMaterials.add(videoLesson);
+                                Toast.makeText(SubtopicLibrary.this, "added video lesson", Toast.LENGTH_SHORT).show(); // debug
+                            }
+                            else if (material.getType().equalsIgnoreCase("Practice")) {
+                                Practice practice = childSnapshotMaterial.getValue(Practice.class);
+                                listOfMaterials.add(practice);
+                            }
+                            else{
+                                Quiz quiz = childSnapshotMaterial.getValue(Quiz.class);
+                                listOfMaterials.add(quiz);
+                            }
+
+                            // Add material details retrieval here
+                            // code
+                            // code
+
+                        }
+                        section.setListOfMaterial(listOfMaterials);
                         listOfSections.add(section);
                     }
                     subtopic.setListOfSections(listOfSections);
