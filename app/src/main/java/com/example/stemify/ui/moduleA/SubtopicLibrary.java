@@ -72,7 +72,7 @@ public class SubtopicLibrary extends AppCompatActivity {
         recyclerView = findViewById(R.id.RVSubtopicLibrary);
         recyclerView.setLayoutManager(new LinearLayoutManager(SubtopicLibrary.this));
         subtopicAdapter = new SubtopicAdapter(SubtopicLibrary.this, listOfItems);
-        subtopicAdapter.setOnItemClickListener(new MaterialAdapter.OnItemClickListener() {
+        subtopicAdapter.setOnItemClickListener(new SubtopicAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 Intent goToSectionLibrary = new Intent(SubtopicLibrary.this, SectionLibrary.class);

@@ -20,9 +20,9 @@ import java.util.List;
 public class SubtopicAdapter extends RecyclerView.Adapter<SubtopicAdapter.SubtopicViewHolder> {
     Context context;
     List<Subtopic> listOfSubtopics;
-    MaterialAdapter.OnItemClickListener mListener;
+    OnItemClickListener mListener;
 
-    public void setOnItemClickListener(MaterialAdapter.OnItemClickListener mListener) {
+    public void setOnItemClickListener(OnItemClickListener mListener) {
         this.mListener = mListener;
     }
 

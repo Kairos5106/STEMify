@@ -58,7 +58,7 @@ public class PracticePage extends AppCompatActivity {
         }
 
         // Set the title for the app bar for this particular page
-        getSupportActionBar().setTitle("Practice");
+        getSupportActionBar().setTitle(selectedMaterial);
 
         // Set the back button at app bar to be white
         Drawable arrow = AppCompatResources.getDrawable(this, R.drawable.ic_arrow_back);

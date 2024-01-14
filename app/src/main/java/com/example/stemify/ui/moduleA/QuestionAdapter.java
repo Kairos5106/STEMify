@@ -1,11 +1,14 @@
 package com.example.stemify.ui.moduleA;
 
+import static androidx.browser.customtabs.CustomTabsClient.getPackageName;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -39,17 +42,42 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
     public void onBindViewHolder(@NonNull QuestionAdapter.QuestionViewHolder holder, int position) { // not done
         Question question = listOfQuestions.get(position);
         holder.questionNumber.setText("Question " + (position + 1));
-        holder.diagramDesc.setText(question.getDiagramDesc());
         holder.questionDesc.setText(question.getQuestionDesc());
-        holder.questionDiagram.setImageResource(R.drawable.sampleimage); // change later
 
-        if(question instanceof MultipleChoice){ // Implementation for MCQ features
+        // If the question does not have a diagram defined, remove the imageview and textview associated with the diagram to not take up UI space
+        if(question.getDiagramName().equalsIgnoreCase("")){
+            holder.questionDiagram.setVisibility(View.GONE);
+            holder.diagramDesc.setVisibility(View.GONE);
+        }
+        else{
+            holder.questionDiagram.setImageResource(context.getResources().getIdentifier(question.getDiagramName(), "drawable", context.getPackageName()));
+            holder.diagramDesc.setText(question.getDiagramDesc());
+        }
+
+        if(question instanceof MultipleChoice){ // Implementation for MCQ features: Answer selection and validation
             MCQAnswerAdapter mcqAnswerAdapter = new MCQAnswerAdapter(context, ((MultipleChoice) question).getListOfAnswers());
             holder.recyclerView.setLayoutManager(new LinearLayoutManager(context));
             holder.recyclerView.setAdapter(mcqAnswerAdapter);
             mcqAnswerAdapter.notifyDataSetChanged();
+            mcqAnswerAdapter.setOnItemClickListener(new MCQAnswerAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(int position) {
+                    String questionCorrectAns = question.getCorrectAnswer();
+                    String selectedAns = ((MultipleChoice) question).getListOfAnswers().get(position);
+
+                    Toast.makeText(context, selectedAns, Toast.LENGTH_SHORT).show();
+                    // Change color of answer box to red when the answer selected is wrong
+                    if(selectedAns.equalsIgnoreCase(questionCorrectAns)){
+                        
+                    }
+                    // Change color of answer box to green when the answer selected is wrong
+//                    if(){
+//
+//                    }
+                }
+            });
         }
-        else if (question instanceof FillBlank) { // Specific implementation for FillBlank features
+        else if (question instanceof FillBlank) { // Specific implementation for FillBlank features: Answer validation
             FillBlankAdapter fillBlankAdapter = new FillBlankAdapter(context, (FillBlank) question);
             holder.recyclerView.setLayoutManager(new LinearLayoutManager(context));
             holder.recyclerView.setAdapter(fillBlankAdapter);
