@@ -103,6 +103,7 @@ public class PracticePage extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         // Get questions and insert into Practice object
+                        practice = snapshot.getValue(Practice.class);
                         for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
                             if(dataSnapshot.getValue() instanceof String){
                                 continue;

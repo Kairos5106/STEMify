@@ -62,18 +62,24 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
             mcqAnswerAdapter.setOnItemClickListener(new MCQAnswerAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(int position) {
-                    String questionCorrectAns = question.getCorrectAnswer();
-                    String selectedAns = ((MultipleChoice) question).getListOfAnswers().get(position);
-
-                    Toast.makeText(context, selectedAns, Toast.LENGTH_SHORT).show();
-                    // Change color of answer box to red when the answer selected is wrong
-                    if(selectedAns.equalsIgnoreCase(questionCorrectAns)){
-                        
+                    // Reset all answer boxes from being selected
+                    for (int i = 0; i < ((MultipleChoice) question).getListOfAnswers().size(); i++) {
+                        MCQAnswerAdapter.MCQAnswerViewHolder viewHolder = (MCQAnswerAdapter.MCQAnswerViewHolder) holder.recyclerView.findViewHolderForAdapterPosition(i);
+                        viewHolder.resetColor();
                     }
-                    // Change color of answer box to green when the answer selected is wrong
-//                    if(){
-//
-//                    }
+                    MCQAnswerAdapter.MCQAnswerViewHolder viewHolder = (MCQAnswerAdapter.MCQAnswerViewHolder) holder.recyclerView.findViewHolderForAdapterPosition(position);
+                    if(viewHolder != null){
+                        String questionCorrectAns = question.getCorrectAnswer();
+                        String selectedAns = ((MultipleChoice) question).getListOfAnswers().get(position);
+
+                        // Change color of answer box to green when the answer selected is wrong
+                        if(selectedAns.equals(questionCorrectAns)){
+                            viewHolder.selectCorrect();
+                        }
+                        else{ // Change color of answer box to red when the answer selected is wrong
+                            viewHolder.selectWrong();
+                        }
+                    }
                 }
             });
         }

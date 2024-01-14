@@ -77,7 +77,7 @@ public class MCQAnswerAdapter extends RecyclerView.Adapter<MCQAnswerAdapter.MCQA
         }
 
         public void selectCorrect(){
-            this.answerBox.setBackgroundColor(Color.RED);
+            this.answerBox.setBackgroundColor(Color.GREEN);
         }
 
         public void resetColor(){

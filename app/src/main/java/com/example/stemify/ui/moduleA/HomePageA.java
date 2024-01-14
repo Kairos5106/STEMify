@@ -71,8 +71,6 @@ public class HomePageA extends Fragment {
         else{
             vpAdapter.addFragment(new ResourceCommunity(), "COMMUNITY");
         }
-
-        vpAdapter.addFragment(new Downloads(), "DOWNLOADS");
         viewPager.setAdapter(vpAdapter);
         vpAdapter.notifyDataSetChanged();
 
