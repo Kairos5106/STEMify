@@ -1,5 +1,7 @@
 package com.example.stemify.ui.moduleA;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -27,10 +29,11 @@ import com.google.firebase.database.ValueEventListener;
 
 public class HomePageA extends Fragment {
     Handler handler;
-    String userIdentity = "";
+    String userIdentity;
     VPAdapter vpAdapter;
     TabLayout tabLayout;
     ViewPager viewPager;
+    SharedPreferences userPrefs;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,11 @@ public class HomePageA extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // Get user identity from a shared preference defined earlier in MainActivity.java
+        userIdentity = "";
+        userPrefs = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        userIdentity = userPrefs.getString("userIdentity", "Student");
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home_page_a, container, false);
 
@@ -50,9 +58,20 @@ public class HomePageA extends Fragment {
         tabLayout.setupWithViewPager(viewPager);
 
         // Assign fragments to tabs
+        // For the community page, there are two different layouts available:
+        // (1) Community Resources Page: For students
+        // (2) Community Resources Page with View Resources button: For tutors
         vpAdapter = new VPAdapter(getChildFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         vpAdapter.addFragment(new ResourceLibrary(), "LIBRARY");
-        vpAdapter.addFragment(new LoadingResourceCommunity(), "COMMUNITY");
+
+        // Determining which community page to add depending on user identity
+        if(userIdentity.equalsIgnoreCase("Tutor")){
+            vpAdapter.addFragment(new ResourceCommunityEducator(), "COMMUNITY");
+        }
+        else{
+            vpAdapter.addFragment(new ResourceCommunity(), "COMMUNITY");
+        }
+
         vpAdapter.addFragment(new Downloads(), "DOWNLOADS");
         viewPager.setAdapter(vpAdapter);
         vpAdapter.notifyDataSetChanged();
