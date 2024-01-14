@@ -1,6 +1,8 @@
 package com.example.stemify.ui.settings;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -87,6 +89,7 @@ public class SettingsFragment extends Fragment {
     RelativeLayout ClickablePrivacy;
     RelativeLayout ClickableLinkedDevices;
     Button BtnLogout;
+    SharedPreferences userPrefs;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -177,6 +180,14 @@ public class SettingsFragment extends Fragment {
         BtnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Instantiate shared preferences to retrieve user identity
+                // Clearing the stored shared preferences for current user when logout is triggered
+                userPrefs = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+                SharedPreferences.Editor prefEditor = userPrefs.edit();
+                prefEditor.clear();
+                prefEditor.commit();
+
+                // Brings user to the login screen after logout
                 FirebaseAuth.getInstance().signOut();
                 Intent nextScreen = new Intent(getActivity(), Splash2.class);
                 startActivity(nextScreen);

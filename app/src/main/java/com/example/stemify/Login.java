@@ -35,12 +35,17 @@ import java.util.regex.Pattern;
 public class Login extends AppCompatActivity {
 
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
-
+    SharedPreferences userPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        // Instantiate shared preferences to store user identity
+        // Will be used in the definition of certain activities for different users
+        userPrefs = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        SharedPreferences.Editor prefEditor = userPrefs.edit();
 
         //return to Splash 2 if cancel button is clicked
         Button BtnCancelLogin = findViewById(R.id.BtnCancelLogin);
@@ -116,6 +121,13 @@ public class Login extends AppCompatActivity {
                                                     if (dataSnapshot.exists()) {
                                                         User user = dataSnapshot.getValue(User.class);
                                                         attemptTime = user.getAttemptTime();
+
+                                                        // Add user info to shared preferences
+                                                        prefEditor.putString("userIdentity", user.getIdentity());
+                                                        prefEditor.putString("userName", user.getDisplayName());
+                                                        prefEditor.putString("userEmail", user.getEmail());
+                                                        prefEditor.putString("userPhotoUrl", user.getPhotoUrl());
+                                                        prefEditor.commit();
 
                                                         if((System.currentTimeMillis()-attemptTime)>3600000){
                                                             Intent nextScreen = new Intent(getApplicationContext(), Welcome.class);

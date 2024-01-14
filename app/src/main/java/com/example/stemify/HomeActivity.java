@@ -1,7 +1,12 @@
 package com.example.stemify;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.stemify.ui.moduleA.HomePageA;
@@ -22,14 +27,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import com.example.stemify.databinding.ActivityHomeBinding;
+import com.squareup.picasso.Picasso;
 
 public class HomeActivity extends AppCompatActivity {
-
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityHomeBinding binding;
-    private HomePageA homePageA = new HomePageA();
-    private HomePageB homePageB = new HomePageB();
+    TextView TVUserName, TVUserEmail;
+    ImageView IVUserImage;
+    SharedPreferences userPrefs;
 
+    NavigationView navigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +62,24 @@ public class HomeActivity extends AppCompatActivity {
         // Set up bottom navigation bar
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
+
+        // Get user info to change header info
+        userPrefs = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        String userName = userPrefs.getString("userName", "Username");
+        String userEmail = userPrefs.getString("userEmail", "Email");
+        String userPhotoUrl = userPrefs.getString("userPhotoUrl", null);
+
+        // Change header to fit user information in side navigation bar
+        navigationView = findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+
+        TVUserName = headerView.findViewById(R.id.TVUsername);
+        TVUserName.setText(userName);
+        TVUserEmail = headerView.findViewById(R.id.TVUserEmail);
+        TVUserEmail.setText(userEmail);
+
+        IVUserImage = headerView.findViewById(R.id.IVUserImage);
+        Picasso.get().load(userPhotoUrl).into(IVUserImage); // change user icon depending on user identity
     }
 
     @Override
