@@ -158,7 +158,7 @@ public class setting_editpassword extends Fragment {
                                                     }
                                                 });
                                     }else{
-                                        Toast.makeText(getActivity(), "Password Mismatch", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getContext(), "Password Mismatch", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             }

@@ -46,7 +46,6 @@ public class MaterialAdapter extends RecyclerView.Adapter<MaterialAdapter.Materi
 
         // Bind View objects
         holder.title.setText(material.getTitle());
-        holder.masteryPoints.setText(material.getMasteryPoints());
         String materialType = material.getType();
         if(materialType.equalsIgnoreCase("VideoLesson")){
             holder.icon.setImageResource(R.drawable.ic_video_lesson);
@@ -72,7 +71,6 @@ public class MaterialAdapter extends RecyclerView.Adapter<MaterialAdapter.Materi
         public MaterialViewHolder(@NonNull View itemView) {
             super(itemView);
             this.title = itemView.findViewById(R.id.TVMaterialTitle);
-            this.masteryPoints = itemView.findViewById(R.id.TVMaterialMasteryPoints);
             this.icon = itemView.findViewById(R.id.IVMaterialIcon);
 
             itemView.setOnClickListener(new View.OnClickListener() {

@@ -21,15 +21,6 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"/>
 
-            <TextView
-                android:id="@+id/TVSectionMasteryPoints"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Points"
-                android:layout_alignTop="@+id/TVSectionTitle"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="16dp"/>
-
             <LinearLayout
                 android:id="@+id/divider1"
                 android:layout_width="match_parent"
