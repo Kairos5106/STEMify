@@ -6,7 +6,6 @@ import android.os.Parcelable;
 
 import com.example.stemify.R;
 
-@org.parceler.Parcel
 public class VideoLesson extends Material {
     String transcript, videoName;
 
