@@ -21,20 +21,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Subtopic Title"
-        android:textSize="20sp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="56dp"
-        app:layout_constraintStart_toEndOf="@+id/IVSubtopicImage"
-        android:layout_marginStart="32dp"/>
-
-    <TextView
-        android:id="@+id/TVSubtopicMasteryPoints"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Achieved Points/Total Points mastery points"
-        android:textSize="12sp"
-        app:layout_constraintTop_toBottomOf="@+id/TVSubtopicTitle"
-        android:layout_marginTop="4dp"
+        android:textSize="24sp"
+        app:layout_constraintTop_toTopOf="@+id/IVSubtopicImage"
+        app:layout_constraintBottom_toBottomOf="@+id/IVSubtopicImage"
         app:layout_constraintStart_toEndOf="@+id/IVSubtopicImage"
         android:layout_marginStart="32dp"/>
 

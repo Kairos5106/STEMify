@@ -134,7 +134,6 @@ public class QuizPage extends AppCompatActivity {
                             if(dataSnapshot.getValue() instanceof Long){
                                 long duration = dataSnapshot.getValue(Long.class);
                                 quiz.setDuration((int) duration);
-                                Toast.makeText(QuizPage.this, "duration: " + duration, Toast.LENGTH_SHORT).show();
                             }
                             if(dataSnapshot.getValue() instanceof String || dataSnapshot.getValue() instanceof Long){
                                 continue;

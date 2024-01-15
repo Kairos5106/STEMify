@@ -41,7 +41,6 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.SectionV
 
         // Bind View objects
         holder.title.setText(section.getTitle());
-        holder.masteryPoints.setText(section.getMasteryPoints());
 
         List<Material> listOfMaterial = section.getListOfMaterial();
         MaterialAdapter materialAdapter = new MaterialAdapter(context, listOfMaterial);
@@ -82,13 +81,12 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.SectionV
     }
 
     public class SectionViewHolder extends RecyclerView.ViewHolder{
-        TextView title, masteryPoints;
+        TextView title;
         RecyclerView materialRV;
 
         public SectionViewHolder(@NonNull View itemView) {
             super(itemView);
             this.title = itemView.findViewById(R.id.TVSectionTitle);
-            this.masteryPoints = itemView.findViewById(R.id.TVSectionMasteryPoints);
             this.materialRV = itemView.findViewById(R.id.RVMaterialList);
         }
     }

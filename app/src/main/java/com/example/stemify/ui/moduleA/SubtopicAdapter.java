@@ -46,7 +46,6 @@ public class SubtopicAdapter extends RecyclerView.Adapter<SubtopicAdapter.Subtop
         Subtopic subtopic = listOfSubtopics.get(position);
         holder.title.setText(subtopic.title);
         holder.sectionList.setText(subtopic.getSectionTitleList());
-        holder.masteryPoints.setText(subtopic.assignPoints());
         holder.image.setImageResource(context.getResources().getIdentifier(subtopic.getSubtopicImageName(), "drawable", context.getPackageName()));
     }
 
@@ -56,14 +55,13 @@ public class SubtopicAdapter extends RecyclerView.Adapter<SubtopicAdapter.Subtop
     }
 
     public class SubtopicViewHolder extends RecyclerView.ViewHolder{
-        TextView title, sectionList, masteryPoints;
+        TextView title, sectionList;
         ImageView image;
 
         public SubtopicViewHolder(@NonNull View itemView) {
             super(itemView);
             this.title = itemView.findViewById(R.id.TVSubtopicTitle);
             this.sectionList = itemView.findViewById(R.id.TVSectionList);
-            this.masteryPoints = itemView.findViewById(R.id.TVSubtopicMasteryPoints);
             this.image = itemView.findViewById(R.id.IVSubtopicImage);
 
             itemView.setOnClickListener(new View.OnClickListener() {

@@ -65,12 +65,12 @@ public class HomePageA extends Fragment {
         vpAdapter.addFragment(new ResourceLibrary(), "LIBRARY");
 
         // Determining which community page to add depending on user identity
-        if(userIdentity.equalsIgnoreCase("Tutor")){
-            vpAdapter.addFragment(new ResourceCommunityEducator(), "COMMUNITY");
-        }
-        else{
-            vpAdapter.addFragment(new ResourceCommunity(), "COMMUNITY");
-        }
+//        if(userIdentity.equalsIgnoreCase("Tutor")){
+//            vpAdapter.addFragment(new ResourceCommunityEducator(), "COMMUNITY");
+//        }
+//        else{
+//            vpAdapter.addFragment(new ResourceCommunity(), "COMMUNITY");
+//        }
         viewPager.setAdapter(vpAdapter);
         vpAdapter.notifyDataSetChanged();
 
