@@ -37,11 +37,11 @@ public class Scholarship extends Fragment {
 
         fragmentManager = getActivity().getSupportFragmentManager();
 
-        mList.add(new ResourceData("Khazanah Global Scholarship", "Full Scholarship", R.drawable.career, R.string.khazanah));
-        mList.add(new ResourceData("MyBrainSc Scholarship", "Full Scholarship", R.drawable.career, R.string.mybrainsc));
-        mList.add(new ResourceData("Bank Negara Scholarship", "Full Scholarship", R.drawable.career, R.string.bank_negara));
-        mList.add(new ResourceData("JPA Scholarship", "Loan", R.drawable.career, R.string.jpa));
-        mList.add(new ResourceData("Fullbright Program", "Partial Scholarship", R.drawable.career, R.string.fullbright));
+        mList.add(new ResourceData("Khazanah Global Scholarship", "Full Scholarship", R.drawable.khazanah_sc, R.string.khazanah));
+        mList.add(new ResourceData("MyBrainSc Scholarship", "Full Scholarship", R.drawable.mybrainsc, R.string.mybrainsc));
+        mList.add(new ResourceData("Bank Negara Scholarship", "Full Scholarship", R.drawable.bank_negara, R.string.bank_negara));
+        mList.add(new ResourceData("JPA Scholarship", "Loan", R.drawable.jpa, R.string.jpa));
+        mList.add(new ResourceData("Fullbright Program", "Partial Scholarship", R.drawable.fullbright, R.string.fullbright));
         mList.add(new ResourceData("British Council GREAT Scholarship", "Partial Scholarship", R.drawable.career, R.string.british_council));
 
         mRecyclerViewAdapter = new ResourceAdapter(getContext(), mList);

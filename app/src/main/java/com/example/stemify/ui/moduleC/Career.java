@@ -48,15 +48,15 @@ public class Career extends Fragment {
 
         fragmentManager = getActivity().getSupportFragmentManager();
 
-        mList.add(new ResourceData("Doctor", "Science", R.drawable.career, R.string.doctor));
-        mList.add(new ResourceData("Chemist", "Science", R.drawable.career, R.string.chemist));
-        mList.add(new ResourceData("Software Engineer", "Technology", R.drawable.career, R.string.software_engineer));
-        mList.add(new ResourceData("Web Developer", "Technology", R.drawable.career, R.string.web_developer));
-        mList.add(new ResourceData("Computer System Analyst", "Technology", R.drawable.career, R.string.computer_system_analyst));
-        mList.add(new ResourceData("Cost Estimator", "Mathematics", R.drawable.career, R.string.cost_estimator));
-        mList.add(new ResourceData("Industrial Engineer", "Engineering", R.drawable.career, R.string.industrial_engineer));
-        mList.add(new ResourceData("Civil Engineer", "Engineering", R.drawable.career, R.string.civil_engineer));
-        mList.add(new ResourceData("Mechanical Engineer", "Engineering", R.drawable.career, R.string.mechanical_engineer));
+        mList.add(new ResourceData("Doctor", "Science", R.drawable.doctor, R.string.doctor));
+        mList.add(new ResourceData("Chemist", "Science", R.drawable.chemist2, R.string.chemist));
+        mList.add(new ResourceData("Software Engineer", "Technology", R.drawable.software_engineer, R.string.software_engineer));
+        mList.add(new ResourceData("Web Developer", "Technology", R.drawable.web_dev, R.string.web_developer));
+        mList.add(new ResourceData("Computer System Analyst", "Technology", R.drawable.cs_analyst, R.string.computer_system_analyst));
+        mList.add(new ResourceData("Cost Estimator", "Mathematics", R.drawable.cost_estimator, R.string.cost_estimator));
+        mList.add(new ResourceData("Industrial Engineer", "Engineering", R.drawable.industrial_engineering, R.string.industrial_engineer));
+        mList.add(new ResourceData("Civil Engineer", "Engineering", R.drawable.civil_engineering, R.string.civil_engineer));
+        mList.add(new ResourceData("Mechanical Engineer", "Engineering", R.drawable.mechanical_engineer, R.string.mechanical_engineer));
         mList.add(new ResourceData("Statistician", "Mathematics", R.drawable.career, R.string.statistician));
 
         mResourceAdapter = new ResourceAdapter(getContext(), mList);

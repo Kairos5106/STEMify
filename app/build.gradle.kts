@@ -62,4 +62,7 @@ dependencies {
     implementation("org.parceler:parceler-api:1.1.12")
     annotationProcessor("org.parceler:parceler:1.1.12")
     implementation ("com.google.android.gms:play-services-location:19.0.1")
+    implementation ("com.github.bumptech.glide:glide:4.14.2")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.14.2")
+    implementation ("com.github.clans:fab:1.6.4")
 }

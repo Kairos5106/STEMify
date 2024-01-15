@@ -35,7 +35,7 @@
         android:name="com.example.stemify.ui.moduleD.HomePageD"
         android:label="Health"
         tools:layout="@layout/fragment_home_page_d" />
-    <fragment
+    <activity
         android:id="@+id/homePageE"
         android:name="com.example.stemify.ui.moduleE.HomePageE"
         android:label="Community Engagement"
